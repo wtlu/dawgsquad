@@ -1,5 +1,12 @@
-h1 {
+#content h1 {
     clear: both;
+    color: black;
+    font-size: 24pt;
+}
+
+#content h2 {
+    color: black;
+    font-size: 14pt;
 }
 
 #hello_message {
@@ -18,33 +25,14 @@ h1 {
 }
 
 #splash_boxes {
-    clear: both;
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
     text-align: center;
-}
-
-/* the big boxes in the middle of the page */
-#splash_boxes div {
-    border: 5px solid black;
-    padding: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-    display: inline;
-    font-weight: bold;
-    background-color: #0000d7;
-    color: #ffaf00;
+    margin-top: 25px;
+    margin-bottom: 50px;
 }
 
 #splash_description {
-    clear: both;
-    margin-top: 150px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    padding: 5pt;
     border: 1px solid black;
-    text-align: center;
 }
