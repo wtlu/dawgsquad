@@ -10,7 +10,7 @@
 </div>
 
 <div id="hello_message">
-  <h1>Welcome to SharingBooks!</h1>
+  <h1>Welcome to SharingMedia!</h1>
   <h2>What would you like to do?</h2>
 </div>
 
@@ -21,5 +21,5 @@
 </div>
 
 <div id="splash_description">
-  SharingBooks lets you share, trade, or sell books you own with your friends across Facebook.
+  SharingMedia lets you share, trade, or sell books you own with your friends across Facebook.
 </div>
