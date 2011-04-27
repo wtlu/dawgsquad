@@ -18,6 +18,11 @@
     margin: 10px;
 }
 
+#top_bar_logo > img {
+    width: 75px;
+    height: 75px;
+}
+
 #top_bar_options {
     float: right;
     font-size: 10pt;
@@ -30,9 +35,14 @@
     margin-bottom: 50px;
 }
 
+#splash_boxes > img {
+    height: 250px;
+    width: 250px;
+}
+
 #splash_description {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
+    text-align: center;
 }
