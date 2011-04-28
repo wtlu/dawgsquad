@@ -1,8 +1,8 @@
 # use glob syntax
 syntax: glob
 
-tmp/*
-tmp/cache/*
-tmp/cache/models/*
-tmp/cache/persistent/*
-tmp/logs/*
+app/tmp/*
+app/tmp/cache/*
+app/tmp/cache/models/*
+app/tmp/cache/persistent/*
+app/tmp/logs/*
