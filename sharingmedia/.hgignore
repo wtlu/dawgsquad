@@ -1,8 +1,0 @@
-# use glob syntax
-syntax: glob
-
-app/tmp/*
-app/tmp/cache/*
-app/tmp/cache/models/*
-app/tmp/cache/persistent/*
-app/tmp/logs/*
