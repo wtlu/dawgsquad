@@ -8,8 +8,7 @@ use File::Spec;
 # build test log filename (without spaces)
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $time = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) . "_" . $hour . '-' . $min;
-my $log_file = File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
-open LOG, ">$log_file";
+open LOG, ">" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
 
 # get test cases
 my @tests = ();
