@@ -20,15 +20,14 @@ my $test_cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake
 chdir File::Spec->catfile('sharingmedia', 'app');
 
 # run all tests and write to log file
-if ($ARGV[0] eq '-a') {		# run all
+if (defined($ARGV[0]) && $ARGV[0] eq '-a') {		# run all
   my $output = `$test_cmd testsuite app all`;
   print LOG $output;
 } else {
   while (<TEST_CASES>) {
     chomp;
     if (!/^\#/ && !/^\s*$/) {	# not comment or blank line
-      # run the test
-      my $output = `$test_cmd testsuite app case $_`;
+      my $output = `$test_cmd testsuite app case $_`; # run test
       print LOG $output;
     }
   }
