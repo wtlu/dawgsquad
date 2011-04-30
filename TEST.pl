@@ -4,11 +4,12 @@
 # whose name is the day and time that the tests were run
 use strict;
 use File::Spec;
+use Net::SMTP;
 
 # build test log filename (without spaces)
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $time = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) . "_" . $hour . '-' . $min;
-open LOG, "+>" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
+open LOG, ">" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
 
 # get test cases
 my @tests = ();
@@ -20,6 +21,7 @@ my $test_cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake
 chdir File::Spec->catfile('sharingmedia', 'app');
 
 # run all tests and write to log file
+my $msg;
 if (defined($ARGV[0]) && $ARGV[0] eq '-a') {		# run all
   my $output = `$test_cmd testsuite app all`;
   print LOG $output;
@@ -28,10 +30,20 @@ if (defined($ARGV[0]) && $ARGV[0] eq '-a') {		# run all
     chomp;
     if (!/^\#/ && !/^\s*$/) {	# not comment or blank line
       my $output = `$test_cmd testsuite app case $_`; # run test
+      $msg .= $output . "\n";
       print LOG $output;
     }
   }
 }
+close LOG;
 
-# send email (this is ghetto... fix once we can)
-`cat TEST_LOGS/$time | mail -s "SharingMedia Test: $test" weiting.t.lu@gmail.com`
+# send mail
+my $smtp = Net::SMTP->new('localhost');
+$smtp->mail('noreply');
+$smtp->to('weiting.t.lu@gmail.com');
+
+$smtp->data();
+$smtp->datasend($msg);
+$smtp->dataend();
+
+$smtp->quit;
