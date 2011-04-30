@@ -9,7 +9,7 @@ use Net::SMTP;
 # build test log filename (without spaces)
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $time = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) . "_" . $hour . '-' . $min;
-open LOG, ">" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
+open LOG, ">" . File::Spec->catfile(File::Spec->updir(), 'TEST_LOGS', $time);
 
 # get test cases
 my @tests = ();
@@ -18,7 +18,7 @@ open TEST_CASES, "<TEST_CASES.txt"
 
 # build the test command
 my $test_cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake');
-chdir File::Spec->catfile('sharingmedia', 'app');
+chdir File::Spec->catfile(File::Spec->updir(), 'sharingmedia', 'app');
 
 # run all tests and write to log file
 my $msg;
