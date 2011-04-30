@@ -77,8 +77,8 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'dawgsquad',
-		'password' => 'QWjZcECPAyfQfYcQ',
+		'login' => 'root', /*'dawgsquad',*/
+		'password' => '', /*'QWjZcECPAyfQfYcQ',*/
 		'database' => 'dawgsquad',
 		'prefix' => '',
 	);
