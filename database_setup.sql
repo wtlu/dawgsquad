@@ -1,7 +1,8 @@
-CREATE DATABASE my_db;
+CREATE DATABASE dawgsquad;
 
-USE my_db;
+USE dawgsquad;
 
 CREATE TABLE libraries(
 	lib_id int
 );
+
