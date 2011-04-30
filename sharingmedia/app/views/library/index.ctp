@@ -27,5 +27,5 @@
 </div>
 
 <div id="splash_description">
-  SharingMedia lets you share, trade, or sell books you own with your friends across Facebook.
+  SharingMedia lets you share, trade, or sell books you own with your friends across Facebook. For more information, including how to get the latest build, please visit <?php echo $this->Html->link('our wiki', 'http://code.google.com/p/dawgsquad/', array('class' => 'button', 'target' => '_blank')); ?>
 </div>
