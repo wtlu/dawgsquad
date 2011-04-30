@@ -8,7 +8,7 @@ use File::Spec;
 # build test log filename (without spaces)
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $time = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) . "_" . $hour . '-' . $min;
-open LOG, ">" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
+open LOG, "+>" . File::Spec->catfile(File::Spec->curdir(), 'TEST_LOGS', $time);
 
 # get test cases
 my @tests = ();
@@ -33,4 +33,5 @@ if (defined($ARGV[0]) && $ARGV[0] eq '-a') {		# run all
   }
 }
 
-close LOG;
+# send email (this is ghetto... fix once we can)
+`cat TEST_LOGS/$time | mail -s "SharingMedia Test: $test" weiting.t.lu@gmail.com`

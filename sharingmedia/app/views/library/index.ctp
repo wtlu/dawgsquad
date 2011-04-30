@@ -1,4 +1,10 @@
 <!-- File: /app/views/library/index.ctp -->
+
+<!-- 
+     Author: Greg Brandt
+     Purpose: This is a dummy splash page for ZFR
+ -->
+
 <?php echo $this->Html->css('main'); ?>
 
 <div id="top_bar_logo">
