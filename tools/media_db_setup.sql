@@ -2,14 +2,6 @@ create database media_db;
 
 use media_db;
 
-CREATE TABLE users(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	fname VARCHAR(20),
-	lname VARCHAR(20),
-	created DATETIME DEFAULT NULL,
- 	modified DATETIME DEFAULT NULL
-);
-
 CREATE TABLE books(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(45),
@@ -19,6 +11,14 @@ CREATE TABLE books(
 	summary TEXT(300),
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL	
+);
+
+CREATE TABLE users(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fname VARCHAR(20),
+	lname VARCHAR(20),
+	created DATETIME DEFAULT NULL,
+ 	modified DATETIME DEFAULT NULL
 );
 
 CREATE TABLE loans(
