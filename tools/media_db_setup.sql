@@ -10,6 +10,17 @@ CREATE TABLE users(
  	modified DATETIME DEFAULT NULL
 );
 
+CREATE TABLE books(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(45),
+	author VARCHAR(45),
+	ISBN VARCHAR(15),
+	image VARCHAR(150),
+	summary TEXT(300),
+	created DATETIME DEFAULT NULL,
+	modified DATETIME DEFAULT NULL	
+);
+
 CREATE TABLE loans(
 	owner_id INT,
 	client_id INT,
@@ -32,17 +43,6 @@ CREATE TABLE book_initial_offers(
 	FOREIGN KEY(user_id) REFERENCES users(id),
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
-);
-
-CREATE TABLE books(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(45),
-	author VARCHAR(45),
-	ISBN VARCHAR(15),
-	image VARCHAR(150),
-	summary TEXT(300),
-	created DATETIME DEFAULT NULL,
-	modified DATETIME DEFAULT NULL	
 );
 
 CREATE TABLE trades(
