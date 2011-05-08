@@ -1,10 +1,10 @@
 use media_db;
 
-INSERT INTO users(fname, lname, created)
-	VALUES("Wei-Ting", "Lu", NOW());
+INSERT INTO users(id, fname, lname, created)
+	VALUES(518118311, "Wei-Ting", "Lu", NOW());
 	
-INSERT INTO users(fname, lname, created)
-	VALUES("Troy", "Martin", NOW());
+INSERT INTO users(id, fname, lname, created)
+	VALUES(1263812002, "Troy", "Martin", NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
 	VALUES(2, 1, 1, 5, 50, NOW());
