@@ -79,7 +79,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'dawgsquad',
 		'password' => 'QWjZcECPAyfQfYcQ',
-		'database' => 'dawgsquad',
+		'database' => 'media_db',
 		'prefix' => '',
 	);
 
@@ -89,7 +89,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'dawgsquad',
 		'password' => 'QWjZcECPAyfQfYcQ',
-		'database' => 'dawgsquad',
+		'database' => 'media_db',
 		'prefix' => '',
 	);
 }
