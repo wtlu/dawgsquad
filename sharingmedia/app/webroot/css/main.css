@@ -32,11 +32,25 @@
 
 #splash_boxes {
     text-align: center;
+    width: 900px;       /* added */
     margin-top: 25px;
     margin-bottom: 50px;
+    margin-left: auto;  /* added */
+    margin-right: auto; /* added */
+    overflow: hidden;   /* added */
 }
 
-#splash_boxes > img {
+ul {					/* added */
+	text-align: left;
+	margin-left: 40px;	
+}
+
+.box {					/* added */
+	width: 300px;
+	float: left;	
+}
+
+.box img {     /* changed splash_boxes to .box */
     height: 250px;
     width: 250px;
 }
