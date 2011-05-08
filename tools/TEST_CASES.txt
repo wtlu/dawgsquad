@@ -7,4 +7,3 @@
 # Use hash signs for comments, like this in test files
 # 
 
-models/library
