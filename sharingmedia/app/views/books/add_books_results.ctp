@@ -5,11 +5,17 @@
 book resultzzz
 
 <?php
-	foreach ($book_results as $k){
-		foreach ($k as $i) {
-			foreach ($i as $j) {
-				echo $j;
+	if (!empty($book_results)) {
+		foreach ($book_results as $k){
+			foreach ($k as $i) {
+				foreach ($i as $j) {
+					echo $j;
+				}
 			}
 		}
+	} else {
+		echo "no results - title:";
+		echo $search_title;
+		#
 	}
 ?>
