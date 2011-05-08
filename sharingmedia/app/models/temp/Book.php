@@ -1,5 +1,6 @@
 <?php
-class Book extends AppModel {
+class Book extends AppModel
+{
 	var $name = 'Book';
 }
 ?>
