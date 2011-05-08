@@ -27,7 +27,13 @@
 <div id="splash_boxes">
 	<div class="box">
 		
-  		<?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook')) ?>
+  		<?php 
+		  echo $this->Html->link(
+		  	$this->Html->image('add_book.png', array('alt' => 'AddBook')),
+		  	"index.php/books/add_books",
+		  	array('escape' => false)
+		  );
+  		?>
   		
   		<ul>
   			<li>Add books to your library</li>
