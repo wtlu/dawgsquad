@@ -6,7 +6,8 @@
 	 
 	 Changelog:
 	 5/3/2011 - James Parsons - Moved to /user
-	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do 
+	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do
+	 5/8/2011 - John Wang - Added link to add books
  -->
 
 <?php echo $this->Html->css('main'); ?>
@@ -30,7 +31,7 @@
   		<?php 
 		  echo $this->Html->link(
 		  	$this->Html->image('add_book.png', array('alt' => 'AddBook')),
-		  	"index.php/books/add_books",
+		  	"/books/add_books",
 		  	array('escape' => false)
 		  );
   		?>

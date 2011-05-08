@@ -31,10 +31,12 @@ class BooksController extends AppController {
 			$book_title = $this->data['Book']['title'];
 			$book_author = $this->data['Book']['author'];
 			$book_isbn = $this->data['Book']['isbn'];
-			$book_results = $this->Book->query('SELECT * FROM books WHERE title = "' . $book_title . '" OR author = "' . $book_author . '" OR isbn = "' .  $book_isbn . '";');
+			$book_results = $this->Book->query('SELECT * FROM books WHERE title LIKE "%' . $book_title . '%" AND author LIKE "%' . $book_author . '%" AND isbn LIKE "%' .  $book_isbn . '%";');
 			$this->set('book_results', $book_results);
 		}
-		$this->set('title', $book_title);
+		$this->set('search_title', $book_title);
+		$this->set('search_author', $book_author);
+		$this->set('search_isbn', $book_isbn);
 	}
 }
 ?>
