@@ -3,7 +3,7 @@ create database media_db;
 use media_db;
 
 CREATE TABLE users(
-	id INT,
+	id INT PRIMARY KEY,
 	fname VARCHAR(20),
 	lname VARCHAR(20),
 	created DATETIME DEFAULT NULL,
