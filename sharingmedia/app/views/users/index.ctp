@@ -6,6 +6,7 @@
 	 
 	 Changelog:
 	 5/3/2011 - James Parsons - Moved to /user
+	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do 
  -->
 
 <?php echo $this->Html->css('main'); ?>
@@ -24,9 +25,34 @@
 </div>
 
 <div id="splash_boxes">
-  <?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook')) ?>
-  <?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook')) ?>
-  <?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary')) ?>
+	<div class="box">
+		
+  		<?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook')) ?>
+  		
+  		<ul>
+  			<li>Add books to your library</li>
+  		</ul>	
+  	</div>
+  	
+  	<div class="box">
+  	
+  		<?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook')) ?>
+  		
+  		<ul>
+  			<li>Find books you need</li>
+  		</ul>
+  	</div>
+  	
+  	<div class="box">
+  	
+  		<?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary')) ?>
+  		
+  		<ul>
+  			<li>View the books in your library</li>
+  			<li>View your transactions</li>
+  			<li>View your current loans</li>
+  		</ul>
+  	</div>
 </div>
 
 <div id="splash_description">
