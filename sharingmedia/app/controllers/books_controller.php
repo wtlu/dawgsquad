@@ -26,8 +26,15 @@ class BooksController extends AppController {
 
 	}
 
-	function querySharingMedia() {
-
+	function add_books_results() {
+		if (!empty($this->data)) {
+			$book_title = $this->data['Book']['title'];
+			$book_author = $this->data['Book']['author'];
+			$book_isbn = $this->data['Book']['isbn'];
+			$book_results = $this->Book->query('SELECT * FROM books WHERE title = "' . $book_title . '" OR author = "' . $book_author . '" OR isbn = "' .  $book_isbn . '";');
+			$this->set('book_results', $book_results);
+		}
+		$this->set('title', $book_title);
 	}
 }
 ?>
