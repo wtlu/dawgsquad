@@ -16,7 +16,7 @@ yum install mercurial
 
 # clone the repository (i.e. install the application)
 cd /var/www/html
-hg clone https://brandt.greg@dawgsquad.googlecode.com/hg/ dawgsquad
+hg clone https://dawgsquad.googlecode.com/hg/ dawgsquad
 
 # set correct ownership on tmp folder
 cd dawgsquad/sharingmedia
