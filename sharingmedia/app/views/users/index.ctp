@@ -24,7 +24,6 @@
 </div>
 
 <div id="splash_boxes">
-  <?php echo Inflector::pluralize('book_initial_offer') ?>
   <?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook')) ?>
   <?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook')) ?>
   <?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary')) ?>
