@@ -10,10 +10,14 @@
 			$result = $book['books'];
 			display_results($result);
 		}
-	} else {
+	} else if (!empty($google_books_results)) {
 		foreach ($google_books_results as $result){
 			display_results($result);
 		}
+	} else {
+		?>
+		<p> No results. Please try your search again. </p>
+		<?php
 	}
 ?>
 
