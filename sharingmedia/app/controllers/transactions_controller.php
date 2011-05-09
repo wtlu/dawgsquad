@@ -16,20 +16,33 @@ class TransactionsController extends AppController {
    * post: transaction is completed (status == 2)
    */
   function acceptTransaction($tid) {
-    $this->set($ts, $this->Transaction->query("SELECT * FROM transactions"));
+    /* get the transaction */
+    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
+
+    /* do all the update stuff */
+
+    /* post info to view for updating / test */
+    $this->set('accept_info', $t[0]);
+    
   }
 
   /* updates the current offer 
    * pre: transaction is pending
    * post: this->trade_id OR this->duration OR this->price updated
    */
-  function counterTransaction($type, $offer) {
+  function counterTransaction($tid, $type, $offer) {
+    /* get the transaction */
+    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
     
+    /* do all the update stuff */
+
+    /* post info to view for updating / test */
+    $this->set('counter_info', $t[0]);
   }
 
   /* displays user's current transactions */
-  function showTransaction($id = null) {
-    
+  function myTransactions($id = null) {
+
   }
 }
 ?>
