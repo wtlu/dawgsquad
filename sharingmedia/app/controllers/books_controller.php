@@ -29,9 +29,20 @@ class BooksController extends AppController {
 			$book_isbn = $this->data['Book']['isbn'];
 			$book_results = $this->Book->query('SELECT * FROM books WHERE title LIKE "%' . $book_title . '%" AND author LIKE "%' . $book_author . '%" AND isbn LIKE "%' .  $book_isbn . '%";');
 			$this->set('book_results', $book_results);
+			# debug($book_results);
 		}
-		$search_string = 'q=isbn:' . $book_isbn . '+intitle:' . $book_title . '+inauthor:' . $book_author . '&num=10';
 		if (empty($book_results)) {
+			$search_string = 'q=';
+			if (!empty($book_isbn)) {
+				$search_string = $search_string . 'isbn:' . $book_isbn;
+			}
+			if (!empty($book_title)) {
+				$search_string = $search_string . '+intitle:' . $book_title;
+			}
+			if (!empty($book_author)) {
+				$search_string = $search_string . '+inauthor:' . $book_author;
+			}
+			$search_string = $search_string . '&num=10';
 			$google_results = $this->query_google($search_string);
 			$this->set('google_results', $google_results);
 		}
@@ -42,8 +53,15 @@ class BooksController extends AppController {
 		App::import('Xml');
 		$http = new HttpSocket();
 		$url = 'http://books.google.com/books/feeds/volumes';
-		$results = $http->get($url, $search_val);
-		return $results;
+		$results = & new Xml($http->get($url, $search_val));
+		$results = Set::reverse($results);
+		if (!empty($results)) {
+			#these are relevant book results returned by google book search
+			$google_results = $results['Feed']['Entry'];
+		}
+
+		# debug($entries);
+		return $entries;
 	}
 }
 ?>
