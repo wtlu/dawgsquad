@@ -1,4 +1,4 @@
-<!-- File: /app/views/posts/add_books.ctp -->	
+<!-- File: /app/views/add_books.ctp -->	
 
 <?php echo $this->Html->css('main'); ?>
 
