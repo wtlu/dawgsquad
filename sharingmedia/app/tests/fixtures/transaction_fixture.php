@@ -2,8 +2,20 @@
 class TransactionFixture extends CakeTestFixture {
   var $name = 'Transaction';
 
-  /* get the table definition from the database */
-  var $import = 'Transaction';
+  /* table definition */
+  var $fields = array(
+		      'id' => array('type' => 'integer', 'key' => 'primary'),
+		      'owner_id' => array('type' => 'integer'),
+		      'client_id' => array('type' => 'integer'),
+		      'book_id' => array('type' => 'integer'),
+		      'current_id' => array('type' => 'integer'),
+		      'trade_id' => array('type' => 'integer'),
+		      'duration' => array('type' => 'integer'),
+		      'price' => array('type' => 'float'),
+		      'status' => array('type' => 'integer'),
+		      'created' => 'datetime',
+		      'modified' => 'datetime'
+		      );
 
   /* status:
    *   0 : pending
