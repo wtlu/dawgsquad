@@ -6,16 +6,22 @@ book resultzzz
 
 <?php
 	if (!empty($book_results)) {
-		foreach ($book_results as $k){
-			foreach ($k as $i) {
-				foreach ($i as $j) {
-					echo $j;
-				}
-			}
+		foreach ($book_results as $result){ 
+			?>
+			<div class="search_result">
+				<p class="image">
+					<?php 
+						$title = $result[0];
+						$author = $result[1];
+						$isbn = $result[2];
+						$image = $result[3];
+						echo $isbn;
+					?>
+				</p>
+			</div>
+		<?php
 		}
 	} else {
-		echo "no results - title:";
-		echo $search_title;
-		#
+		echo $google_results;
 	}
 ?>

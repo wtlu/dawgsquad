@@ -16,7 +16,10 @@ INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, cre
 	VALUES(1263812002, 3, 3, 10, 100, NOW());
 	
 INSERT INTO books(title, author, ISBN, image, summary, created)
-	VALUES("Operating System Concepts", "Abraham Silberschatz", 0470128720, "http://books.google.com/books?id=g710PwAACAAJ&printsec=frontcover&img=1&zoom=1&l=220", "Operating System Concepts, Eighth Edition remains as current and relevant as ever, helping you master the fundamental concepts of operating systems while preparing yourself for today’s emerging developments.", NOW());
+	VALUES("Operating System Concepts", "Abraham Silberschatz", 0470128720, "http://books.google.com/books?id=g710PwAACAAJ&printsec=frontcover&img=1&zoom=1&l=220", "Operating System Concepts, Eighth Edition remains as current and relevant as ever, helping you master the fundamental concepts of operating systems while preparing yourself for today's emerging developments.", NOW());
+	
+INSERT INTO books(title, author, ISBN, image, summary, created)
+	VALUES("Continuous Media Databases", "Abraham Silberschatz", 9780792378181, "http://bks1.books.google.com/books?id=Ba77UV67q40C&printsec=frontcover&img=1&zoom=5&edge=curl", "Continuous Media Databases brings together in one place important contributions and up-to-date research results in this fast moving area.", NOW());
 	
 INSERT INTO books(title, author, ISBN, image, summary, created)
 	VALUES("Web Programming", "Marty Stepp", 0578012391, "http://ecx.images-amazon.com/images/I/51eeDpZ1VQL._SL500_AA300_.jpg", "Web programming stuff.", NOW());
