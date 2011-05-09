@@ -32,7 +32,13 @@ class TransactionControllerTest extends CakeTestCase {
     $this->assertEqual($result['counter_info']['transactions']['trade_id'], null);
     $this->assertEqual($result['counter_info']['transactions']['duration'], null);
     $this->assertEqual($result['counter_info']['transactions']['price'], 50.0);
-    $this->assertEqual($result['counter_info']['transactions']['status'], 0); /* pending */
+
+    /* test status still pending (0) */
+    $this->assertEqual($result['counter_info']['transactions']['status'], 0);
+
+    /* test current_id shifted (was initially owner and now is client who made offer) */
+    $this->assertEqual($result['counter_info']['transactions']['client_id'], 
+		       $result['counter_info']['transactions']['current_id']);
 
     debug($result);
   }
