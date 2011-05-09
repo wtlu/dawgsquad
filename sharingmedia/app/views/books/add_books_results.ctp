@@ -2,26 +2,41 @@
 
 <?php echo $this->Html->css('main'); ?>
 
-book resultzzz
+<h2>Is this yours? </h2>
 
 <?php
 	if (!empty($book_results)) {
-		foreach ($book_results as $result){ 
-			?>
-			<div class="search_result">
-				<p class="image">
-					<?php 
-						$title = $result[0];
-						$author = $result[1];
-						$isbn = $result[2];
-						$image = $result[3];
-						echo $isbn;
-					?>
-				</p>
-			</div>
-		<?php
+		foreach ($book_results as $book){ 
+			$result = $book['books'];
+			display_results($result);
 		}
 	} else {
-		echo $google_results;
+		foreach ($google_books_results as $result){
+			display_results($result);
+		}
 	}
+?>
+
+<?php
+#functions
+
+function display_results($result) {
+	?>
+	<div class="search_result">
+		<p class="book_result">
+			<?php
+				$title = $result['title'];
+				$author = $result['author'];
+				$ISBN = $result['ISBN'];
+				$image = $result['image'];
+			?>
+			<img src=<?= $image ?> alt="Book image" />
+			<strong>Title:</strong>	<?= $title ?> <br />
+			<strong>Author(s):</strong> <?= $author ?> <br />
+			<strong>ISBN:</strong> <?= $ISBN ?> <br />
+		</p>
+		<hr>
+	</div>
+	<?php
+}
 ?>
