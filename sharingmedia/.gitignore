@@ -1,6 +1,4 @@
 /app/config
-/app/tmp/cache/models/
-/app/tmp/cache/persistent/
-/app/tmp/logs/
+/app/tmp/
 /plugins
 /vendors
