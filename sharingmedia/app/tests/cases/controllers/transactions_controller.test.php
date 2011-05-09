@@ -18,15 +18,19 @@ class TransactionControllerTest extends CakeTestCase {
   }
 
   function testAcceptTransaction() {
+    $result = $this->testAction('/transactions/acceptTransaction',
+				array('return' => 'vars'));
     
-  }
-
-  function testRejectTransaction() {
+    /* make sure every transaction (usually 1) was completed */
+    foreach ($result as $r) {
+      $this->assertEqual($r[0]['transactions']['status'], '2');
+    }
 
   }
 
   function testCounter() {
-
+    $result = $this->testAction('/transactions/counterTransaction');
+    debug($result);
   }
 }
 ?>

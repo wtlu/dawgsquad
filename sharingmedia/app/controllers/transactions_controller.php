@@ -15,16 +15,8 @@ class TransactionsController extends AppController {
    * pre: transaction is pending
    * post: transaction is completed (status == 2)
    */
-  function acceptTransaction() {
-    
-  }
-
-  /* owner or user terminates transaction
-   * pre: transaction is pending
-   * post: transaction is rejected
-   */  
-  function rejectTransaction() {
-    
+  function acceptTransaction($tid) {
+    $this->set($ts, $this->Transaction->query("SELECT * FROM transactions"));
   }
 
   /* updates the current offer 
