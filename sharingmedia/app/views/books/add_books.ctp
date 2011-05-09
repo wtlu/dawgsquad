@@ -1,4 +1,4 @@
-<!-- File: /app/views/posts/add_books.ctp -->	
+<!-- File: /app/views/add_books.ctp -->	
 
 <?php echo $this->Html->css('main'); ?>
 
@@ -22,9 +22,5 @@ adding bookzz
 		echo $this->Form->input('author', array('label' => 'Author'));
 		echo $this->Form->input('isbn', array('label' => 'ISBN'));
 		echo $this->Form->end('Continue');
-		
-		if (isset($book_results)) {
-			
-		}
 	?>
 </div>
