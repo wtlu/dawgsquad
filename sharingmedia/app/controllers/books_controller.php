@@ -43,8 +43,37 @@ class BooksController extends AppController {
 				$search_string = $search_string . '+inauthor:' . $book_author;
 			}
 			$search_string = $search_string . '&num=10';
+
+			#these are the book results returned by google book search
 			$google_results = $this->query_google($search_string);
-			$this->set('google_results', $google_results);
+			#debug($google_results);
+
+			$google_books_results = array();
+
+			#get just the relevant portions of google book search and put that in book_results
+			foreach ($google_results as $result){
+				$title = $result['Title'][1];
+				$author = '';
+				if (array_key_exists('creator', $result)) {
+					$author = $result['creator'];
+				} else {
+					foreach ($result['Creator'] as $an_author) {
+						$author = $author . ', '. $an_author;
+					}
+				}
+				$ISBN = $result['Identifier'][1];
+				$image = $result['Link'][0]['href'];
+				$summary = $result['description'];
+				$created = 'NOW';
+
+				$relevant_stuff = array('title' => $title, 'author' => $author,
+					'ISBN' => $ISBN, 'image' => $image, 'summary' => $summary, 'created' => $created);
+
+				$book_sub = array($relevant_stuff);
+				$google_books_results = array_merge($google_books_results, $book_sub);
+			}
+
+			$this->set('google_books_results', $google_books_results);
 		}
 	}
 
@@ -55,13 +84,11 @@ class BooksController extends AppController {
 		$url = 'http://books.google.com/books/feeds/volumes';
 		$results = & new Xml($http->get($url, $search_val));
 		$results = Set::reverse($results);
+
 		if (!empty($results)) {
-			#these are relevant book results returned by google book search
 			$google_results = $results['Feed']['Entry'];
 		}
-
-		# debug($entries);
-		return $entries;
+		return $google_results;
 	}
 }
 ?>
