@@ -1,9 +1,20 @@
+<!-- File: /app/controllers/book_controller.php -->
+
+<!--
+	Created: 5/7/2011
+	Author: John Wang
+
+	Changelog:
+	5/7/2011 - John Wang - Created page, wrote add_books_results to pull data from our db
+	5/8/2011 - John Wang - Added functionality to query Google books and return those results
+	5/9/2011 - John Wang - Handles more cases from querying Google books
+-->
+
 <?php
 class BooksController extends AppController {
 	var $name = 'Books';
 
 	function add_books() {
-
 	}
 
 	function addBook() {
