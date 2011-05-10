@@ -12,10 +12,14 @@ class AddBooksTestCase extends CakeWebTestCase {
 
   /* tests navigation to add books page */
   function testAddView() {
+    /* setup */
+    $this->baseurl = current(split('webroot', $_SERVER['PHP_SELF']));
+    debug($this->baseurl . 'books');
+
     /* from splash page */
 
     /* from my library page */
-    /* TODO: implement my library */
+
   }
 
   /* tests searching a book and displaying correct results */
