@@ -5,7 +5,7 @@ class UsersController extends AppController {
 	
 	function index() {
 		$this->layout = 'main_layout';
-		$this->set('title_for_layout', 'Front Page Bitches');
+		$this->set('title_for_layout', 'Sharing Media');
 		$this->set('users', $this->User->find('all'));	
 	}
 
