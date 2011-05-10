@@ -10,7 +10,7 @@
 
 <?php
 class BookInitialOffersController extends AppController {
-   var $name = 'Book_Initial_Offers';
+   var $name = 'BookInitialOffers';
    
    
    function initial_offer_details(){
@@ -18,7 +18,7 @@ class BookInitialOffersController extends AppController {
 	}
 
 	function my_books($uid){
-		$book_collection = $this->Book_Inital_Offer->query("SELECT title, author, image, summary, FROM book_inital_offers AND books WHERE user_id = $uid AND books.id=book_id" );
+		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_id AND user_id = $uid" );
 
 		
 	}   
