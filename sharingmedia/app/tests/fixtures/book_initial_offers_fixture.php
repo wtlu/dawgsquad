@@ -1,6 +1,6 @@
 <?php
-class BookInitialOfferFixture extends CakeTestFixture {
-  var $name = 'BookInitialOffer';
+class BookInitialOffersFixture extends CakeTestFixture {
+  var $name = 'BookInitialOffers';
 
   /* table definition */
   var $fields = array(
