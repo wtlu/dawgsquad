@@ -10,8 +10,9 @@
 	 5/8/2011 - John Wang - Added link to add books
 	 
 	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
+-->
 	 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
- -->
+
  
  	
 	
