@@ -51,7 +51,7 @@ function display_results($result) {
 		<img src=<?= $image ?> alt="Book image" />
 		<strong>Title:</strong>	<?= $title ?> <br />
 		<strong>Author(s):</strong> <?= $author ?> <br />
-		<strong>ISBN:</strong> <?= $ISBN ?> <br />
+		<?= $ISBN ?> <br />
 	</label>
 	<hr>
 	
