@@ -3,7 +3,7 @@
 <!--
 	Created: 5/8/2011
 	Author: James Parsons
-	
+
 	Changelog:
 	5/8/2011 - James Parsons - Created page, added add_books_confirm().
 -->
@@ -11,26 +11,26 @@
 <?php
 class BookInitialOffersController extends AppController {
    var $name = 'BookInitialOffers';
-   
-   
+
+
    function initial_offer_details(){
-   
+
 	}
 
 	function my_books($uid){
 		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_id AND user_id = $uid" );
 
-		
-	}   
-   
+
+	}
+
    //Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
    function add_books_confirm() {
-		
+
 		if (!empty($this->data)) {
-			
-		
+
+
 			$offer_type = $this->data['BookInitialOffer']['offer_type'];
-			
+
 			switch ($offer_type) {
 				case 'loan':
 					$offer_value = $this->data['BookInitialOffer']['loan_duration'];
@@ -43,12 +43,12 @@ class BookInitialOffersController extends AppController {
 					break;
 			}
 
-			
+
 			$this->set('offer_type', $offer_type);
 			$this->set('offer_value', $offer_value);
-			
+
 		}
 	}
-   
+
 }
 ?>
