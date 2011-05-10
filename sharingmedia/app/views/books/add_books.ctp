@@ -2,8 +2,6 @@
 
 <?php echo $this->Html->css('main'); ?>
 
-adding bookzz
-
 <div id = "nav_step">
 </div>
 
@@ -19,7 +17,7 @@ adding bookzz
 	<?php
 		echo $this->Form->create(array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('label' => 'Title'));
-		echo $this->Form->input('author', array('label' => 'Author'));
+		echo $this->Form->input('author', array('label' => 'Author(s)'));
 		echo $this->Form->input('isbn', array('label' => 'ISBN'));
 		echo $this->Form->end('Continue');
 	?>
