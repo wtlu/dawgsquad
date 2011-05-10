@@ -8,13 +8,18 @@ Beta Release Checklist
 		[ ] Can click Find Books
 		[ ] Can click Library
 	
+<<<<<<< local
 	[ ] General Layout (Troy)
 		[ ] Sidebar
+=======
+	[ ] General Layout
+		[ ] Sidebar (Troy)
+>>>>>>> other
 			[ ] Has Home Sidebar
 			[ ] Has Add Books 
 			[ ] Has Find Books
 			[ ] Has My Library
-		[ ] Top Bar
+		[ ] Top Bar (Troy)
 			[ ] Logo
 			[ ] Account Page
 				[ ] Shows "Coming Soon!"
