@@ -17,6 +17,11 @@ class BookInitialOffersController extends AppController {
 
 	}
 
+	function my_books($uid){
+		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_id AND user_id = $uid" );
+
+
+	}
 
    //Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
    function add_books_confirm() {
