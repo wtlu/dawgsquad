@@ -21,7 +21,7 @@
 </div>
 
 <div id="hello_message">
-  <h1>Welcome to SharingMedia!</h1>
+  <h1>Welcome to SharinGMedia!</h1>
   <h2>What would you like to do?</h2>
 </div>
 
