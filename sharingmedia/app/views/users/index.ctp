@@ -8,6 +8,7 @@
 	 5/3/2011 - James Parsons - Moved to /user
 	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do
 	 5/8/2011 - John Wang - Added link to add books
+	 5/10/2011 - John Wang - Added link to find books
 	 
 	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
 -->
@@ -40,7 +41,13 @@
   	
   	<div class="box">
   	
-  		<?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook')) ?>
+  		<?php 
+  		  echo $this->Html->link(
+		  	$this->Html->image('find_book.png', array('alt' => 'FindBook')),
+		  	"/books/find_books",
+		  	array('escape' => false)
+		  );
+		?>
   		
   		<ul>
   			<li>Find books you need</li>
