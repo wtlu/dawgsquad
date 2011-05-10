@@ -8,20 +8,16 @@
 	 5/3/2011 - James Parsons - Moved to /user
 	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do
 	 5/8/2011 - John Wang - Added link to add books
+	 
+	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
+	 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
  -->
-
-<?php echo $this->Html->css('main'); ?>
-
-<div id="top_bar_logo">
-  <?php echo $this->Html->image('logo.png', array('alt' => 'SharingBooksLogo')) ?>
-</div>
-
-<div id="top_bar_options">
-  <p>Account | FAQ | Help</p>
-</div>
+ 
+ 	
+	
 
 <div id="hello_message">
-  <h1>Welcome to SharinGMedia!</h1>
+  <h1>Welcome to SharingMedia!</h1>
   <h2>What would you like to do?</h2>
 </div>
 

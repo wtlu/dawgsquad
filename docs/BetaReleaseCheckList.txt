@@ -1,5 +1,5 @@
 Beta Release Checklist
-	[ ] Opening App
+	[ ] Opening App (Troy)
 		[ ] User gets an dialog box for permissions if opening app for first time
 		[ ] If user is not logged on, need to log on before seeing our main index page
 		[ ] Greet User with "Hi <User Name>! Welcome to SharingMedia!"
@@ -9,12 +9,12 @@ Beta Release Checklist
 		[ ] Can click Library
 	
 	[ ] General Layout
-		[ ] Sidebar
+		[ ] Sidebar (Troy)
 			[ ] Has Home Sidebar
 			[ ] Has Add Books 
 			[ ] Has Find Books
 			[ ] Has My Library
-		[ ] Top Bar
+		[ ] Top Bar (Troy)
 			[ ] Logo
 			[ ] Account Page
 				[ ] Shows "Coming Soon!"
