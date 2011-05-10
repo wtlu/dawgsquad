@@ -17,18 +17,35 @@ class TransactionControllerTest extends CakeTestCase {
     echo '<hr />';
   }
 
+  /* tests whether acceptTransaction moves transaction to
+   * 'completed' state
+   */
   function testAcceptTransaction() {
+
+    /**
+     * NOTE: THIS ASSUMES acceptTransaction IS OF THE FORM
+     * acceptTransaction($tid) WHERE $id IS THE TRANSACTION ID
+     */
+    
+    /* accept the transaction */
     $result = $this->testAction('/transactions/acceptTransaction/1',
 				array('return' => 'vars'));
+
+    /* make sure state changed */
     $this->assertEqual($result['accept_info']['transactions']['status'], '2');
-    debug($result);
+
   }
 
-  function testCounterTransaction() {
+  /* updates transaction with same type
+   * (i.e. new currency amount if 'price')
+   */
+  function testCounterTransactionSameType() {
+
+    /* change initial offer from 100.0 to 50.0 */
     $result = $this->testAction('/transactions/counterTransaction/1/sell/50.0',
 				array('return' => 'vars'));
 
-    /* test for mutual exclusivity */
+    /* ensure mutual exclusivity */
     $this->assertEqual($result['counter_info']['transactions']['trade_id'], null);
     $this->assertEqual($result['counter_info']['transactions']['duration'], null);
     $this->assertEqual($result['counter_info']['transactions']['price'], 50.0);
@@ -40,7 +57,29 @@ class TransactionControllerTest extends CakeTestCase {
     $this->assertEqual($result['counter_info']['transactions']['client_id'], 
 		       $result['counter_info']['transactions']['current_id']);
 
-    debug($result);
+  }
+
+  /* update transaction with different type
+   * should fail / not allow
+   */
+  function testCounterTransactionDiffType() {
+
+    /* try to set the duration to 100 days instead of a price of 100.0 */
+    $result = $this->testAction('/transactions/counterTransaction/1/duration/100',
+				array('return' => 'vars'));
+
+    /* ensure trade detail fields have not changed */
+    $this->assertEqual($result['counter_info']['transactions']['trade_id'], null);
+    $this->assertEqual($result['counter_info']['transactions']['duration'], null);
+    $this->assertEqual($result['counter_info']['transactions']['price'], 100.0);
+
+    /* test status still pending (0) */
+    $this->assertEqual($result['counter_info']['transactions']['status'], 0);
+
+    /* test current_id not shifted because offer was invalid */
+    $this->assertEqual($result['counter_info']['transactions']['client_id'], 
+		       $result['counter_info']['transactions']['owner_id']);
+
   }
 }
 ?>
