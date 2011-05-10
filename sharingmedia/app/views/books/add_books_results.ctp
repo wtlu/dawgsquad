@@ -50,7 +50,9 @@ function display_results($result) {
 				$image = $result['image'];
 			?>
 		<img src=<?= $image ?> alt="Book image" />
-		<strong>Title:</strong>	<?= $title ?> <br />
+		<strong>Title:</strong>	<?php
+						echo $title;
+					?> <br />
 		<strong>Author(s):</strong> <?= $author ?> <br />
 		<?= $ISBN ?> <br />
 		</label>
