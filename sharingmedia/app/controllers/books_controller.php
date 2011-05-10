@@ -42,6 +42,7 @@ class BooksController extends AppController {
 			$this->set('book_results', $book_results);
 			# debug($book_results);
 		}
+		# search google books
 		if (empty($book_results)) {
 			$search_string = 'q=';
 			if (!empty($book_isbn)) {
@@ -113,7 +114,12 @@ class BooksController extends AppController {
 			}
 		}
 		$ISBN = $result['Identifier'][1];
-		$image = $result['Link'][0]['href'];
+		if ($result['Link'][0]['type'] == 'image/x-unknown') {
+			$image = $result['Link'][0]['href'];
+			$image = str_replace('zoom=5', 'zoom=1', $image);
+		} else {
+			$image = 'http://books.google.com/googlebooks/images/no_cover_thumb.gif';
+		}
 		$summary = '';
 		if (array_key_exists('description', $result)) {
 			$summary = $result['description'];
