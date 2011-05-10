@@ -1,0 +1,1 @@
+// View for the page that allows users to accept a transaction.
