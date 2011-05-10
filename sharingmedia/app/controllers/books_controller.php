@@ -17,19 +17,11 @@ class BooksController extends AppController {
 	function add_books() {
 	}
 
-	function addBook() {
+	function find_books() {
 
 	}
 
-	function deleteBook() {
-
-	}
-
-	function editBook() {
-
-	}
-
-	function showBook($id) {
+	function find_books_results() {
 
 	}
 
