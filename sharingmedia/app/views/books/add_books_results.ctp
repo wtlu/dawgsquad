@@ -9,7 +9,6 @@
 	5/9/2011 - John Wang - Changed results into radios. Now goes to the next step, but no data posted yet
 -->
 
-
 <?php echo $this->Html->css('main'); ?>
 
 <h2>Choose the book that matches yours:</h2>
@@ -40,21 +39,22 @@
 
 function display_results($result) {
 	?>
-	<input name="data[Book][book_type]" id="choose_book" value= "hellozz" type="radio" style="width:50px; float:left;>
-	<label for="choose_book">
-		<?php
-			$title = $result['title'];
-			$author = $result['author'];
-			$ISBN = $result['ISBN'];
-			$image = $result['image'];
-		?>
+	<!-- THIS DOES NOT WORK. CANNOT SET value = an array -->
+	<p class="book_display">
+		<input name="data[Book][book_type]" id="choose_book" value=<?= $result ?> type="radio" style="width:50px; float:left;>
+		<label for="choose_book">
+			<?php
+				$title = $result['title'];
+				$author = $result['author'];
+				$ISBN = $result['ISBN'];
+				$image = $result['image'];
+			?>
 		<img src=<?= $image ?> alt="Book image" />
 		<strong>Title:</strong>	<?= $title ?> <br />
 		<strong>Author(s):</strong> <?= $author ?> <br />
 		<?= $ISBN ?> <br />
-	</label>
-	<hr>
-	
+		</label>
+	</p>
 	<?php
 }
 ?>

@@ -1,3 +1,8 @@
+/* html controls width of all of our pages */
+html { 
+	width: 760px;
+}
+
 #content h1 {
     clear: both;
     color: black;
@@ -32,7 +37,7 @@
 
 #splash_boxes {
     text-align: center;
-    width: 900px;       /* added */
+    width: 760px;       /* added */
     margin-top: 25px;
     margin-bottom: 50px;
     margin-left: auto;  /* added */
@@ -42,17 +47,17 @@
 
 ul {					/* added */
 	text-align: left;
-	margin-left: 40px;	
+	margin-left: 40px;
 }
 
 .box {					/* added */
-	width: 300px;
+	width: 240px;
 	float: left;	
 }
 
 .box img {     /* changed splash_boxes to .box */
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
 }
 
 #splash_description {
@@ -60,4 +65,15 @@ ul {					/* added */
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+.book_display {
+	clear: left;
+}
+
+.book_display img {
+	width: 100px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 30px;
 }
