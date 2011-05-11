@@ -16,6 +16,9 @@
 <strong>Put All the Book Info Here</strong>
 </br>
 </br>
+<?php
+debug($book_chosen);
+?>
 </br>
 
 <fieldset >
