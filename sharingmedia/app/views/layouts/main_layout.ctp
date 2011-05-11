@@ -23,7 +23,7 @@
 		<div id="tabs">
 			<?php echo $this->Html->link('Home', 'http://localhost/sharingmedia/index.php', array('class' => 'tab')); ?> 
 			<?php echo $this->Html->link('Add Books', 'http://localhost/sharingmedia/index.php/books/add_books', array('class' => 'tab')); ?>
-			<?php echo $this->Html->link('Find Books', 'http://localhost/sharingmedia/index.php/find_books', array('class' => 'tab')); ?>
+			<?php echo $this->Html->link('Find Books', 'http://localhost/sharingmedia/index.php/books/find_books', array('class' => 'tab')); ?>
 			<?php echo $this->Html->link('My Library', 'http://localhost/sharingmedia/index.php/my_library', array('class' => 'tab')); ?>
 		</div>
 	</div>
