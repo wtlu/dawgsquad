@@ -101,8 +101,9 @@ class BooksController extends AppController {
 		if (array_key_exists('creator', $result)) {
 			$author = $result['creator'];
 		} else {
-			foreach ($result['Creator'] as $an_author) {
-				$author = $author . ', '. $an_author;
+			$author = $result['Creator'][0];
+			for ($i = 1; $i < count($result['Creator']); $i++) {
+				$author = $author . ', '. $result['Creator'][$i];
 			}
 		}
 		$ISBN = $result['Identifier'][1];
@@ -124,5 +125,17 @@ class BooksController extends AppController {
 		$book_sub = array($relevant_stuff);
 		return $book_sub;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

@@ -32,6 +32,7 @@
 	}
 	
 	echo $this->Form->end('Continue');
+	echo $this->Form->button('Go Back', array('onClick' => 'window.location=books/add_books'));
 ?>
 
 <?php
@@ -41,7 +42,7 @@ function display_results($result) {
 	?>
 	<!-- THIS DOES NOT WORK. CANNOT SET value = an array -->
 	<p class="book_display">
-		<input name="data['Book']['book_type']" id="choose_book" value=<?= $result ?> type="radio" style="width:50px; float:left;">
+		<input name="data['Book']['book_type']" id="choose_book" value=<?php echo $result ?> type="radio" style="width:50px; float:left;">
 		<label for="choose_book">
 			<?php
 				$title = $result['title'];
@@ -49,12 +50,10 @@ function display_results($result) {
 				$ISBN = $result['ISBN'];
 				$image = $result['image'];
 			?>
-		<img src=<?= $image ?> alt="Book image" />
-		<strong>Title:</strong>	<?php
-						echo $title;
-					?> <br />
-		<strong>Author(s):</strong> <?= $author ?> <br />
-		<?= $ISBN ?> <br />
+		<img src=<?php echo $image ?> alt="Book image" />
+		<strong>Title:</strong>	<?php echo $title; ?> <br />
+		<strong>Author(s):</strong> <?php echo $author ?> <br />
+		<?php echo $ISBN ?> <br />
 		</label>
 	</p>
 	<?php
