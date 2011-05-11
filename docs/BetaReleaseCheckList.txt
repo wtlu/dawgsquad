@@ -80,12 +80,13 @@ Tests
 	[ ] Unit test for one major existing class/component in system
 		[ ] books_controller.php (Tatsuro)
 		[ ] book_initial_offers_controller.php (Jedidiah)
-	[ ] Unit Test for one part of system that's not implemented
+	[-] Unit Test for one part of system that's not implemented
 		[X] Transaction Page (Greg)
-		[ ] Re-editing a book offer (Greg)
-	[ ] System tests for the functionality represented by one use case
-		[ ] Adding Books (Greg)
-		[ ] Finding Books (Greg)
+		[-] Re-editing a book offer (Greg)
+	[X] System tests for the functionality represented by one use case
+		[X] Adding Books (Greg)
+		[X] Finding Books (Greg)
+		[X] Set up initial offer (Greg)
 
 Version control repository
 	N/A
@@ -152,7 +153,7 @@ Design changes and rationale
 			[ ] Make sure features that are working are documented
 		[ ] Developer Documentation
 			[ ] Use a tag for release version
-			[ ] Don't ask the developer to edit line 290 of http.conf, patch it (Greg) 
+			[ ] Don't ask the developer to edit line 290 of http.conf, patch it (Greg)
 			[ ] Run MySQL command-line tool with the DB setup in your script instead of asking developer to set permissions manually (Greg)
 			[ ] Make sure Step 2 of Joel test is followed (Greg)
 			[ ] Build and test
