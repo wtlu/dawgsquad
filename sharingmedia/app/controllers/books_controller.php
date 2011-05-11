@@ -117,25 +117,12 @@ class BooksController extends AppController {
 		if (array_key_exists('description', $result)) {
 			$summary = $result['description'];
 		}
-		$created = 'NOW';
 
 		$relevant_stuff = array('title' => $title, 'author' => $author,
-			'ISBN' => $ISBN, 'image' => $image, 'summary' => $summary, 'created' => $created);
+			'ISBN' => $ISBN, 'image' => $image, 'summary' => $summary);
 
 		$book_sub = array($relevant_stuff);
 		return $book_sub;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
 ?>
