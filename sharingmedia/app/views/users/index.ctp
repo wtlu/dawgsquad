@@ -13,9 +13,6 @@
 	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
 -->
 	 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
-
- 
- 	
 	
 
 <div id="hello_message">
