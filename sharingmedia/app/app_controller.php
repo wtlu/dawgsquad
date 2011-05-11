@@ -33,7 +33,7 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	var $helpers = array('Session', 'Facebook.Facebook');
+  var $helpers = array('Html', 'Form', 'Session', 'Facebook.Facebook');
 	var $components = array('Session',
 	//	'Auth' => array( 
 	//	'authorize' => 'controller',
