@@ -11,7 +11,7 @@ use Net::SMTP;
 
 # vars
 my $APP_NAME = 'sharingmedia';
-my $LOG_DIR_NAME = 'TEST_LOGS';
+my $LOG_DIR_NAME = 'logs';
 my $EMAIL_RECIPIENT = 'weiting.t.lu@gmail.com';
 my $TOOL_DIR = 'tools';
 
