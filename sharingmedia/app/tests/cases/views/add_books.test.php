@@ -28,31 +28,46 @@ class AddBooksTestCase extends CakeWebTestCase {
 
   /* tests searching a book and displaying correct results 
    * -- look for operating systems book by ISBN */
-  function testFindView() {
+  function testFindAndInitialOfferView() {
     /* setup */
-    $init_page = 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books';
-    $final_page = 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books_results';
+    $add_page		= 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books';
+    $results_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books_results';
+    $init_offer_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/book_initial_offers/initial_offer_details';
+    $confirm_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/book_initial_offers/add_books_confirm';
 
     /* on find page */
-    $this->get($init_page);
+    $this->get($add_page);
     
     /* fill out form */
-    $this->setField('data[Book][isbn]', '978-0-470-12872-5');
+    $this->setFieldById('BookIsbn', '978-0-470-12872-5');
 
     /* click submit --> go to results page */
     $this->click('Continue');
 
     /* make sure on results page */
-    $this->assertEqual($this->getUrl(), $final_page);
+    $this->assertEqual($this->getUrl(), $results_page);
 
     /* check if our book is on the page */
     $this->assertText('Operating system concepts');				/* title */
     $this->assertText('Abraham Silberschatz, Peter B. Galvin, Greg Gagne');	/* authors */
-  }
 
-  /* tests adding initial offer metadata to a book in user's library */
-  function testBookInitialOfferView() {
-    
+    /* now select a book (doesn't matter what one necessarily...) */
+    $this->setFieldById('choose_book', 'selected');
+    $this->click('Continue');
+
+    /* make sure on initial offer page */
+    $this->assertEqual($this->getUrl(), $init_offer_page);
+
+    /* set up and submit initial offer */
+    $this->setFieldById('choose_sell', 'selected'); /* choose sell */
+    $this->setFieldById('BookInitialOfferSellPrice', '100'); /* sell for $100 */
+    $this->click('Add To MyLibrary');
+
+    /* make sure on results page */
+    $this->assertEqual($this->getUrl(), $confirm_page);
+
+    /* check data
+     * TODO: find out what to display... no format yet */
   }
 
 }
