@@ -21,10 +21,20 @@ class BooksController extends AppController {
 	}
 
 	function find_books() {
-
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'find_a_book');
 	}
 
 	function find_books_results() {
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'add_book_result');
+		if (!empty($this->data)) {
+			$book_title = $this->data['Book']['title'];
+			$book_author = $this->data['Book']['author'];
+			$book_isbn = $this->data['Book']['isbn'];
+			$book_results = $this->Book->query('SELECT * FROM books WHERE title LIKE "%' . $book_title . '%" AND author LIKE "%' . $book_author . '%" AND isbn LIKE "%' .  $book_isbn . '%";');
+			$this->set('book_results', $book_results);
+		}
 
 	}
 
@@ -37,7 +47,6 @@ class BooksController extends AppController {
 			$book_isbn = $this->data['Book']['isbn'];
 			$book_results = $this->Book->query('SELECT * FROM books WHERE title LIKE "%' . $book_title . '%" AND author LIKE "%' . $book_author . '%" AND isbn LIKE "%' .  $book_isbn . '%";');
 			$this->set('book_results', $book_results);
-			# debug($book_results);
 		}
 		# search google books
 		if (empty($book_results)) {
@@ -111,7 +120,7 @@ class BooksController extends AppController {
 				$author = $author . ', '. $result['Creator'][$i];
 			}
 		}
-		$ISBN = $result['Identifier'][1];
+		$ISBN = str_replace('ISBN:', '', $result['Identifier'][1]);
 		if ($result['Link'][0]['type'] == 'image/x-unknown') {
 			$image = $result['Link'][0]['href'];
 			$image = str_replace('zoom=5', 'zoom=1', $image);

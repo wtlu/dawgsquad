@@ -1,4 +1,4 @@
-<!-- File: /app/views/books/find_books.ctp -->
+<!-- File: /app/views/find_books.ctp -->	
 
 <!--
 	Created: 5/10/2011
@@ -6,24 +6,28 @@
 	
 	Changelog:
 	5/10/2011 - John Wang - Created page, added form
+	<?php echo $this->Html->css('main'); ?>
 -->
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
-<?php echo $this->Html->css('main'); ?>
+<div class = "book_search_form">
 
-<div id = "top">
-	<h1>Find a Book</h1>
-	<p>Please fill out one or more of the following fields to find a book.
-	For the best results please enter the ISBN number of the book.</p>
-</div>
+	<div id = "top">
+		<h1>Find Books</h1>
+		<p>Please fill out one or more of the following fields. For the best results
+		please also enter the ISBN number of the book.</p>
+	</div>
 
-<br>
+	<br>
 
-<div id = "add_form">
-	<?php
-		echo $this->Form->create(array('action' => 'find_books_results'));
-		echo $this->Form->input('title', array('label' => 'Title'));
-		echo $this->Form->input('author', array('label' => 'Author(s)'));
-		echo $this->Form->input('isbn', array('label' => 'ISBN'));
-		echo $this->Form->end('Continue');
-	?>
+	<div>
+		<?php
+			echo $this->Form->create(array('action' => 'find_books_results'));
+			echo $this->Form->input('title', array('label' => 'Title'));
+			echo $this->Form->input('author', array('label' => 'Author(s)'));
+			echo $this->Form->input('isbn', array('label' => 'ISBN'));
+			echo $this->Form->end('Continue');
+		?>
+	</div>
+
 </div>
