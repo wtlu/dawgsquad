@@ -49,7 +49,7 @@ function display_results($result) {
 	?>
 	<!-- THIS DOES NOT WORK. CANNOT SET value = an array -->
 	<p class="book_display">
-		<input name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:50px; float:left;">
+		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
 		<label for="choose_book">
 			<?php
 				$title = $result['title'];
