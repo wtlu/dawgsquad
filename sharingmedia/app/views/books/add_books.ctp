@@ -15,7 +15,7 @@
 	<div id = "top">
 		<h1>Book Information</h1>
 		<p>Please fill out one or more of the following fields to find the book that matches the one you
-		want to add. For the best results please enter the ISBN number of the book.</p>
+		want to add. For the best results please also enter the ISBN number of the book.</p>
 	</div>
 
 	<br>

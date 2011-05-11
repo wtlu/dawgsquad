@@ -34,7 +34,6 @@
 	}
 	
 	echo $this->Form->end('Continue');
-	echo $this->Form->button('Go Back', array('onClick' => 'window.location=books/add_books'));
 ?>
 
 <?php
@@ -62,7 +61,7 @@ function display_results($result) {
 		<strong>Title:</strong>	<?php echo $title ?> <br />
 		<strong>Author(s):</strong> <?php echo $author ?> <br />
 		<strong>Summary:</strong> <?php echo $summary ?> <br />
-		<?php echo $ISBN ?> <br />
+		<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
 		</label>
 	</p>
 	<?php
