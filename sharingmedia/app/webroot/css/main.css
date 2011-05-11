@@ -55,13 +55,13 @@ ul {					/* added */
 }
 
 .box {					/* added */
-	width: 214px;
+	width: 204px;
 	float: left;	
 }
 
 .box img {     /* changed splash_boxes to .box */
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
 }
 
 #splash_description {
