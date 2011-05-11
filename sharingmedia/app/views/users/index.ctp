@@ -9,6 +9,7 @@
 	 5/8/2011 - Troy Martin - Adding list under buttons to describe what the button allows the user to do
 	 5/8/2011 - John Wang - Added link to add books
 	 5/10/2011 - John Wang - Added link to find books
+	 5/11/2011 - Greg Brandt - Added id's to big button links to allow navigation to be scripted
 	 
 	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
 -->
@@ -28,7 +29,7 @@
 		  echo $this->Html->link(
 		  	$this->Html->image('add_book.png', array('alt' => 'AddBook')),
 		  	"/books/add_books",
-		  	array('escape' => false)
+		  	array('escape' => false, 'id' => 'add_book_link')
 		  );
   		?>
   		
@@ -43,7 +44,7 @@
   		  echo $this->Html->link(
 		  	$this->Html->image('find_book.png', array('alt' => 'FindBook')),
 		  	"/books/find_books",
-		  	array('escape' => false)
+		  	array('escape' => false, 'id' => 'find_book_link')
 		  );
 		?>
   		
