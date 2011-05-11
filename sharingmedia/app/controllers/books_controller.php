@@ -8,6 +8,7 @@
 	5/7/2011 - John Wang - Created page, wrote add_books_results to pull data from our db
 	5/8/2011 - John Wang - Added functionality to query Google books and return those results
 	5/9/2011 - John Wang - Handles more cases from querying Google books
+	5/10/2011 - John Wang -
 -->
 
 <?php
@@ -15,6 +16,8 @@ class BooksController extends AppController {
 	var $name = 'Books';
 
 	function add_books() {
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'add_a_book');
 	}
 
 	function find_books() {
@@ -26,6 +29,8 @@ class BooksController extends AppController {
 	}
 
 	function add_books_results() {
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'add_book_result');
 		if (!empty($this->data)) {
 			$book_title = $this->data['Book']['title'];
 			$book_author = $this->data['Book']['author'];
