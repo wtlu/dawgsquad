@@ -3,9 +3,10 @@ create database media_db;
 use media_db;
 
 CREATE TABLE users(
-	id INT PRIMARY KEY,
-	fname VARCHAR(20),
-	lname VARCHAR(20),
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(50),
+	password VARCHAR(50),
+	facebook_id INT(11),
 	created DATETIME DEFAULT NULL,
  	modified DATETIME DEFAULT NULL
 );

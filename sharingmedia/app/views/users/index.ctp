@@ -14,6 +14,7 @@
 -->
 	 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 	
+<!-- <?= $this->Facebook->share(); ?> -->
 
 <div id="hello_message">
   <h1>Welcome to SharingMedia!</h1>
@@ -62,6 +63,16 @@
   		</ul>
   	</div>
 </div>
+
+	<div id="login">
+			<!--<?php if($facebook_user): ?> -->
+				<?php echo $this->Facebook->login(); ?> <br />
+			<!--	<?= debug($facebook_user); ?> <br /> -->
+				<!--<?= debug($user); ?>-->
+		<!--	<?php else: ?>
+				<?php echo $this->Facebook->login(); ?>
+			<?php endif; ?> -->
+	</div>
 
 <div id="splash_description">
   SharingMedia lets you share, trade, or sell books you own with your friends across Facebook. For more information, including how to get the latest build, please visit <?php echo $this->Html->link('our wiki', 'http://code.google.com/p/dawgsquad/', array('class' => 'button', 'target' => '_blank')); ?>
