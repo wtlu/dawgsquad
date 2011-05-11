@@ -66,13 +66,13 @@
 </div>
 
 	<div id="login">
-			<!--<?php if($facebook_user): ?> -->
-				<?php echo $this->Facebook->login(); ?> <br />
-			<!--	<?= debug($facebook_user); ?> <br /> -->
-				<!--<?= debug($user); ?>-->
-		<!--	<?php else: ?>
+			<?php if($facebook_user): ?>
+				<?php echo $this->Facebook->logout(); ?> <br />
+				<?= debug($facebook_user); ?> <br /> 
+				<!-- <?= debug($user); ?> -->
+			<?php else: ?>
 				<?php echo $this->Facebook->login(); ?>
-			<?php endif; ?> -->
+			<?php endif; ?> 
 	</div>
 
 <div id="splash_description">
