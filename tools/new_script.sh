@@ -4,6 +4,22 @@
 # Purpose	: This script sets up the CSE VM to serve Team Dawgsquad's
 #                 CSE 403 SharingMedia application
 
+# check to see if helper scripts are there
+if [ ! -e "httpd_patch.pl" ]; then
+    echo "Couldn't find httpd_patch.pl"
+    exit
+fi
+
+if [ ! -e "user_setup.sql" ]; then
+    echo "Couldn't find user_setup.sql"
+    exit
+fi
+
+if [ ! -e "media_db_setup.sql" ]; then
+    echo "Couldn't find media_db_setup.sql"
+    exit
+fi
+
 # install apache, etc...
 /sbin/chkconfig httpd on
 /sbin/service httpd start
