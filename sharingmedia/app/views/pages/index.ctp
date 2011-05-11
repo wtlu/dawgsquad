@@ -24,9 +24,9 @@
 </div>
 
 <div id="splash_boxes">
-  <?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook')) ?>
-  <?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook')) ?>
-  <?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary')) ?>
+  <?php echo $this->Html->image('add_book.png', array('alt' => 'AddBook', 'id' => 'add_book_link')) ?>
+  <?php echo $this->Html->image('find_book.png', array('alt' => 'FindBook', 'id' => 'find_book_link')) ?>
+  <?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary', 'id' => 'my_library_link')) ?>
 </div>
 
 <div id="splash_description">
