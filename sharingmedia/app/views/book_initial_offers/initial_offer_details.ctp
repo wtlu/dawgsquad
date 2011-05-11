@@ -9,17 +9,33 @@
 -->
 
 
-<?php echo $this->Html->css('main'); ?>
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 
 
 <strong>Put All the Book Info Here</strong>
 </br>
 </br>
-<?php
-debug($book_chosen);
-?>
 </br>
+
+<fieldset>
+<p class="book_display">
+<label >
+		<?php
+			$title = $book_chosen[1];
+			$author = $book_chosen[2];
+			$ISBN = $book_chosen[3];
+			$image = $book_chosen[4];
+			
+			
+		?>
+	<img src=<?php echo $image ?> alt="Book image" />
+	<strong>Title:</strong>	<?php echo $title; ?> <br />
+	<strong>Author(s):</strong> <?php echo $author ?> <br />
+	<?php echo $ISBN ?> <br />
+</label>
+</p>
+</fieldset>
 
 <fieldset >
 
@@ -70,6 +86,11 @@ debug($book_chosen);
 
 		<?php
 			echo $this->Form->end('Add To MyLibrary');
+		?>
+		
+		
+		<?php  
+			#echo $this->Form->button('Go Back', array('onClick' => 'window.location.back()'));
 		?>
 		
 		

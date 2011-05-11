@@ -14,8 +14,16 @@ class BookInitialOffersController extends AppController {
 
 
    function initial_offer_details(){
-		$book_chosen = $this->data['Book']['book_type'];
+		$temp = $this->data['Book']['book_type'];
+		
+		$book_chosen = explode( "^" , $temp );
+		
 		$this->set('book_chosen', $book_chosen);
+		
+		$this->set("referer",$this->referer()); 
+		
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'initial_of_details');
 	}
 
 	function my_books($uid){
