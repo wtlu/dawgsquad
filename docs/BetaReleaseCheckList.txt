@@ -6,7 +6,7 @@ Beta Release Checklist
 		[x] Description of the app
 		[x] Can click Add Books
 		[x] Can click Find Books
-		[ ] Can click Library
+		[x] Can click Library
 	
 
 	[x] General Layout
@@ -18,15 +18,15 @@ Beta Release Checklist
 		[x] Top Bar (Troy)
 			[x] Logo
 			[x] Account Page
-				[ ] Shows "Coming Soon!"
-			[x] Contact Us Page
+				[x] Shows "Coming Soon!"
+			[ ] Contact Us Page
 				[ ] Shows "Coming Soon!"
 			[x] FAQ Page
-				[ ] Shows "Coming Soon!"
+				[x] Shows "Coming Soon!"
 			[x] Help Page
-				[ ] Shows "Coming Soon!"
-			[x] Report a Bug
-				[x] Links to Google Code issues page
+				[x] Shows "Coming Soon!"
+			[ ] Report a Bug
+				[ ] Links to Google Code issues page
 				
 	[ ] Use Cases: Add Books (John + James)
 		[ ] Add books main page (Enter Book Info)
