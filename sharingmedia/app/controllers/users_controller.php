@@ -21,9 +21,9 @@ class UsersController extends AppController {
 	function login(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-		if($this->Session->check('uid')){
+		/*if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
-		}
+		}*/
 	}
 	
 	function logout(){
