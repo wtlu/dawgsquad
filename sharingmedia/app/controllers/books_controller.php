@@ -1,6 +1,6 @@
-<!-- File: /app/controllers/book_controller.php -->
-
 <!--
+File: /app/controllers/book_controller.php
+
 	Created: 5/7/2011
 	Author: John Wang
 
@@ -8,42 +8,68 @@
 	5/7/2011 - John Wang - Created page, wrote add_books_results to pull data from our db
 	5/8/2011 - John Wang - Added functionality to query Google books and return those results
 	5/9/2011 - John Wang - Handles more cases from querying Google books
+	5/10/2011 - John Wang - Started controller for find books
+	5/11/2011 - John Wang - Continue work on find books results
 -->
-
 <?php
 class BooksController extends AppController {
 	var $name = 'Books';
 
+	# The function for the add books view
 	function add_books() {
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'add_a_book');
 	}
 
-	function addBook() {
-
+	# Function for the find books view
+	function find_books() {
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'find_a_book');
 	}
 
-	function deleteBook() {
-
-	}
-
-	function editBook() {
-
-	}
-
-	function showBook($id) {
-
-	}
-
-	function add_books_results() {
+	# Function for find books results view
+	function find_books_results() {
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'find_book_result');
 		if (!empty($this->data)) {
 			$book_title = $this->data['Book']['title'];
 			$book_author = $this->data['Book']['author'];
 			$book_isbn = $this->data['Book']['isbn'];
-			$book_results = $this->Book->query('SELECT * FROM books WHERE title LIKE "%' . $book_title . '%" AND author LIKE "%' . $book_author . '%" AND isbn LIKE "%' .  $book_isbn . '%";');
+			$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, trades.*, b_i_o.*
+				FROM books books, book_initial_offers b_i_o, users users, trades trades
+				WHERE b_i_o.user_id = users.id
+					AND b_i_o.book_id = books.id
+					AND b_i_o.trade_id = trades.id
+					AND books.title LIKE "%' .$book_title . '%"
+					AND books.author LIKE "%' . $book_author . '%"
+					AND books.isbn LIKE "%' .  $book_isbn . '%"
+				ORDER BY books.id;');
 			$this->set('book_results', $book_results);
-			# debug($book_results);
+			#debug($book_results);
 		}
+
+	}
+
+	# Function for the add books results view
+	function add_books_results() {
+		$this->layout = 'main_layout';
+        $this->set('title_for_layout', 'add_book_result');
+
+        # search our database for the book
+		$book_title = $this->data['Book']['title'];
+		$book_author = $this->data['Book']['author'];
+		$book_isbn = $this->data['Book']['isbn'];
+		# SQL query to parse our database to find the desired book
+		$book_results = $this->Book->query('SELECT * FROM books
+			WHERE title LIKE "%' .$book_title . '%"
+				AND author LIKE "%' . $book_author . '%"
+				AND isbn LIKE "%' .  $book_isbn . '%";');
+		# set book result to send to the add book result view
+		$this->set('book_results', $book_results);
+
 		# search google books
 		if (empty($book_results)) {
+			# build the search string to send to Google books
 			$search_string = 'q=';
 			if (!empty($book_isbn)) {
 				$search_string = $search_string . 'isbn:' . $book_isbn;
@@ -62,7 +88,7 @@ class BooksController extends AppController {
 			$google_results = $this->query_google($search_string);
 			$google_books_results = array();
 
-			#get just the relevant portions of google book search and put that in book_results
+			#get just the relevant portions of google book search and put that in the final google_books_results
 			if (empty($google_results)) {
 
 			} else if (!array_key_exists(0, $google_results)) {
@@ -74,10 +100,12 @@ class BooksController extends AppController {
 				}
 			}
 
+			# set google books result to send to the add book result view
 			$this->set('google_books_results', $google_books_results);
 		}
 	}
 
+	# helper function for querying Google books search
 	function query_google($search_val) {
 		App::import('HttpSocket');
 		App::import('Xml');
@@ -86,19 +114,16 @@ class BooksController extends AppController {
 		$results = & new Xml($http->get($url, $search_val));
 		$results = Set::reverse($results);
 
-		#debug($results);
-
 		$google_results = array();
 
 		if ($results['Feed']['totalResults'] > 0) {
 			$google_results = $results['Feed']['Entry'];
-		} else {
-
 		}
+
 		return $google_results;
 	}
 
-	#helper function to get the relevant data of google book search and put that in book_results
+	# helper function to get the relevant data of google book search and put that in book_results
 	function get_relevant_data($result) {
 		$title = $result['Title'][1];
 		# check to see if this book has a second title and add it
@@ -106,14 +131,17 @@ class BooksController extends AppController {
 			$title = $title . ': ' . $result['Title'][2];
 		}
 		$author = '';
+		# check to see if this book has multiple authors
 		if (array_key_exists('creator', $result)) {
 			$author = $result['creator'];
 		} else {
-			foreach ($result['Creator'] as $an_author) {
-				$author = $author . ', '. $an_author;
+			$author = $result['Creator'][0];
+			for ($i = 1; $i < count($result['Creator']); $i++) {
+				$author = $author . ', '. $result['Creator'][$i];
 			}
 		}
-		$ISBN = $result['Identifier'][1];
+		$ISBN = str_replace('ISBN:', '', $result['Identifier'][1]);
+		# check to see if this book result has an image, and if not, replace with generic thumbnail
 		if ($result['Link'][0]['type'] == 'image/x-unknown') {
 			$image = $result['Link'][0]['href'];
 			$image = str_replace('zoom=5', 'zoom=1', $image);
@@ -124,10 +152,9 @@ class BooksController extends AppController {
 		if (array_key_exists('description', $result)) {
 			$summary = $result['description'];
 		}
-		$created = 'NOW';
 
 		$relevant_stuff = array('title' => $title, 'author' => $author,
-			'ISBN' => $ISBN, 'image' => $image, 'summary' => $summary, 'created' => $created);
+			'ISBN' => $ISBN, 'image' => $image, 'summary' => $summary);
 
 		$book_sub = array($relevant_stuff);
 		return $book_sub;
