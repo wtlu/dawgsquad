@@ -4,7 +4,7 @@ use media_db;
 
 CREATE TABLE users(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	username VARCHAR(50),
+	name VARCHAR(50),
 	password VARCHAR(50),
 	facebook_id INT(11),
 	created DATETIME DEFAULT NULL,
