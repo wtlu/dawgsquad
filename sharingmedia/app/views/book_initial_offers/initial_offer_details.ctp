@@ -6,17 +6,13 @@
 	
 	Changelog:
 	5/8/2011 - James Parsons - Created form for input of initial offer details, with submit to add_books_confirm.
+	5/11/2011 - James Parsons - Now displays book info passed from add book results page.
 -->
 
 
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 
-
-<strong>Put All the Book Info Here</strong>
-</br>
-</br>
-</br>
 
 <fieldset>
 <p class="book_display">
@@ -25,14 +21,12 @@
 			$title = $book_chosen[1];
 			$author = $book_chosen[2];
 			$ISBN = $book_chosen[3];
-			$image = $book_chosen[4];
-			
-			
+			$image = $book_chosen[4];	
 		?>
 	<img src=<?php echo $image ?> alt="Book image" />
 	<strong>Title:</strong>	<?php echo $title; ?> <br />
 	<strong>Author(s):</strong> <?php echo $author ?> <br />
-	<?php echo $ISBN ?> <br />
+	<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
 </label>
 </p>
 </fieldset>
@@ -52,7 +46,11 @@
 		
 	
 		<hr>
-		
+		<!-- Hidden fields, to transfer data to next page -->
+		<input name="data[BookInitialOffer][title]" id="title" value="<?php echo $title ?>" type="hidden">
+		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
+		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
+		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
 		
 		<input name="data[BookInitialOffer][offer_type]" id="choose_loan" value="loan" type="radio" style="width:50px; float:left;">
 		<label for="choose_loan" style="float:left">Loan For</label>
