@@ -1,32 +1,32 @@
 Beta Release Checklist
-	[ ] Opening App (Troy)
-		[ ] User gets an dialog box for permissions if opening app for first time
-		[ ] If user is not logged on, need to log on before seeing our main index page
+	[x] Opening App (Troy)
+		[x] User gets an dialog box for permissions if opening app for first time
+		[x] If user is not logged on, need to log on before seeing our main index page
 		[ ] Greet User with "Hi <User Name>! Welcome to SharingMedia!"
-		[ ] Description of the app
-		[ ] Can click Add Books
-		[ ] Can click Find Books
+		[x] Description of the app
+		[x] Can click Add Books
+		[x] Can click Find Books
 		[ ] Can click Library
 	
 
-	[ ] General Layout
-		[ ] Sidebar (Troy)
-			[ ] Has Home Sidebar
-			[ ] Has Add Books 
-			[ ] Has Find Books
-			[ ] Has My Library
-		[ ] Top Bar (Troy)
-			[ ] Logo
-			[ ] Account Page
+	[x] General Layout
+		[x] Sidebar (Troy)
+			[x] Has Home Sidebar
+			[x] Has Add Books 
+			[x] Has Find Books
+			[x] Has My Library
+		[x] Top Bar (Troy)
+			[x] Logo
+			[x] Account Page
 				[ ] Shows "Coming Soon!"
-			[ ] Contact Us Page
+			[x] Contact Us Page
 				[ ] Shows "Coming Soon!"
-			[ ] FAQ Page
+			[x] FAQ Page
 				[ ] Shows "Coming Soon!"
-			[ ] Help Page
+			[x] Help Page
 				[ ] Shows "Coming Soon!"
-			[ ] Report a Bug
-				[ ] Links to Google Code issues page
+			[x] Report a Bug
+				[x] Links to Google Code issues page
 				
 	[ ] Use Cases: Add Books (John + James)
 		[ ] Add books main page (Enter Book Info)
