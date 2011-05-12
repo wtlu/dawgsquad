@@ -28,10 +28,10 @@ INSERT INTO books(title, author, ISBN, image, summary, created)
 	VALUES("Building Java Programs", "Stuart Reges", 0136091813, "http://ecx.images-amazon.com/images/I/51EEKpJ3DwL._SL500_AA300_.jpg", "Java programming stuff", NOW());
 	
 INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-	VALUES(1263812002, 518118311, 1, '2011-06-10', NOW());
+	VALUES(2, 1, 1, '2011-06-10', NOW());
 	
 INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created)
-	VALUES(1263812002, 518118311, 1, 518118311, NULL, 5, NULL, 0, NOW());
+	VALUES(2, 1, 1, 1, NULL, 5, NULL, 0, NOW());
 	
 INSERT INTO trades(id, book_id, created)
 	VALUES(1, 2, NOW());
