@@ -1,6 +1,6 @@
-<!-- File: /app/controllers/book_controller.php -->
-
 <!--
+File: /app/controllers/book_controller.php
+
 	Created: 5/7/2011
 	Author: John Wang
 
@@ -10,7 +10,6 @@
 	5/9/2011 - John Wang - Handles more cases from querying Google books
 	5/10/2011 - John Wang -
 -->
-
 <?php
 class BooksController extends AppController {
 	var $name = 'Books';

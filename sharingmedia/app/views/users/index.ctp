@@ -1,6 +1,6 @@
-<!-- File: /app/views/user/index.ctp -->
-
 <!-- 
+	 File: /app/views/user/index.ctp 
+	 
      Author: Greg Brandt
      Purpose: This is a dummy splash page for ZFR
 	 
@@ -10,13 +10,8 @@
 	 5/8/2011 - John Wang - Added link to add books
 	 5/10/2011 - John Wang - Added link to find books
 	 5/11/2011 - Greg Brandt - Added id's to big button links to allow navigation to be scripted
-	 
-	 <?php echo $this->Html->css('main', array('inline' => 'false')); ?>
 -->
-	 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
-	
-<!-- <?= $this->Facebook->share(); ?> -->
-
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <div id="hello_message">
   <h1>Welcome to SharingMedia!</h1>
   <h2>What would you like to do?</h2>
