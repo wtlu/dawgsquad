@@ -1,6 +1,6 @@
 <?php
 class UsersController extends AppController {
-	var $helpers = array ('HTML', 'Form');
+	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
 	var $name = 'Users';
 	
 	function index() {
@@ -33,7 +33,7 @@ class UsersController extends AppController {
 	
 	function logout(){
 //		$this->Auth->logout();
-		$this->Session->destroy();
+//		$this->Session->destroy();
 		$this->redirect('/');	
 	}
 /*	
