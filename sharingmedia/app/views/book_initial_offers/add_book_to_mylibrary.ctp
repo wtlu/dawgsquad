@@ -15,7 +15,7 @@
 	<?php 
 		if($add_status){
 			echo '<h2> Add Successful!</h2>';
-		else{
+		}else{
 			echo '<h2> Add Unsuccessful</h2>';
 		}
 	?>
