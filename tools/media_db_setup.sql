@@ -8,7 +8,7 @@ CREATE TABLE users(
 	password VARCHAR(50),
 	facebook_id INT(11),
 	created DATETIME DEFAULT NULL,
- 	modified DATETIME DEFAULT NULL
+ 	modified DATETIME DEFAULT NULL 
 );
 
 CREATE TABLE books(
