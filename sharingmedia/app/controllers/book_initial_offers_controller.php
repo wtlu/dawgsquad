@@ -99,6 +99,8 @@ class BookInitialOffersController extends AppController {
 		$this->set('image', $book_image);
 		$this->set('offer_type', $offer_type);
 		$this->set('offer_value', $offer_value);
+		
+		$add_status = false;
 	
 		// Test to see if user is logged in
 		if(is_null($this->Session->read('uid'))){
@@ -126,21 +128,24 @@ class BookInitialOffersController extends AppController {
 			if(!empty($duplicate)){
 				echo "<h2> You cannot add the same book to your library twice. </h2>";
 			}else{
+				
+				$add_status = true;
 			
 				//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
 				switch ($offer_type) {
 						case 'loan':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offer VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
+							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
 							break;
 						case 'sell':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offer VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
+							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
 							break;
 						case 'trade':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offer VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
+							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
 							break;
 				}
 			}	
 		}
+		$this->set('add_status', $add_status);
 	}
 		
 } //End of add_book_to_mylibrary()

@@ -12,8 +12,13 @@
 
 <div>
 
-	<h2> Add Successful!</h2>
-
+	<?php 
+		if($add_status){
+			echo '<h2> Add Successful!</h2>';
+		else{
+			echo '<h2> Add Unsuccessful</h2>';
+		}
+	?>
 	</br>
 	
 	<fieldset style="border: 3px solid #000000">
