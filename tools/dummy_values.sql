@@ -1,19 +1,19 @@
 use media_db;
 
-INSERT INTO users(id, fname, lname, created)
-	VALUES(518118311, "Wei-Ting", "Lu", NOW());
+INSERT INTO users(id, name, password, facebook_id, created)
+	VALUES(1, "Wei-Ting Lu", null, 518118311, NOW());
 	
-INSERT INTO users(id, fname, lname, created)
-	VALUES(1263812002, "Troy", "Martin", NOW());
-	
-INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
-	VALUES(1263812002, 1, 1, 5, 50, NOW());
+INSERT INTO users(id, name, password, facebook_id, created)
+	VALUES(2, "Troy Martin", null, 1263812002, NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
-	VALUES(518118311, 2, 2, 10, 100, NOW());
+	VALUES(2, 1, 1, 5, 50, NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
-	VALUES(1263812002, 3, 3, 10, 100, NOW());
+	VALUES(1, 2, 2, 10, 100, NOW());
+	
+INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
+	VALUES(2, 3, 3, 10, 100, NOW());
 	
 INSERT INTO books(title, author, ISBN, image, summary, created)
 	VALUES("Operating System Concepts", "Abraham Silberschatz", 0470128720, "http://books.google.com/books?id=g710PwAACAAJ&printsec=frontcover&img=1&zoom=1&l=220", "Operating System Concepts, Eighth Edition remains as current and relevant as ever, helping you master the fundamental concepts of operating systems while preparing yourself for today's emerging developments.", NOW());
