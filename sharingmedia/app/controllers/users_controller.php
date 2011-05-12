@@ -33,7 +33,8 @@ class UsersController extends AppController {
 	
 	function logout(){
 //		$this->Auth->logout();
-		$this->redirect('/');
+		$this->Session->destroy();
+		$this->redirect('/');	
 	}
 /*	
 	function login(){
