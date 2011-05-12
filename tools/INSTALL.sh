@@ -51,3 +51,6 @@ hg clone https://dawgsquad.googlecode.com/hg/ dawgsquad
 # set correct ownership on tmp folder
 cd dawgsquad/sharingmedia
 chown -R `whoami` app/tmp
+
+# restart apache
+/etc/init.d/httpd restart
