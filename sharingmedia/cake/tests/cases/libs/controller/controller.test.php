@@ -725,7 +725,7 @@ class ControllerTest extends CakeTestCase {
 					'id' => 3,
 				),
 				0 => array(
-					'floatvalue' => '3.14159265358979',
+					'floatvalue' => '3.141592653589793',
 				),
 			),
 		);
