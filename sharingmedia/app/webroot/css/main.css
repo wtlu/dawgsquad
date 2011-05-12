@@ -55,13 +55,13 @@ ul {					/* added */
 }
 
 .box {					/* added */
-	width: 214px;
+	width: 204px;
 	float: left;	
 }
 
 .box img {     /* changed splash_boxes to .box */
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
 }
 
 #splash_description {
@@ -72,16 +72,45 @@ ul {					/* added */
 }
 
 .book_display {
-	clear: left;
+	padding-top: 20px;
+	border-top: 2px solid black;
+	padding-bottom: 20px;
 }
 
 .book_display img {
-	width: 100px;
+	height: 100px;
 	float: left;
 	margin-right: 10px;
-	margin-bottom: 30px;
 }
-
+.book_display{
+        height: 100px;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 30px;
+}
+ul ul{
+	margin-left:75px;
+}
+.buttons{
+	float:right;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.tabs{
+	float:left;
+	border:2px solid black;
+        margin-right:5px;
+}
+#add{
+	float:right;
+	border:2px solid black;
+}
+#list{
+	float:left;
+	border:2px solid black;
+	width: 700px;
+	padding:10px;
+}
 a img{
 	border-style: none;	
 }
