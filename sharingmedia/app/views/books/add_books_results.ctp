@@ -9,13 +9,14 @@
 	5/9/2011 - John Wang - Changed results into radios. Now goes to the next step, but no data posted yet
 	5/10/2011 - John Wang - Added ability to post results to next step
 	
-	<?php echo $this->Html->css('main'); ?>
+	# This is the view for the add books results page
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 <h2>Choose the book that matches yours:</h2>
 
 <?php
+	# creates the form for the book results, to prepare the book data to be passed to the next step
 	echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 
 	if (!empty($book_results)) {
@@ -37,17 +38,16 @@
 ?>
 
 <?php
-#functions
-
+# helper function to display book results
 function display_results($result) {
 	$chosen = '';
+	# build the string containgin
 	foreach ($result as $element) {
 		$chosen = $chosen . '^' . $element;
 	}
 	
 	?>
-	<!-- THIS DOES NOT WORK. CANNOT SET value = an array -->
-	<p class="book_display">
+	<div class="book_display">
 		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
 		<label for="choose_book">
 			<?php
@@ -63,7 +63,7 @@ function display_results($result) {
 		<strong>Summary:</strong> <?php echo $summary ?> <br />
 		<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
 		</label>
-	</p>
+	</div>
 	<?php
 }
 ?>

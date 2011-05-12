@@ -6,7 +6,8 @@ File: /app/views/add_books.ctp
 	
 	Changelog:
 	5/8/2011 - John Wang - Created page, added form
-	<?php echo $this->Html->css('main'); ?>
+	
+	# This is the view for the add books form.
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
