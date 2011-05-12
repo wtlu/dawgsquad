@@ -1,3 +1,7 @@
+html { 
+	width: 760px;
+}
+
 #top_section {
 	overflow: hidden;
 	background-color: #87cefa;
