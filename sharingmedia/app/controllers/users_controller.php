@@ -18,6 +18,11 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Sharing Media');
 	}
 	
+	function comming_soon(){
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Comming Soon');
+	}
+	
 	function login(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');

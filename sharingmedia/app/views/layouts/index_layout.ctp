@@ -15,7 +15,7 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p>Account | FAQ | Help | 
+  			<p><?php echo $this->Html->link('Account', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | <?php echo $this->Html->link('FAQ', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | <?php echo $this->Html->link('Help', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | 
   			<?php 
   			if($facebook_user){ 
 				echo $this->Facebook->logout(array('redirect' => array('controller' => 'users','action' => 'logout')));
