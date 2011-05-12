@@ -50,7 +50,9 @@
   	
   	<div class="box">
   	
-  		<?php echo $this->Html->image('my_library.png', array('alt' => 'MyLibrary')) ?>
+  		<?php 
+  		echo $this->Html->link($this->Html->image('my_library.png', array('alt' => 'MyLibrary')), "/book_initial_offers/my_books", array('escape' => false, 'id' => 'find_book_link'));
+  		?>
   		
   		<ul>
   			<li>View the books in your library</li>
