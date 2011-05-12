@@ -1,6 +1,6 @@
-<!-- File: /app/views/add_books.ctp -->	
-
 <!--
+File: /app/views/add_books.ctp
+ 
 	Created: 5/8/2011
 	Author: John Wang
 	

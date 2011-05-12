@@ -15,7 +15,12 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p>Account | FAQ | Help</p>
+  			<p>Account | FAQ | Help | 
+  			<?php 
+  			if($facebook_user){ 
+				echo $this->Facebook->logout(array('redirect' => array('controller' => 'users','action' => 'logout')));
+  			} ?>
+  			</p>
 		</div>
 	</div>
 	
