@@ -2,7 +2,7 @@ Beta Release Checklist
 	[x] Opening App (Troy)
 		[x] User gets an dialog box for permissions if opening app for first time
 		[x] If user is not logged on, need to log on before seeing our main index page
-		[ ] Greet User with "Hi <User Name>! Welcome to SharingMedia!"
+		[x] Greet User with "Hi <User Name>! Welcome to SharingMedia!"
 		[x] Description of the app
 		[x] Can click Add Books
 		[x] Can click Find Books

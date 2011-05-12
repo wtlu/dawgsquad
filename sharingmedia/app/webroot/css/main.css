@@ -51,11 +51,11 @@ html {
 
 ul {					/* added */
 	text-align: left;
-	padding-left: 25px;
+	padding-left: 50px;
 }
 
 .box {					/* added */
-	width: 204px;
+	width: 250px;
 	float: left;	
 }
 
