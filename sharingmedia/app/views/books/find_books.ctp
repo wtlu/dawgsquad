@@ -6,7 +6,7 @@
 	
 	Changelog:
 	5/10/2011 - John Wang - Created page, added form
-	<?php echo $this->Html->css('main'); ?>
+	
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 

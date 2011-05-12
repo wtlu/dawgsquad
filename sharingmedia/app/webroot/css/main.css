@@ -72,14 +72,15 @@ ul {					/* added */
 }
 
 .book_display {
-	margin-bottom: 50px;
+	padding-top: 20px;
+	border-top: 2px solid black;
+	padding-bottom: 20px;
 }
 
 .book_display img {
 	height: 100px;
 	float: left;
 	margin-right: 10px;
-	margin-bottom: 30px;
 }
 
 a img{
