@@ -15,7 +15,7 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p>Account | FAQ | Help | 
+  			<p><?php echo $this->Html->link('Account', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | <?php echo $this->Html->link('FAQ', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | <?php echo $this->Html->link('Help', 'http://localhost/sharingmedia/index.php/users/comming_soon', array('class' => 'tab')); ?> | 
   			<?php 
   			if($facebook_user){ 
 				echo $this->Facebook->logout(array('redirect' => array('controller' => 'users','action' => 'logout')));
@@ -29,7 +29,7 @@
 			<?php echo $this->Html->link('Home', 'http://localhost/sharingmedia/index.php', array('class' => 'tab')); ?> 
 			<?php echo $this->Html->link('Add Books', 'http://localhost/sharingmedia/index.php/books/add_books', array('class' => 'tab')); ?>
 			<?php echo $this->Html->link('Find Books', 'http://localhost/sharingmedia/index.php/books/find_books', array('class' => 'tab')); ?>
-			<?php echo $this->Html->link('My Library', 'http://localhost/sharingmedia/index.php/my_library', array('class' => 'tab')); ?>
+			<?php echo $this->Html->link('My Library', 'http://localhost/sharingmedia/index.php/book_initial_offers/my_books', array('class' => 'tab')); ?>
 		</div>
 	</div>
 <?php echo $content_for_layout ?>
