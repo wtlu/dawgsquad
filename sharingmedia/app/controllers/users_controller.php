@@ -15,9 +15,9 @@ class UsersController extends AppController {
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
-/*		));
+		));
 		
-		//If the user is logged in...
+/*		//If the user is logged in...
 		if ($facebook->getSession()) {
 		
 			// User is logged in and authorized, let's party.
