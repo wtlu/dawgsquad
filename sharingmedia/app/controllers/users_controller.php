@@ -101,11 +101,9 @@ class UsersController extends AppController {
 		echo '<a href="' . $redirect . '">Login</a>';
 		
 		echo '</h2>';
+
+		//$this->redirect($redirect);
 		
-		
-		if(!$facebook->getSession()){
-			$this->redirect($redirect);
-		}
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
 		
