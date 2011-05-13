@@ -47,7 +47,7 @@ class UsersController extends AppController {
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
 			
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			echo $this->redirect("http://apps.facebook.com/sharingmedia/users/login/");
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
