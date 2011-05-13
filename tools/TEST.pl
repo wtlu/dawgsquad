@@ -2,7 +2,7 @@
 use strict;
 use Cwd;
 use File::Spec;
-use Net::SMTP;
+use Mail::Sendmail;
 
 # Author: Greg Brandt
 # Purpose: Runs SharingMedia test suite
@@ -12,13 +12,13 @@ use Net::SMTP;
 # vars
 my $APP_NAME = 'sharingmedia';
 my $LOG_DIR_NAME = 'logs';
-my $EMAIL_RECIPIENT = 'weiting.t.lu@gmail.com';
+my $EMAIL_RECIPIENT = 'brandt.greg@gmail.com';
 my $TOOL_DIR = 'tools';
 
 # check args
 die "Usage: run_test.pl [-a|-f] [file]" if @ARGV != 1 && @ARGV != 2;
 
-# check current directory
+# check current directory (kind of a rough test)
 die "Wrong directory: move to REPOS/$TOOL_DIR" if Cwd::cwd() !~ /($TOOL_DIR)$/;
 
 # determine what to test
@@ -81,12 +81,10 @@ if ($all) {
 close LOG;
 
 # send mail
-my $smtp = Net::SMTP->new('localhost');
-$smtp->mail('noreply');
-$smtp->to($EMAIL_RECIPIENT);
+my %mail = (
+  To => $EMAIL_RECIPIENT,
+  From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
+  Message => $msg,
+);
 
-$smtp->data();
-$smtp->datasend($msg);
-$smtp->dataend();
-
-$smtp->quit;
+sendmail(%mail) or die $Mail::Sendmail::error;
