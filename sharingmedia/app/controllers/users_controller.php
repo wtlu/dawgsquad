@@ -16,8 +16,6 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
-		sleep(1);
-		
 		//The session might linger from a recent logout, check for this
 		if($facebook->getSession()){
 			echo "cool";
@@ -94,7 +92,7 @@ class UsersController extends AppController {
 		$params = array(
 				'fbconnect'=>0,
 				'canvas'=>1,
-				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'next'=>"http://apps.facebook.com/sharingmedia/",
 				'req_perms'=>''
 			);
 			
