@@ -93,8 +93,7 @@ class UsersController extends AppController {
 				'fbconnect'=>0,
 				'canvas'=>1,
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
-				'req_perms'=>'',
-				'display'=>'popup'
+				'req_perms'=>''
 			);
 			
 		$redirect = $facebook->getLoginUrl($params);
@@ -103,7 +102,7 @@ class UsersController extends AppController {
 		
 		echo '</h2>';
 		
-		
+		$this->redirect($redirect);
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
 		
