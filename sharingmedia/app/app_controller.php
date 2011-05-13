@@ -45,16 +45,11 @@ class AppController extends Controller {
 //		$this->set('user', $this->Auth->user());
 //		$this->set('facebook_user', $this->Connect->user());
 		
-		$facebook = new Facebook(array(
-		'appId'  => '218244414868504',
-		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie' => true
-		));
 		
 		//The session might linger from a recent logout, check for this
-		if($facebook->getSession()){
-			$this->Session->write('uid', $this->Connect->user('id'));
-		}
+	
+		$this->Session->write('uid', $this->Connect->user('id'));
+		
 		
 		
 //		$this->Session->write('username', $this->Connect->user('name'));	
