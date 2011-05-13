@@ -61,9 +61,13 @@ class UsersController extends AppController {
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		
+		$facebook = new Facebook(array(
+		'appId'  => '218244414868504',
+		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+		'cookie' => true
+		));
 		
-		
-		if($this->Session->check('uid')){
+		if($facebook->getSession()){
 			$user_id = $this->Session->read('uid');		
 			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 			print_r($count);
