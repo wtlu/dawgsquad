@@ -28,7 +28,7 @@ class UsersController extends AppController {
 			// For a full list of permissions please see http://developers.facebook.com/docs/authentication/permissions
 			
 			$params = array(
-				'fbconnect'=>0,
+				'fbconnect'=>1,
 				'canvas'=>1,
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
 				'req_perms'=>''
