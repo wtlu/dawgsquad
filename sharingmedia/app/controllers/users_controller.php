@@ -32,11 +32,11 @@ class UsersController extends AppController {
 		}
 	}
 	
-/*	function logout(){
+	function logout(){
 //		$this->Auth->logout();
 //		$this->Session->destroy();
 		$this->redirect('/');	
-	}*/
+	}
 /*	
 	function login(){
 		//import facebook sdk
