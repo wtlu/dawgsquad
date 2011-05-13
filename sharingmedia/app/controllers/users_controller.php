@@ -81,6 +81,12 @@ class UsersController extends AppController {
 		
 		echo "Session was not found.";
 		
+		$facebook = new Facebook(array(
+		'appId'  => '218244414868504',
+		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+		'cookie' => true
+		));
+		
 		
 		$params = array(
 				'fbconnect'=>1,
