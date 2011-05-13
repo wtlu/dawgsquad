@@ -102,7 +102,7 @@ class UsersController extends AppController {
 		
 		echo '</h2>';
 		
-		$print_r($redirect);
+		print_r($redirect);
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
 		
