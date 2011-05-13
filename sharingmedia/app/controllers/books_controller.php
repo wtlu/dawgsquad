@@ -150,6 +150,7 @@ class BooksController extends AppController {
 				$author = $author . ', '. $result['Creator'][$i];
 			}
 		}
+		
 		$ISBN = str_replace('ISBN:', '', $result['Identifier'][1]);
 		# check to see if this book result has an image, and if not, replace with generic thumbnail
 		if ($result['Link'][0]['type'] == 'image/x-unknown') {
