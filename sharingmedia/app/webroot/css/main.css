@@ -1,0 +1,105 @@
+html { 
+	width: 760px;
+}
+
+#content h1 {
+    clear: both;
+    color: black;
+    font-size: 24pt;
+}
+
+#content h2 {
+    color: black;
+    font-size: 14pt;
+}
+
+#hello_message {
+    text-align: center;
+}
+
+/* moved to layout.css
+#top_bar_logo {
+    float: left;
+    margin: 10px;
+}
+*/
+
+/*
+#top_bar_logo > img {
+    width: 100px;
+    height: 100px;
+}
+*/
+
+/*
+#top_bar_options {
+    float: right;
+    font-size: 10pt;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+*/
+
+#splash_boxes {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;  /* added */
+    margin-right: auto; /* added */
+    overflow: hidden;   /* added */
+}
+
+ul {					/* added */
+	text-align: left;
+	padding-left: 50px;
+}
+
+.box {					/* added */
+	width: 250px;
+	float: left;	
+}
+
+.box img {     /* changed splash_boxes to .box */
+    height: 180px;
+    width: 180px;
+}
+
+#splash_description {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.book_display{
+        height: 100px;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 30px;
+}
+ul ul{
+	margin-left:75px;
+}
+.buttons{
+	float:right;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.tabs{
+	float:left;
+	border:2px solid black;
+        margin-right:5px;
+}
+#add{
+	float:right;
+	border:2px solid black;
+}
+#list{
+	float:left;
+	border:2px solid black;
+	width: 700px;
+	padding:10px;
+}
+a img{
+	border-style: none;	
+}
