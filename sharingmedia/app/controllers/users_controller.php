@@ -13,7 +13,7 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
-		debug($facebook->getSession());
+		$debug($facebook->getSession());
 		
 		if ($facebook->getSession()) {
 
