@@ -10,12 +10,12 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
-		/*
+		
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
-		));
+/*		));
 		
 		//If the user is logged in...
 		if ($facebook->getSession()) {
@@ -38,7 +38,7 @@ class UsersController extends AppController {
 		}*/
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if(!$this->Session->check('uid')){
+		if (!$facebook->getSession()){
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
 		}
 //		$this->set('users', $this->User->find('all'));	
@@ -66,7 +66,8 @@ class UsersController extends AppController {
 		if($this->Session->check('uid')){
 			$user_id = $this->Session->read('uid');		
 			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
-			if(count == 0){
+			print_r($count);
+			if($count == 0){
 				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user_id . '";');	
 				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/');	
 			} else {
