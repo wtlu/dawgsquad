@@ -68,6 +68,8 @@ class UsersController extends AppController {
 		));
 		
 		echo "before logic";
+		echo $this->Facebook["id"];
+		echo $this->Session->read('uid');
 		if($facebook->getSession()){
 			echo "in loop";
 			$user_id = $this->Session->read('uid');		
