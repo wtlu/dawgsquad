@@ -15,8 +15,12 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p><?php echo $this->Html->link('Account', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> 
-  			</p> 
+  			<p><?php echo $this->Html->link('Account', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | 
+  			<?php 
+  			if($facebook_user){ 
+				echo $this->Facebook->logout(array('redirect' => array('controller' => 'users','action' => 'logout')));
+  			} ?>
+  			</p>
 		</div>
 	</div>
 <?php echo $content_for_layout ?>
