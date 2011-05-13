@@ -1,0 +1,16 @@
+.results_display {
+	height: 670px;
+	overflow: scroll;
+}
+
+.book_results_display {
+	padding-top: 20px;
+	border-top: 2px solid black;
+	padding-bottom: 20px;
+}
+
+.book_results_display img {
+	height: 100px;
+	float: left;
+	margin-right: 10px;
+}
