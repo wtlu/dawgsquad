@@ -38,3 +38,6 @@ INSERT INTO trades(id, book_id, created)
 	
 INSERT INTO trades(id, book_id, created)
 	VALUES(1, 3, NOW());
+	
+INSERT INTO trades(id, book_id, created)
+	VALUES(-1, -1, NOW());
