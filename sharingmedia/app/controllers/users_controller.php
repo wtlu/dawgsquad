@@ -34,21 +34,11 @@ class UsersController extends AppController {
 
 			// User has not authorized us or is not logged in
 			// For a full list of permissions please see http://developers.facebook.com/docs/authentication/permissions
-			
-			/*
-			$params = array(
-				'fbconnect'=>1,
-				'canvas'=>1,
-				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
-				'req_perms'=>''
-			);
-			*/
 
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
 			
-			//echo $this->redirect(array('controller'=>'users','action' => 'login'));
-			$this->redirect("http:////apps.facebook.com/sharingmedia/users/login/");
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
@@ -105,7 +95,8 @@ class UsersController extends AppController {
 
 		print_r($redirect);
 		
-		$this->redirect($redirect);
+		//This sends app into  infinite loop
+		//$this->redirect($redirect);
 		
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
