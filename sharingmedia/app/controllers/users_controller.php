@@ -1,9 +1,11 @@
 <?php
+require './facebook.php';
+
 class UsersController extends AppController {
 	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
 	var $name = 'Users';
 	
-	require './facebook.php';
+	
 	
 	function index() {
 		$this->layout = 'index_layout';
