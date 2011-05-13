@@ -16,8 +16,7 @@
 
 
 <!-- File: /app/models/book_initial_offer.php -->
-<?php echo $this->Html->css('main'); ?>
-<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 
 <h2>My Library</h1>
 <div class="tabs">My Books</div>
@@ -29,24 +28,25 @@
 		$size = sizeof($book_collection);
 		for($i=0; $i < $size; $i++){
 	?>
-			
-		<img class= "book_display" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
-		<ul>
-			<li>Title: <?=$book_collection[$i]["books"]["title"]?></li>
-			<li>Author: <?=$book_collection[$i]["books"]["author"]?></li>
-			<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
-			<li>Trade for:
-				<ul>
-				<?php $length = sizeof($trade_books[$i]);
-					 for($j=0; $j < $length; $j++){ ?>
-						<li><?=$trade_books[$i][$j]["books"]["title"]?></li>
-					<?php } ?>
-				</ul> 
-			</li>
-			<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
-		</ul>
-		<div class="buttons">Remove</div>
-		<div class="buttons">Change Offer</div>
+		<div class="book_unit">	
+			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
+			<ul class="books_list">
+				<li>Title: <?=$book_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?=$book_collection[$i]["books"]["author"]?></li>
+				<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
+				<li>Trade for:
+					<ul>
+					<?php $length = sizeof($trade_books[$i]);
+						 for($j=0; $j < $length; $j++){ ?>
+							<li><?=$trade_books[$i][$j]["books"]["title"]?></li>
+						<?php } ?>
+					</ul> 
+				</li>
+				<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
+			</ul>
+			<div class="buttons">Remove</div>
+			<div class="buttons">Change Offer</div>
+		</div>
 	<?php
 		}
 
