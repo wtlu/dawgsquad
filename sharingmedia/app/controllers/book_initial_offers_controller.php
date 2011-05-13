@@ -157,6 +157,7 @@ class BookInitialOffersController extends AppController {
 			}
 
 			//Get book id from our database
+			sleep(1);
 			$the_book = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
 
 			$book_id = 0;
