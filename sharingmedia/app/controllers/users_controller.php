@@ -58,6 +58,7 @@ class UsersController extends AppController {
 	}
 	
 	function login(){
+/*		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');*/
 /*		$facebook=new Facebook(array(
 		'appId'=>'218244414868504',
 		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
