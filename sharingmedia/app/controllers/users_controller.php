@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	function index() {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
-		if(!$this->Session->check('uid')){
+		if(is_null($this->Session->check('uid'))){
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
 		}
 //		$this->set('users', $this->User->find('all'));	
