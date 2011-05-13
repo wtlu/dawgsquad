@@ -17,7 +17,7 @@ class UsersController extends AppController {
 		));
 		
 		
-		echo "Just before test for session."
+		echo "Just before test for session.";
 		
 		if ($facebook->getSession()) {
 
@@ -41,7 +41,7 @@ class UsersController extends AppController {
 			);
 			*/
 			
-			echo "Session was not found."
+			echo "Session was not found.";
 		
 			$redirect = $facebook->getLoginUrl();
 			
