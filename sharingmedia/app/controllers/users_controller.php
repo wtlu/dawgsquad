@@ -3,6 +3,8 @@ class UsersController extends AppController {
 	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
 	var $name = 'Users';
 	
+	require './facebook.php';
+	
 	function index() {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
@@ -37,6 +39,8 @@ class UsersController extends AppController {
 			*/
 		
 			$redirect = $facebook->getLoginUrl();
+			
+			echo '<a href="' . $facebook->getLoginUrl() . '">Login</a>';
 		
 			echo '<fb:redirect url="' . $redirect . '">';
 		}
