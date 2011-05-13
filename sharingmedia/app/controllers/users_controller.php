@@ -102,6 +102,8 @@ class UsersController extends AppController {
 		
 		echo '</h2>';
 
+		print_r($redirect);
+		
 		//$this->redirect($redirect);
 		
 		
