@@ -8,12 +8,16 @@ use Mail::Sendmail;
 # Purpose: Runs SharingMedia test suite
 
 # vars
-my $TOOLDIR = 'tools';
 my $RECIPIENT = 'brandt.greg@gmail.com';
 
-# check current directory
-if Cwd::cwd() !~ /($TOOLDIR)/
-  die "Wrong directory: move to dawgsquad/$TOOLDIR";
+# tests
+my @tests = qw( 
+'controllers/book_initial_offers_controller',
+'controllers/books_controller',
+'controllers/transactions_controller',
+'models/book',
+'views/add_books',
+    );
 
 # build timestamped test log filename
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
@@ -21,17 +25,13 @@ my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900)
   . '_' . $hour . '-' . $min . '.log';
 
 # build test command
-my $cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake')
-  . ' testsuite app all';
+my $cmd = File::Spec->catfile(File::Spec->updir(), 'sharingmedia', 'cake', 'console', 'cake') . ' testsuite app all';
 
 # redirect STDERR
 my $output;
-close STDERR;
-open STDERR, '>', \$output
-  or die "Can't open STDERR: $!";
 
 # run tests
-`$cmd`;
+$output = `$cmd`;
 
 # email errors
 my %mail = (
@@ -39,3 +39,5 @@ my %mail = (
   From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
   Message => $output,
 );
+
+sendmail(%mail) or die $Mail::Sendmail::error;
