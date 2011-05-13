@@ -42,14 +42,15 @@ class TransactionsController extends AppController {
     /* post info to view for updating / test */
     $this->set('counter_info', $t[0]);
   }
-
-  /* displays user's current transactions */
-  function myTransactions($id = null) {
-
-  }
   function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
   }
+
+	function my_transactions() {
+                $this->layout = 'main_layout';
+                $this->set('title_for_layout', 'Library || My Transactions');
+  }
+
 }
 ?>

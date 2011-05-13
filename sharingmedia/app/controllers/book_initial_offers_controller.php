@@ -32,9 +32,11 @@ class BookInitialOffersController extends AppController {
 		$this->set('title_for_layout', 'My Books');
 		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid);
 		$size = sizeof($book_collection);
-		$trade_books = array();
-		for($i = 0; $i < $size; $i++){
-			$trade_books[$i]= $this->BookInitialOffer->query("SELECT * FROM books, trades WHERE books.id = trades.book_id and trades.id = " . $book_collection[$i]["book_initial_offers"]["trade_id"]);
+		$trade_books = NULL;
+		if(!is_null($book_collection[0]["book_initial_offers"]["trade_id"])) {
+			for($i = 0; $i < $size; $i++){
+				$trade_books[$i]= $this->BookInitialOffer->query("SELECT * FROM books, trades WHERE books.id = trades.book_id and trades.id = " . $book_collection[$i]["book_initial_offers"]["trade_id"]);
+			}
 		}
 		$this->set('book_collection', $book_collection);
 		$this->set('trade_books', $trade_books);
