@@ -41,13 +41,12 @@ class UsersController extends AppController {
 			);
 			*/
 			
-			echo "Session was not found.";
-		
-			$redirect = $facebook->getLoginUrl();
 			
-			echo '<a href="' . $facebook->getLoginUrl() . '">Login</a>';
 		
-			echo '<fb:redirect url="' . $redirect . '">';
+			//echo '<fb:redirect url="' . $redirect . '">';
+			
+			
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
@@ -78,6 +77,21 @@ class UsersController extends AppController {
 		var $fb_user = $facebook->require_add();*/
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
+		
+		
+		echo "Session was not found.";
+		
+		
+		$params = array(
+				'fbconnect'=>1,
+				'canvas'=>1,
+				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'req_perms'=>''
+			);
+		
+		$redirect = $facebook->getLoginUrl($params);
+			
+		echo '<a href="' . $facebook->getLoginUrl() . '">Login</a>';
 		
 		
 		//if($this->Session->check('uid')){
