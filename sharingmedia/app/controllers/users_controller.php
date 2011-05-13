@@ -32,6 +32,7 @@ class UsersController extends AppController {
 		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie'=>true
 		));
+		$session=$facebook->getSession();
 		$facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/"));
 		/*if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
