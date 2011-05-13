@@ -45,7 +45,7 @@ class UsersController extends AppController {
 			$this->Session->write('uid',$session['uid']);
 //			print_r($session);
 //			$this->Session->write('username',$session['name']);
-			$this->redirect(array('controller'=>'users','action'=>'index'),null,true);
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}//else{
 		//	$this->redirect($login_url);
 		//}
