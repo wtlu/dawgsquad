@@ -7,9 +7,9 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if(!$this->Session->check('uid')){
+/*		if(!$this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
-		}
+		}*/
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
@@ -25,17 +25,20 @@ class UsersController extends AppController {
 	}
 	
 	function login(){
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
+		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://localhost/sharingmedia/index.php/users/index');
 /*		$facebook=new Facebook(array(
 		'appId'=>'218244414868504',
 		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie'=>true
 		));
 		var $fb_user = $facebook->require_add();*/
-		$this->layout = 'login_layout';
+/*		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
-		} /*else {
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));*/
+/*		} else {
 			$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://localhost/sharingmedia/');	
 		}*/
 	}
