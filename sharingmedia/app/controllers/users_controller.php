@@ -19,13 +19,16 @@ class UsersController extends AppController {
 		
 		echo "Just before test for session.";
 		
+		//The session might linger from a recent logout, check for this
+		$test_still_login = $facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/"));
+		if($test_still_login == "http://apps.facebook.com/sharingmedia/users/login/"){
+			echo '<fb:redirect url="' . 'http://apps.facebook.com/sharingmedia/users/login/' . '">';
+		}
+		
+		//If the user is logged in...
 		if ($facebook->getSession()) {
 		
-			$test_still_login = $facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/"));
-		
-			if($test_still_login == "http://apps.facebook.com/sharingmedia/users/login/"){
-				echo '<fb:redirect url="' . 'http://apps.facebook.com/sharingmedia/users/login/' . '">';
-			}
+			
 	
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
