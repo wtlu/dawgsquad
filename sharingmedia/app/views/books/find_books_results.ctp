@@ -6,7 +6,8 @@
 	
 	Changelog:
 	5/10/2011 - John Wang - Created page. Copied relevant code from add books results
-	5/11/2011 - John Wang -
+	5/11/2011 - John Wang - Changed results formatting some more
+	5/13/2011 - John Wang - Added a back button
 	
 	<?php echo $this->Html->css('main'); ?>
 -->
@@ -35,9 +36,10 @@
 		<p> No results. Please try your search again. </p>
 		<?php
 	}
-	
-	# echo $this->Form->end('Continue');
-?>
+	?>
+	<FORM METHOD="LINK" ACTION="find_books">
+	<INPUT TYPE="submit" VALUE="Go Back">
+	</FORM>
 </div>
 
 <?php

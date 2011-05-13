@@ -10,6 +10,8 @@ File: /app/controllers/books_controller.php
 	5/9/2011 - John Wang - Handles more cases from querying Google books
 	5/10/2011 - John Wang - Started controller for find books
 	5/11/2011 - John Wang - Continue work on find books results
+	5/12/2011 - John Wang - Find book results now works for the most part
+	5/13/2011 - John Wang - Commented some more code
 -->
 <?php
 class BooksController extends AppController {
@@ -136,6 +138,7 @@ class BooksController extends AppController {
 	# helper function to get the relevant data of google book search and put that in book_results
 	function get_relevant_data($result) {
 		$title = $result['Title'][1];
+
 		# check to see if this book has a second title and add it
 		if (array_key_exists(2, $result['Title'])) {
 			$title = $title . ': ' . $result['Title'][2];
@@ -150,7 +153,7 @@ class BooksController extends AppController {
 				$author = $author . ', '. $result['Creator'][$i];
 			}
 		}
-		
+
 		$ISBN = str_replace('ISBN:', '', $result['Identifier'][1]);
 		# check to see if this book result has an image, and if not, replace with generic thumbnail
 		if ($result['Link'][0]['type'] == 'image/x-unknown') {
