@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		
 		if ($facebook->getSession()) {
 		
-			$test_still_login = $this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
+			$test_still_login = $this->facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
 		
 			if($test_still_login == "http://apps.facebook.com/sharingmedia/users/login/"){
 				echo '<fb:redirect url="' . 'http://apps.facebook.com/sharingmedia/users/login/' . '">';
