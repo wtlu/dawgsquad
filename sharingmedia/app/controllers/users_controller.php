@@ -66,7 +66,8 @@ class UsersController extends AppController {
 		if($this->Session->check('uid')){
 			$user_id = $this->Session->read('uid');		
 			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
-			if(count == 0){
+			print_r($count);
+			if($count == 0){
 				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user_id . '";');	
 				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/');	
 			} else {
