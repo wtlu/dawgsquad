@@ -161,7 +161,7 @@ File: /app/tests/cases/books_controller.test.php
 		
 		
 		/* checks if query_google() function returns the expected information for the book */
-		function test_query_google() {
+		function testQueryGoogle() {
 			App::import('HttpSocket');
 			App::import('Xml');
 			$http = new HttpSocket();
@@ -183,9 +183,9 @@ File: /app/tests/cases/books_controller.test.php
 		}
 		 
 		/* checks if get_relevant_data() function appropriately filter out the information of the book obtained by query_google()*/
-		function test_get_relevant_data() {
+		function testGetRelevantData() {
 
-			$result = $this->test_query_google();
+			$result = $this->testQueryGoogle();
 	
 			$title = $result['Title'][1];
 			# check to see if this book has a second title and add it
