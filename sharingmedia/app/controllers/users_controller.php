@@ -27,6 +27,28 @@ class UsersController extends AppController {
 	function login(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
+		
+		$facebook=new Facebook(array(
+		'appId'=>'218244414868504',
+		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
+		'cookie'=>true
+		));
+		
+		#generate facebook session
+		$session=$facebook->getSession();
+		# generate login url
+		     		$login_url = $facebook->getLoginUrl(array(
+		'next' => 'http://localhost/fboauth/users/callback',
+		));
+		#if session available
+		if(!empty($session)){
+			$this->Session->write('uid',$session['uid']);
+//			print_r($session);
+//			$this->Session->write('username',$session['name']);
+			$this->redirect(array('controller'=>'users','action'=>'index'),null,true);
+		}//else{
+		//	$this->redirect($login_url);
+		//}
 /*		$facebook=new Facebook(array(
 		'appId'=>'218244414868504',
 		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
