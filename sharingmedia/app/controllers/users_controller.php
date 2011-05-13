@@ -88,10 +88,8 @@ class UsersController extends AppController {
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
 				'req_perms'=>''
 			);
-		
-		$redirect = $facebook->getLoginUrl($params);
 			
-		echo '<a href="' . $facebook->getLoginUrl() . '">Login</a>';
+		echo '<a href="' . $facebook->getLoginUrl($params) . '">Login</a>';
 		
 		
 		//if($this->Session->check('uid')){
