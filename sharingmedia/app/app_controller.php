@@ -43,7 +43,7 @@ class AppController extends Controller {
 	
 	function beforeFilter() {
 //		$this->set('user', $this->Auth->user());
-//		$this->set('facebook_user', $this->Connect->user());
+		$this->set('facebook_user', $this->Connect->user());
 		
 		
 		//The session might linger from a recent logout, check for this
