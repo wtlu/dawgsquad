@@ -31,7 +31,9 @@ class BooksController extends AppController {
 	function find_books_results() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'find_book_result');
-		if (!empty($this->data)) {
+		$book_results = array();
+		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
+			# query our database to find the book
 			$book_title = $this->data['Book']['title'];
 			$book_author = $this->data['Book']['author'];
 			$book_isbn = $this->data['Book']['isbn'];
@@ -43,6 +45,7 @@ class BooksController extends AppController {
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
+			# look to see if the book result has a trade, and then find the book associated with the trade
 			foreach ($book_results as &$b_r) {
 				$book_trade_result = array();
 				if (!is_null($b_r['b_i_o']['trade_id'])) {
@@ -51,26 +54,27 @@ class BooksController extends AppController {
 					$b_r = array_merge($b_r, $book_trade_result[0]);
 				}
 			}
-			$this->set('book_results', $book_results);
-			#debug($book_results);
 		}
+		$this->set('book_results', $book_results);
 	}
 
 	# Function for the add books results view
 	function add_books_results() {
 		$this->layout = 'main_layout';
         $this->set('title_for_layout', 'add_book_result');
-
-        # search our database for the book
-		$book_title = $this->data['Book']['title'];
-		$book_author = $this->data['Book']['author'];
-		$book_isbn = $this->data['Book']['isbn'];
-		# SQL query to parse our database to find the desired book
-		$book_results = $this->Book->query('SELECT * FROM books
-			WHERE title LIKE "%' .$book_title . '%"
-				AND author LIKE "%' . $book_author . '%"
-				AND isbn LIKE "%' .  $book_isbn . '%";');
-		# set book result to send to the add book result view
+		$book_results = array();
+		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
+			# search our database for the book
+			$book_title = $this->data['Book']['title'];
+			$book_author = $this->data['Book']['author'];
+			$book_isbn = $this->data['Book']['isbn'];
+			# SQL query to parse our database to find the desired book
+			$book_results = $this->Book->query('SELECT * FROM books
+				WHERE title LIKE "%' .$book_title . '%"
+					AND author LIKE "%' . $book_author . '%"
+					AND isbn LIKE "%' .  $book_isbn . '%";');
+			# set book result to send to the add book result view
+		}
 		$this->set('book_results', $book_results);
 
 		# search google books

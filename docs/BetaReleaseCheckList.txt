@@ -29,14 +29,14 @@ Beta Release Checklist
 				[ ] Links to Google Code issues page
 				
 	[ ] Use Cases: Add Books (John + James)
-		[ ] Add books main page (Enter Book Info)
-			[ ] Can enter any info
-			[ ] Can Click Continue
-		[ ] Confirm Book page
-			[ ] Can see results
-			[ ] Can select one book
+		[x] Add books main page (Enter Book Info)
+			[x] Can enter any info
+			[x] Can Click Continue
+		[x] Confirm Book page
+			[x] Can see results
+			[x] Can select one book
 			[ ] Can Click Back
-			[ ] Can click Next
+			[x] Can click Next
 		[ ] Select Offer Details
 			[ ] Can check Loan For and enter details
 			[ ] Can check Sell For and enter details
@@ -52,13 +52,13 @@ Beta Release Checklist
 			[ ] Takes you to the library page
 			[ ] Library contains the book you just added
 	
-	[ ] Use Case: Find Books (John + James)
-		[ ] Find Books main page
-			[ ] Can enter any info
-			[ ] Can Click Find
-		[ ] Find Books Resuls page
-			[ ] Can see Books with details and users that owns it
-			[ ] Click on a book will show a dialog box that says "Transactions coming soon!"
+	[x] Use Case: Find Books (John + James)
+		[x] Find Books main page
+			[x] Can enter any info
+			[x] Can Click Find
+		[x] Find Books Resuls page
+			[x] Can see Books with details and users that owns it
+			[x] Click on a book will show a dialog box that says "Transactions coming soon!"
 	
 	[ ] Use Case: My Library Page (Ken)
 		[ ] Has My Books Tab
