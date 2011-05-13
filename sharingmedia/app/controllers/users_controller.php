@@ -99,8 +99,8 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			
-		//echo '<a href="' . $facebook->getLoginUrl($params) . '">Login</a>';
-		echo '<fb:redirect url="' . $facebook->getLoginUrl($params) . '">';
+		echo '<a href="' . $facebook->getLoginUrl($params) . '">Login</a>';
+		//echo '<fb:redirect url="' . $facebook->getLoginUrl($params) . '">';
 		
 		//if($this->Session->check('uid')){
 		//	echo $this->redirect(array('controller'=>'users','action' => 'index'));
