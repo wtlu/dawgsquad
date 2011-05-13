@@ -6,8 +6,9 @@ class UsersController extends AppController {
 	function index() {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
-		if(is_null($this->Session->check('uid'))){
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
+		/*if(is_null($this->Session->check('uid'))){
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));*/	
 		}
 //		$this->set('users', $this->User->find('all'));	
 	}
@@ -26,8 +27,9 @@ class UsersController extends AppController {
 	function login(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
+		/*if($this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));*/
 		}
 	}
 	
