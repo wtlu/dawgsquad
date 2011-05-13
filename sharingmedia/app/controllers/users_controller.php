@@ -16,6 +16,8 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
+		sleep(1);
+		
 		//The session might linger from a recent logout, check for this
 		if($facebook->getSession()){
 			echo "cool";
@@ -98,13 +100,13 @@ class UsersController extends AppController {
 			
 		$redirect = $facebook->getLoginUrl($params);
 			
-		echo '<a href="' . echo $redirect . '">Login</a>';
+		echo '<a href="' . $redirect . '">Login</a>';
 		
 		echo '</h2>';
 
 		print_r($redirect);
 		
-		//$this->redirect($redirect);
+		$this->redirect($redirect);
 		
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
