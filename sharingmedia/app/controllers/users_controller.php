@@ -47,7 +47,7 @@ class UsersController extends AppController {
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
 			
-			echo $this->redirect("http://apps.facebook.com/sharingmedia/users/login/");
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
@@ -102,7 +102,10 @@ class UsersController extends AppController {
 		
 		echo '</h2>';
 		
-		$this->redirect($redirect);
+		
+		if(!$facebook->getSession()){
+			$this->redirect($redirect);
+		}
 		
 		//echo '<fb:redirect url="' . $redirect . '">';
 		
