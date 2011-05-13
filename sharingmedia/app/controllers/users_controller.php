@@ -17,11 +17,8 @@ class UsersController extends AppController {
 		));
 		
 		//The session might linger from a recent logout, check for this
-		$test_still_login = $facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/"));
-		
-		if($test_still_login == 'http://apps.facebook.com/sharingmedia/users/login/'){
-			echo "should be redirecting here...";
-			echo '<fb:redirect url="' . 'http://apps.facebook.com/sharingmedia/users/login/' . '">';
+		if($facebook->getSession()){
+			echo "cool";
 		}
 		
 		//If the user is logged in...
@@ -99,10 +96,12 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			
-		echo '<a href="' . $facebook->getLoginUrl($params) . '">Login</a>';
+		$redirect = $facebook->getLoginUrl($params);
+			
+		echo '<a href="' . $redirect . '">Login</a>';
 		
 		echo '</h2>';
-		//echo '<fb:redirect url="' . $facebook->getLoginUrl($params) . '">';
+		echo '<fb:redirect url="' . $redirect . '">';
 		
 		//if($this->Session->check('uid')){
 		//	echo $this->redirect(array('controller'=>'users','action' => 'index'));

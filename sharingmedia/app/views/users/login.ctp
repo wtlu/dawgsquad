@@ -1,4 +1,4 @@
-<h1>LOGIN IN</h1>
+
 
 <!-- <?php echo $this->Facebook->login(); ?> -->
 
