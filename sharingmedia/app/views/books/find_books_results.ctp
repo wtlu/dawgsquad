@@ -17,14 +17,18 @@
 
 <div class = "results_display">
 <?php
-	# echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
-
 	if (!empty($book_results)) {
-		foreach ($book_results as $book){ 
+		foreach ($book_results as $book){
+			echo $form->create('Transactions', array('action' => 'accept_transaction', 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
 			$b_i_o_result = $book['b_i_o'];
-			display_results($result, $user_result, $b_i_o_result);
+			$trade_book = array();
+			if (array_key_exists('trade_book', $book)) {
+				$trade_book = $book['trade_book'];
+			}
+			display_results($result, $user_result, $b_i_o_result, $trade_book);
+			echo $this->Form->end('Start a Transaction');
 		}
 	} else {
 		?>
@@ -39,12 +43,7 @@
 <?php
 #functions
 
-function display_results($result, $user_result, $b_i_o_result) {
-	$chosen = '';
-	foreach ($result as $element) {
-		$chosen = $chosen . '^' . $element;
-	}
-	
+function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 	?>
 	<div class="book_results_display">
 		<!--
@@ -59,31 +58,42 @@ function display_results($result, $user_result, $b_i_o_result) {
 				$summary = $result['summary'];
 			?>
 			<img src=<?php echo $image ?> alt="Book image" />
-			<strong>Title:</strong>	<?php echo $title ?> <br />
-			<strong>Author(s):</strong> <?php echo $author ?> <br />
-			<strong>Summary:</strong> <?php echo $summary ?> <br />
-			<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
-		<h3> Owner </h3>
-			<?php
-				$name = $user_result['name'];
-			?>
-			<strong>Name:</strong>	<?php echo $name ?> <br />
-		<h3> Offer Details </h3>
-			<?php
-				$price = $b_i_o_result['price'];
-				$duration = $b_i_o_result['duration'];
-			if (!empty($price)) {
-			?>
-			<strong>Price: $</strong><?php echo $price ?> <br />
-			<?php
-			}
-			if (!empty($duration)) {
-			?>
-			<strong>Loan Duration:</strong> <?php echo $duration ?> days<br />
-			<?php
-			}
-			?>
-			<strong>Trade Details:</strong>
+		<div class = "book_results_text">
+				<strong>Title:</strong>	<?php echo $title ?> <br />
+				<strong>Author(s):</strong> <?php echo $author ?> <br />
+				<strong>Summary:</strong> <?php echo $summary ?> <br />
+				<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+			<h3> Owner </h3>
+				<?php
+					$name = $user_result['name'];
+				?>
+				<strong>Name:</strong>	<?php echo $name ?> <br />
+			<h3> Offer Details </h3>
+				<?php
+					$price = $b_i_o_result['price'];
+					$duration = $b_i_o_result['duration'];
+					if (!empty($trade_book)) {
+						$trade_title = $trade_book['title'];
+						$trade_author = $trade_book['author'];
+					}
+				if (!empty($price)) {
+				?>
+				<strong>Price: $</strong><?php echo $price ?> <br />
+				<?php
+				}
+				if (!empty($duration)) {
+				?>
+				<strong>Loan Duration:</strong> <?php echo $duration ?> days<br />
+				<?php
+				}
+				if (!empty($trade_book)) {
+				?>
+				<strong>Willing to trade for:</strong> <i><?php echo $trade_title ?></i>
+					by <?php echo $trade_author ?>
+				<?php
+				}
+				?>
+		</div>
 		</label>
 	</div>
 	<?php

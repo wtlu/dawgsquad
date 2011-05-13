@@ -61,10 +61,12 @@ function display_results($result) {
 				$summary = $result['summary'];
 			?>
 		<img src=<?php echo $image ?> alt="Book image" />
-		<strong>Title:</strong>	<?php echo $title ?> <br />
-		<strong>Author(s):</strong> <?php echo $author ?> <br />
-		<strong>Summary:</strong> <?php echo $summary ?> <br />
-		<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+		<div class = "book_results_text">
+			<strong>Title:</strong>	<?php echo $title ?> <br />
+			<strong>Author(s):</strong> <?php echo $author ?> <br />
+			<strong>Summary:</strong> <?php echo $summary ?> <br />
+			<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+		</div>
 		</label>
 	</div>
 	<?php
