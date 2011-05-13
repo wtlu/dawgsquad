@@ -1,5 +1,4 @@
 <?php
-require '/var/www/html/dawgsquad/sharingmedia/app/vendors/facebook/facebook.php';
 
 class UsersController extends AppController {
 	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
@@ -17,6 +16,8 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
+		
+		echo "Just before test for session."
 		
 		if ($facebook->getSession()) {
 
@@ -39,6 +40,8 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			*/
+			
+			echo "Session was not found."
 		
 			$redirect = $facebook->getLoginUrl();
 			
