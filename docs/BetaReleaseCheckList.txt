@@ -106,13 +106,13 @@ Bug tracking System
 Design changes and rationale
 	[ ] SRS (Jedidiah + James)
 		[ ] Process updated
-		[ ] Last two paragraphs in the "Competition" section seem to belong in another heading
-		[ ] Use cases
-			[ ] Barter/haggle (Transactions - Change the name)
-				[ ] Needs to be fleshed out in more detailed
-				[ ] Needs to have two actions for this to make sense. How will they interact?
+		[X] Last two paragraphs in the "Competition" section seem to belong in another heading
+		[X] Use cases
+			[X] Barter/haggle (Transactions - Change the name)
+				[X] Needs to be fleshed out in more detailed
+				[X] Needs to have two actions for this to make sense. How will they interact?
 					How do they signal to system that they reached an agreement? etc
-			[ ] What is "prodcut refunds lender"? Assuming that you are
+			[X] What is "prodcut refunds lender"? Assuming that you are
 				referring to SharingBooks as the product and the paying user as the
 				lender, this means that the user has given SB their money in the past
 					There's no such transaction in use case
