@@ -13,7 +13,6 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
-		$debug($facebook->getSession());
 		
 		if ($facebook->getSession()) {
 
@@ -28,14 +27,16 @@ class UsersController extends AppController {
 			// User has not authorized us or is not logged in
 			// For a full list of permissions please see http://developers.facebook.com/docs/authentication/permissions
 			
+			/*
 			$params = array(
 				'fbconnect'=>1,
 				'canvas'=>1,
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
 				'req_perms'=>''
 			);
+			*/
 		
-			$redirect = $facebook->getLoginUrl($params);
+			$redirect = $facebook->getLoginUrl();
 		
 			echo '<fb:redirect url="' . $redirect . '">';
 		}
