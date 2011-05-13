@@ -93,7 +93,8 @@ class UsersController extends AppController {
 				'fbconnect'=>0,
 				'canvas'=>1,
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
-				'req_perms'=>''
+				'req_perms'=>'',
+				'display'=>'popup'
 			);
 			
 		$redirect = $facebook->getLoginUrl($params);
@@ -104,7 +105,7 @@ class UsersController extends AppController {
 		
 		
 		
-		echo '<fb:redirect url="' . $redirect . '">';
+		//echo '<fb:redirect url="' . $redirect . '">';
 		
 		//if($this->Session->check('uid')){
 		//	echo $this->redirect(array('controller'=>'users','action' => 'index'));
