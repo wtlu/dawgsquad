@@ -10,12 +10,12 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
-		/*
+		
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
-		));
+/*		));
 		
 		//If the user is logged in...
 		if ($facebook->getSession()) {
@@ -38,7 +38,7 @@ class UsersController extends AppController {
 		}*/
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if (!$this->Facebook->getSession()){
+		if (!$facebook->getSession()){
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
 		}
 //		$this->set('users', $this->User->find('all'));	
