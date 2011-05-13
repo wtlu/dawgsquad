@@ -27,20 +27,58 @@ class BookInitialOffersController extends AppController {
 		
 	}
 
-	function my_books($uid){
+	function my_books(){
+		//get user id
+		$uid = $this->Session->read('uid');
+		//set layout (top and side bars) and title
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
+		//pull books and initial offers from the databaxe
 		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid);
 		$size = sizeof($book_collection);
 		$trade_books = NULL;
-		if(!is_null($book_collection[0]["book_initial_offers"]["trade_id"])) {
-			for($i = 0; $i < $size; $i++){
-				$trade_books[$i]= $this->BookInitialOffer->query("SELECT * FROM books, trades WHERE books.id = trades.book_id and trades.id = " . $book_collection[$i]["book_initial_offers"]["trade_id"]);
+		//get books for trade for each initial offer
+		for($i = 0; $i < $size; $i++){
+			if(!is_null($book_collection[$i]["book_initial_offers"]["trade_id"])){
+				$trade_books[$i]= $this->BookInitialOffer->query("SELECT * FROM books, trades WHERE books.id = trades.book_id AND trades.id = " . $book_collection[$i]["book_initial_offers"]["trade_id"]);
+			}else{
+				$trade_books[$i] = NULL;
 			}
 		}
+		//pass variables to page
 		$this->set('book_collection', $book_collection);
 		$this->set('trade_books', $trade_books);
 	}
+	//confirmation page called when selecting remove from my library page	
+	function remove_confirm($bid){
+		$uid = $this->Session->read('uid');
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'My Books');
+		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $uid." AND book_initial_offers.book_id = " .$bid);
+		$this->set('offer', $offer);	
+	}
+	
+	//REMOVES ENTIRES FROM THE DATABASE called by remove link from remove_comfirm page
+	function remove($bid){
+		//get user id
+		$uid = $this->Session->read('uid');
+		//get trade id
+		$trades = $this->BookInitialOffer->query("SELECT trade_id FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);	
+		$tid = $trade[0]["book_initial_offer"]["trade_id"];	
+		//remove row from book_initial_offers
+		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid); 
+		//if tid is not null remove all related trade rows
+		if(!is_null($tid)){
+			$this->BookInitialOffer->query("DELETE trades FROM trades WHERE trades.id = ". $tid);
+		}
+		//redirect to my_book page
+		$this->redirect('/book_initial_offers/my_books/'.$uid);
+	}
+	//this function is not yet implemented It will allow you to edit initial offers
+	function edit (){
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Coming Soon');
+	}	
 
    //Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
    function add_books_confirm() {
