@@ -1,5 +1,5 @@
 <!--
-File: /app/controllers/book_controller.php
+File: /app/controllers/books_controller.php
 
 	Created: 5/7/2011
 	Author: John Wang
@@ -35,19 +35,23 @@ class BooksController extends AppController {
 			$book_title = $this->data['Book']['title'];
 			$book_author = $this->data['Book']['author'];
 			$book_isbn = $this->data['Book']['isbn'];
-			$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, trades.*, b_i_o.*
-				FROM books books, book_initial_offers b_i_o, users users, trades trades
-				WHERE b_i_o.user_id = users.id
+			$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
+				FROM books books, book_initial_offers b_i_o, users users
+				WHERE b_i_o.user_id = users.facebook_id
 					AND b_i_o.book_id = books.id
-					AND b_i_o.trade_id = trades.id
 					AND books.title LIKE "%' .$book_title . '%"
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
+			$trades_results = $this->Book->query('SELECT DISTINCT trades.*
+				FROM book_initial_offers b_i_o, trades trades
+				WHERE b_i_o.trade_id = trades.id
+				ORDER BY trades.id');
+			$this->set('trade_results', $trades_results);
 			$this->set('book_results', $book_results);
-			#debug($book_results);
+			debug($book_results);
+			debug($trades_results);
 		}
-
 	}
 
 	# Function for the add books results view

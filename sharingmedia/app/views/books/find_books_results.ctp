@@ -11,9 +11,11 @@
 	<?php echo $this->Html->css('main'); ?>
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
 <h2>Results:</h2>
 
+<div class = "results_display">
 <?php
 	# echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 
@@ -32,6 +34,7 @@
 	
 	# echo $this->Form->end('Continue');
 ?>
+</div>
 
 <?php
 #functions
@@ -43,7 +46,7 @@ function display_results($result, $user_result, $b_i_o_result) {
 	}
 	
 	?>
-	<div class="book_display">
+	<div class="book_results_display">
 		<!--
 		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
 		-->
@@ -69,9 +72,17 @@ function display_results($result, $user_result, $b_i_o_result) {
 			<?php
 				$price = $b_i_o_result['price'];
 				$duration = $b_i_o_result['duration'];
+			if (!empty($price)) {
 			?>
 			<strong>Price: $</strong><?php echo $price ?> <br />
+			<?php
+			}
+			if (!empty($duration)) {
+			?>
 			<strong>Loan Duration:</strong> <?php echo $duration ?> days<br />
+			<?php
+			}
+			?>
 			<strong>Trade Details:</strong>
 		</label>
 	</div>

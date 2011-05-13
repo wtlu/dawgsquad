@@ -71,17 +71,6 @@ ul {					/* added */
     text-align: center;
 }
 
-.book_display {
-	padding-top: 20px;
-	border-top: 2px solid black;
-	padding-bottom: 20px;
-}
-
-.book_display img {
-	height: 100px;
-	float: left;
-	margin-right: 10px;
-}
 .book_display{
         height: 100px;
         float: left;

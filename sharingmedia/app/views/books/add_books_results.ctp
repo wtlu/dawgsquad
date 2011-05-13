@@ -12,9 +12,11 @@
 	# This is the view for the add books results page
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
 <h2>Choose the book that matches yours:</h2>
 
+<div class = "results_display">
 <?php
 	# creates the form for the book results, to prepare the book data to be passed to the next step
 	echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
@@ -36,6 +38,7 @@
 	
 	echo $this->Form->end('Continue');
 ?>
+</div>
 
 <?php
 # helper function to display book results
@@ -47,7 +50,7 @@ function display_results($result) {
 	}
 	
 	?>
-	<div class="book_display">
+	<div class="book_results_display">
 		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
 		<label for="choose_book">
 			<?php
