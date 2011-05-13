@@ -20,7 +20,13 @@ class UsersController extends AppController {
 		echo "Just before test for session.";
 		
 		if ($facebook->getSession()) {
-
+		
+			$test_still_login = $this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
+		
+			if($test_still_login == "http://apps.facebook.com/sharingmedia/users/login/"){
+				echo '<fb:redirect url="' . 'http://apps.facebook.com/sharingmedia/users/login/' . '">';
+			}
+	
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
 			$user = $facebook->getUser();
@@ -40,9 +46,7 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			*/
-			
-			
-		
+
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
 			
