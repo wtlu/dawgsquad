@@ -25,20 +25,18 @@ class UsersController extends AppController {
 	}
 	
 	function login(){
-		$this->layout = 'login_layout';
-		$this->set('title_for_layout', 'Login');
-		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
+/*		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');*/
 /*		$facebook=new Facebook(array(
 		'appId'=>'218244414868504',
 		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie'=>true
 		));
 		var $fb_user = $facebook->require_add();*/
-/*		$this->layout = 'login_layout';
+		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));*/
-/*		} else {
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		} /*else {
 			$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://localhost/sharingmedia/');	
 		}*/
 	}
