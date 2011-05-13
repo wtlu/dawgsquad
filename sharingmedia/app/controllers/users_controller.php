@@ -7,9 +7,9 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		/*if(is_null($this->Session->check('uid'))){
+		if(!$this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
-		}*/
+		}
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
@@ -27,38 +27,9 @@ class UsersController extends AppController {
 	function login(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-		
-		$facebook=new Facebook(array(
-		'appId'=>'218244414868504',
-		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie'=>true
-		));
-		
-		#generate facebook session
-		$session=$facebook->getSession();
-		# generate login url
-		     		$login_url = $facebook->getLoginUrl(array(
-		'next' => 'http://localhost/fboauth/users/callback',
-		));
-		#if session available
-		if(!empty($session)){
-			$this->Session->write('uid',$session['uid']);
-//			print_r($session);
-//			$this->Session->write('username',$session['name']);
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));
-		}//else{
-		//	$this->redirect($login_url);
-		//}
-/*		$facebook=new Facebook(array(
-		'appId'=>'218244414868504',
-		'secret'=>'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie'=>true
-		));
-		$session=$facebook->getSession();
-		$this->redirect($facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/")));*/
-		/*if($this->Session->check('uid')){
+		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
-		}*/
+		}
 	}
 	
 /*	function logout(){

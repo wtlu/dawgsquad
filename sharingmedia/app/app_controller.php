@@ -44,7 +44,7 @@ class AppController extends Controller {
 	function beforeFilter() {
 //		$this->set('user', $this->Auth->user());
 //		$this->set('facebook_user', $this->Connect->user());
-		//$this->Session->write('uid', $this->Connect->user('id'));
+		$this->Session->write('uid', $this->Connect->user('id'));
 		
 //		$this->Session->write('username', $this->Connect->user('name'));	
 	}
