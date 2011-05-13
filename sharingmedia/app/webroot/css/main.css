@@ -42,7 +42,7 @@ html {
 
 #splash_boxes {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 50px;
     margin-left: auto;  /* added */
     margin-right: auto; /* added */
@@ -51,11 +51,11 @@ html {
 
 ul {					/* added */
 	text-align: left;
-	padding-left: 50px;
+	padding-left: 25px;
 }
 
 .box {					/* added */
-	width: 250px;
+	width: 204px;
 	float: left;	
 }
 
@@ -71,12 +71,33 @@ ul {					/* added */
     text-align: center;
 }
 
-.book_display{
+.book_display {
+	padding-top: 20px;
+	border-top: 2px solid black;
+	padding-bottom: 20px;
+}
+
+.book_display img {
+	height: 100px;
+	float: left;
+	margin-right: 10px;
+}
+.book_img{
         height: 100px;
         float: left;
-        margin-right: 10px;
-        margin-bottom: 30px;
+        margin-right: 20px;
+        margin-bottom: 20px
 }
+.books_list{
+	height:140px;
+}
+.book_unit{
+	width:610px;
+	overflow: hidden;
+	border-bottom: 2px solid black;
+	margin-bottom:10px;
+}
+
 ul ul{
 	margin-left:75px;
 }
@@ -97,8 +118,9 @@ ul ul{
 #list{
 	float:left;
 	border:2px solid black;
-	width: 700px;
+	width: 614px;
 	padding:10px;
+	
 }
 a img{
 	border-style: none;	
