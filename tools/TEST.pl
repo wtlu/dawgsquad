@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 use strict;
 use Cwd;
 use File::Spec;
@@ -6,85 +6,36 @@ use Mail::Sendmail;
 
 # Author: Greg Brandt
 # Purpose: Runs SharingMedia test suite
-# Comments:
-#  - assumes that script is in REPOS/tools directory
 
 # vars
-my $APP_NAME = 'sharingmedia';
-my $LOG_DIR_NAME = 'logs';
-my $EMAIL_RECIPIENT = 'brandt.greg@gmail.com';
-my $TOOL_DIR = 'tools';
+my $TOOLDIR = 'tools';
+my $RECIPIENT = 'brandt.greg@gmail.com';
 
-# check args
-die "Usage: run_test.pl [-a|-f] [file]" if @ARGV != 1 && @ARGV != 2;
+# check current directory
+if Cwd::cwd() !~ /($TOOLDIR)/
+  die "Wrong directory: move to dawgsquad/$TOOLDIR";
 
-# check current directory (kind of a rough test)
-die "Wrong directory: move to REPOS/$TOOL_DIR" if Cwd::cwd() !~ /($TOOL_DIR)$/;
-
-# determine what to test
-my $fname;
-my $all = 0;
-
-# run all tests
-if ($ARGV[0] eq '-a') {
-  $all = 1;
-}
-# run subset of tests
-elsif ($ARGV[0] eq '-f') {
-  die "Usage: no filename specified" if !defined($ARGV[1]);
-  open TESTS, "<$ARGV[1]" or die "Couldn't open $ARGV[1]";
-}
-# incorrect usage
-else {
-  die "Usage: $ARGV[0] invalid flag";
-}
-
-# build test log filename
+# build timestamped test log filename
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
-my $time = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) . '_' . $hour . '-' . $min;
-
-# create log directory if it doesn't exist
-my $log_dir = File::Spec->catfile(File::Spec->updir(), $LOG_DIR_NAME);
-mkdir $log_dir if (! -d $log_dir);
-
-# open time-stamped log file for running tests
-open LOG, '>' . File::Spec->catfile($log_dir, $time) . '.log';
-
-# change to appropriate directory to run tests
-chdir File::Spec->catfile(File::Spec->updir(), $APP_NAME, 'app');
+my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) 
+  . '_' . $hour . '-' . $min . '.log';
 
 # build test command
-my $cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake');
-if ($all) {
-  $cmd .= ' testsuite app all';
-} else {			# subset
-  $cmd .= ' testsuite app case';
-}
+my $cmd = File::Spec->catfile(File::Spec->updir(), 'cake', 'console', 'cake')
+  . ' testsuite app all';
 
-# run tests and write to log
-my $msg;
+# redirect STDERR
 my $output;
-if ($all) {
-  $output = `$cmd`;
-  $msg .= $output;
-  print LOG $output;
-} else {
-  while (<TESTS>) {
-    chomp;
-    if (!/^#/ && !/^\s*$/) {	# not comment or blank line
-      $output = `$cmd $_` . '\n';
-      $msg .= $output;
-      print LOG $output;
-    }
-  }
-}
-close LOG;
+close STDERR;
+open STDERR, '>', \$output
+  or die "Can't open STDERR: $!";
 
-# send mail
+# run tests
+`$cmd`;
+
+# email errors
 my %mail = (
-  To => $EMAIL_RECIPIENT,
+  To => $RECIPIENT,
   From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
-  Message => $msg,
+  Message => $output,
 );
-
-sendmail(%mail) or die $Mail::Sendmail::error;
