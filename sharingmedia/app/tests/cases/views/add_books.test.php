@@ -16,6 +16,10 @@ class AddBooksTestCase extends CakeWebTestCase {
     $init_page = 'http://localhost/dawgsquad/sharingmedia/';
     $final_page = 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books';
 
+    /* TODO: LOGIN TO DUMMY FACEBOOK ACCOUNT
+     *  - NOTE: THIS TEST WILL FAIL 
+     *  - this is deferred until login is working and documented */
+
     /* on splash page */
     $this->get($init_page);
 
