@@ -43,14 +43,16 @@ class BooksController extends AppController {
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
-			$trades_results = $this->Book->query('SELECT DISTINCT trades.*
-				FROM book_initial_offers b_i_o, trades trades
-				WHERE b_i_o.trade_id = trades.id
-				ORDER BY trades.id');
-			$this->set('trade_results', $trades_results);
+			foreach ($book_results as &$b_r) {
+				$book_trade_result = array();
+				if (!is_null($b_r['b_i_o']['trade_id'])) {
+					$book_trade_result = $this->Book->query('SELECT trade_book.* FROM books trade_book
+						WHERE trade_book.id = ' . $b_r['b_i_o']['trade_id'] . ';');
+					$b_r = array_merge($b_r, $book_trade_result[0]);
+				}
+			}
 			$this->set('book_results', $book_results);
-			debug($book_results);
-			debug($trades_results);
+			#debug($book_results);
 		}
 	}
 
@@ -138,7 +140,7 @@ class BooksController extends AppController {
 		# check to see if this book has multiple authors
 		if (array_key_exists('creator', $result)) {
 			$author = $result['creator'];
-		} else {
+		} else if (array_key_exists('Creator', $result)) {
 			$author = $result['Creator'][0];
 			for ($i = 1; $i < count($result['Creator']); $i++) {
 				$author = $author . ', '. $result['Creator'][$i];
