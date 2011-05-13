@@ -6,10 +6,43 @@ class UsersController extends AppController {
 	function index() {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
-		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if(!$this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		
+		$facebook = new Facebook(array(
+		'appId'  => '218244414868504',
+		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+		'cookie' => true
+		));
+		
+		
+		if ($facebook->getSession()) {
+
+			// User is logged in and authorized, let's party.
+			// Get user information of current user
+			$user = $facebook->getUser();
+			
+			print "Welcome User ID: " . $user;
+	
+		} else {
+
+			// User has not authorized us or is not logged in
+			// For a full list of permissions please see http://developers.facebook.com/docs/authentication/permissions
+			
+			$params = array(
+				'fbconnect'=>0,
+				'canvas'=>1,
+				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'req_perms'=>''
+			);
+		
+			$redirect = $facebook->getLoginUrl($params);
+		
+			echo '<fb:redirect url="' . $redirect . '">';
 		}
+		
+		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
+		//if(!$this->Session->check('uid')){
+			//echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		//}
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
@@ -33,9 +66,11 @@ class UsersController extends AppController {
 		var $fb_user = $facebook->require_add();*/
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
-		} /*else {
+		
+		
+		//if($this->Session->check('uid')){
+		//	echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		//} /*else {
 			$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://localhost/sharingmedia/');	
 		}*/
 	}
