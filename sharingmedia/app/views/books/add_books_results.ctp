@@ -8,6 +8,8 @@
 	5/8/2011 - John Wang - Created page, added functionality to receive data pulled from our db and Google
 	5/9/2011 - John Wang - Changed results into radios. Now goes to the next step, but no data posted yet
 	5/10/2011 - John Wang - Added ability to post results to next step
+	5/11/2011 - John Wang - Fixed some of the formatting of the page
+	5/13/2011 - John Wang - Added back button.
 	
 	# This is the view for the add books results page
 -->
@@ -19,24 +21,30 @@
 <div class = "results_display">
 <?php
 	# creates the form for the book results, to prepare the book data to be passed to the next step
-	echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 
 	if (!empty($book_results)) {
+		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($book_results as $book){ 
 			$result = $book['books'];
 			display_results($result);
 		}
+		echo $this->Form->end('Continue');
 	} else if (!empty($google_books_results)) {
+		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($google_books_results as $result){
 			display_results($result);
 		}
+		echo $this->Form->end('Continue');
 	} else {
 		?>
 		<p> No results. Please try your search again. </p>
 		<?php
 	}
-	
-	echo $this->Form->end('Continue');
+	?>
+	<FORM METHOD="LINK" ACTION="add_books">
+	<INPUT TYPE="submit" VALUE="Go Back">
+	</FORM>
+	<?php
 ?>
 </div>
 
@@ -48,7 +56,6 @@ function display_results($result) {
 	foreach ($result as $element) {
 		$chosen = $chosen . '^' . $element;
 	}
-	
 	?>
 	<div class="book_results_display">
 		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
