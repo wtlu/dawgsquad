@@ -101,7 +101,7 @@ class BookInitialOffersController extends AppController {
 		$this->set('offer_value', $offer_value);
 		
 		$add_status = false;
-	
+		
 		// Test to see if user is logged in
 		if(is_null($this->Session->read('uid'))){
 			echo "<h2> Please login to Facebook to add a book to your library.</h2>";
