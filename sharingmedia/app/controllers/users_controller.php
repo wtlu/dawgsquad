@@ -16,9 +16,6 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
-		
-		echo "Just before test for session.";
-		
 		//The session might linger from a recent logout, check for this
 		$test_still_login = $facebook->getLoginStatusUrl(array("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/"));
 		
@@ -30,8 +27,6 @@ class UsersController extends AppController {
 		//If the user is logged in...
 		if ($facebook->getSession()) {
 		
-			
-	
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
 			$user = $facebook->getUser();
@@ -88,7 +83,7 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Login');
 		
 		
-		echo "Session was not found.";
+		echo '<h2>Session was not found. Please ';
 		
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
@@ -105,6 +100,8 @@ class UsersController extends AppController {
 			);
 			
 		echo '<a href="' . $facebook->getLoginUrl($params) . '">Login</a>';
+		
+		echo '</h2>';
 		//echo '<fb:redirect url="' . $facebook->getLoginUrl($params) . '">';
 		
 		//if($this->Session->check('uid')){
