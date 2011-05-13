@@ -101,7 +101,10 @@ class UsersController extends AppController {
 		echo '<a href="' . $redirect . '">Login</a>';
 		
 		echo '</h2>';
-		echo '<fb:redirect url="' . $redirect . '">';
+		
+		$print_r($redirect);
+		
+		//echo '<fb:redirect url="' . $redirect . '">';
 		
 		//if($this->Session->check('uid')){
 		//	echo $this->redirect(array('controller'=>'users','action' => 'index'));
