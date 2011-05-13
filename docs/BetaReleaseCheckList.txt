@@ -79,7 +79,9 @@ Beta Release Checklist
 Tests
 	[ ] Unit test for one major existing class/component in system
 		[ ] books_controller.php (Tatsuro)
+		[ ] user module (Tatsuro)
 		[ ] book_initial_offers_controller.php (Jedidiah)
+		[ ] library... (Jedidiah)
 	[-] Unit Test for one part of system that's not implemented
 		[X] Transaction Page (Greg)
 		[-] Re-editing a book offer (Greg)

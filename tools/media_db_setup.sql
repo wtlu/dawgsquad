@@ -27,9 +27,6 @@ CREATE TABLE loans(
 	client_id INT,
 	book_id INT,
 	due_date DATETIME,
-	FOREIGN KEY(owner_id) REFERENCES users(id),
-	FOREIGN KEY(client_id) REFERENCES users(id),
-	FOREIGN KEY(book_id) REFERENCES books(id),
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
 );
@@ -41,7 +38,6 @@ CREATE TABLE book_initial_offers(
 	duration INT,
 	price DOUBLE,
 	PRIMARY KEY(user_id, book_id),
-	FOREIGN KEY(user_id) REFERENCES users(id),
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
 );
@@ -64,10 +60,7 @@ CREATE TABLE transactions(
 	duration INT,
 	price DOUBLE,
 	status INT,
-	FOREIGN KEY(owner_id) REFERENCES users(id),
-	FOREIGN KEY(client_id) REFERENCES users(id),
 	FOREIGN KEY(book_id) REFERENCES books(id),
-	FOREIGN KEY(current_id) REFERENCES users(id),
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
 );
