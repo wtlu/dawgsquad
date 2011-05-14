@@ -64,49 +64,50 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
-	function example2(){
+	function example(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-/*		echo "got called";
-//		App::import('Vendor', 'facebook');
-//		App::import('Lib', 'Facebook.FB');
-
 		
-		$app_id = "218244414868504";
-    $app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
-    $my_url = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
-
-            session_start();
-    $code = $_REQUEST["code"];
-
-    if(empty($code)) {
-                    $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
-        $dialog_url = "http://www.facebook.com/dialog/oauth?client_id=" 
-            . $app_id . "&redirect_uri=" . urlencode($my_url) . "&state"
-                            . $_SESSION['state'];
-
-        echo("<script> top.location.href='" . $dialog_url . "'</script>");
+		$fbconfig['appid']  = "218244414868504";
+  		$fbconfig['api']  = "359aefaa3b2440cdc1e986bc87264e51";
+  		$fbconfig['secret']  = "fb83c155cc38febb1fb9024c1a9eb050";
+  		$fbconfig['canvas_url']  = "http://apps.facebook.com/sharingmedia/";
+  		
+  		$facebook = new Facebook(array(
+ 			'appId'  => $fbconfig['appid'],
+ 			'secret' => $fbconfig['secret'],
+ 			'cookie' => true,
+ 			'domain' => "http://apps.facebook.com/sharingmedia/"
+  		));
+ 		$session = $facebook->getSession();
+ 		if (!$session) {
+			echo RequestforPermission();
+		} else {	//got session
+			try {
+				$me = $facebook->api('/me');
+ 
+				if(!IsApplicationUser($me['id'])) {
+				//InsertApplicationUser($me);
+            	//create a function and insert the user info
+             	//into App DB for later use
+             		echo "insert into db";
+				}
+         	} catch (FacebookApiException $e) {
+				RequestforPermission($fbconfig['canvas_url'] );
+		}
     }
-
-            if($_REQUEST['state']== $_SESSION['state']) {
-                    $token_url = "https://graph.facebook.com/oauth/access_token?"
-                      . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
-                      . "&client_secret=" . $app_secret . "&code=" . $code;
-
-                    $response = file_get_contents($token_url);
-                    $params = null;
-                    parse_str($response, $params);
-
-                    $graph_url = "https://graph.facebook.com/me?access_token=" 
-                      . $params[‘access_token’];
-
-                    $user = json_decode(file_get_contents($graph_url));
-                    echo("Hello " . $user->name);
-            }
-            else {
-                    echo("The state does not match. You may be a victim of CSRF.");
-            }
-*/
+	
+	function RequestforPermission($next_url) { 
+		global $facebook;
+		$loginUrl=$facebook->getLoginUrl(array(
+			'canvas'=>1,
+			'fbconnect'=>0,
+			'display'=>'page',
+			'next'=>$next_url,
+			'cancel_url'=>'http://www.facebook.com/',
+			'req_perms'=>'email,publish_stream',
+		));
+		return '<fb:redirect url="'.$loginUrl.'" />';
 	}
 
 	function home(){
