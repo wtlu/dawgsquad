@@ -1,0 +1,59 @@
+                      SharingMedia Tools README
+                      =========================
+
+Author: Greg Brandt
+Date: 2011-05-11 14:21:33 PDT
+
+
+Table of Contents
+=================
+1 Introduction 
+2 Installation 
+    2.1 Steps 
+    2.2 Notes 
+3 Testing 
+    3.1 Manual 
+    3.2 Automatic 
+
+
+1 Introduction 
+~~~~~~~~~~~~~~~
+This folder contains the tools necessary to set-up a UW CSE VM with the necessary software to run the SharingMedia web application. The script is highly architecture dependent; it is only guaranteed to work on a CSE VM. It might work on a similar Fedora-based system, but there are no guarantees.
+
+2 Installation 
+~~~~~~~~~~~~~~~
+
+2.1 Steps 
+==========
+- Ensure the following files are in the directory
+  - httpd_patch.pl
+  - media_db_setup.sql
+  - user_setup.sql
+
+- Enter the following commands
+
+  sudo su
+  sh INSTALL.sh
+
+2.2 Notes 
+==========
+- You will be prompted to set up MySQL with password, etc.
+
+3 Testing 
+~~~~~~~~~~
+
+3.1 Manual 
+===========
+- Enter the following commands
+
+
+  perl TEST.pl
+
+- The test results are stored in dawgsquad/logs
+- Test results are also emailed to project manager Wei-Ting (weiting.t.lu@gmail.com)
+
+3.2 Automatic 
+==============
+- Load the provided crontab 'test.cron' with the following command
+
+  crontab test.cron
