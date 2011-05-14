@@ -111,7 +111,7 @@ class UsersController extends AppController {
 		echo '</h2>';
 	
 		//This sends app into  infinite loop
-		$this->redirect($redirect);
+		$this->redirect($redirect_url);
 		
 		
 		//echo '<fb:redirect url="' . $redirect_url . '">';
