@@ -38,9 +38,9 @@ class UsersController extends AppController {
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		//if (!$facebook->getSession()){
-		//	echo $this->redirect(array('controller'=>'users','action' => 'login'));	
-		//}
+		if (!$facebook->getSession()){
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		}
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
