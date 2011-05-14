@@ -160,13 +160,13 @@ Design changes and rationale
 			[X] Make sure Step 2 of Joel test is followed (Greg)
 			[-] Build and test
 				[X] Cake is not in path (Greg)
-				[ ] Automated daily build (Wei-Ting)
+				[X] Automated daily build (Wei-Ting)
 			[ ] Release
 				[ ] hg update -r Version -0.0 doesn't work
 				[ ] document DB schema will never change
 					[ ] Or say how developer is supposed to migrate data from old version to new one
 					
-			[ ] Updated Steps
-			[ ] List two design pattern or principle discussed in class
-				[ ] MVC
-				[ ] Interning Books
+			[X] Updated Steps
+			[X] List two design pattern or principle discussed in class
+				[X] MVC
+				[X] Interning Books
