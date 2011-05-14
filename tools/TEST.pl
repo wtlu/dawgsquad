@@ -2,6 +2,7 @@
 use strict;
 use Cwd;
 use File::Spec;
+use IO::Scalar;
 use Mail::Sendmail;
 
 # Author: Greg Brandt
@@ -10,28 +11,20 @@ use Mail::Sendmail;
 # vars
 my $RECIPIENT = 'brandt.greg@gmail.com';
 
-# tests
-my @tests = qw( 
-'controllers/book_initial_offers_controller',
-'controllers/books_controller',
-'controllers/transactions_controller',
-'models/book',
-'views/add_books',
-    );
-
 # build timestamped test log filename
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) 
   . '_' . $hour . '-' . $min . '.log';
 
 # build test command
-my $cmd = File::Spec->catfile(File::Spec->updir(), 'sharingmedia', 'cake', 'console', 'cake') . ' testsuite app all';
-
-# redirect STDERR
-my $output;
+my $cmd = File::Spec->catfile(File::Spec->updir(), 'sharingmedia',
+			      'cake', 'console', 'cake') . ' testsuite app all';
 
 # run tests
-$output = `$cmd`;
+my $output = "[$fname]\n\n"
+  . "Team D.A.W.G Squad\n"
+  . "SharingMedia\n\n"
+  . `$cmd 2>&1 1>/dev/null`;	# outputs STDERR; discards STDOUT
 
 # email errors
 my %mail = (
@@ -39,5 +32,4 @@ my %mail = (
   From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
   Message => $output,
 );
-
 sendmail(%mail) or die $Mail::Sendmail::error;
