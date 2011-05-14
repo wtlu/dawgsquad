@@ -97,7 +97,7 @@ class UsersController extends AppController {
  		$session = $facebook->getSession();
  		if (!$session) {
  			 			
-			echo RequestforPermission();
+			echo $facebook->RequestforPermission();
 			
 		} else {	//got session
 			try {
@@ -111,7 +111,7 @@ class UsersController extends AppController {
 				//}
          	} catch (FacebookApiException $e) {
          		
-         		RequestforPermission($fbconfig['canvas_url']);
+         		$facebook->RequestforPermission($fbconfig['canvas_url']);
 				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
