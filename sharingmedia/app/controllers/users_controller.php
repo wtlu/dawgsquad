@@ -109,13 +109,13 @@ class UsersController extends AppController {
 */	
 	
 		//echo '<h2>Session was not found. Please ';
-		
+		/*
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
 		));
-		
+		*/
 		
 		$params = array(
 				'fbconnect'=>0,
@@ -128,11 +128,11 @@ class UsersController extends AppController {
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
 		} else {
 			
-			//$redirect_url = $facebook->getLoginUrl($params);
+			$redirect_url = $facebook->getLoginUrl($params);
 			
 			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
 			
-			//echo '<a href="' . $redirect_url . '">Login</a>';
+			echo '<a href="' . $redirect_url . '">Login</a>';
 		
 			//echo '</h2>';
 	
