@@ -98,9 +98,9 @@ Bug tracking System
 	[X] Ken Inoue filed a bug
 	[X] Jedidiah Jonathan filed a bug
 	[ ] Wei-Ting Lu filed a bug
-	[ ] Troy Martin filed a bug
-	[ ] Tatsuro Oya filed a bug
-	[ ] James Parsons filed a bug
+	[X] Troy Martin filed a bug
+	[X] Tatsuro Oya filed a bug
+	[X] James Parsos filed a bug
 	[X] John Wang filed a bug
 	
 Design changes and rationale
