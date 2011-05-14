@@ -80,7 +80,7 @@ class UsersController extends AppController {
 	function example(){
 		App::import('Vendor', 'facebook');
 //		include "fb-authentication";
-		App::import('Libs', 'fb-authentication');
+//		App::import('Libs', 'fb-authentication');
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		
@@ -102,7 +102,7 @@ class UsersController extends AppController {
 				'canvas'=>1,
 				'fbconnect'=>0,
 				'display'=>'page',
-				'next'=>'',
+				'next'=>'https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/',
 				'cancel_url'=>'http://www.facebook.com/',
 				'req_perms'=>'email,publish_stream',
 			));
@@ -170,7 +170,7 @@ class UsersController extends AppController {
 			if($count == 0){
 				echo "count == 0";
 				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user_id . '";');	
-				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/');	
+				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');	
 			} else {
 				echo "trying to redirect";
 				echo $this->redirect(array('controller'=>'users','action' => 'index'));
