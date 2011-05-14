@@ -64,6 +64,9 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
+	function example(){
+		
+	}
 
 	function home(){
 		$this->layout = 'main_layout';
