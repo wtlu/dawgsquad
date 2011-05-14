@@ -119,7 +119,7 @@ Design changes and rationale
 	[ ] SDS (Wei-Ting)
 		[ ] Updated descriptions
 		[ ] Class diagrams
-		[ ] Updated Team Structure
+		[X] Updated Team Structure
 		[ ] Architecture
 			[ ] Alternative designs
 			[ ] Why chose your design in preference to them
@@ -131,9 +131,9 @@ Design changes and rationale
 				when a user requests a loan -- how will you store this state? 
 			[ ] Also, how will you push these notifications to your users?
 		[ ] Process
-			[ ] Don't redefine standard terms like MVC or integration test
-			[ ] "sample" timeline? What's that?
-			[ ] Testing complete date is separate from feature completion date?
+			[X] Don't redefine standard terms like MVC or integration test
+			[X] "sample" timeline? What's that?
+			[X] Testing complete date is separate from feature completion date?
 				But you said you'll test features in parallel?
 			[ ] User validation
 			[ ] Paragraph before "System Test" heading contains no new info, delete
@@ -153,18 +153,18 @@ Design changes and rationale
 	[ ] ZFR (Wei-Ting + Greg)
 		[ ] User Documentation
 			[ ] Make sure features that are working are documented
-		[ ] Developer Documentation
+		[X] Developer Documentation
 			[X] Use a tag for release version
 			[X] Don't ask the developer to edit line 290 of http.conf, patch it (Greg)
 			[X] Run MySQL command-line tool with the DB setup in your script instead of asking developer to set permissions manually (Greg)
 			[X] Make sure Step 2 of Joel test is followed (Greg)
-			[-] Build and test
+			[X] Build and test
 				[X] Cake is not in path (Greg)
 				[X] Automated daily build (Wei-Ting)
-			[-] Release
+			[X] Release
 				[X] hg update -r Version -0.0 doesn't work
-				[ ] document DB schema will never change
-					[ ] Or say how developer is supposed to migrate data from old version to new one
+				[X] document DB schema will never change
+					[X] Or say how developer is supposed to migrate data from old version to new one
 					
 			[X] Updated Steps
 			[X] List two design pattern or principle discussed in class
