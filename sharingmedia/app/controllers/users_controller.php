@@ -14,11 +14,15 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie' => true
+		'cookie' => true,
+		'domain' => 'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/'
 		));
 		
 		//If the user is logged in...
-		if ($facebook->getSession()) {
+		
+		
+		$session = $facebook->getSession();
+ 		if ($session){
 		
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
@@ -33,6 +37,18 @@ class UsersController extends AppController {
 
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
+			//$params = array(
+			//	'fbconnect'=>0,
+			//	'canvas'=>1,
+			//	'next'=>'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/',
+			//	'req_perms'=>''
+			//);
+			
+			//$redirect_url = $facebook->getLoginUrl($params);
+			//echo '<fb:redirect url="' . $redirect_url . '">';
+			//echo '<a href="' . $redirect_url . '">Login</a>';
+			
+			//$this->redirect($redirect_url);			
 			
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
@@ -104,17 +120,21 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			
-		$redirect = $facebook->getLoginUrl($params);
+		if($facebook->getSession()){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
+		}	
 			
-		echo '<a href="' . $redirect . '">Login</a>';
+		$redirect_url = $facebook->getLoginUrl($params);
+			
+		echo '<a href="' . $redirect_url . '">Login</a>';
 		
 		echo '</h2>';
 	
 		//This sends app into  infinite loop
-		//$this->redirect($redirect);
+		//$this->redirect($redirect_url);
 		
 		
-		//echo '<fb:redirect url="' . $redirect . '">';
+		//echo '<fb:redirect url="' . $redirect_url . '">';
 		
 //		if($this->Session->check('uid')){
 //			echo $this->redirect(array('controller'=>'users','action' => 'index'));
