@@ -43,9 +43,9 @@ class BooksController extends AppController {
 				FROM books books, book_initial_offers b_i_o, users users
 				WHERE b_i_o.user_id = users.facebook_id
 					AND b_i_o.book_id = books.id
-					AND books.title LIKE "%' .$book_title . '%"
-					AND books.author LIKE "%' . $book_author . '%"
-					AND books.isbn LIKE "%' .  $book_isbn . '%"
+					AND books.title LIKE "' .$book_title . '"
+					OR books.author LIKE "' . $book_author . '"
+					OR books.isbn LIKE "' .  $book_isbn . '"
 				ORDER BY books.id;');
 			# look to see if the book result has a trade, and then find the book associated with the trade
 			foreach ($book_results as &$b_r) {
@@ -64,23 +64,26 @@ class BooksController extends AppController {
 	function add_books_results() {
 		$this->layout = 'main_layout';
         $this->set('title_for_layout', 'add_book_result');
+		$book_title = $this->data['Book']['title'];
+		$book_author = $this->data['Book']['author'];
+		$book_isbn = $this->data['Book']['isbn'];
+
+		/* Not gonna worry about querying our database for now
 		$book_results = array();
 		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
 			# search our database for the book
-			$book_title = $this->data['Book']['title'];
-			$book_author = $this->data['Book']['author'];
-			$book_isbn = $this->data['Book']['isbn'];
 			# SQL query to parse our database to find the desired book
 			$book_results = $this->Book->query('SELECT * FROM books
-				WHERE title LIKE "%' .$book_title . '%"
-					AND author LIKE "%' . $book_author . '%"
-					AND isbn LIKE "%' .  $book_isbn . '%";');
+				WHERE title LIKE "' .$book_title . '"
+					OR author LIKE "' . $book_author . '"
+					OR isbn LIKE "' .  $book_isbn . '";');
 			# set book result to send to the add book result view
 		}
 		$this->set('book_results', $book_results);
 
 		# search google books
 		if (empty($book_results)) {
+		*/
 			# build the search string to send to Google books
 			$search_string = 'q=';
 			if (!empty($book_isbn)) {
@@ -94,7 +97,7 @@ class BooksController extends AppController {
 				$book_author = str_replace(" ", "+inauthor:", $book_author);
 				$search_string = $search_string . '+inauthor:' . $book_author;
 			}
-			$search_string = $search_string . '&num=10';
+			$search_string = $search_string . '&start-index=1&max-results=10';
 
 			#these are the book results returned by google book search
 			$google_results = $this->query_google($search_string);
@@ -114,7 +117,7 @@ class BooksController extends AppController {
 
 			# set google books result to send to the add book result view
 			$this->set('google_books_results', $google_books_results);
-		}
+		#}
 	}
 
 	# helper function for querying Google books search

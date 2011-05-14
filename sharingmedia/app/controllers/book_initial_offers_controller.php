@@ -126,6 +126,10 @@ class BookInitialOffersController extends AppController {
 
 	function add_book_to_mylibrary(){
 
+		// These lines enable our main layout to appear on the page.
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'initial_of_details');
+
 		//Retrieve values passed from form on previous page
 		$book_title = $this->data['BookInitialOffer']['title'];
 		$book_author = $this->data['BookInitialOffer']['author'];
@@ -141,11 +145,12 @@ class BookInitialOffersController extends AppController {
 		$this->set('image', $book_image);
 		$this->set('offer_type', $offer_type);
 		$this->set('offer_value', $offer_value);
+		debug($book_isbn);
 
 		$add_status = false;
 
 		// Test to see if user is logged in
-		if(is_null($this->Session->read('uid'))){
+		/* if(is_null($this->Session->read('uid'))){
 			echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
 
@@ -187,7 +192,48 @@ class BookInitialOffersController extends AppController {
 							break;
 				}
 			}
-		}
+		} */
+		if(is_null($this->Session->read('uid'))){
+					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
+		}else{
+				$book_id = 0;
+				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
+				if(empty($book_results)){
+					//Add book to our database
+					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
+					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
+				} else {
+					foreach ($book_results as $book){
+						$result = $book['books'];
+						$book_id = $result['id'];
+					}
+				}
+
+				//Get book id from our database
+				sleep(1);
+
+				//Test to see if user/book combo already exists; if so, do not attempt to add it again
+				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
+				if(!empty($duplicate)){
+					echo "<h2> You cannot add the same book to your library twice. </h2>";
+				}else{
+
+					$add_status = true;
+
+					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
+					switch ($offer_type) {
+							case 'loan':
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
+								break;
+							case 'sell':
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
+								break;
+							case 'trade':
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
+								break;
+					}
+				}
+			}
 		$this->set('add_status', $add_status);
 	}
 

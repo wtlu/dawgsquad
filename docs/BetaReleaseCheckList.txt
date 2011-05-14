@@ -104,8 +104,8 @@ Bug tracking System
 	[X] John Wang filed a bug
 	
 Design changes and rationale
-	[ ] SRS (Jedidiah + James)
-		[ ] Process updated
+	[x] SRS (Jedidiah + James)
+		[x] Process updated
 		[X] Last two paragraphs in the "Competition" section seem to belong in another heading
 		[X] Use cases
 			[X] Barter/haggle (Transactions - Change the name)
