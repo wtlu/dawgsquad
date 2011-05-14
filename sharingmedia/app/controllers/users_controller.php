@@ -96,17 +96,8 @@ class UsersController extends AppController {
   		));
  		$session = $facebook->getSession();
  		if (!$session) {
- 			
- 			$loginUrl=$facebook->getLoginUrl(array(
-				'canvas'=>1,
-				'fbconnect'=>0,
-				'display'=>'page',
-				//'next'=>'',
-				'cancel_url'=>'http://www.facebook.com/',
-				'req_perms'=>'email,publish_stream',
-			));
- 			
-			echo '<fb:redirect url="'.$loginUrl.'" />';
+ 			 			
+			echo RequestforPermission();
 			
 		} else {	//got session
 			try {
@@ -120,16 +111,7 @@ class UsersController extends AppController {
 				//}
          	} catch (FacebookApiException $e) {
          		
-         		$loginUrl=$facebook->getLoginUrl(array(
-					'canvas'=>1,
-					'fbconnect'=>0,
-					'display'=>'page',
-					'next'=> $fbconfig['canvas_url'],
-					'cancel_url'=>'http://www.facebook.com/',
-					'req_perms'=>'email,publish_stream',
-				));
-         		
-         		echo '<fb:redirect url="'.$loginUrl.'" />';
+         		RequestforPermission($fbconfig['canvas_url']);
 				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
