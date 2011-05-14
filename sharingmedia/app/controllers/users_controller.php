@@ -73,7 +73,7 @@ class UsersController extends AppController {
     $app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
     $my_url = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
 
-            $session_start();
+ //           $session_start();
     $code = $_REQUEST["code"];
 
     if(empty($code)) {
