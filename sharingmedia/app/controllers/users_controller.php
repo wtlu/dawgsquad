@@ -69,15 +69,20 @@ class UsersController extends AppController {
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		App::import('Vendor', 'facebook');
-		
 		$app_id = "218244414868504";
+		$app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
+		$facebook = new Facebook(array(
+			'appId' => $app_id,
+			'secret' => $app_secret,
+			'cookie' => true
+		));
 
      	$canvas_page = "http://apps.facebook.com/sharingmedia/";
 
      	$auth_url = "http://www.facebook.com/dialog/oauth?client_id=" 
             . $app_id . "&redirect_uri=" . urlencode($canvas_page);
-		print_r($_REQUEST);
-     	$signed_request = $_REQUEST["signed_request"];
+		
+		$signed_request = $facebook->getSignedRequest();
 
      	list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
 
