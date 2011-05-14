@@ -119,7 +119,7 @@ Design changes and rationale
 	[ ] SDS (Wei-Ting)
 		[ ] Updated descriptions
 		[ ] Class diagrams
-		[ ] Updated Team Structure
+		[X] Updated Team Structure
 		[ ] Architecture
 			[ ] Alternative designs
 			[ ] Why chose your design in preference to them
@@ -131,9 +131,9 @@ Design changes and rationale
 				when a user requests a loan -- how will you store this state? 
 			[ ] Also, how will you push these notifications to your users?
 		[ ] Process
-			[ ] Don't redefine standard terms like MVC or integration test
-			[ ] "sample" timeline? What's that?
-			[ ] Testing complete date is separate from feature completion date?
+			[X] Don't redefine standard terms like MVC or integration test
+			[X] "sample" timeline? What's that?
+			[X] Testing complete date is separate from feature completion date?
 				But you said you'll test features in parallel?
 			[ ] User validation
 			[ ] Paragraph before "System Test" heading contains no new info, delete
