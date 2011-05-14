@@ -65,45 +65,43 @@ class UsersController extends AppController {
 	}
 	
 	function example(){
-		$this->layout = 'index_layout';
-		$this->set('title_for_layout', 'Sharing Media');
-
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
 		
-		$facebook = new Facebook(array(
-  'appId'  => '218244414868504',
-  'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-  'cookie' => true,
-));
+		$app_id = "218244414868504";
+    $app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
+    $my_url = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
 
-// We may or may not have this data based on a $_GET or $_COOKIE based session.
-//
-// If we get a session here, it means we found a correctly signed session using
-// the Application Secret only Facebook and the Application know. We dont know
-// if it is still valid until we make an API call using the session. A session
-// can become invalid if it has already expired (should not be getting the
-// session back in this case) or if the user logged out of Facebook.
-$session = $facebook->getSession();
+            $session_start();
+    $code = $_REQUEST["code"];
 
-$me = null;
-// Session based API call.
-if ($session) {
-  try {
-    $uid = $facebook->getUser();
-    $me = $facebook->api('/me');
-  } catch (FacebookApiException $e) {
-    error_log($e);
-  }
-}
+    if(empty($code)) {
+                    $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
+        $dialog_url = "http://www.facebook.com/dialog/oauth?client_id=" 
+            . $app_id . "&redirect_uri=" . urlencode($my_url) . "&state"
+                            . $_SESSION['state'];
 
-// login or logout url will be needed depending on current user state.
-if ($me) {
-  $logoutUrl = $facebook->getLogoutUrl();
-} else {
-  $loginUrl = $facebook->getLoginUrl();
-}
+        echo("<script> top.location.href='" . $dialog_url . "'</script>");
+    }
 
-// This call will always work since we are fetching public data.
-$naitik = $facebook->api('/naitik');
+            if($_REQUEST['state']== $_SESSION['state']) {
+                    $token_url = "https://graph.facebook.com/oauth/access_token?"
+                      . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
+                      . "&client_secret=" . $app_secret . "&code=" . $code;
+
+                    $response = file_get_contents($token_url);
+                    $params = null;
+                    parse_str($response, $params);
+
+                    $graph_url = "https://graph.facebook.com/me?access_token=" 
+                      . $params[‘access_token’];
+
+                    $user = json_decode(file_get_contents($graph_url));
+                    echo("Hello " . $user->name);
+            }
+            else {
+                    echo("The state does not match. You may be a victim of CSRF.");
+            }
 
 	}
 
