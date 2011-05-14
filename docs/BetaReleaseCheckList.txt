@@ -1,0 +1,172 @@
+Beta Release Checklist
+	[x] Opening App (Troy)
+		[x] User gets an dialog box for permissions if opening app for first time
+		[x] If user is not logged on, need to log on before seeing our main index page
+		[x] Greet User with "Hi <User Name>! Welcome to SharingMedia!"
+		[x] Description of the app
+		[x] Can click Add Books
+		[x] Can click Find Books
+		[x] Can click Library
+	
+
+	[x] General Layout
+		[x] Sidebar (Troy)
+			[x] Has Home Sidebar
+			[x] Has Add Books 
+			[x] Has Find Books
+			[x] Has My Library
+		[x] Top Bar (Troy)
+			[x] Logo
+			[x] Account Page
+				[x] Shows "Coming Soon!"
+			[ ] Contact Us Page
+				[ ] Shows "Coming Soon!"
+			[x] FAQ Page
+				[x] Shows "Coming Soon!"
+			[x] Help Page
+				[x] Shows "Coming Soon!"
+			[ ] Report a Bug
+				[ ] Links to Google Code issues page
+				
+	[ ] Use Cases: Add Books (John + James)
+		[x] Add books main page (Enter Book Info)
+			[x] Can enter any info
+			[x] Can Click Continue
+		[x] Confirm Book page
+			[x] Can see results
+			[x] Can select one book
+			[ ] Can Click Back
+			[x] Can click Next
+		[ ] Select Offer Details
+			[ ] Can check Loan For and enter details
+			[ ] Can check Sell For and enter details
+			[ ] Can check Trade For and enter details (note the UI has for lowercase, should be upper)
+			[ ] Can see List Book Titles (What is that???)
+			[ ] Can Click Back (to Confirm Book)
+		[ ] Confirm Selections
+			[ ] Can see the book selected
+			[ ] Can see the offer typed in on last setp
+			[ ] Can click Back
+			[ ] Can Click Finish
+		[ ] After Clicking Finish
+			[ ] Takes you to the library page
+			[ ] Library contains the book you just added
+	
+	[x] Use Case: Find Books (John + James)
+		[x] Find Books main page
+			[x] Can enter any info
+			[x] Can Click Find
+		[x] Find Books Resuls page
+			[x] Can see Books with details and users that owns it
+			[x] Click on a book will show a dialog box that says "Transactions coming soon!"
+	
+	[ ] Use Case: My Library Page (Ken)
+		[x] Has My Books Tab
+			[x] My Books contains all the books of the user
+			[x] Has button for Change offer details
+				[ ] When clicked, goes to "Offer Details" page (or a page that lets you change it with a confirmation page)
+			[x] Has Remove Button
+				[x] When click remove, shows confirmation
+					[x] If user click yes, removes the book from My Library
+					[x] If user click no, goes back to My Books Page
+		[x] Has Transactions Tab
+			[x] When switched to this tab, it says "Coming Soon!"
+		[x] Has My Loans Tab
+			[x] When switched to this tab, it says "Coming Soon!"
+		[x] Has Add Books Button
+			[x] Clicking on the button goes to the Add Books page
+		
+Tests
+	[ ] Unit test for one major existing class/component in system
+		[ ] books_controller.php (Tatsuro)
+		[ ] user module (Tatsuro)
+		[ ] book_initial_offers_controller.php (Jedidiah)
+		[ ] library... (Jedidiah)
+	[-] Unit Test for one part of system that's not implemented
+		[X] Transaction Page (Greg)
+		[-] Re-editing a book offer (Greg)
+	[X] System tests for the functionality represented by one use case
+		[X] Adding Books (Greg)
+		[X] Finding Books (Greg)
+		[X] Set up initial offer (Greg)
+
+Version control repository
+	N/A
+
+Bug tracking System
+	[X] Greg Brandt filed a bug
+	[X] Ken Inoue filed a bug
+	[X] Jedidiah Jonathan filed a bug
+	[ ] Wei-Ting Lu filed a bug
+	[ ] Troy Martin filed a bug
+	[ ] Tatsuro Oya filed a bug
+	[ ] James Parsons filed a bug
+	[X] John Wang filed a bug
+	
+Design changes and rationale
+	[ ] SRS (Jedidiah + James)
+		[ ] Process updated
+		[X] Last two paragraphs in the "Competition" section seem to belong in another heading
+		[X] Use cases
+			[X] Barter/haggle (Transactions - Change the name)
+				[X] Needs to be fleshed out in more detailed
+				[X] Needs to have two actions for this to make sense. How will they interact?
+					How do they signal to system that they reached an agreement? etc
+			[X] What is "prodcut refunds lender"? Assuming that you are
+				referring to SharingBooks as the product and the paying user as the
+				lender, this means that the user has given SB their money in the past
+					There's no such transaction in use case
+	[ ] SDS (Wei-Ting)
+		[ ] Updated descriptions
+		[ ] Class diagrams
+		[ ] Updated Team Structure
+		[ ] Architecture
+			[ ] Alternative designs
+			[ ] Why chose your design in preference to them
+			[ ] Assumptions behind design
+			[ ] Don't repeat yourself
+			[ ] The sequence diagram for trading a book is misleading because at first it looks like only 
+				one user is involved. Also, your design involves a sequence of synchronous calls, 
+				but you can't implement that in a web application. The book owner might not be logged on 
+				when a user requests a loan -- how will you store this state? 
+			[ ] Also, how will you push these notifications to your users?
+		[ ] Process
+			[ ] Don't redefine standard terms like MVC or integration test
+			[ ] "sample" timeline? What's that?
+			[ ] Testing complete date is separate from feature completion date?
+				But you said you'll test features in parallel?
+			[ ] User validation
+			[ ] Paragraph before "System Test" heading contains no new info, delete
+			[ ] What does hassle-free mean for communication between program modules
+			[ ] How will we involve our customer team, and how we plan to acquire more outside users
+			[ ] adequacy and bug-tracking sections are content-free
+		[X] Risks
+			[X] Need to order risk by importance
+			[X] How do we minimize the number of different places where we directly depend on API
+				Build wrappers that we can change if needed?
+			[X] Integration risk is unneeded - Use AWS going down
+			[X] Give more details about "additional usability testing" that will mitigate risk that our product won't get users
+				How will we get feed back and how we'll react to it
+			[X] Concerns and mitigations in speed/scalability risk section is inconsistent
+				If CakePHP is the problem, keeping DB requests small won't solve it
+				Horizontal Scaling?
+	[ ] ZFR (Wei-Ting + Greg)
+		[ ] User Documentation
+			[ ] Make sure features that are working are documented
+		[ ] Developer Documentation
+			[ ] Use a tag for release version
+			[X] Don't ask the developer to edit line 290 of http.conf, patch it (Greg)
+			[X] Run MySQL command-line tool with the DB setup in your script instead of asking developer to set permissions manually (Greg)
+			[X] Make sure Step 2 of Joel test is followed (Greg)
+			[-] Build and test
+				[X] Cake is not in path (Greg)
+				[ ] Automated daily build (Wei-Ting)
+			[ ] Release
+				[ ] hg update -r Version -0.0 doesn't work
+				[ ] document DB schema will never change
+					[ ] Or say how developer is supposed to migrate data from old version to new one
+					
+			[ ] Updated Steps
+			[ ] List two design pattern or principle discussed in class
+				[ ] MVC
+				[ ] Interning Books
