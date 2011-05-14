@@ -40,15 +40,15 @@ class UsersController extends AppController {
 			$params = array(
 				'fbconnect'=>0,
 				'canvas'=>1,
-				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'next'=>'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/',
 				'req_perms'=>''
 			);
 			
 			$redirect_url = $facebook->getLoginUrl($params);
 			//echo '<fb:redirect url="' . $redirect_url . '">';
-			echo '<a href="' . $redirect_url . '">Login</a>';
+			//echo '<a href="' . $redirect_url . '">Login</a>';
 			
-			//$this->redirect($redirect_url);			
+			$this->redirect($redirect_url);			
 			
 			//echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
