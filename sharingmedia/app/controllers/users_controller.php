@@ -17,7 +17,7 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
-/*		//If the user is logged in...
+		//If the user is logged in...
 		if ($facebook->getSession()) {
 		
 			// User is logged in and authorized, let's party.
@@ -35,12 +35,12 @@ class UsersController extends AppController {
 			
 			
 			echo $this->redirect(array('controller'=>'users','action' => 'login'));
-		}*/
+		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if (!$facebook->getSession()){
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
-		}
+		//if (!$facebook->getSession()){
+		//	echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		//}
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
@@ -67,6 +67,7 @@ class UsersController extends AppController {
 		'cookie' => true
 		));
 		
+		/*
 		echo "before logic";
 		echo print_r($facebook_user);
 		echo $this->Session->read('uid');
@@ -85,8 +86,8 @@ class UsersController extends AppController {
 			}
 		}
 		
-		
-/*		
+*/	
+	
 		echo '<h2>Session was not found. Please ';
 		
 		$facebook = new Facebook(array(
@@ -108,7 +109,7 @@ class UsersController extends AppController {
 		echo '<a href="' . $redirect . '">Login</a>';
 		
 		echo '</h2>';
-*/		
+	
 		//This sends app into  infinite loop
 		//$this->redirect($redirect);
 		
