@@ -94,6 +94,7 @@ class UsersController extends AppController {
 				}
          	} catch (FacebookApiException $e) {
 				RequestforPermission($fbconfig['canvas_url'] );
+			}
 		}
     }
 	
