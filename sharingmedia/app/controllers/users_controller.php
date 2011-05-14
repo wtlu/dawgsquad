@@ -68,13 +68,15 @@ class UsersController extends AppController {
 	function example(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
+		App::import('Vendor', 'facebook');
+		
 		$app_id = "218244414868504";
 
-     	$canvas_page = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
+     	$canvas_page = "http://apps.facebook.com/sharingmedia/";
 
      	$auth_url = "http://www.facebook.com/dialog/oauth?client_id=" 
             . $app_id . "&redirect_uri=" . urlencode($canvas_page);
-
+		print_r($_REQUEST);
      	$signed_request = $_REQUEST["signed_request"];
 
      	list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
