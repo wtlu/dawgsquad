@@ -9,9 +9,9 @@
 </script>
 <?php
 
-$user_message = {value: "Default message"};
+
 if (FB.Connect) {
-        FB.Connect.showFeedDialog(templateBundle, templateData, null,null,null,FB.RequireConnect.require,null,"Login", $user_message);
+        FB.Connect.showFeedDialog(templateBundle, templateData, null,null,null,FB.RequireConnect.require,null,"Login", null);
 }
 ?>
 
