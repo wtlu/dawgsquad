@@ -25,7 +25,7 @@
 			<?php echo $this->Html->link('Home', "/users/index", array('class' => 'tab', 'escape' => false)); ?> 
 			<?php echo $this->Html->link('Add Books', "/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
 			<?php echo $this->Html->link('Find Books', "/books/find_books", array('class' => 'tab', 'escape' => false)); ?>
-			<?php echo $this->Html->link('My Library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('My Library', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?>
 		</div>
 	</div>
 <?php echo $content_for_layout ?>
