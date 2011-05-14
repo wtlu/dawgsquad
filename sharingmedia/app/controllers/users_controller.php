@@ -33,14 +33,23 @@ class UsersController extends AppController {
 
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
+			$params = array(
+				'fbconnect'=>0,
+				'canvas'=>1,
+				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'req_perms'=>''
+			);
 			
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			$redirect_url = $facebook->getLoginUrl($params);
+			$this->redirect($redirect_url);			
+			
+			//echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
-		if (!$facebook->getSession()){
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));	
-		}
+		//if (!$facebook->getSession()){
+		//	echo $this->redirect(array('controller'=>'users','action' => 'login'));	
+		//}
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
@@ -111,7 +120,7 @@ class UsersController extends AppController {
 		echo '</h2>';
 	
 		//This sends app into  infinite loop
-		$this->redirect($redirect_url);
+		//$this->redirect($redirect_url);
 		
 		
 		//echo '<fb:redirect url="' . $redirect_url . '">';
