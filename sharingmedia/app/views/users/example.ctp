@@ -8,10 +8,10 @@
     });
 </script>
 <?php
-var user_message_prompt = "Login";
-var user_message = {value: "Default message"};
+
+$user_message = {value: "Default message"};
 if (FB.Connect) {
-        FB.Connect.showFeedDialog(templateBundle, templateData, null,null,null,FB.RequireConnect.require,null,user_message_prompt,user_message);
+        FB.Connect.showFeedDialog(templateBundle, templateData, null,null,null,FB.RequireConnect.require,null,"Login",user_message);
 }
 ?>
 
