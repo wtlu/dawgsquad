@@ -29,7 +29,7 @@ class UsersController extends AppController {
 			if(!$this->Session->check('uid')){
 				//echo $this->redirect(array('controller'=>'users','action' => 'login'));
 			}			
-			print "Welcome User ID: " . $user;
+//			print "Welcome User ID: " . $user;
 	
 		} else {
 
@@ -139,7 +139,7 @@ class UsersController extends AppController {
 //			if($count > 0){
 //				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
 //			} else {
-				echo '<a href="' . $redirect_url . '">Click here if you have not added app</a>';
+				echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
 //			}
 
 /********************************************************************/
