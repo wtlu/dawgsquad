@@ -64,11 +64,22 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
-
+	function RequestforPermission($next_url) { 
+	global $facebook;
+	$loginUrl=$facebook->getLoginUrl(array(
+		'canvas'=>1,
+		'fbconnect'=>0,
+		'display'=>'page',
+		'next'=>$next_url,
+		'cancel_url'=>'http://www.facebook.com/',
+		'req_perms'=>'email,publish_stream',
+	));
+	return '<fb:redirect url="'.$loginUrl.'" />';
+	}
 	
 	function example(){
 		App::import('Vendor', 'facebook');
-		App::import('Config', 'fb-authentication');
+//		App::import('Config', 'fb-authentication');
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		
@@ -85,7 +96,18 @@ class UsersController extends AppController {
   		));
  		$session = $facebook->getSession();
  		if (!$session) {
-			echo RequestforPermission();
+ 			
+ 			$loginUrl=$facebook->getLoginUrl(array(
+				'canvas'=>1,
+				'fbconnect'=>0,
+				'display'=>'page',
+				'next'=>,
+				'cancel_url'=>'http://www.facebook.com/',
+				'req_perms'=>'email,publish_stream',
+			));
+ 			
+			echo '<fb:redirect url="'.$loginUrl.'" />';
+			
 		} else {	//got session
 			try {
 				$me = $facebook->api('/me');
@@ -97,7 +119,18 @@ class UsersController extends AppController {
              	//	echo "insert into db";
 				//}
          	} catch (FacebookApiException $e) {
-				RequestforPermission($fbconfig['canvas_url'] );
+         		
+         		$loginUrl=$facebook->getLoginUrl(array(
+					'canvas'=>1,
+					'fbconnect'=>0,
+					'display'=>'page',
+					'next'=> $fbconfig['canvas_url'],
+					'cancel_url'=>'http://www.facebook.com/',
+					'req_perms'=>'email,publish_stream',
+				));
+         		
+         		
+				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
     }
