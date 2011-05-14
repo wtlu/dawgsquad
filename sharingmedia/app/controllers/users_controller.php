@@ -128,7 +128,9 @@ class UsersController extends AppController {
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
 		} else {
 			
-			$redirect_url = $facebook->getLoginUrl($params);
+			//$redirect_url = $facebook->getLoginUrl($params);
+			
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 			
 			//echo '<a href="' . $redirect_url . '">Login</a>';
 		
