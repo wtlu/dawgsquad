@@ -22,14 +22,15 @@
 <?php
 	# creates the form for the book results, to prepare the book data to be passed to the next step
 
-	if (!empty($book_results)) {
+	/* if (!empty($book_results)) {
 		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($book_results as $book){ 
 			$result = $book['books'];
 			display_results($result);
 		}
 		echo $this->Form->end('Continue');
-	} else if (!empty($google_books_results)) {
+	} else */
+	if (!empty($google_books_results)) {
 		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($google_books_results as $result){
 			display_results($result);
