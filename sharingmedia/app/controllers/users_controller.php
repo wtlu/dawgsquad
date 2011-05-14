@@ -19,8 +19,6 @@ class UsersController extends AppController {
 		));
 		
 		//If the user is logged in...
-		
-		
 		$session = $facebook->getSession();
  		if ($session){
 		
@@ -50,7 +48,10 @@ class UsersController extends AppController {
 			
 			//$this->redirect($redirect_url);			
 			
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			if(!$this->Session->check('uid')){
+				echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			}
+			
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
