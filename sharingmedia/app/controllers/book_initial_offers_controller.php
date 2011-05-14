@@ -126,6 +126,10 @@ class BookInitialOffersController extends AppController {
 
 	function add_book_to_mylibrary(){
 
+		// These lines enable our main layout to appear on the page.
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'initial_of_details');
+
 		//Retrieve values passed from form on previous page
 		$book_title = $this->data['BookInitialOffer']['title'];
 		$book_author = $this->data['BookInitialOffer']['author'];
@@ -194,14 +198,11 @@ class BookInitialOffersController extends AppController {
 		}else{
 				$book_id = 0;
 				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
-				debug($book_results);
 				if(empty($book_results)){
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
-					debug($the_book);
 					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
 				} else {
-					debug($book_results);
 					foreach ($book_results as $book){
 						$result = $book['books'];
 						$book_id = $result['id'];
