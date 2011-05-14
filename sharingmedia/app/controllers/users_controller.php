@@ -79,6 +79,7 @@ class UsersController extends AppController {
 	
 	function example(){
 		App::import('Vendor', 'facebook');
+		include "../config/fb-authorization";
 //		App::import('Config', 'fb-authentication');
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
@@ -97,7 +98,7 @@ class UsersController extends AppController {
  		$session = $facebook->getSession();
  		if (!$session) {
  			 			
-			echo $facebook->RequestforPermission();
+			echo RequestforPermission();
 			
 		} else {	//got session
 			try {
@@ -111,7 +112,7 @@ class UsersController extends AppController {
 				//}
          	} catch (FacebookApiException $e) {
          		
-         		$facebook->RequestforPermission($fbconfig['canvas_url']);
+         		RequestforPermission($fbconfig['canvas_url']);
 				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
