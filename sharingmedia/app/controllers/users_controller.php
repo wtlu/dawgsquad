@@ -26,7 +26,7 @@ class UsersController extends AppController {
 			// Get user information of current user
 			$user = $facebook->getUser();
 			
-			if(is_null($user)){
+			if(!$this->Session->check('uid')){
 				echo $this->redirect(array('controller'=>'users','action' => 'login'));
 			}			
 			print "Welcome User ID: " . $user;
