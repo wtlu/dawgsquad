@@ -64,7 +64,7 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
-	static function RequestforPermission($next_url) { 
+	function RequestforPermission($next_url) { 
 		global $facebook;
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
@@ -97,8 +97,16 @@ class UsersController extends AppController {
   		));
  		$session = $facebook->getSession();
  		if (!$session) {
- 			 			
-			echo RequestforPermission();
+ 			 $loginUrl=$facebook->getLoginUrl(array(
+				'canvas'=>1,
+				'fbconnect'=>0,
+				'display'=>'page',
+				'next'=>'',
+				'cancel_url'=>'http://www.facebook.com/',
+				'req_perms'=>'email,publish_stream',
+			));
+						
+			echo '<fb:redirect url="'.$loginUrl.'" />';
 			
 		} else {	//got session
 			try {
@@ -111,8 +119,17 @@ class UsersController extends AppController {
              	//	echo "insert into db";
 				//}
          	} catch (FacebookApiException $e) {
-         		
-         		RequestforPermission($fbconfig['canvas_url']);
+         		 $loginUrl=$facebook->getLoginUrl(array(
+					'canvas'=>1,
+					'fbconnect'=>0,
+					'display'=>'page',
+					'next'=>$fbconfig['canvas_url'],
+					'cancel_url'=>'http://www.facebook.com/',
+					'req_perms'=>'email,publish_stream',
+				));
+				
+//				'<fb:redirect url="'.$loginUrl.'" />';
+//         		RequestforPermission($fbconfig['canvas_url']);
 				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
