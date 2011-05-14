@@ -83,7 +83,7 @@ class UsersController extends AppController {
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
 		));
-		
+				
 		/*
 		echo "before logic";
 		echo print_r($facebook_user);
@@ -127,12 +127,12 @@ class UsersController extends AppController {
 			
 			$redirect_url = $facebook->getLoginUrl($params);
 			
-			//echo '<a href="' . $redirect_url . '">Login</a>';
+			echo '<a href="' . $redirect_url . '">Login</a>';
 		
 			//echo '</h2>';
 	
 			//This sends app into  infinite loop
-			$this->redirect($redirect_url);
+			//$this->redirect($redirect_url);
 		
 		}
 		//echo '<fb:redirect url="' . $redirect_url . '">';
