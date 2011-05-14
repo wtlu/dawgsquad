@@ -64,76 +64,33 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
-	function RequestforPermission($next_url) { 
-		global $facebook;
-		$loginUrl=$facebook->getLoginUrl(array(
-			'canvas'=>1,
-			'fbconnect'=>0,
-			'display'=>'page',
-			'next'=>$next_url,
-			'cancel_url'=>'http://www.facebook.com/',
-			'req_perms'=>'email,publish_stream',
-		));
-		return '<fb:redirect url="'.$loginUrl.'" />';
-	}
 	
 	function example(){
-		App::import('Vendor', 'facebook');
-//		include "fb-authentication";
-//		App::import('Libs', 'fb-authentication');
-		$this->layout = 'login_layout';
-		$this->set('title_for_layout', 'Login');
-		
-		$fbconfig['appid']  = "218244414868504";
-  		$fbconfig['api']  = "359aefaa3b2440cdc1e986bc87264e51";
-  		$fbconfig['secret']  = "fb83c155cc38febb1fb9024c1a9eb050";
-  		$fbconfig['canvas_url']  = "http://apps.facebook.com/sharingmedia/";
-  		
-  		$facebook = new Facebook(array(
- 			'appId'  => $fbconfig['appid'],
- 			'secret' => $fbconfig['secret'],
- 			'cookie' => true,
- 			'domain' => "http://apps.facebook.com/sharingmedia/"
-  		));
- 		$session = $facebook->getSession();
- 		if (!$session) {
- 			echo "no session";
- 			 $loginUrl=$facebook->getLoginUrl(array(
-				'canvas'=>1,
-				'fbconnect'=>0,
-				'display'=>'page',
-				'next'=>'https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/',
-				'cancel_url'=>'http://www.facebook.com/',
-				'req_perms'=>'email,publish_stream',
-			));
-						
-			echo '<fb:redirect url="'.$loginUrl.'" />';
-			
-		} else {	//got session
-			try {
-				$me = $facebook->api('/me');
- 				//print_r($me);
-				//if(!IsApplicationUser($me['id'])) {
-				//InsertApplicationUser($me);
-            	//create a function and insert the user info
-             	//into App DB for later use
-             	//	echo "insert into db";
-				//}
-         	} catch (FacebookApiException $e) {
-         		 $loginUrl=$facebook->getLoginUrl(array(
-					'canvas'=>1,
-					'fbconnect'=>0,
-					'display'=>'page',
-					'next'=>$fbconfig['canvas_url'],
-					'cancel_url'=>'http://www.facebook.com/',
-					'req_perms'=>'email,publish_stream',
-				));
-				
-//				'<fb:redirect url="'.$loginUrl.'" />';
-//         		RequestforPermission($fbconfig['canvas_url']);
-				//RequestforPermission($fbconfig['canvas_url'] );
-			}
+		$facebook = new Facebook(array(
+	  		'appId'  => '117743971608120',
+	  		'secret' => '943716006e74d9b9283d4d5d8ab93204',
+	  		'cookie' => true
+		));
+		$session = $facebook->getSession();
+
+		$me = null;
+		// Session based API call.
+		if ($session) {
+		  try {
+		    $uid = $facebook->getUser();
+		    $me = $facebook->api('/me');
+		  } catch (FacebookApiException $e) {
+		    error_log($e);
+		  }
 		}
+		
+		// login or logout url will be needed depending on current user state.
+		if ($me) {
+		  $logoutUrl = $facebook->getLogoutUrl();
+		} else {
+		  $loginUrl = $facebook->getLoginUrl();
+		}
+
     }
 
 	function home(){
