@@ -212,7 +212,7 @@ class BookInitialOffersController extends AppController {
 				sleep(1);
 
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
-				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = $this->Session->read('uid') AND book_id = ' . $book_id . ';');
+				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
 				if(!empty($duplicate)){
 					echo "<h2> You cannot add the same book to your library twice. </h2>";
 				}else{
@@ -222,13 +222,13 @@ class BookInitialOffersController extends AppController {
 					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
 					switch ($offer_type) {
 							case 'loan':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES ($this->Session->read('uid'),'  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
 								break;
 							case 'sell':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES ($this->Session->read('uid'),'  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
 								break;
 							case 'trade':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES ($this->Session->read('uid'),'  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
+								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
 								break;
 					}
 				}
