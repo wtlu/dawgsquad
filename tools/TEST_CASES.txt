@@ -1,9 +1,0 @@
-# This file contains all of the tests that are run automatically
-#
-# An example is if you had a test for the Library model, and you added
-# the test as library.test.php in the models/ folder, you would add
-# "models/library" to this file
-#
-# Use hash signs for comments, like this in test files
-# 
-
