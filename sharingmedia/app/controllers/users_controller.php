@@ -86,13 +86,13 @@ class UsersController extends AppController {
 		} else {	//got session
 			try {
 				$me = $facebook->api('/me');
- 				print_r($me);
-				if(!IsApplicationUser($me['id'])) {
+ 				//print_r($me);
+				//if(!IsApplicationUser($me['id'])) {
 				//InsertApplicationUser($me);
             	//create a function and insert the user info
              	//into App DB for later use
-             		echo "insert into db";
-				}
+             	//	echo "insert into db";
+				//}
          	} catch (FacebookApiException $e) {
 				RequestforPermission($fbconfig['canvas_url'] );
 			}
