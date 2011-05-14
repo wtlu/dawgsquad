@@ -29,12 +29,11 @@ class BookInitialOffersController extends AppController {
 
 	function my_books(){
 		//get user id
-		$uid = $this->Session->read('uid');
 		//set layout (top and side bars) and title
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
 		//pull books and initial offers from the databaxe
-		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid);
+		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$this->Session->read('uid'));
 		$size = sizeof($book_collection);
 		$trade_books = NULL;
 		//get books for trade for each initial offer
@@ -51,19 +50,16 @@ class BookInitialOffersController extends AppController {
 	}
 	//confirmation page called when selecting remove from my library page
 	function remove_confirm($bid){
-		$uid = $this->Session->read('uid');
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
-		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $uid." AND book_initial_offers.book_id = " .$bid);
+		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id = " .$bid);
 		$this->set('offer', $offer);
 	}
 
 	//REMOVES ENTIRES FROM THE DATABASE called by remove link from remove_comfirm page
 	function remove($bid){
-		//get user id
-		$uid = $this->Session->read('uid');
 		//get trade id
-		$trades = $this->BookInitialOffer->query("SELECT trade_id FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);
+		$trades = $this->BookInitialOffer->query("SELECT trade_id FROM book_initial_offers WHERE book_initial_offers.user_id = " . $this->Session->read('uid'). " AND book_initial_offers.book_id = " . $bid);
 		$tid = $trade[0]["book_initial_offer"]["trade_id"];
 		//remove row from book_initial_offers
 		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);
