@@ -66,34 +66,7 @@ class UsersController extends AppController {
 	
 	
 	function example(){
-		$this->layout = 'index_layout';
-		$this->set('title_for_layout', 'Sharing Media');
-		App::import('Vendor', 'facebook');
-		$facebook = new Facebook(array(
-	  		'appId'  => '218244414868504',
-	  		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-	  		'cookie' => true
-		));
-		$session = $facebook->getSession();
-
-		$me = null;
-		// Session based API call.
-		if ($session) {
-		  try {
-		    $uid = $facebook->getUser();
-		    $me = $facebook->api('/me');
-		  } catch (FacebookApiException $e) {
-		    error_log($e);
-		  }
-		}
 		
-		// login or logout url will be needed depending on current user state.
-		if ($me) {
-		  $logoutUrl = $facebook->getLogoutUrl();
-		} else {
-		  $loginUrl = $facebook->getLoginUrl();
-		}
-
     }
 
 	function home(){
