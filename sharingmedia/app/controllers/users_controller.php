@@ -101,7 +101,7 @@ class UsersController extends AppController {
 				'canvas'=>1,
 				'fbconnect'=>0,
 				'display'=>'page',
-				'next'=>,
+				//'next'=>'',
 				'cancel_url'=>'http://www.facebook.com/',
 				'req_perms'=>'email,publish_stream',
 			));
