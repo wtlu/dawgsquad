@@ -145,7 +145,6 @@ class BookInitialOffersController extends AppController {
 		$this->set('image', $book_image);
 		$this->set('offer_type', $offer_type);
 		$this->set('offer_value', $offer_value);
-		debug($book_isbn);
 
 		$add_status = false;
 
