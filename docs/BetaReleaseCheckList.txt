@@ -140,14 +140,14 @@ Design changes and rationale
 			[ ] What does hassle-free mean for communication between program modules
 			[ ] How will we involve our customer team, and how we plan to acquire more outside users
 			[ ] adequacy and bug-tracking sections are content-free
-		[ ] Risks
-			[ ] Need to order risk by importance
-			[ ] How do we minimize the number of different places where we directly depend on API
+		[X] Risks
+			[X] Need to order risk by importance
+			[X] How do we minimize the number of different places where we directly depend on API
 				Build wrappers that we can change if needed?
-			[ ] Integration risk is unneeded - Use AWS going down
-			[ ] Give more details about "additional usability testing" that will mitigate risk that our product won't get users
+			[X] Integration risk is unneeded - Use AWS going down
+			[X] Give more details about "additional usability testing" that will mitigate risk that our product won't get users
 				How will we get feed back and how we'll react to it
-			[ ] Concerns and mitigations in speed/scalability risk section is inconsistent
+			[X] Concerns and mitigations in speed/scalability risk section is inconsistent
 				If CakePHP is the problem, keeping DB requests small won't solve it
 				Horizontal Scaling?
 	[ ] ZFR (Wei-Ting + Greg)
