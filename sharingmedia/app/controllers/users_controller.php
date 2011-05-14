@@ -66,6 +66,7 @@ class UsersController extends AppController {
 	
 	
 	function example(){
+		App::import('Vendor', 'facebook');
 		$facebook = new Facebook(array(
 	  		'appId'  => '117743971608120',
 	  		'secret' => '943716006e74d9b9283d4d5d8ab93204',
