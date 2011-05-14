@@ -37,20 +37,20 @@ class UsersController extends AppController {
 
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
-			$params = array(
-				'fbconnect'=>0,
-				'canvas'=>1,
-				'next'=>'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/',
-				'req_perms'=>''
-			);
+			//$params = array(
+			//	'fbconnect'=>0,
+			//	'canvas'=>1,
+			//	'next'=>'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/',
+			//	'req_perms'=>''
+			//);
 			
-			$redirect_url = $facebook->getLoginUrl($params);
+			//$redirect_url = $facebook->getLoginUrl($params);
 			//echo '<fb:redirect url="' . $redirect_url . '">';
 			//echo '<a href="' . $redirect_url . '">Login</a>';
 			
-			$this->redirect($redirect_url);			
+			//$this->redirect($redirect_url);			
 			
-			//echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
@@ -119,6 +119,10 @@ class UsersController extends AppController {
 				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
 				'req_perms'=>''
 			);
+			
+		if($facebook->getSession()){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
+		}	
 			
 		$redirect_url = $facebook->getLoginUrl($params);
 			
