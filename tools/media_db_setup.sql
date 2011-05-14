@@ -13,8 +13,8 @@ CREATE TABLE users(
 
 CREATE TABLE books(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(45),
-	author VARCHAR(45),
+	title VARCHAR(200),
+	author VARCHAR(200),
 	ISBN VARCHAR(15),
 	image VARCHAR(150),
 	summary TEXT(300),
