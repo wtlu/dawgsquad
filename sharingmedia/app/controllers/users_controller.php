@@ -135,6 +135,7 @@ class UsersController extends AppController {
 			
 			$user = $facebook->getUser();
 			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user . '";');
+			debug($count);
 			if($count > 0){
 				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
 			} else {
