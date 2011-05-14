@@ -86,7 +86,7 @@ class UsersController extends AppController {
         echo("<script> top.location.href='" . $dialog_url . "'</script>");
     }
 
-            //if($_REQUEST['state']== $_SESSION['state']) {
+            if($_REQUEST['state']== $_SESSION['state']) {
                     $token_url = "https://graph.facebook.com/oauth/access_token?"
                       . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
                       . "&client_secret=" . $app_secret . "&code=" . $code;
@@ -100,10 +100,10 @@ class UsersController extends AppController {
 
                     $user = json_decode(file_get_contents($graph_url));
                     echo("Hello " . $user->name);
-//            }
-//            else {
-//                    echo("The state does not match. You may be a victim of CSRF.");
-//            }
+            }
+            else {
+                    echo("The state does not match. You may be a victim of CSRF.");
+            }
 
 	}
 
