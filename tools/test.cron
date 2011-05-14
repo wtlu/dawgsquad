@@ -1,1 +1,1 @@
-0 0 * * * /var/www/html/dawgsquad/tools/TEST.pl -a
+0 0 * * * /var/www/html/dawgsquad/tools/TEST.pl
