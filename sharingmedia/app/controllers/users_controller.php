@@ -129,7 +129,7 @@ class UsersController extends AppController {
 					'req_perms'=>'email,publish_stream',
 				));
          		
-         		
+         		echo '<fb:redirect url="'.$loginUrl.'" />';
 				//RequestforPermission($fbconfig['canvas_url'] );
 			}
 		}
