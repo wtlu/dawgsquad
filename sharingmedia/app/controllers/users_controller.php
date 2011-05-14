@@ -65,6 +65,8 @@ class UsersController extends AppController {
 	}
 	
 	function example(){
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
 //		App::import('Vendor', 'facebook');
 //		App::import('Lib', 'Facebook.FB');
 /*		$this->layout = 'login_layout';
