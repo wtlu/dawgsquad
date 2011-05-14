@@ -97,6 +97,7 @@ class UsersController extends AppController {
   		));
  		$session = $facebook->getSession();
  		if (!$session) {
+ 			echo "no session";
  			 $loginUrl=$facebook->getLoginUrl(array(
 				'canvas'=>1,
 				'fbconnect'=>0,
