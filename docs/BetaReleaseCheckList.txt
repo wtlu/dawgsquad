@@ -77,11 +77,11 @@ Beta Release Checklist
 			[x] Clicking on the button goes to the Add Books page
 		
 Tests
-	[ ] Unit test for one major existing class/component in system
-		[ ] books_controller.php (Tatsuro)
-		[ ] user module (Tatsuro)
-		[ ] book_initial_offers_controller.php (Jedidiah)
-		[ ] library... (Jedidiah)
+	[X] Unit test for one major existing class/component in system
+		[X] books_controller.php (Tatsuro)
+		[X] user module (Tatsuro)
+		[X] book_initial_offers_controller.php (Jedidiah)
+		[X] library... (Jedidiah)
 	[-] Unit Test for one part of system that's not implemented
 		[X] Transaction Page (Greg)
 		[-] Re-editing a book offer (Greg)
@@ -154,15 +154,15 @@ Design changes and rationale
 		[ ] User Documentation
 			[ ] Make sure features that are working are documented
 		[ ] Developer Documentation
-			[ ] Use a tag for release version
+			[X] Use a tag for release version
 			[X] Don't ask the developer to edit line 290 of http.conf, patch it (Greg)
 			[X] Run MySQL command-line tool with the DB setup in your script instead of asking developer to set permissions manually (Greg)
 			[X] Make sure Step 2 of Joel test is followed (Greg)
 			[-] Build and test
 				[X] Cake is not in path (Greg)
 				[X] Automated daily build (Wei-Ting)
-			[ ] Release
-				[ ] hg update -r Version -0.0 doesn't work
+			[-] Release
+				[X] hg update -r Version -0.0 doesn't work
 				[ ] document DB schema will never change
 					[ ] Or say how developer is supposed to migrate data from old version to new one
 					
