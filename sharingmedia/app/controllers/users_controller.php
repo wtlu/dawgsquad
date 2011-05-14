@@ -127,7 +127,7 @@ class UsersController extends AppController {
 			
 			$redirect_url = $facebook->getLoginUrl($params);
 			
-			echo '<a href="' . $redirect_url . '">Login</a>';
+			//echo '<a href="' . $redirect_url . '">Login</a>';
 		
 			//echo '</h2>';
 	
