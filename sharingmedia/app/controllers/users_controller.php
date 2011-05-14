@@ -133,14 +133,14 @@ class UsersController extends AppController {
 			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
 /********************************************************************/
 			
-			$user = $facebook->getUser();
-			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user . '";');
-			debug($count);
-			if($count > 0){
-				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
-			} else {
-				echo '<a href="' . $redirect_url . '">Get App</a>';
-			}
+//			$user = $facebook->getUser();
+//			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user . '";');
+//			debug($count);
+//			if($count > 0){
+//				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
+//			} else {
+				echo '<a href="' . $redirect_url . '">Click here if you have not added app</a>';
+//			}
 
 /********************************************************************/
 			//echo '</h2>';
