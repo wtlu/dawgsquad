@@ -14,7 +14,8 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie' => true
+		'cookie' => true,
+		'domain' => 'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/'
 		));
 		
 		//If the user is logged in...
