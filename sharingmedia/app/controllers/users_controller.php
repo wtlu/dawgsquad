@@ -67,10 +67,10 @@ class UsersController extends AppController {
 	function example(){
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
+		echo "got called";
 //		App::import('Vendor', 'facebook');
 //		App::import('Lib', 'Facebook.FB');
-/*		$this->layout = 'login_layout';
-		$this->set('title_for_layout', 'Login');
+
 		
 		$app_id = "218244414868504";
     $app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
@@ -106,7 +106,7 @@ class UsersController extends AppController {
             else {
                     echo("The state does not match. You may be a victim of CSRF.");
             }
-*/
+
 	}
 
 	function home(){
