@@ -18,7 +18,10 @@ class UsersController extends AppController {
 		));
 		
 		//If the user is logged in...
-		if ($facebook->getSession()) {
+		
+		
+		$session = $facebook->getSession();
+ 		if (!$session){
 		
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
