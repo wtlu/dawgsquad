@@ -121,9 +121,9 @@ Design changes and rationale
 		[ ] Class diagrams
 		[X] Updated Team Structure
 		[ ] Architecture
-			[ ] Alternative designs
-			[ ] Why chose your design in preference to them
-			[ ] Assumptions behind design
+			[X] Alternative designs
+			[X] Why chose your design in preference to them
+			[X] Assumptions behind design
 			[ ] Don't repeat yourself
 			[ ] The sequence diagram for trading a book is misleading because at first it looks like only 
 				one user is involved. Also, your design involves a sequence of synchronous calls, 
