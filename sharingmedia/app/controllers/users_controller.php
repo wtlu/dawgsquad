@@ -139,7 +139,7 @@ class UsersController extends AppController {
 //			if($count > 0){
 //				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
 //			} else {
-				echo '<a href="' . 'https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/'/*$redirect_url*/ . '">Click here if you have not added the app. Then click Facebook picture.</a>';
+				echo '<a href="' . 'http://www.facebook.com/connect/uiserver.php?app_id=218244414868504&method=permissions.request&display=page&next=http%3A%2F%2Fec2-50-18-34-181.us-west-1.compute.amazonaws.com%2Fdawgsquad%2Fsharingmedia%2F&response_type=code&fbconnect=1'/*$redirect_url*/ . '">Click here if you have not added the app. Then click Facebook picture.</a>';
 //			}
 
 /********************************************************************/
