@@ -10,6 +10,10 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
+		if(!$this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'example'));
+		}
+		
 /*
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
@@ -83,6 +87,7 @@ class UsersController extends AppController {
 		$session = $facebook->getSession();
 		$loginUrl = $facebook->getLoginUrl();
 		print_r($session);
+		print_r($loginUrl);
 		//print($loginUrl);
 		//$loginUrl=$facebook->getLoginUrl(array(
 		//	'canvas'=>1,
