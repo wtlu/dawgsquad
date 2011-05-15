@@ -82,16 +82,17 @@ class UsersController extends AppController {
 		$me = null;
 
 		if ($session) {
-  		try {
-    		$uid = $facebook->getUser();
-    		$me = $facebook->api('/me');
-
-    		echo "Welcome User: " . $me['name'] . "<br />";
-  		} catch (FacebookApiException $e) {
-    		error_log($e);
-  		}
+	  		try {
+	    		$uid = $facebook->getUser();
+	    		$me = $facebook->api('/me');
+	
+	    		echo "Welcome User: " . $me['name'] . "<br />";
+	  		} catch (FacebookApiException $e) {
+	    		error_log($e);
+	  		}
 		} else {
-    		echo("<script> top.location.href='" . $loginUrl . "'</script>");
+    		//echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
 		}
 
 	}
