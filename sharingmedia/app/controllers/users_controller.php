@@ -71,7 +71,7 @@ class UsersController extends AppController {
 		App::import('Vendor', 'facebook');
 		
 		$app_id = '218244414868504';
- 		$canvas_page = "http://apps.facebook.com/sharingmedia/";
+ 		$canvas_page = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
 
 		// Create our Application instance (replace this with your appId and secret).
    		$auth_url = "http://www.facebook.com/dialog/oauth?client_id="
