@@ -32,13 +32,13 @@
 		for($i=0; $i < $size; $i++){
 	?>
 		<div class="book_unit">	
-			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
+			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?php echo$book_collection[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
-				<li>Title: <?=$book_collection[$i]["books"]["title"]?></li>
-				<li>Author: <?=$book_collection[$i]["books"]["author"]?></li>
+				<li>Title: <?php echo $book_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?php echo $book_collection[$i]["books"]["author"]?></li>
 				<?php 	//if loans not Null Print
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
-					<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
+					<li>Loan Duration: <?php echo$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
 				<?php } ?>
 				<?php 	//Print trades only if there are trades
 					$length = sizeof($trade_books[$i]);
@@ -53,7 +53,7 @@
 				<?php } ?>
 				<?php 	//if selling print price
 					if(!is_null($book_collection[$i]["book_initial_offers"]["price"])){ ?>
-						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
+						<li>Price: $<?php echo$book_collection[$i]["book_initial_offers"]["price"];?></li>
 				<?php } ?>
 			</ul>
 			<?php echo $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"], array('class' => 'buttons', 'escape' => false)); ?>
