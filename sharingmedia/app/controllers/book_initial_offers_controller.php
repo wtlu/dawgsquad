@@ -14,7 +14,8 @@
 class BookInitialOffersController extends AppController {
    var $name = 'BookInitialOffers';
 
-
+   //Pre: This page was called from add_book_results.ctp, and given $book_chosen as a list of information about the chosen book
+   //Post: Makes available the book information to initial_offer_details.ctp in the variable $book_chosen, which is an arry of strings.
    function initial_offer_details(){
 
 		//Get the book info for the book that was selected on the add books results page
@@ -76,7 +77,11 @@ class BookInitialOffersController extends AppController {
 		$this->set('title_for_layout', 'Coming Soon');
 	}
 
-   //Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
+	
+	
+	
+   //Pre: Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
+   //Post: Makes data from the form on initial_offer_details.ctp available to add_boo_to_my_library.
    function add_books_confirm() {
 
 		// These lines enable our main layout to appear on the page.
@@ -120,6 +125,10 @@ class BookInitialOffersController extends AppController {
 		}
 	}
 
+	//Pre: Called when add_books_confirm.ctp redirects to add_book_to_mylibrary.ctp, given all information about book and offer details.
+	//Post: If the book in question is not in the books table, it is added. If the user does not already have this book in their mylibrary,
+	//		a new entry is added to book_initial_offers detailing which book they now have and its initial offer details. Appropriate error
+	//		messages are displayed when these operations fail.
 	function add_book_to_mylibrary(){
 
 		// These lines enable our main layout to appear on the page.
@@ -142,55 +151,10 @@ class BookInitialOffersController extends AppController {
 		$this->set('offer_type', $offer_type);
 		$this->set('offer_value', $offer_value);
 
-		$add_status = false;
+		//Keeps track of whether the book was added to users mylibrary; used to print message in the view
+		$add_status = false; 
 
-		// Test to see if user is logged in
-		/* if(is_null($this->Session->read('uid'))){
-			echo "<h2> Please login to Facebook to add a book to your library.</h2>";
-		}else{
-
-			//Check our books table to see if the book is already in the database
-			$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
-			if(empty($book_results)){
-				//Add book to our database
-				$this->BookInitialOffer->query('INSERT INTO books(title, author, ISBN, image, summary, created) VALUES("' . $book_title . '","' . $book_author . '",' . $book_isbn . ',"' . $book_image . '", "dummy description", NOW());');
-			}
-
-			//Get book id from our database
-			sleep(1);
-			$the_book = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
-
-			$book_id = 0;
-			foreach ($the_book as $book){
-				$result = $book['books'];
-				$book_id = $result['id'];
-			}
-
-			//Test to see if user/book combo already exists; if so, do not attempt to add it again
-			$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
-			if(!empty($duplicate)){
-				echo "<h2> You cannot add the same book to your library twice. </h2>";
-			}else{
-
-				$add_status = true;
-
-				//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
-				switch ($offer_type) {
-						case 'loan':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
-							break;
-						case 'sell':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
-							break;
-						case 'trade':
-							$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
-							break;
-				}
-			}
-		} */
-		
-		
-		
+		//Ensure that the user is logged in to Facebook.
 		if(is_null($this->Session->read('uid'))){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
