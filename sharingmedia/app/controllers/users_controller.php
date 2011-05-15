@@ -69,7 +69,9 @@ class UsersController extends AppController {
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		App::import('Vendor', 'facebook');
-		
+		if($this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		}
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
