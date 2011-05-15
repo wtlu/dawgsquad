@@ -68,7 +68,7 @@ class BookInitialOffersController extends AppController {
 			$this->BookInitialOffer->query("DELETE trades FROM trades WHERE trades.id = ". $tid);
 		}
 		//redirect to my_book page
-		$this->redirect('/book_initial_offers/my_books/;
+		$this->redirect('/book_initial_offers/my_books/');
 	}
 	//this function is not yet implemented It will allow you to edit initial offers
 	function edit (){
