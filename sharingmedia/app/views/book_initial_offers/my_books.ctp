@@ -42,10 +42,8 @@
 				<?php } ?>
 				<?php 	//Print trades only if there are trades
 					if(!is_null($trade_books[$i])){
-					$length = sizeof($trade_books[$i]);
-					print_r($trade_books); ?>
+					$length = sizeof($trade_books[$i]);?>
 					<li>Trade for:
-`	``				
 						<ul>
 							 <?php for($j=0; $j < $length; $j++){ ?>
 								<li><?=$trade_books[$i][$j]["books"]["title"]?></li>
