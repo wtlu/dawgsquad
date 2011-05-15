@@ -38,7 +38,7 @@ class BookInitialOffersController extends AppController {
 		$trade_books = NULL;
 		//get books for trade for each initial offer
 		for($i = 0; $i < $size; $i++){
-			if(($book_collection[$i]["book_initial_offers"]["trade_id"] == "NULL")){
+			if(($book_collection[$i]["book_initial_offers"]["trade_id"] != "")){
 				$trade_books[$i]= $this->BookInitialOffer->query("SELECT * FROM books, trades WHERE books.id = trades.book_id AND trades.id = " . $book_collection[$i]["book_initial_offers"]["trade_id"]);
 			}else{
 				$trade_books[$i] = NULL;
