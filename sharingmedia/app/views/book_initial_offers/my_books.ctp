@@ -41,7 +41,7 @@
 					<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
 				<?php } ?>
 				<?php 	//Print trades only if there are trades
-					if(is_null($book_collection[$i]["book_initial_offers"]["trade_id"]){?>
+					if(is_null($book_collection[$i]["book_initial_offers"]["trade_id"])){?>
 						null
 				<?php
 					}else if($book_collection[$i]["book_initial_offers"]["trade_id"]== ""){?>
