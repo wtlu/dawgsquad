@@ -93,7 +93,7 @@ class UsersController extends AppController {
 			'canvas'=>1,
 			'fbconnect'=>0,
 			'display'=>'page',
-			'next'=>'http://apps.facebook.com/sharingmedai/',
+			'next'=>'http://apps.facebook.com/sharingmedia/',
 			'cancel_url'=>'http://www.facebook.com/'
 		//	'req_perms'=>'email,publish_stream',
 		));
