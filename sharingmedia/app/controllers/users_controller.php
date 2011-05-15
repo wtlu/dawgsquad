@@ -87,7 +87,7 @@ class UsersController extends AppController {
 		$session = $facebook->getSession();
 		//$loginUrl = $facebook->getLoginUrl();
 		print_r($session);
-		debug($loginUrl);
+		//debug($loginUrl);
 		//print($loginUrl);
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
