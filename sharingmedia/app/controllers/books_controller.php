@@ -11,7 +11,8 @@ File: /app/controllers/books_controller.php
 	5/10/2011 - John Wang - Started controller for find books
 	5/11/2011 - John Wang - Continue work on find books results
 	5/12/2011 - John Wang - Find book results now works for the most part
-	5/13/2011 - John Wang - Commented some more code
+	5/13/2011 - John Wang - Commented some more code. Changed add books search to no longer search our db
+	5/14/2011 - John Wang - Fixed find books search process. More comments
 -->
 <?php
 class BooksController extends AppController {
@@ -29,7 +30,7 @@ class BooksController extends AppController {
         $this->set('title_for_layout', 'find_a_book');
 	}
 
-	# Function for find books results view
+	# Function for find books results view. Returns an array of book results to be displayed in the find book results view.
 	function find_books_results() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'find_book_result');
@@ -43,9 +44,9 @@ class BooksController extends AppController {
 				FROM books books, book_initial_offers b_i_o, users users
 				WHERE b_i_o.user_id = users.facebook_id
 					AND b_i_o.book_id = books.id
-					AND books.title LIKE "' .$book_title . '"
-					OR books.author LIKE "' . $book_author . '"
-					OR books.isbn LIKE "' .  $book_isbn . '"
+					AND books.title LIKE "%' .$book_title . '%"
+					AND books.author LIKE "%' . $book_author . '%"
+					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
 			# look to see if the book result has a trade, and then find the book associated with the trade
 			foreach ($book_results as &$b_r) {
@@ -60,7 +61,8 @@ class BooksController extends AppController {
 		$this->set('book_results', $book_results);
 	}
 
-	# Function for the add books results view
+	# Function for the add books results view. Returns an array of Google book results to be displayed in add book
+	# results view
 	function add_books_results() {
 		$this->layout = 'main_layout';
         $this->set('title_for_layout', 'add_book_result');
@@ -68,7 +70,7 @@ class BooksController extends AppController {
 		$book_author = $this->data['Book']['author'];
 		$book_isbn = $this->data['Book']['isbn'];
 
-		/* Not gonna worry about querying our database for now
+		/* Ignore this part for testing or whatever. Not gonna worry about querying our database for now
 		$book_results = array();
 		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
 			# search our database for the book
@@ -120,7 +122,7 @@ class BooksController extends AppController {
 		#}
 	}
 
-	# helper function for querying Google books search
+	# helper function for querying Google books search. Returns the full array of results from Google books search
 	function query_google($search_val) {
 		App::import('HttpSocket');
 		App::import('Xml');
@@ -138,7 +140,7 @@ class BooksController extends AppController {
 		return $google_results;
 	}
 
-	# helper function to get the relevant data of google book search and put that in book_results
+	# helper function to filter the relevant data of the google book search and put that in book_results
 	function get_relevant_data($result) {
 		$title = $result['Title'][1];
 
