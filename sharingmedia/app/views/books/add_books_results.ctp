@@ -1,6 +1,5 @@
-<!-- File: /app/views/books/add_books_results.ctp -->
+<!-- File: /app/views/books/add_books_results.ctp 
 
-<!--
 	Created: 5/8/2011
 	Author: John Wang
 	
@@ -10,6 +9,7 @@
 	5/10/2011 - John Wang - Added ability to post results to next step
 	5/11/2011 - John Wang - Fixed some of the formatting of the page
 	5/13/2011 - John Wang - Added back button.
+	5/14/2011 - John Wang - Added comments
 	
 	# This is the view for the add books results page
 -->
@@ -53,7 +53,7 @@
 # helper function to display book results
 function display_results($result) {
 	$chosen = '';
-	# build the string containgin
+	# build the string of book data and pass on to initial_offer_details function in book initial offers controller
 	foreach ($result as $element) {
 		$chosen = $chosen . '^' . $element;
 	}
