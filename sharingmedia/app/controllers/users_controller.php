@@ -88,7 +88,7 @@ class UsersController extends AppController {
   			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
 		} else {
 			echo "not installed";
-			echo("<script> top.location.href=" . $loginUrl . "</script>");
+		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}
 	
 	}
