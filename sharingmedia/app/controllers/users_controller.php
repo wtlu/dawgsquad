@@ -78,6 +78,7 @@ class UsersController extends AppController {
 
 		$session = $facebook->getSession();
 		$loginUrl = $facebook->getLoginUrl();
+		print_r($session);
 		//print($loginUrl);
 		//$loginUrl=$facebook->getLoginUrl(array(
 		//	'canvas'=>1,
@@ -99,7 +100,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    	//	echo("<script> top.location.href='" . $loginUrl . "'</script>");	
     		//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
 		}
 
