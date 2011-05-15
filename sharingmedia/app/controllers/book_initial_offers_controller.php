@@ -52,7 +52,7 @@ class BookInitialOffersController extends AppController {
 	function remove_confirm($bid){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
-		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id = " .$bid);
+		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id " .$bid);
 		$this->set('offer', $offer);
 	}
 
