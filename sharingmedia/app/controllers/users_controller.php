@@ -84,6 +84,8 @@ class UsersController extends AppController {
 		
 		if(isset($_REQUEST['installed'])){
   			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
+		} else {
+			echo "not installed";	
 		}
 	
 	}
