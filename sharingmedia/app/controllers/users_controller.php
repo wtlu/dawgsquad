@@ -70,31 +70,28 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Login');
 		App::import('Vendor', 'facebook');
 		
-		$facebook = new Facebook(array(
-  			'appId'  => '218244414868504',
-  			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+		$app_id = '218244414868504';
+ 		$canvas_page = "http://apps.facebook.com/sharingmedia/";
+
+		// Create our Application instance (replace this with your appId and secret).
+   		$auth_url = "http://www.facebook.com/dialog/oauth?client_id="
+            . $app_id . "&redirect_uri=" . urlencode($canvas_page) ."&scope=email,read_stream&installed=1";
+  		$facebook = new Facebook(array(
+  			'appId'  => $app_id ,
+  			'secret' => "fb83c155cc38febb1fb9024c1a9eb050",
   			'cookie' => true,
 		));
-
-		$session = $facebook->getSession();
+		
 		$loginUrl = $facebook->getLoginUrl();
-		$me = null;
-
-		if ($session) {
-  		try {
-    		$uid = $facebook->getUser();
-    		$me = $facebook->api('/me');
-
-    		echo "Welcome User: " . $me['name'] . "<br />";
-  		} catch (FacebookApiException $e) {
-    		error_log($e);
-  		}
+		
+		if(isset($_REQUEST['installed'])){
+  			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
 		} else {
-   			echo("<script> top.location.href='" . $loginUrl . "'</script>");
+			echo "not installed";
+		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}
-	
 	}
-
+	
 	function home(){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Sharing Media');
