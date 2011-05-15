@@ -69,7 +69,7 @@ class UsersController extends AppController {
 	}
 	
 	
-	function login(){
+	function example(){
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
@@ -85,12 +85,17 @@ class UsersController extends AppController {
 		));
 
 		$session = $facebook->getSession();
+		//$loginUrl = $facebook->getLoginUrl();
+		print_r($session);
+		//debug($loginUrl);
+		//print($loginUrl);
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
 			'fbconnect'=>0,
 			'display'=>'page',
 			'next'=>'http://apps.facebook.com/sharingmedia/',
 			'cancel_url'=>'http://www.facebook.com/'
+		//	'req_perms'=>'email,publish_stream',
 		));
 		$me = null;
 
@@ -105,6 +110,7 @@ class UsersController extends AppController {
 	  		}
 		} else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
 		}
 
 	}
@@ -119,16 +125,17 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Comming Soon');
 	}
 	
-//	function login(){
+	function login(){
+/*		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');*/
 
-//		$this->layout = 'login_layout';
-//		$this->set('title_for_layout', 'Login');
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
 		
-//		$facebook = new Facebook(array(
-//		'appId'  => '218244414868504',
-//		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-//		'cookie' => true
-//		));
+		$facebook = new Facebook(array(
+		'appId'  => '218244414868504',
+		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+		'cookie' => true
+		));
 				
 		/*
 		echo "before logic";
@@ -160,18 +167,18 @@ class UsersController extends AppController {
 		));
 		*/
 		
-//		$params = array(
-//				'fbconnect'=>0,
-//				'canvas'=>1,
-//				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
-//				'req_perms'=>''
-//			);
+		$params = array(
+				'fbconnect'=>0,
+				'canvas'=>1,
+				'next'=>"http://apps.facebook.com/sharingmedia/index.php/",
+				'req_perms'=>''
+			);
 			
-//		if($facebook->getSession()){
-//			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
-//		} else {
+		if($facebook->getSession()){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
+		} else {
 			
-//			$redirect_url = $facebook->getLoginUrl($params);
+			$redirect_url = $facebook->getLoginUrl($params);
 			
 			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
 /********************************************************************/
@@ -182,7 +189,7 @@ class UsersController extends AppController {
 //			if($count > 0){
 //				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
 //			} else {
-//				echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
+				echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
 				//echo("<script> top.location.href='" . $redirect_url . "'</script>");
 //			}
 
@@ -192,7 +199,7 @@ class UsersController extends AppController {
 			//This sends app into  infinite loop
 			//$this->redirect($redirect_url);
 		
-//		}
+		}
 		//echo '<fb:redirect url="' . $redirect_url . '">';
 		
 //		if($this->Session->check('uid')){
@@ -200,7 +207,7 @@ class UsersController extends AppController {
 //		} else if( {
 		//	$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://localhost/sharingmedia/');	
 		//}*/
-//	}
+	}
 	
 	function logout(){
 //		$this->Auth->logout();
