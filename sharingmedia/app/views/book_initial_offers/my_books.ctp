@@ -56,7 +56,7 @@
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
 				<?php } ?>
 			</ul>
-			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"], array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
