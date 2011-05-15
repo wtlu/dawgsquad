@@ -194,6 +194,7 @@ class BookInitialOffersController extends AppController {
 		if(is_null($this->Session->read('uid'))){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
+				
 				//If the book exists alread in table books, then get it's book_id. Otherwise add it to the books table, and then get it's book_id.
 				$book_id = 0;
 				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
@@ -201,6 +202,9 @@ class BookInitialOffersController extends AppController {
 				if(empty($book_results)){
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
+					$book_id = $the_book + 1;
+					debug($the_book);
+					debug($book_id);
 					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
 				} else {
 					foreach ($book_results as $book){
