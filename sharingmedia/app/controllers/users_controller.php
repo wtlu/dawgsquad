@@ -77,16 +77,16 @@ class UsersController extends AppController {
 		));
 
 		$session = $facebook->getSession();
-		//$loginUrl = $facebook->getLoginUrl();
+		$loginUrl = $facebook->getLoginUrl();
 		//print($loginUrl);
-		$loginUrl=$facebook->getLoginUrl(array(
-			'canvas'=>1,
-			'fbconnect'=>0,
-			'display'=>'page',
-			'next'=>'http://apps.facebook.com/sharingmedai/',
-			'cancel_url'=>'http://www.facebook.com/',
-			'req_perms'=>'email,publish_stream',
-		));
+		//$loginUrl=$facebook->getLoginUrl(array(
+		//	'canvas'=>1,
+		//	'fbconnect'=>0,
+		//	'display'=>'page',
+		//	'next'=>'http://apps.facebook.com/sharingmedai/',
+		//	'cancel_url'=>'http://www.facebook.com/',
+		//	'req_perms'=>'email,publish_stream',
+		//));
 		$me = null;
 
 		if ($session) {
