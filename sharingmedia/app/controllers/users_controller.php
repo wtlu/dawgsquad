@@ -77,8 +77,16 @@ class UsersController extends AppController {
 		));
 
 		$session = $facebook->getSession();
-		$loginUrl = $facebook->getLoginUrl();
-		print($loginUrl);
+		//$loginUrl = $facebook->getLoginUrl();
+		//print($loginUrl);
+		$loginUrl=$facebook->getLoginUrl(array(
+			'canvas'=>1,
+			'fbconnect'=>0,
+			'display'=>'page',
+			'next'=>'/',
+			'cancel_url'=>'http://www.facebook.com/',
+			'req_perms'=>'email,publish_stream',
+		));
 		$me = null;
 
 		if ($session) {
@@ -171,8 +179,8 @@ class UsersController extends AppController {
 //			if($count > 0){
 //				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
 //			} else {
-				//echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
-				echo("<script> top.location.href='" . $redirect_url . "'</script>");
+				echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
+				//echo("<script> top.location.href='" . $redirect_url . "'</script>");
 //			}
 
 /********************************************************************/
