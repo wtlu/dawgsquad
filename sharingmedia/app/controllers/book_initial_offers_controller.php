@@ -60,15 +60,15 @@ class BookInitialOffersController extends AppController {
 	function remove($bid){
 		//get trade id
 		$trades = $this->BookInitialOffer->query("SELECT trade_id FROM book_initial_offers WHERE book_initial_offers.user_id = " . $this->Session->read('uid'). " AND book_initial_offers.book_id = " . $bid);
-		$tid = $trade[0]["book_initial_offer"]["trade_id"];
+		$tid = $trades[0]["book_initial_offer"]["trade_id"];
 		//remove row from book_initial_offers
-		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);
+		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $this->Session->read('uid') . " AND book_initial_offers.book_id = " . $bid);
 		//if tid is not null remove all related trade rows
 		if(!is_null($tid)){
 			$this->BookInitialOffer->query("DELETE trades FROM trades WHERE trades.id = ". $tid);
 		}
 		//redirect to my_book page
-		$this->redirect('/book_initial_offers/my_books/'.$uid);
+		$this->redirect('/book_initial_offers/my_books/;
 	}
 	//this function is not yet implemented It will allow you to edit initial offers
 	function edit (){
