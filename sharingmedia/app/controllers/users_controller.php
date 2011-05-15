@@ -91,8 +91,8 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		//echo("<script> top.location.href='" . $loginUrl . "'</script>");	
-    		$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
+    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
 		}
 
 	}
