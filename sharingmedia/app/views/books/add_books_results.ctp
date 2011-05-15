@@ -16,9 +16,33 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId : '218244414868504',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml : true // parse XFBML
+});
+</script>
+
 <h2>Choose the book that matches yours:</h2>
 
+<script type="text/javascript">
+window.fbAsyncInit = function() {
+FB.Canvas.setSize();
+}
+// Do things that will sometimes call sizeChangeCallback()
+function sizeChangeCallback() {
+FB.Canvas.setSize();
+}
+</script>
+	
 <div class = "results_display">
+	<FORM METHOD="LINK" ACTION="find_books">
+	<INPUT TYPE="submit" VALUE="Go Back">
+	</FORM>
 <?php
 	# creates the form for the book results, to prepare the book data to be passed to the next step
 

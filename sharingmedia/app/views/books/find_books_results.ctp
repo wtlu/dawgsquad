@@ -16,10 +16,13 @@
 <h2>Results:</h2>
 
 <div class = "results_display">
+	<FORM METHOD="LINK" ACTION="find_books">
+	<INPUT TYPE="submit" VALUE="Go Back">
+	</FORM>
 <?php
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){
-			echo $form->create('Transactions', array('action' => 'accept_transaction', 'type'=>'post'));
+			echo $form->create('Users', array('action' => 'comming_soon', 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
 			$b_i_o_result = $book['b_i_o'];
