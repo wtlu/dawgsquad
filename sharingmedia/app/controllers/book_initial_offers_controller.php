@@ -197,6 +197,7 @@ class BookInitialOffersController extends AppController {
 				//If the book exists alread in table books, then get it's book_id. Otherwise add it to the books table, and then get it's book_id.
 				$book_id = 0;
 				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
+				debug($book_results);
 				if(empty($book_results)){
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
