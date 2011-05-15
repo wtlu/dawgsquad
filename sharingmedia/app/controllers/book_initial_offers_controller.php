@@ -202,12 +202,14 @@ class BookInitialOffersController extends AppController {
 				if(empty($book_results)){
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
+					debug($the_book[0][0]['MAX(id)']);
 					$book_id = $the_book[0][0]['MAX(id)'] + 1;
 					debug($the_book);
 					debug($book_id);
 					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
 				} else {
 					foreach ($book_results as $book){
+						debug($book);
 						$result = $book['books'];
 						$book_id = $result['id'];
 					}
