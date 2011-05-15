@@ -66,12 +66,14 @@ class UsersController extends AppController {
 	
 	
 	function example(){
-		$this->layout = 'login_layout';
-		$this->set('title_for_layout', 'Login');
-		App::import('Vendor', 'facebook');
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
+		
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
+		App::import('Vendor', 'facebook');
+
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
@@ -102,6 +104,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
+
     	//	echo("<script> top.location.href='" . $loginUrl . "'</script>");	
     		//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
 		}
