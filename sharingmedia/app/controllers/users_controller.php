@@ -85,8 +85,8 @@ class UsersController extends AppController {
 		$loginUrl = $facebook->getLoginUrl();
 		
 		print_r($_REQUEST);
-		print_r($_REQUEST['installed']);
-		if($_REQUEST['installed'] == 1){
+		//print_r($_REQUEST['installed']);
+		if(isset($_REQUEST['installed']) || $_REQUEST['fb_sig_added'] == 1){
   			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
 		} else {
 			echo "not installed";
