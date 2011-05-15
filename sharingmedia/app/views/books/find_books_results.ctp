@@ -55,17 +55,17 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 				$image = $result['image'];
 				$summary = $result['summary'];
 			?>
-			<img src=<?php echo $image ?> alt="Book image" />
+			<img src=<?= $image ?> alt="Book image" />
 			<div class = "book_results_text">
-					<strong>Title:</strong>	<?php echo $title ?> <br />
-					<strong>Author(s):</strong> <?php echo $author ?> <br />
-					<strong>Summary:</strong> <?php echo $summary ?> <br />
-					<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+					<strong>Title:</strong>	<?= $title ?> <br />
+					<strong>Author(s):</strong> <?= $author ?> <br />
+					<strong>Summary:</strong> <?= $summary ?> <br />
+					<strong>ISBN:</strong> <?= $ISBN ?> <br />
 				<h3> Owner </h3>
 					<?php
 						$name = $user_result['name'];
 					?>
-					<strong>Name:</strong>	<?php echo $name ?> <br />
+					<strong>Name:</strong>	<?= $name ?> <br />
 				<h3> Offer Details </h3>
 					<?php
 						$price = $b_i_o_result['price'];
@@ -76,18 +76,18 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 						}
 					if (!empty($price)) {
 					?>
-					<strong>Price: $</strong><?php echo $price ?> <br />
+					<strong>Price: $</strong><?= $price ?> <br />
 					<?php
 					}
 					if (!empty($duration)) {
 					?>
-					<strong>Loan Duration:</strong> <?php echo $duration ?> days<br />
+					<strong>Loan Duration:</strong> <?= $duration ?> days<br />
 					<?php
 					}
 					if (!empty($trade_book)) {
 					?>
-					<strong>Willing to trade for:</strong> <i><?php echo $trade_title ?></i>
-						by <?php echo $trade_author ?>
+					<strong>Willing to trade for:</strong> <i><?= $trade_title ?></i>
+						by <?= $trade_author ?>
 					<?php
 					}
 					?>

@@ -31,11 +31,13 @@
 		echo $this->Form->end('Continue');
 	} else */
 	if (!empty($google_books_results)) {
-		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
+		#echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($google_books_results as $result){
+			echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 			display_results($result);
+			echo $this->Form->end('Add This Book');
 		}
-		echo $this->Form->end('Continue');
+		#echo $this->Form->end('Continue');
 	} else {
 		?>
 		<p> No results. Please try your search again. </p>
@@ -59,7 +61,9 @@ function display_results($result) {
 	}
 	?>
 	<div class="book_results_display">
-		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
+		
+		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
+		
 		<label for="choose_book">
 			<?php
 				$title = $result['title'];
@@ -68,12 +72,12 @@ function display_results($result) {
 				$image = $result['image'];
 				$summary = $result['summary'];
 			?>
-		<img src=<?php echo $image ?> alt="Book image" />
+		<img src=<?= $image ?> alt="Book image" />
 		<div class = "book_results_text">
-			<strong>Title:</strong>	<?php echo $title ?> <br />
-			<strong>Author(s):</strong> <?php echo $author ?> <br />
-			<strong>Summary:</strong> <?php echo $summary ?> <br />
-			<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+			<strong>Title:</strong>	<?= $title ?> <br />
+			<strong>Author(s):</strong> <?= $author ?> <br />
+			<strong>Summary:</strong> <?= $summary ?> <br />
+			<strong>ISBN:</strong> <?= $ISBN ?> <br />
 		</div>
 		</label>
 	</div>
