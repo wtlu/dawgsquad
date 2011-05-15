@@ -85,7 +85,7 @@ class UsersController extends AppController {
 		$loginUrl = $facebook->getLoginUrl();
 		
 		print_r($_REQUEST);
-		
+		print_r($_REQUEST['fb_sig_added']);
 		if(isset($_REQUEST['fb_sig_added'])){
   			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
 		} else {
