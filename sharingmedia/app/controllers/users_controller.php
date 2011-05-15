@@ -14,17 +14,22 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-		'cookie' => true
+		'cookie' => true,
+		'domain' => 'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/'
 		));
 		
 		//If the user is logged in...
-		if ($facebook->getSession()) {
+		$session = $facebook->getSession();
+ 		if ($session){
 		
 			// User is logged in and authorized, let's party.
 			// Get user information of current user
 			$user = $facebook->getUser();
 			
-			print "Welcome User ID: " . $user;
+			if(!$this->Session->check('uid')){
+				//echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			}			
+//			print "Welcome User ID: " . $user;
 	
 		} else {
 
@@ -33,9 +38,24 @@ class UsersController extends AppController {
 
 			//echo '<fb:redirect url="' . $redirect . '">';
 			
+			//$params = array(
+			//	'fbconnect'=>0,
+			//	'canvas'=>1,
+			//	'next'=>'http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/',
+			//	'req_perms'=>''
+			//);
 			
-			echo $this->redirect(array('controller'=>'users','action' => 'login'));
-		}*/
+			//$redirect_url = $facebook->getLoginUrl($params);
+			//echo '<fb:redirect url="' . $redirect_url . '">';
+			//echo '<a href="' . $redirect_url . '">Login</a>';
+			
+			//$this->redirect($redirect_url);			
+			if(!$this->Session->check('uid')){
+				echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			}
+			
+			
+		}
 		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
 		//if (!$facebook->getSession()){
@@ -44,7 +64,47 @@ class UsersController extends AppController {
 //		$this->set('users', $this->User->find('all'));	
 	}
 	
+	
+	function example(){
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
+		App::import('Vendor', 'facebook');
+		
+		$facebook = new Facebook(array(
+  			'appId'  => '218244414868504',
+  			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+  			'cookie' => true,
+		));
 
+		$session = $facebook->getSession();
+		$loginUrl = $facebook->getLoginUrl();
+		//print($loginUrl);
+		//$loginUrl=$facebook->getLoginUrl(array(
+		//	'canvas'=>1,
+		//	'fbconnect'=>0,
+		//	'display'=>'page',
+		//	'next'=>'http://apps.facebook.com/sharingmedai/',
+		//	'cancel_url'=>'http://www.facebook.com/',
+		//	'req_perms'=>'email,publish_stream',
+		//));
+		$me = null;
+
+		if ($session) {
+	  		try {
+	    		$uid = $facebook->getUser();
+	    		$me = $facebook->api('/me');
+	
+	    		echo "Welcome User: " . $me['name'] . "<br />";
+	  		} catch (FacebookApiException $e) {
+	    		error_log($e);
+	  		}
+		} else {
+    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');
+		}
+
+	}
+	
 	function home(){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Sharing Media');
@@ -66,7 +126,7 @@ class UsersController extends AppController {
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
 		));
-		
+				
 		/*
 		echo "before logic";
 		echo print_r($facebook_user);
@@ -79,22 +139,23 @@ class UsersController extends AppController {
 			if($count == 0){
 				echo "count == 0";
 				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user_id . '";');	
-				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/');	
+				$this->redirect('https://www.facebook.com/dialog/oauth?client_id=218244414868504&redirect_uri=http://apps.facebook.com/sharingmedia/');	
 			} else {
 				echo "trying to redirect";
 				echo $this->redirect(array('controller'=>'users','action' => 'index'));
 			}
 		}
-		*/
-				
-		echo '<h2>Session was not found. Please ';
 		
+*/	
+	
+		//echo '<h2>Session was not found. Please ';
+		/*
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
 		'cookie' => true
 		));
-		
+		*/
 		
 		$params = array(
 				'fbconnect'=>0,
@@ -103,17 +164,33 @@ class UsersController extends AppController {
 				'req_perms'=>''
 			);
 			
-		$redirect = $facebook->getLoginUrl($params);
+		if($facebook->getSession()){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));		
+		} else {
 			
-		echo '<a href="' . $redirect . '">Login</a>';
+			$redirect_url = $facebook->getLoginUrl($params);
+			
+			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
+/********************************************************************/
+			
+//			$user = $facebook->getUser();
+//			$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user . '";');
+//			debug($count);
+//			if($count > 0){
+//				$this->User->query('INSERT INTO users(facebook_id) VALUES("' . $user . '";');
+//			} else {
+				echo '<a href="' . $redirect_url . '">Click here if you have not added the app. Then click Facebook picture.</a>';
+				//echo("<script> top.location.href='" . $redirect_url . "'</script>");
+//			}
+
+/********************************************************************/
+			//echo '</h2>';
+	
+			//This sends app into  infinite loop
+			//$this->redirect($redirect_url);
 		
-		echo '</h2>';
-		
-		//This sends app into  infinite loop
-		//$this->redirect($redirect);
-		
-		
-		//echo '<fb:redirect url="' . $redirect . '">';
+		}
+		//echo '<fb:redirect url="' . $redirect_url . '">';
 		
 //		if($this->Session->check('uid')){
 //			echo $this->redirect(array('controller'=>'users','action' => 'index'));

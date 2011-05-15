@@ -56,7 +56,7 @@ class BookInitialOffersController extends AppController {
 		$this->set('offer', $offer);
 	}
 
-	//REMOVES ENTIRES FROM THE DATABASE called by remove link from remove_comfirm page
+	//REMOVES ENTRIES FROM THE DATABASE called by remove link from remove_comfirm page
 	function remove($bid){
 		//get trade id
 		$trades = $this->BookInitialOffer->query("SELECT trade_id FROM book_initial_offers WHERE book_initial_offers.user_id = " . $this->Session->read('uid'). " AND book_initial_offers.book_id = " . $bid);
@@ -188,9 +188,13 @@ class BookInitialOffersController extends AppController {
 				}
 			}
 		} */
+		
+		
+		
 		if(is_null($this->Session->read('uid'))){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
+				//If the book exists alread in table books, then get it's book_id. Otherwise add it to the books table, and then get it's book_id.
 				$book_id = 0;
 				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
 				if(empty($book_results)){
@@ -204,11 +208,9 @@ class BookInitialOffersController extends AppController {
 					}
 				}
 
-				//Get book id from our database
-				sleep(1);
-
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
 				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
+				debug($duplicate);
 				if(!empty($duplicate)){
 					echo "<h2> You cannot add the same book to your library twice. </h2>";
 				}else{
