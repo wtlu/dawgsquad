@@ -69,33 +69,24 @@ class UsersController extends AppController {
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		App::import('Vendor', 'facebook');
-		$app_id = "218244414868504";
-		$app_secret = "fb83c155cc38febb1fb9024c1a9eb050";
-		$facebook = new Facebook(array(
-			'appId' => $app_id,
-			'secret' => $app_secret,
-			'cookie' => true
-		));
-
-     	$canvas_page = "http://apps.facebook.com/sharingmedia/";
-
-     	$auth_url = "http://www.facebook.com/dialog/oauth?client_id=" 
-            . $app_id . "&redirect_uri=" . urlencode($canvas_page);
 		
-		$signed_request = $facebook->getSignedRequest();
+		$app_id = '218244414868504';
+ 		$canvas_page = "http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/";
 
-     	list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-
-     	$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
-
-     	if (empty($data["user_id"])) {
-            echo("<script> top.location.href='" . $auth_url . "'</script>");
-     	} else {
-            echo ("Welcome User: " . $data["user_id"]);
-     	} 
-
-
-    }
+		// Create our Application instance (replace this with your appId and secret).
+   		$auth_url = "http://www.facebook.com/dialog/oauth?client_id="
+            . $app_id . "&redirect_uri=" . urlencode($canvas_page) ."&scope=email,read_stream&installed=1";
+  		$facebook = new Facebook(array(
+  			'appId'  => $app_id ,
+  			'secret' => "fb83c155cc38febb1fb9024c1a9eb050",
+  			'cookie' => true,
+		));
+		
+		if(isset($_REQUEST['installed'])){
+  			echo("<script>top.href.location='http://apps.facebook/sharingmedia' </script>");
+		}
+	
+	}
 
 	function home(){
 		$this->layout = 'main_layout';
