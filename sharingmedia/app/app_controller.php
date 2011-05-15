@@ -33,21 +33,21 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-//  	var $helpers = array('Html', 'Form', 'Session', 'Facebook.Facebook');
-//	var $components = array('Session',
+  	var $helpers = array('Html', 'Form', 'Session', 'Facebook.Facebook');
+	var $components = array('Session',
 //		'Auth' => array( 
 //		'authorize' => 'controller',
 //		'authorizedActions' => array('index', 'view', 'display')
 //		),
-//	'Facebook.Connect');
+	'Facebook.Connect');
 	
 	function beforeFilter() {
 //		$this->set('user', $this->Auth->user());
-//		$this->set('facebook_user', $this->Connect->user());
+		$this->set('facebook_user', $this->Connect->user());
 		
 		
 		//The session might linger from a recent logout, check for this
-//		$this->Session->write('uid', $this->Connect->user('id'));
+		$this->Session->write('uid', $this->Connect->user('id'));
 		
 		
 		
