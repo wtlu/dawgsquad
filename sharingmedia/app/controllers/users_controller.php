@@ -78,6 +78,7 @@ class UsersController extends AppController {
 
 		$session = $facebook->getSession();
 		$loginUrl = $facebook->getLoginUrl();
+		print($loginUrl);
 		$me = null;
 
 		if ($session) {
