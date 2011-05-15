@@ -212,7 +212,6 @@ class BookInitialOffersController extends AppController {
 
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
 				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
-				debug($duplicate);
 				if(!empty($duplicate)){
 					echo "<h2> You cannot add the same book to your library twice. </h2>";
 				}else{
