@@ -63,15 +63,15 @@
 		
 		<?php
 		if(!empty($loan_duration)){		
-				echo '<input name="data[BookInitialOffer][loan_duration]" id="image" value="' . $loan_duration . '" type="hidden">';
+				echo '<input name="data[BookInitialOffer][loan_duration]" id="ld" value="' . $loan_duration . '" type="hidden">';
 		}
 		
 		if(!empty($sell_price)){		
-				echo '<input name="data[BookInitialOffer][sell_price]" id="image" value="' . $sell_price . '" type="hidden">';
+				echo '<input name="data[BookInitialOffer][sell_price]" id="sp" value="' . $sell_price . '" type="hidden">';
 		}
 		
 		if(!empty($trade_id)){		
-				echo '<input name="data[BookInitialOffer][trade_id]" id="image" value="' . $trade_id . '" type="hidden">';
+				echo '<input name="data[BookInitialOffer][trade_id]" id="ti" value="' . $trade_id . '" type="hidden">';
 		}
 		?>
 
