@@ -1,5 +1,6 @@
 .results_display {
-
+	height: 600px;
+	overflow: scroll;
 }
 
 .book_results_display {
@@ -16,4 +17,10 @@
 
 .book_results_text {
 	margin-left: 90px;
+}
+
+.special_button {
+	background-color: #87cefa;
+	height: 25px;
+	margin: 5px;
 }

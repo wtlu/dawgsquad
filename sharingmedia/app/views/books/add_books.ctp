@@ -27,6 +27,7 @@ File: /app/views/add_books.ctp
 			echo $this->Form->input('title', array('label' => 'Title'));
 			echo $this->Form->input('author', array('label' => 'Author(s)'));
 			echo $this->Form->input('isbn', array('label' => 'ISBN'));
+			echo $this->Form->input('index', array('type' => 'hidden', 'value' => '1'));
 			echo $this->Form->end('Continue');
 		?>
 	</div>

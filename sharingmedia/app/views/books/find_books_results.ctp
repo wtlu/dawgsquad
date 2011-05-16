@@ -17,7 +17,7 @@
 
 <div class = "results_display">
 	<FORM METHOD="LINK" ACTION="find_books">
-	<INPUT TYPE="submit" VALUE="Go Back">
+	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
 	</FORM>
 <?php
 	if (!empty($book_results)) {
@@ -39,8 +39,9 @@
 		<?php
 	}
 	?>
+	<hr>
 	<FORM METHOD="LINK" ACTION="find_books">
-	<INPUT TYPE="submit" VALUE="Go Back">
+	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
 	</FORM>
 </div>
 

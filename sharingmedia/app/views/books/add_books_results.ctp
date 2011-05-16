@@ -16,36 +16,21 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
-FB.init({
-appId : '218244414868504',
-status : true, // check login status
-cookie : true, // enable cookies to allow the server to access the session
-xfbml : true // parse XFBML
-});
-</script>
-
 <h2>Choose the book that matches yours:</h2>
-
-<script type="text/javascript">
-window.fbAsyncInit = function() {
-FB.Canvas.setSize();
-}
-// Do things that will sometimes call sizeChangeCallback()
-function sizeChangeCallback() {
-FB.Canvas.setSize();
-}
-</script>
-	
 <div class = "results_display">
-	<FORM METHOD="LINK" ACTION="find_books">
-	<INPUT TYPE="submit" VALUE="Go Back">
+	<FORM METHOD="LINK" ACTION="add_books">
+	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
 	</FORM>
 <?php
-	# creates the form for the book results, to prepare the book data to be passed to the next step
-
+	if ($index > 10) {
+		echo $this->Form->create(array('action' => 'add_books_results'));
+		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
+		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
+		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
+		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index - 10));
+		echo $this->Form->end('Previous results');
+	}
+	
 	/* if (!empty($book_results)) {
 		echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 		foreach ($book_results as $book){ 
@@ -68,8 +53,18 @@ FB.Canvas.setSize();
 		<?php
 	}
 	?>
+	<hr>
+	<?php
+	echo $this->Form->create(array('action' => 'add_books_results'));
+	echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
+	echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
+	echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
+	echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index + 10));
+	echo $this->Form->end('More results');
+	?>
+	
 	<FORM METHOD="LINK" ACTION="add_books">
-	<INPUT TYPE="submit" VALUE="Go Back">
+	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
 	</FORM>
 	<?php
 ?>

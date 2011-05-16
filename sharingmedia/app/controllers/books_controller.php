@@ -69,8 +69,10 @@ class BooksController extends AppController {
 		$book_title = $this->data['Book']['title'];
 		$book_author = $this->data['Book']['author'];
 		$book_isbn = $this->data['Book']['isbn'];
+		$index = $this->data['Book']['index'];
 
-		/* Ignore this part for testing or whatever. Not gonna worry about querying our database for now
+		/*
+		--------Ignore this part for testing or whatever. Not gonna worry about querying our database for now---------
 		$book_results = array();
 		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
 			# search our database for the book
@@ -85,44 +87,50 @@ class BooksController extends AppController {
 
 		# search google books
 		if (empty($book_results)) {
+		----------------------------------------------------------------------------------------
 		*/
-			# build the search string to send to Google books
-			$search_string = 'q=';
-			if (!empty($book_isbn)) {
-				$search_string = $search_string . 'isbn:' . $book_isbn;
-			}
-			if (!empty($book_title)) {
-				$book_title = str_replace(" ", "+intitle:", $book_title);
-				$search_string = $search_string . '+intitle:' . $book_title;
-			}
-			if (!empty($book_author)) {
-				$book_author = str_replace(" ", "+inauthor:", $book_author);
-				$search_string = $search_string . '+inauthor:' . $book_author;
-			}
-			$search_string = $search_string . '&start-index=1&max-results=10';
 
-			#these are the book results returned by google book search
-			$google_results = $this->query_google($search_string);
-			$google_books_results = array();
+		# build the search string to send to Google books
+		$search_string = 'q=';
+		if (!empty($book_isbn)) {
+			$search_string = $search_string . 'isbn:' . $book_isbn;
+		}
+		if (!empty($book_title)) {
+			$book_title = str_replace(" ", "+intitle:", $book_title);
+			$search_string = $search_string . '+intitle:' . $book_title;
+		}
+		if (!empty($book_author)) {
+			$book_author = str_replace(" ", "+inauthor:", $book_author);
+			$search_string = $search_string . '+inauthor:' . $book_author;
+		}
+		$search_string = $search_string . '&start-index=' . $index . '&max-results=10';
 
-			#get just the relevant portions of google book search and put that in the final google_books_results
-			if (empty($google_results)) {
+		#these are the book results returned by google book search
+		$google_results = $this->query_google($search_string);
+		$google_books_results = array();
 
-			} else if (!array_key_exists(0, $google_results)) {
-				# case when there is only 1 book result
-				$google_books_results = array_merge($google_books_results, $this->get_relevant_data($google_results));
-			} else {
-				foreach ($google_results as $result){
-					$google_books_results = array_merge($google_books_results, $this->get_relevant_data($result));
-				}
+		#get just the relevant portions of google book search and put that in the final google_books_results
+		if (empty($google_results)) {
+
+		} else if (!array_key_exists(0, $google_results)) {
+			# case when there is only 1 book result
+			$google_books_results = array_merge($google_books_results, $this->get_relevant_data($google_results));
+		} else {
+			foreach ($google_results as $result){
+				$google_books_results = array_merge($google_books_results, $this->get_relevant_data($result));
 			}
+		}
 
-			# set google books result to send to the add book result view
-			$this->set('google_books_results', $google_books_results);
-		#}
+		# set google books result to send to the add book result view
+		$this->set('google_books_results', $google_books_results);
+		$this->set('book_title', $book_title);
+		$this->set('book_author', $book_author);
+		$this->set('book_isbn', $book_isbn);
+		$this->set('index', $index);
 	}
 
 	# helper function for querying Google books search. Returns the full array of results from Google books search
+	# Pre-condition: user has entered some search value. Otherwise, we just return empty result
 	function query_google($search_val) {
 		App::import('HttpSocket');
 		App::import('Xml');
@@ -141,6 +149,7 @@ class BooksController extends AppController {
 	}
 
 	# helper function to filter the relevant data of the google book search and put that in book_results
+	# Pre-condition: assumes that Google search has returned values
 	function get_relevant_data($result) {
 		$title = $result['Title'][1];
 
