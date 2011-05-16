@@ -78,8 +78,7 @@ class BookInitialOffersController extends AppController {
 	}
 
 	
-	
-	
+		
    //Pre: Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
    //Post: Makes data from the form on initial_offer_details.ctp available to add_boo_to_my_library.
    function add_books_confirm() {
@@ -103,24 +102,23 @@ class BookInitialOffersController extends AppController {
 
 		if (!empty($this->data)) {
 
-
-			$offer_type = $this->data['BookInitialOffer']['offer_type'];
-
-			switch ($offer_type) {
-				case 'loan':
-					$offer_value = $this->data['BookInitialOffer']['loan_duration'];
-					break;
-				case 'sell':
-					$offer_value = $this->data['BookInitialOffer']['sell_price'];
-					break;
-				case 'trade':
-					$offer_value = $this->data['BookInitialOffer']['trade_id'];
-					break;
+			
+			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
+				$loan_duration = $this->data['BookInitialOffer']['loan_duration'];
+				$this->set('loan_duration', $loan_duration);
 			}
-
-
-			$this->set('offer_type', $offer_type);
-			$this->set('offer_value', $offer_value);
+			
+			if(!empty($this->data['BookInitialOffer']['offer_sell'])){
+				$sell_price = $this->data['BookInitialOffer']['sell_price'];
+				$this->set('sell_price', $sell_price);
+			}
+			
+			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
+				$trade_id = 1;
+				$this->set('trade_id', $trade_id);
+			} else{
+				$this->set('trade_id', 0);
+			}
 
 		}
 	}
@@ -140,16 +138,32 @@ class BookInitialOffersController extends AppController {
 		$book_author = $this->data['BookInitialOffer']['author'];
 		$book_isbn = $this->data['BookInitialOffer']['ISBN'];
 		$book_image = $this->data['BookInitialOffer']['image'];
-		$offer_type = $this->data['BookInitialOffer']['offer_type'];
-		$offer_value = $this->data['BookInitialOffer']['offer_value'];
+		
+		$loan_duration = "NULL";
+		$sell_price = "NULL";
+		$trade_id = 0;
+		
+		if(!empty($this->data['BookInitialOffer']['offer_loan'])){
+			$loan_duration = $this->data['BookInitialOffer']['loan_duration'];
+			$this->set('loan_duration', $loan_duration);
+		}
+		
+		if(!empty($this->data['BookInitialOffer']['offer_sell'])){
+			$sell_price = $this->data['BookInitialOffer']['sell_price'];
+			$this->set('sell_price', $sell_price);
+		}
+		
+		if(!empty($this->data['BookInitialOffer']['offer_trade'])){
+			$trade_id = 1;
+			$this->set('trade_id', $trade_id);
+		}
+		
 
 		//Make the values also available in the view
 	    $this->set('title', $book_title);
 		$this->set('author', $book_author);
 		$this->set('ISBN', $book_isbn);
 		$this->set('image', $book_image);
-		$this->set('offer_type', $offer_type);
-		$this->set('offer_value', $offer_value);
 
 		//Keeps track of whether the book was added to users mylibrary; used to print message in the view
 		$add_status = false; 
@@ -183,17 +197,7 @@ class BookInitialOffersController extends AppController {
 					$add_status = true;
 
 					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
-					switch ($offer_type) {
-							case 'loan':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',NULL,' . $offer_value . ', NULL, NOW(), NULL);');
-								break;
-							case 'sell':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ', NULL, NULL,' . $offer_value . ', NOW(), NULL);');
-								break;
-							case 'trade':
-								$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') .','  . $book_id . ',' . $offer_value . ', NULL, NULL, NOW(), NULL);');
-								break;
-					}
+					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');				
 				}
 			}
 		$this->set('add_status', $add_status);

@@ -34,23 +34,19 @@
 		<legend> Selected Offer Details </legend>
 		<p>
 		<?php
-			if (!empty($offer_type)) {
-				
-				switch ($offer_type) {
-						case 'loan':
-							echo '<strong> Loan for ' . $offer_value .' days. </strong>';
-							break;
-						case 'sell':
-							echo '<strong> For Sale at $' . $offer_value .'</strong>';
-							break;
-						case 'trade':
-							echo '<strong> Trade for ' . $offer_value .' </strong>';
-							break;
-					}
-				
-			} else {
-				echo 'error';
+		
+			if(!empty($loan_duration)){		
+				echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
 			}
+			
+			if(!empty($sell_price)){		
+				echo '<strong> For Sale at $' . $sell_price .'</strong></br>';
+			}
+			
+			if(!empty($trade_id)){		
+				echo '<strong> Willing to Trade for Another Book. </strong></br>';
+			}
+		
 		?>
 		</p>
 	</fieldset>
@@ -63,8 +59,22 @@
 		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
-		<input name="data[BookInitialOffer][offer_type]" id="image" value="<?php echo $offer_type ?>" type="hidden">
-		<input name="data[BookInitialOffer][offer_value]" id="image" value="<?php echo $offer_value ?>" type="hidden">
+		
+		
+		<?php
+		if(!empty($loan_duration)){		
+				echo '<input name="data[BookInitialOffer][loan_duration]" id="image" value="' . $loan_duration . '" type="hidden">';
+		}
+		
+		if(!empty($sell_price)){		
+				echo '<input name="data[BookInitialOffer][sell_price]" id="image" value="' . $sell_price . '" type="hidden">';
+		}
+		
+		if(!empty($trade_id)){		
+				echo '<input name="data[BookInitialOffer][trade_id]" id="image" value="' . $trade_id . '" type="hidden">';
+		}
+		?>
+
 <?php
 	echo $this->Form->end('Confirm Add To MyLibrary');
 ?>
