@@ -34,27 +34,20 @@
  */
 class AppController extends Controller {
   	var $helpers = array('Html', 'Form', 'Session', 'Facebook.Facebook');
-	var $components = array('Session',
-//		'Auth' => array( 
-//		'authorize' => 'controller',
-//		'authorizedActions' => array('index', 'view', 'display')
-//		),
-	'Facebook.Connect');
+	var $components = array('Session', 'Facebook.Connect');
 	
 	function beforeFilter() {
-//		$this->set('user', $this->Auth->user());
+		
+		// get the facebook users info for displaying in views
 		$this->set('facebook_user', $this->Connect->user());
 		
 		
-		//The session might linger from a recent logout, check for this
+		// get the facebook users id for use in controllers
 		$this->Session->write('uid', $this->Connect->user('id'));
 		
-		
-		
+		// get the facebook users name for use in controllers
 		$this->Session->write('username', $this->Connect->user('name'));	
 	}
 	
-//	function isAuthorized(){
-//		return($this->Auth->user('id'));	
-//	}
+
 }
