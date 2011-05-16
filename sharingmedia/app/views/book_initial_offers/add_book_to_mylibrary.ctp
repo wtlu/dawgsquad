@@ -40,11 +40,11 @@
 		<?php
 
 			if(!empty($loan_duration)){		
-				echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
+				echo '<strong> Loan for ' . $loan_duration . ' days. </strong></br>';
 			}
 			
 			if(!empty($sell_price)){		
-				echo '<strong> For Sale at $' . $sell_price .'</strong></br>';
+				echo '<strong> For Sale at $' . $sell_price . '</strong></br>';
 			}
 			
 			if(!empty($trade_id)){		
