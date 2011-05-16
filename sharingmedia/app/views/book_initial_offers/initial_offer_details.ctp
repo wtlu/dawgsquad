@@ -38,7 +38,7 @@
 <div style="width:300px; align:center;">
 
 	<p>
-	Please select the intitial offer that will be listed in your library, for other users to consider when they want your book. You can specify a loan duration in days, a price in dollars, or the book_id of another book you'd like to trade for.
+	Please select the intitial offer that will be listed in your library, for other users to consider when they want your book. You can specify a loan duration in days, a price in dollars, or if you are willing to consider other books in trade.
 	</p>
 
 	</br>
@@ -54,7 +54,7 @@
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
 		
-		<input name="data[BookInitialOffer][offer_type]" id="choose_loan" value="loan" type="radio" style="width:50px; float:left;">
+		<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_loan" style="float:left">Loan For</label>
 		<?php
 			echo $this->Form->input('loan_duration', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
@@ -65,7 +65,7 @@
 		<hr>
 		</br>
 		
-		<input name="data[BookInitialOffer][offer_type]" id="choose_sell" value="sell" type="radio" style="width:50px; float:left;>
+		<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox" style="width:50px; float:left;>
 		<label for="choose_sell">Sell For</label>
 		<?php
 			echo $this->Form->input('sell_price', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
@@ -75,10 +75,10 @@
 		<hr>
 		</br>
 		
-		<input name="data[BookInitialOffer][offer_type]" id="choose_trade" value="trade" type="radio" style="width:50px; float:left;>
-		<label for="choose_trade">Trade For</label>
+		<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;>
+		<label for="choose_trade">Willing to consider trades?</label>
 		<?php
-			echo $this->Form->input('trade_id', array('label' => '', 'type' => 'text', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
+			//echo $this->Form->input('trade_id', array('label' => '', 'type' => 'text', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
 		?>
 		
 		</br>
@@ -87,11 +87,7 @@
 		<?php
 			echo $this->Form->end('Add To MyLibrary');
 		?>
-		
-		
-		<?php  
-			#echo $this->Form->button('Go Back', array('onClick' => 'window.location.back()'));
-		?>
+
 		
 		
 		
