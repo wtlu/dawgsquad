@@ -13,15 +13,22 @@ class AddBooksTestCase extends CakeWebTestCase {
   /* tests searching a book and displaying correct results 
    * -- look for operating systems book by ISBN */
   function testFindAndInitialOfferView() {
-    /* setup */
-    $add_page		= 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books';
-    $results_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books_results';
-    $init_offer_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/book_initial_offers/initial_offer_details';
-    $confirm_page	= 'http://localhost/dawgsquad/sharingmedia/index.php/book_initial_offers/add_books_confirm';
+
+    /* get the application url */
+    $this->baseurl = current(split("webroot", $_SERVER['PHP_SELF']));
+
+    /* cut off the 'app' suffix and add that stupid 'index.php' thing */
+    $this->baseurl = substr($this->baseurl, 0, strrpos($this->baseurl, "app")) . 'index.php/';
+
+    /* all the pages we're concerned about */
+    $add_page		= 'http://localhost' . $this->baseurl . 'books/add_books';
+    $results_page	= 'http://localhost' . $this->baseurl . 'books/add_books_results';
+    $init_offer_page	= 'http://localhost' . $this->baseurl . 'book_initial_offers/initial_offer_details';
+    $confirm_page	= 'http://localhost' . $this->baseurl . 'book_initial_offers/add_books_confirm';
 
     /* on find page */
     $this->get($add_page);
-    
+
     /* fill out form */
     $this->setFieldById('BookIsbn', '978-0-470-12872-5');
 
