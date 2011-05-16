@@ -7,9 +7,17 @@ class UsersController extends AppController {
 	
 	
 	function index() {
-		debug($this->Session->read('uid'));
-		debug($this->Session->read('username'));
+//		debug($this->Session->read('uid'));
+//		debug($this->Session->read('username'));
 		//debug($this->$facebook_user);
+		$user_id = $this->Session->read('uid');
+		$user_name = $this->Session->read('username');
+		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
+		$count_num = $count[0][0][COUNT(*)];
+		debug($count_num);
+		/*if($count == 0){
+			echo "count == 0";
+			$this->User->query('INSERT INTO users(name, facebook_id) VALUES("' . $user_id . '";');*/
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
@@ -73,7 +81,6 @@ class UsersController extends AppController {
 	
 	
 	function example(){
-		debug($facebook_user);
 /*		$user = $facebook->getUser();
 		$user_id = $this->Session->get('uid')
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
