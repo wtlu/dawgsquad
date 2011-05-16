@@ -13,6 +13,7 @@
 	
 	# This is the view for the add books results page
 -->
+<head>
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
@@ -36,6 +37,7 @@ function sizeChangeCallback() {
 FB.Canvas.setSize();
 }
 </script>
+</head>
 
 <div class="top_progress_arrows">
 	<?php echo $this->Html->image('arrow_choose_book.png', array('alt' => 'book info')) ?>
