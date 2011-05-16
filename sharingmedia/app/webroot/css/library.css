@@ -53,10 +53,9 @@ ul ul{
 	border:2px solid black;
 	width: 614px;
 	padding:10px;
-	/*
+	
 	height: 550px;
 	overflow: scroll;
-	*/
 }
 #remove{
 	float:left;

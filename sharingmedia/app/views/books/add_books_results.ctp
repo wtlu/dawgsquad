@@ -17,6 +17,7 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
+<!--
 <script type="text/javascript">
 window.fbAsyncInit = function() {
 FB.Canvas.setSize();
@@ -26,6 +27,7 @@ function sizeChangeCallback() {
 FB.Canvas.setSize();
 }
 </script>
+-->
 </head>
 
 <body>
@@ -90,6 +92,7 @@ FB.Canvas.setSize();
 ?>
 </div>
 
+<!--
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <script>
@@ -100,6 +103,7 @@ cookie : true, // enable cookies to allow the server to access the session
 xfbml : true // parse XFBML
 });
 </script>
+-->
 </body>
 
 <?php

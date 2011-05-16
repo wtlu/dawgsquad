@@ -5,7 +5,7 @@
 	<title><?php echo $title_for_layout?></title>
 	<?php echo $scripts_for_layout ?>
 	<?php echo $this->Html->css('layout'); ?>
-	
+<!--
 	<script type="text/javascript">
 	window.fbAsyncInit = function() {
 	FB.Canvas.setSize();
@@ -15,6 +15,7 @@
 	FB.Canvas.setSize();
 	}
 	</script>
+-->
 </head>
 <body>
 	
@@ -41,6 +42,7 @@
 <?php echo $content_for_layout ?>
 <?php echo $this->Facebook->init(); ?>
 
+<!--
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <script>
@@ -51,5 +53,6 @@ cookie : true, // enable cookies to allow the server to access the session
 xfbml : true // parse XFBML
 });
 </script>
+-->
 </body>
 </html>
