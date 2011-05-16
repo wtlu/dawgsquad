@@ -40,9 +40,9 @@
 		<?php
 		
 		
-			if (!empty($offer_type)) {
+		
 				
-				if(!empty($loan_duration)){		
+			if(!empty($loan_duration)){		
 				echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
 			}
 			
@@ -53,10 +53,7 @@
 			if(!empty($trade_id)){		
 				echo '<strong> Willing to Trade for Another Book. </strong></br>';
 			}
-				
-			} else {
-				echo 'error';
-			}
+			
 		?>
 		</p>
 	</fieldset>
