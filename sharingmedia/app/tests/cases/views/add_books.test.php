@@ -49,6 +49,8 @@ class AddBooksTestCase extends CakeWebTestCase {
 
     /* make sure on results page */
     $this->assertEqual($this->getUrl(), $confirm_page);
+
+    /* TEST WHETHER BOOK IS STORED IN DATABASE? */
   }
 
 }
