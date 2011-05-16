@@ -15,7 +15,7 @@ File: /app/tests/cases/users_controller.test.php
 	/*extends controller*/
 	class TestUsers extends UsersController {
 		/*do not rendering from here automatically*/
-		var $autoRender = false;		
+		var $autoRender = true;		
 		
 		/* overwirte parent's redirect method if exits
 		 * let redirect direct to redirectURL
