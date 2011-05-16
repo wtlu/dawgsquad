@@ -25,12 +25,20 @@ class TransactionFixture extends CakeTestFixture {
 
   /* dummy test data */
   var $records = array(
+		       /* id == 1 : this one is pending */
 		       array ('id' => '1', 'owner_id' => '100', 'client_id' => '200',
 			      'book_id' => '10', 'current_id' => '100', 'trade_id' => null,
 			      'duration' => null, 'price' => '100.0', 'status' => '0',
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
-			      )
+			      ),
+		       /* id == 2 : this one is canceled */
+		       array ('id' => '2', 'owner_id' => '100', 'client_id' => '200',
+			      'book_id' => '10', 'current_id' => '100', 'trade_id' => null,
+			      'duration' => null, 'price' => '100.0', 'status' => '1',
+			      'created' => '2011-05-08 19:47:00',
+			      'modified' => '2011-05-08 19:47:30'
+			      ),
 		       );
 }
 ?>

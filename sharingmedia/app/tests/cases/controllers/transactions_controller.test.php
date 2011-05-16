@@ -17,9 +17,7 @@ class TransactionControllerTest extends CakeTestCase {
     echo '<hr />';
   }
 
-  /* tests whether acceptTransaction moves transaction to
-   * 'completed' state
-   */
+  /* tests moving transaction from pending to accepted */
   function testAcceptTransaction() {
 
     /**
@@ -33,6 +31,18 @@ class TransactionControllerTest extends CakeTestCase {
 
     /* make sure state changed */
     $this->assertEqual($result['accept_info']['transactions']['status'], '2');
+
+  }
+
+  /* tests moving transaction from pending to rejected */
+  function testRejectTransaction() {
+
+    /* accept the transaction */
+    $result = $this->testAction('/transactions/rejectTransaction/1',
+				array('return' => 'vars'));
+    
+    /* make sure state changed */
+    $this->assertEqual($result['accept_info']['transactions']['status'], '1');
 
   }
 
@@ -59,6 +69,19 @@ class TransactionControllerTest extends CakeTestCase {
 
   }
 
+  /* attempt to accept a transaction that has already been rejcected
+   * should fail / not allow */
+  function testAcceptTransactionRejected() {
+    
+    /* call method on transaction that has already been rejected */
+    $result = $this->testAction('/transactions/acceptTransaction/2',
+				array('return' => 'vars'));
+
+    /* test status still rejected (1) */
+    $this->assertEqual($result['counter_info']['transactions']['status'], '1');
+
+  }
+
   /* update transaction with different type
    * should fail / not allow
    */
@@ -81,5 +104,6 @@ class TransactionControllerTest extends CakeTestCase {
 		       $result['counter_info']['transactions']['owner_id']);
 
   }
+
 }
 ?>

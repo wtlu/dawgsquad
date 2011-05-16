@@ -37,7 +37,7 @@ class AddBooksTestCase extends CakeWebTestCase {
 
     /* now select a book (doesn't matter what one necessarily...) */
     $this->setFieldById('choose_book', 'selected');
-    $this->click('Continue');
+    $this->click('Add This Book');
 
     /* make sure on initial offer page */
     $this->assertEqual($this->getUrl(), $init_offer_page);
@@ -50,7 +50,6 @@ class AddBooksTestCase extends CakeWebTestCase {
     /* make sure on results page */
     $this->assertEqual($this->getUrl(), $confirm_page);
 
-    /* TEST WHETHER BOOK IS STORED IN DATABASE? */
   }
 
 }
