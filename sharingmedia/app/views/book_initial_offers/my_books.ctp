@@ -17,14 +17,14 @@
 
 
 <!-- File: /app/models/book_initial_offer.php -->
-<?php echo $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
+<?= $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 
 <h1>My Library</h1>
 <!--tabs of Library with links-->
 <div class="tabs" id="current">My Books</div>
-<?php echo $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'tabs', 'escape' => false)); ?>
-<?php echo $this->Html->link('My Loans',"/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?>
-<?php echo $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?>
+<?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'tabs', 'escape' => false)); ?>
+<?= $this->Html->link('My Loans',"/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?>
+<?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?>
 <div id="list">
 
 <?php		//loop to print out books		
@@ -34,15 +34,15 @@
 		<div class="book_unit">	
 			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
-				<li>Title: <?=$book_collection[$i]["books"]["title"]?></li>
-				<li>Author: <?=$book_collection[$i]["books"]["author"]?></li>
+				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
 				<?php 	//if loans not Null Print
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
 					<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
 				<?php } ?>
 				<?php 	//Print trades only if there are trades
-					$length = sizeof($trade_books[$i]);
-					if($length > 0){?>
+					if(!is_null($trade_books[$i])){
+					$length = sizeof($trade_books[$i]);?>
 					<li>Trade for:
 						<ul>
 							 <?php for($j=0; $j < $length; $j++){ ?>
@@ -56,8 +56,8 @@
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
 				<?php } ?>
 			</ul>
-			<?php echo $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"], array('class' => 'buttons', 'escape' => false)); ?>
-			<?php echo $this->Html->link('Change Offer',"/book_initial_offers/edit", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}

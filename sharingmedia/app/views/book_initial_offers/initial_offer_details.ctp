@@ -37,7 +37,9 @@
 
 <div style="width:300px; align:center;">
 
-	
+	<p>
+	Please select the intitial offer that will be listed in your library, for other users to consider when they want your book. You can specify a loan duration in days, a price in dollars, or the book_id of another book you'd like to trade for.
+	</p>
 
 	</br>
 	</br>

@@ -10,7 +10,11 @@ class UsersController extends AppController {
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
+		if(!$this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'example'));
+		}
 		
+/*
 		$facebook = new Facebook(array(
 		'appId'  => '218244414868504',
 		'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
@@ -56,7 +60,7 @@ class UsersController extends AppController {
 			
 			
 		}
-		
+*/		
 		//$this->Facebook->getLoginStatusUrl("http://apps.facebook.com/sharingmedia/", "http://apps.facebook.com/sharingmedia/users/login/", "http://apps.facebook.com/sharingmedia/users/login/");
 		//if (!$facebook->getSession()){
 		//	echo $this->redirect(array('controller'=>'users','action' => 'login'));	
@@ -66,10 +70,14 @@ class UsersController extends AppController {
 	
 	
 	function example(){
+		if($this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		}
+		
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
 		App::import('Vendor', 'facebook');
-		
+
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
@@ -77,16 +85,18 @@ class UsersController extends AppController {
 		));
 
 		$session = $facebook->getSession();
-		$loginUrl = $facebook->getLoginUrl();
+		//$loginUrl = $facebook->getLoginUrl();
+		//print_r($session);
+		//debug($loginUrl);
 		//print($loginUrl);
-		//$loginUrl=$facebook->getLoginUrl(array(
-		//	'canvas'=>1,
-		//	'fbconnect'=>0,
-		//	'display'=>'page',
-		//	'next'=>'http://apps.facebook.com/sharingmedai/',
-		//	'cancel_url'=>'http://www.facebook.com/',
+		$loginUrl=$facebook->getLoginUrl(array(
+			'canvas'=>1,
+			'fbconnect'=>0,
+			'display'=>'page',
+			'next'=>'http://apps.facebook.com/sharingmedia/',
+			'cancel_url'=>'http://www.facebook.com/'
 		//	'req_perms'=>'email,publish_stream',
-		//));
+		));
 		$me = null;
 
 		if ($session) {
