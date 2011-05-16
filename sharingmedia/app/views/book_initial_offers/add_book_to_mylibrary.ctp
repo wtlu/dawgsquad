@@ -38,10 +38,7 @@
 		<legend> Selected Offer Details </legend>
 		<p>
 		<?php
-		
-		
-		
-				
+
 			if(!empty($loan_duration)){		
 				echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
 			}
