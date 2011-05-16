@@ -5,7 +5,11 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	
 	
-	
+/*
+	Pre: Called to display the splash page index.ctp. A user must be logged in otherwise the page is redirected to login.ctp.
+	Post: If a user is new to the app, the user will be added to the users table.
+		The user will see the index page displaying a personal welcome message.
+*/	
 	function index() {
 
 		$user_id = $this->Session->read('uid');
@@ -19,12 +23,17 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Sharing Media');
 		
 		if(!$this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'example'));
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 	}
 	
-	
+/*
+	Pre: Called to display the login page login.ctp when a user hasn't logged into facebook yet.
+	Post: The user will be redirected to the index page after they login.
+		If they are new to the app, they will be asked to allow our app access to their facebook information.
+*/	
 	function login(){
+		
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
@@ -62,15 +71,14 @@ class UsersController extends AppController {
 		}
 
 	}
-	
-	function home(){
+
+/*
+	Pre: Called to display the coming soon page coming_soon.ctp.
+	Post: The user will be redirected to the coming soon page.
+*/		
+	function coming_soon(){
 		$this->layout = 'main_layout';
-		$this->set('title_for_layout', 'Sharing Media');
-	}
-	
-	function comming_soon(){
-		$this->layout = 'main_layout';
-		$this->set('title_for_layout', 'Comming Soon');
+		$this->set('title_for_layout', 'Coming Soon');
 	}
 
 }
