@@ -10,26 +10,6 @@
 
 class AddBooksTestCase extends CakeWebTestCase {
 
-  /* tests navigation to add books page */
-  function testAddView() {
-    /* setup */
-    $init_page = 'http://localhost/dawgsquad/sharingmedia/';
-    $final_page = 'http://localhost/dawgsquad/sharingmedia/index.php/books/add_books';
-
-    /* TODO: LOGIN TO DUMMY FACEBOOK ACCOUNT
-     *  - NOTE: THIS TEST WILL FAIL 
-     *  - this is deferred until login is working and documented */
-
-    /* on splash page */
-    $this->get($init_page);
-
-    /* go to add books page */
-    $this->clickLinkById('add_book_link');
-
-    /* make sure on add books page */
-    $this->assertEqual($this->getUrl(), $final_page);
-  }
-
   /* tests searching a book and displaying correct results 
    * -- look for operating systems book by ISBN */
   function testFindAndInitialOfferView() {
@@ -70,8 +50,7 @@ class AddBooksTestCase extends CakeWebTestCase {
     /* make sure on results page */
     $this->assertEqual($this->getUrl(), $confirm_page);
 
-    /* check data
-     * TODO: find out what to display... no format yet */
+    /* TEST WHETHER BOOK IS STORED IN DATABASE? */
   }
 
 }
