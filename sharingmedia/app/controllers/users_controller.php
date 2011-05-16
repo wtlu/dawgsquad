@@ -70,6 +70,14 @@ class UsersController extends AppController {
 	
 	
 	function example(){
+		print_r($facebook_user);
+/*		$user = $facebook->getUser();
+		$user_id = $this->Session->get('uid')
+		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
+		print_r($count);
+		if($count == 0){
+			echo "count == 0";
+			$this->User->query('INSERT INTO users(name, facebook_id) VALUES("' . $user_id . '";');*/
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
