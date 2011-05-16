@@ -41,7 +41,7 @@
 						<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
 				<?php } else {?>
 						<li>Loan Duration: Will not lend</li>
-				<?php
+				<?php }
 					if($book_collection[$i]["book_initial_offers"]["trade_id"]== 1){?>
 					<li>Trade: Will trade for another book</li>
 				<?php }else { ?>
