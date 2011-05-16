@@ -43,8 +43,6 @@
 	Please select the intitial offer that will be listed in your library, for other users to consider when they want your book. You can specify a loan duration in days, a price in dollars, or if you are willing to consider other books in trade.
 	</p>
 
-	</br>
-	</br>
 	
 	<?php echo $form->create('BookInitialOffer', array('action' => 'add_books_confirm', 'type'=>'post')); ?>
 		
