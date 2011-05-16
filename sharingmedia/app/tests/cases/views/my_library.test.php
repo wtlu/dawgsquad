@@ -11,6 +11,13 @@ class MyLibraryTestCase extends CakeWebTestCase {
   /* tests presence of layout for content */
   function testLayoutForContent() {
 
+    /* intro message
+     * TODO: move this somewhere more appropriate*/
+    echo '<p style="border: 1px solid black; background-color: yellow; margin: 10pt; font-size: 14pt;">This tests the use case of a user navigating through and viewing the "My Library" module.</p>';
+
+    /* test title */
+    echo '<h2 style="color: black;">TestLayoutForContent...</h2>';
+
     //--------------------------------------------------
     // SETUP
     //--------------------------------------------------
@@ -30,7 +37,7 @@ class MyLibraryTestCase extends CakeWebTestCase {
     // MY BOOKS
     //--------------------------------------------------
 
-    /* start on my_books page */
+    /* go to my_books page */
     $this->get($my_books_page);
     $this->assertEqual($this->getUrl(), $my_books_page);
 
@@ -51,7 +58,7 @@ class MyLibraryTestCase extends CakeWebTestCase {
     //--------------------------------------------------
 
     /* go to the transactions page */
-    $this->click('My Transactions');
+    $this->get($my_transactions_page);
     $this->assertEqual($this->getUrl(), $my_transactions_page);
 
     /* check all the tab links */
@@ -70,7 +77,7 @@ class MyLibraryTestCase extends CakeWebTestCase {
     //--------------------------------------------------
 
     /* go to the loans page */
-    $this->click('My Loans');
+    $this->get($my_loans_page);
     $this->assertEqual($this->getUrl(), $my_loans_page);
 
     /* check all the tab links */
@@ -83,6 +90,79 @@ class MyLibraryTestCase extends CakeWebTestCase {
 
     /* check if there's a list of loans */
     $this->assertPattern('/<ul class="loans_list">([\s\S])*<li>.*<\/li>([\s\S])*<\/ul>/');
+
+  }
+
+  function testNavigation() {
+
+    /* test title */
+    echo '<h2 style="color: black;">TestNavigation...</h2>';
+
+    //--------------------------------------------------
+    // SETUP
+    //--------------------------------------------------
+
+    /* get the application url */
+    $this->baseurl = current(split("webroot", $_SERVER['PHP_SELF']));
+
+    /* cut off the 'app' suffix and add that stupid 'index.php' thing */
+    $this->baseurl = substr($this->baseurl, 0, strrpos($this->baseurl, "app")) . 'index.php/';
+
+    /* all the pages we're concerned about */
+    $my_books_page		= 'http://localhost' . $this->baseurl . 'book_initial_offers/my_books';
+    $my_transactions_page	= 'http://localhost' . $this->baseurl . 'transactions/my_transactions';
+    $my_loans_page		= 'http://localhost' . $this->baseurl . 'loans/my_loans';
+
+    //--------------------------------------------------
+    // MY BOOKS
+    //--------------------------------------------------
+
+    /* start at my books page */
+    $this->get($my_books_page);
+    $this->assertEqual($this->getUrl(), $my_books_page);
+
+    /* try each link, going back each time */
+    $this->click("My Transactions");
+    $this->assertEqual($this->getUrl(), $my_transactions_page);
+    $this->back();
+
+    $this->click("My Loans");
+    $this->assertEqual($this->getUrl(), $my_loans_page);
+    $this->back();
+
+    //--------------------------------------------------
+    // MY TRANSACTIONS
+    //--------------------------------------------------
+
+    /* start at my transactions page */
+    $this->get($my_transactions_page);
+    $this->assertEqual($this->getUrl(), $my_transactions_page);
+
+    /* try each link, going back each time */
+    $this->click("My Books");
+    $this->assertEqual($this->getUrl(), $my_books_page);
+    $this->back();
+
+    $this->click("My Loans");
+    $this->assertEqual($this->getUrl(), $my_loans_page);
+    $this->back();
+
+    //--------------------------------------------------
+    // MY LOANS
+    //--------------------------------------------------
+
+    /* start at my loans page */
+    $this->get($my_loans_page);
+    $this->assertEqual($this->getUrl(), $my_loans_page);
+
+    /* try each link, going back each time */
+    $this->click("My Books");
+    $this->assertEqual($this->getUrl(), $my_books_page);
+    $this->back();
+
+    $this->click("My Transactions");
+    $this->assertEqual($this->getUrl(), $my_transactions_page);
+    $this->back();
 
   }
 
