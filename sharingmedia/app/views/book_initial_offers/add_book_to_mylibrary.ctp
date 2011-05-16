@@ -38,19 +38,21 @@
 		<legend> Selected Offer Details </legend>
 		<p>
 		<?php
+		
+		
 			if (!empty($offer_type)) {
 				
-				switch ($offer_type) {
-						case 'loan':
-							echo '<strong> Loan for ' . $offer_value .' days. </strong>';
-							break;
-						case 'sell':
-							echo '<strong> For Sale at $' . $offer_value .'</strong>';
-							break;
-						case 'trade':
-							echo '<strong> Trade for ' . $offer_value .' </strong>';
-							break;
-					}
+				if(!empty($loan_duration)){		
+				echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
+			}
+			
+			if(!empty($sell_price)){		
+				echo '<strong> For Sale at $' . $sell_price .'</strong></br>';
+			}
+			
+			if(!empty($trade_id)){		
+				echo '<strong> Willing to Trade for Another Book. </strong></br>';
+			}
 				
 			} else {
 				echo 'error';
