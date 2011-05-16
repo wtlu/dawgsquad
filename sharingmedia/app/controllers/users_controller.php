@@ -7,7 +7,8 @@ class UsersController extends AppController {
 	
 	
 	function index() {
-		debug($facebook_user);
+		debug($this->Session);
+		debug($this->$facebook_user);
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
