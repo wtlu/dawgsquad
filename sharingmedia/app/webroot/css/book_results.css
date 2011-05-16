@@ -1,6 +1,8 @@
 .results_display {
+	
 	height: 550px;
 	overflow: scroll;
+	
 }
 
 .book_results_display {
