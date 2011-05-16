@@ -40,12 +40,12 @@ FB.Canvas.setSize();
 	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
 	</FORM>
 <?php
-	if ($index > 10) {
+	if ($index > 5) {
 		echo $this->Form->create(array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
 		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
-		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index - 10));
+		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index - 5));
 		echo $this->Form->end('Previous results');
 	}
 	
@@ -73,12 +73,12 @@ FB.Canvas.setSize();
 	?>
 	<hr>
 	<?php
-	if (count($google_books_results) > 9) {
+	if (count($google_books_results) > 4) {
 		echo $this->Form->create(array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
 		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
-		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index + 10));
+		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index + 5));
 		echo $this->Form->end('More results');
 	}
 	?>

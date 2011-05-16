@@ -106,7 +106,7 @@ class BooksController extends AppController {
 			$book_author = str_replace(" ", "+inauthor:", $book_author);
 			$search_string = $search_string . '+inauthor:' . $book_author;
 		}
-		$search_string = $search_string . '&start-index=' . $index . '&max-results=10';
+		$search_string = $search_string . '&start-index=' . $index . '&max-results=5';
 
 		#these are the book results returned by google book search
 		$google_results = $this->query_google($search_string);
