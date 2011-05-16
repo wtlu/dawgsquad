@@ -1,6 +1,8 @@
 <?php
 class TransactionControllerTest extends CakeTestCase {
 
+  var $fixtures = array('app.transaction');
+
   function startCase() {
     echo '<h1>Starting Test Case</h1>';
   }
@@ -30,19 +32,19 @@ class TransactionControllerTest extends CakeTestCase {
 				array('return' => 'vars'));
 
     /* make sure state changed */
-    $this->assertEqual($result['accept_info']['transactions']['status'], '2');
+    $this->assertEqual($result['transaction_info']['transactions']['status'], '2');
 
   }
 
   /* tests moving transaction from pending to rejected */
   function testRejectTransaction() {
 
-    /* accept the transaction */
+    /* reject the transaction */
     $result = $this->testAction('/transactions/rejectTransaction/1',
 				array('return' => 'vars'));
-    
+
     /* make sure state changed */
-    $this->assertEqual($result['accept_info']['transactions']['status'], '1');
+    $this->assertEqual($result['transaction_info']['transactions']['status'], '1');
 
   }
 
@@ -56,16 +58,16 @@ class TransactionControllerTest extends CakeTestCase {
 				array('return' => 'vars'));
 
     /* ensure mutual exclusivity */
-    $this->assertEqual($result['counter_info']['transactions']['trade_id'], null);
-    $this->assertEqual($result['counter_info']['transactions']['duration'], null);
-    $this->assertEqual($result['counter_info']['transactions']['price'], 50.0);
+    $this->assertEqual($result['transaction_info']['transactions']['trade_id'], null);
+    $this->assertEqual($result['transaction_info']['transactions']['duration'], null);
+    $this->assertEqual($result['transaction_info']['transactions']['price'], 50.0);
 
     /* test status still pending (0) */
-    $this->assertEqual($result['counter_info']['transactions']['status'], 0);
+    $this->assertEqual($result['transaction_info']['transactions']['status'], 0);
 
     /* test current_id shifted (was initially owner and now is client who made offer) */
-    $this->assertEqual($result['counter_info']['transactions']['client_id'], 
-		       $result['counter_info']['transactions']['current_id']);
+    $this->assertEqual($result['transaction_info']['transactions']['client_id'], 
+		       $result['transaction_info']['transactions']['current_id']);
 
   }
 
@@ -77,8 +79,11 @@ class TransactionControllerTest extends CakeTestCase {
     $result = $this->testAction('/transactions/acceptTransaction/2',
 				array('return' => 'vars'));
 
+    /* PROBABLY SHOULD BE AN ERROR MESSAGE...
+     * TEST FOR THAT IF IT IS IMPLEMENTED */
+
     /* test status still rejected (1) */
-    $this->assertEqual($result['counter_info']['transactions']['status'], '1');
+    $this->assertEqual($result['transaction_info']['transactions']['status'], '1');
 
   }
 
@@ -91,17 +96,19 @@ class TransactionControllerTest extends CakeTestCase {
     $result = $this->testAction('/transactions/counterTransaction/1/duration/100',
 				array('return' => 'vars'));
 
+
+
     /* ensure trade detail fields have not changed */
-    $this->assertEqual($result['counter_info']['transactions']['trade_id'], null);
-    $this->assertEqual($result['counter_info']['transactions']['duration'], null);
-    $this->assertEqual($result['counter_info']['transactions']['price'], 100.0);
+    $this->assertEqual($result['transaction_info']['transactions']['trade_id'], null);
+    $this->assertEqual($result['transaction_info']['transactions']['duration'], null);
+    $this->assertEqual($result['transaction_info']['transactions']['price'], 100.0);
 
     /* test status still pending (0) */
-    $this->assertEqual($result['counter_info']['transactions']['status'], 0);
+    $this->assertEqual($result['transaction_info']['transactions']['status'], 0);
 
     /* test current_id not shifted because offer was invalid */
-    $this->assertEqual($result['counter_info']['transactions']['client_id'], 
-		       $result['counter_info']['transactions']['owner_id']);
+    $this->assertEqual($result['transaction_info']['transactions']['client_id'], 
+		       $result['transaction_info']['transactions']['owner_id']);
 
   }
 
