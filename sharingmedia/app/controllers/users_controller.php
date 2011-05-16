@@ -13,7 +13,8 @@ class UsersController extends AppController {
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
-		debug($count);
+		$count_num = $count[0][0][COUNT(*)];
+		debug($count_num);
 		/*if($count == 0){
 			echo "count == 0";
 			$this->User->query('INSERT INTO users(name, facebook_id) VALUES("' . $user_id . '";');*/
