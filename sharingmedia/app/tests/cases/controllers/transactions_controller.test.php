@@ -40,7 +40,7 @@ class TransactionControllerTest extends CakeTestCase {
     /* accept the transaction */
     $result = $this->testAction('/transactions/rejectTransaction/1',
 				array('return' => 'vars'));
-
+    
     /* make sure state changed */
     $this->assertEqual($result['accept_info']['transactions']['status'], '1');
 
@@ -78,7 +78,7 @@ class TransactionControllerTest extends CakeTestCase {
 				array('return' => 'vars'));
 
     /* test status still rejected (1) */
-    $this->assertEqual($result['counter_info']['transactions']['status'], 1);
+    $this->assertEqual($result['counter_info']['transactions']['status'], '1');
 
   }
 
@@ -104,7 +104,6 @@ class TransactionControllerTest extends CakeTestCase {
 		       $result['counter_info']['transactions']['owner_id']);
 
   }
-
 
 }
 ?>
