@@ -43,9 +43,9 @@
 						<li>Loan Duration: Will not lend</li>
 				<?php }
 					if($book_collection[$i]["book_initial_offers"]["trade_id"]== 1){?>
-					<li>Trade: Will trade for another book</li>
+					<li>Trade: Willing to trade</li>
 				<?php }else { ?>
-					<li>Trade: Will not trade for another book</li>
+					<li>Trade: Not willing to trade</li>
 				<?php }	//if selling print price
 					if(!is_null($book_collection[$i]["book_initial_offers"]["price"])){ ?>
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
