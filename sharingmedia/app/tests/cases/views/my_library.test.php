@@ -11,6 +11,10 @@ class MyLibraryTestCase extends CakeWebTestCase {
   /* tests presence of layout for content */
   function testLayoutForContent() {
 
+    //--------------------------------------------------
+    // SETUP
+    //--------------------------------------------------
+
     /* get the application url */
     $this->baseurl = current(split("webroot", $_SERVER['PHP_SELF']));
 
@@ -18,9 +22,9 @@ class MyLibraryTestCase extends CakeWebTestCase {
     $this->baseurl = substr($this->baseurl, 0, strrpos($this->baseurl, "app")) . 'index.php/';
 
     /* all the pages we're concerned about */
-    $my_books_page	= 'http://localhost' . $this->baseurl . 'book_initial_offers/my_books';
-    $my_transactions_page	= 'http://localhost' . $this->baseurl . 'transactions/my_books';
-    $my_loans_page	= 'http://localhost' . $this->baseurl . 'loans/my_loans';
+    $my_books_page		= 'http://localhost' . $this->baseurl . 'book_initial_offers/my_books';
+    $my_transactions_page	= 'http://localhost' . $this->baseurl . 'transactions/my_transactions';
+    $my_loans_page		= 'http://localhost' . $this->baseurl . 'loans/my_loans';
 
     //--------------------------------------------------
     // MY BOOKS
@@ -35,7 +39,12 @@ class MyLibraryTestCase extends CakeWebTestCase {
     $this->assertLink('My Transactions');
     $this->assertLink('My Loans');
 
-    /* TODO: CHECK THE CONTENT ON MY BOOKS */
+    /* check if there's a book pane */
+    $this->assertPattern('/<div class="book_unit">([\s\S])*<\/div>/');
+
+    /* check if there's a list of books */
+    $this->assertPattern('/<ul class="books_list">([\s\S])*<li>.*<\/li>([\s\S])*<\/ul>/');
+    
 
     //--------------------------------------------------
     // MY TRANSACTIONS
@@ -50,7 +59,11 @@ class MyLibraryTestCase extends CakeWebTestCase {
     /* on My Transactions... no link */
     $this->assertLink('My Loans');
 
-    /* TODO: CHECK THE CONTENT ON MY TRANSACTIONS */
+    /* check if there's a transaction pane */
+    $this->assertPattern('/<div class="transaction_unit">([\s\S])*<\/div>/');
+
+    /* check if there's a list of transactions */
+    $this->assertPattern('/<ul class="transactions_list">([\s\S])*<li>.*<\/li>([\s\S])*<\/ul>/');
 
     //--------------------------------------------------
     // MY LOANS
@@ -65,7 +78,11 @@ class MyLibraryTestCase extends CakeWebTestCase {
     $this->assertLink('My Transactions');
     /* on My Loans... no link */
 
-    /* TODO: CHECK THE CONTENT ON MY LOANS */
+    /* check if there's a loan pane */
+    $this->assertPattern('/<div class="loan_unit">([\s\S])*<\/div>/');
+
+    /* check if there's a list of loans */
+    $this->assertPattern('/<ul class="loans_list">([\s\S])*<li>.*<\/li>([\s\S])*<\/ul>/');
 
   }
 
