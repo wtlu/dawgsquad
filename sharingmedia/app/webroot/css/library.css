@@ -1,0 +1,62 @@
+html { 
+	width: 760px;
+}
+
+#content h1 {
+    clear: both;
+    color: black;
+    font-size: 24pt;
+}
+
+#content h2 {
+    color: black;
+    font-size: 14pt;
+}
+.book_img{
+        height: 100px;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px
+}
+.books_list{
+	height:140px;
+}
+.book_unit{
+	width:610px;
+	overflow: hidden;
+	border-bottom: 2px solid black;
+	margin-bottom:10px;
+}
+
+ul ul{
+	margin-left:75px;
+}
+.buttons{
+	float:right;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.tabs{
+	float:left;
+	border:2px solid black;
+        margin-right:5px;
+}
+#current{
+	background-color:gray;
+}
+#add{
+	float:right;
+	border:2px solid black;
+}
+#list{
+	float:left;
+	border:2px solid black;
+	width: 614px;
+	padding:10px;
+}
+#remove{
+	float:left;
+}
+#cancel{
+	float:right;
+}
