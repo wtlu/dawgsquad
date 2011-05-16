@@ -41,7 +41,7 @@ echo "$mysql_root_user password is root"
 echo "Setting up db user..."
 mysql -u $mysql_root_user -p < ./user_setup.sql
 echo "Setting up db tables..."
-mysql -u $mysql_root_user -p mys< ./media_db_setup.sql
+mysql -u $mysql_root_user -p < ./media_db_setup.sql
 
 # clone the repository to /var/www/html
 yum install mercurial
@@ -51,6 +51,7 @@ hg clone https://dawgsquad.googlecode.com/hg/ dawgsquad
 # set correct ownership on tmp folder
 cd dawgsquad/sharingmedia
 chown -R `whoami` app/tmp
+chmod -R 777 app/tmp
 
 # restart apache
 /etc/init.d/httpd restart
