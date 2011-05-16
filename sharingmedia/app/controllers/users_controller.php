@@ -16,9 +16,9 @@ class UsersController extends AppController {
 		debug($count);
 		$count_num = $count[0][0]['COUNT(*)'];
 		debug($count_num);
-		/*if($count == 0){
-			echo "count == 0";
-			$this->User->query('INSERT INTO users(name, facebook_id) VALUES("' . $user_id . '";');*/
+		if($count_num == 0){
+			$this->User->query('INSERT INTO users(name, password, facebook_id, created) VALUES("' . $user_name . '", null, "' . $user_id . '", NOW());');
+		}
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
 		
