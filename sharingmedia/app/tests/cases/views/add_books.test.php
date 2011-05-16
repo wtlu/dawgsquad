@@ -14,6 +14,10 @@ class AddBooksTestCase extends CakeWebTestCase {
    * -- look for operating systems book by ISBN */
   function testFindAndInitialOfferView() {
 
+    /* intro message
+     * TODO: move this somewhere more appropriate*/
+    echo '<p style="border: 1px solid black; background-color: yellow; margin: 10pt; font-size: 14pt;">This tests the use case of a user adding a book to his or her library.</p>';
+
     /* get the application url */
     $this->baseurl = current(split("webroot", $_SERVER['PHP_SELF']));
 
