@@ -25,7 +25,5 @@
 <div id="list">
 	<h2>Comming Soon</h2>
 </div>
-<?php
-        }
-?>
+     
 
