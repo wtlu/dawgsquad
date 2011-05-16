@@ -34,14 +34,15 @@ yum install php php-mysql
 export PATH=$PATH:/var/www/html/dawgsquad/sharingmedia/cake/console
 
 # set up database using scripts
-mysqladmin password "root"
-echo "Enter mysql root user: "
-read mysql_root_user
-echo "$mysql_root_user password is root"
+
+#echo "Enter mysql root user: "
+#read mysql_root_user
+#echo "$mysql_root_user password is root"
 echo "Setting up db user..."
-mysql -u $mysql_root_user -p < ./user_setup.sql
+mysql -u root -p < ./user_setup.sql
 echo "Setting up db tables..."
-mysql -u $mysql_root_user -p < ./media_db_setup.sql
+mysql -u root -p < ./media_db_setup.sql
+mysqladmin password "root"
 
 # clone the repository to /var/www/html
 yum install mercurial
