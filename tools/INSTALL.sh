@@ -39,9 +39,9 @@ export PATH=$PATH:/var/www/html/dawgsquad/sharingmedia/cake/console
 #read mysql_root_user
 #echo "$mysql_root_user password is root"
 echo "Setting up db user..."
-mysql -u root -p < ./user_setup.sql
+mysql -u root < ./user_setup.sql
 echo "Setting up db tables..."
-mysql -u root -p < ./media_db_setup.sql
+mysql -u root < ./media_db_setup.sql
 mysqladmin password "root"
 
 # clone the repository to /var/www/html
