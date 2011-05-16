@@ -13,6 +13,7 @@ File: /app/controllers/books_controller.php
 	5/12/2011 - John Wang - Find book results now works for the most part
 	5/13/2011 - John Wang - Commented some more code. Changed add books search to no longer search our db
 	5/14/2011 - John Wang - Fixed find books search process. More comments
+	5/15/2011 - John Wang - Added multiple pages of search results
 -->
 <?php
 class BooksController extends AppController {

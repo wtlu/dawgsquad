@@ -90,8 +90,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					}
 					if (!empty($trade_book)) {
 					?>
-					<strong>Willing to trade for:</strong> <i><?= $trade_title ?></i>
-						by <?= $trade_author ?>
+					<strong>Willing to consider a trade.</strong>
 					<?php
 					}
 					?>
