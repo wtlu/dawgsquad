@@ -24,7 +24,7 @@ class UsersController extends AppController {
 	}
 	
 	
-	function example(){
+	function login(){
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
