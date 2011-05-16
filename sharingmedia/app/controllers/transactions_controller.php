@@ -25,7 +25,7 @@ class TransactionsController extends AppController {
     /* do all the update stuff */
 
     /* post info to view for updating / test */
-    $this->set('accept_info', $t[0]);
+    $this->set('transaction_info', $t[0]);
 
   }
 
@@ -40,14 +40,20 @@ class TransactionsController extends AppController {
     /* do all the update stuff */
 
     /* post info to view for updating / test */
-    $this->set('counter_info', $t[0]);
+    $this->set('transaction_info', $t[0]);
   }
 
   /* changes state of transaction to rejected
    * pre: transaction is pending
    * post: transaction is rejected */
   function rejectTransaction($tid) {
+    /* get the transaction */
+    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
 
+    /* do all the update stuff */
+
+    /* post info to view for updating / test */
+    $this->set('transaction_info', $t[0]);
   }
 
   function accept_transaction() {
