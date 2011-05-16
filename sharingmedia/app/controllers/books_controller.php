@@ -49,6 +49,7 @@ class BooksController extends AppController {
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
+			/*
 			# look to see if the book result has a trade, and then find the book associated with the trade
 			foreach ($book_results as &$b_r) {
 				$book_trade_result = array();
@@ -58,6 +59,7 @@ class BooksController extends AppController {
 					$b_r = array_merge($b_r, $book_trade_result[0]);
 				}
 			}
+			*/
 		}
 		$this->set('book_results', $book_results);
 	}

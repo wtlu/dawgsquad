@@ -74,10 +74,13 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					<?php
 						$price = $b_i_o_result['price'];
 						$duration = $b_i_o_result['duration'];
+						$allow_trade = $b_i_o_result['trade_id'];
+						/*
 						if (!empty($trade_book)) {
 							$trade_title = $trade_book['title'];
 							$trade_author = $trade_book['author'];
 						}
+						*/
 					if (!empty($price)) {
 					?>
 					<strong>Price: $</strong><?= $price ?> <br />
@@ -88,7 +91,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					<strong>Loan Duration:</strong> <?= $duration ?> days<br />
 					<?php
 					}
-					if (!empty($trade_book)) {
+					if ($allow_trade == 1) {
 					?>
 					<strong>Willing to consider a trade.</strong>
 					<?php
