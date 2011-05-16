@@ -24,10 +24,10 @@ fi
 /sbin/chkconfig httpd on
 /sbin/service httpd start
 system-config-firewall-tui
-yum install mysql mysql-server
+yum -y install mysql mysql-server
 /sbin/chkconfig  mysqld on
 /sbin/service mysqld start
-yum install php php-mysql
+yum -y install php php-mysql
 /sbin/service httpd restart
 
 # add cake executable to the path
@@ -45,7 +45,7 @@ mysql -u root < ./media_db_setup.sql
 mysqladmin password "root"
 
 # clone the repository to /var/www/html
-yum install mercurial
+yum -y install mercurial
 cd /var/www/html
 hg clone https://dawgsquad.googlecode.com/hg/ dawgsquad
 
