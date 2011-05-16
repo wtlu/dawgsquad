@@ -5,6 +5,17 @@
 	<title><?php echo $title_for_layout?></title>
 	<?php echo $scripts_for_layout ?>
 	<?php echo $this->Html->css('layout'); ?>
+<!--
+	<script type="text/javascript">
+	window.fbAsyncInit = function() {
+	FB.Canvas.setSize();
+	}
+	// Do things that will sometimes call sizeChangeCallback()
+	function sizeChangeCallback() {
+	FB.Canvas.setSize();
+	}
+	</script>
+-->
 </head>
 <body>
 	
@@ -15,7 +26,7 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p><?php echo $this->Html->link('Account', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/comming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); ?>
+  			<p><?php echo $this->Html->link('Account', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); ?>
   			</p>
 		</div>
 	</div>
@@ -30,5 +41,18 @@
 	</div>
 <?php echo $content_for_layout ?>
 <?php echo $this->Facebook->init(); ?>
+
+<!--
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId : '218244414868504',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml : true // parse XFBML
+});
+</script>
+-->
 </body>
 </html>
