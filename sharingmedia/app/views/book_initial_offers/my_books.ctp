@@ -38,23 +38,20 @@
 				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
 				<?php 	//if loans not Null Print
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
-					<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
-				<?php } ?>
-				<?php 	//Print trades only if there are trades
-					if(!is_null($trade_books[$i])){
-					$length = sizeof($trade_books[$i]);?>
-					<li>Trade for:
-						<ul>
-							 <?php for($j=0; $j < $length; $j++){ ?>
-								<li><?=$trade_books[$i][$j]["books"]["title"]?></li>
-						<?php } ?>
-						</ul> 
-					</li>
-				<?php } ?>
-				<?php 	//if selling print price
+						<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
+				<?php } else {?>
+						<li>Loan Duration: Will not lend</li>
+				<?php
+					if(book_collection[$i]["book_initial_offers"]["trade_id"]== 1){?>
+					<li>Trade: Will trade for another book</li>
+				<?php }else { ?>
+					<li>Trade: Will not trade for another book</li>
+				<?php }	//if selling print price
 					if(!is_null($book_collection[$i]["book_initial_offers"]["price"])){ ?>
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
-				<?php } ?>
+				<?php } else{?>
+						<li>Price: Not for sale</li>
+				<?php }?>
 			</ul>
 			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit", array('class' => 'buttons', 'escape' => false)); ?>
