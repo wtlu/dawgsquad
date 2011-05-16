@@ -17,17 +17,6 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
-FB.init({
-appId : '218244414868504',
-status : true, // check login status
-cookie : true, // enable cookies to allow the server to access the session
-xfbml : true // parse XFBML
-});
-</script>
-
 <script type="text/javascript">
 window.fbAsyncInit = function() {
 FB.Canvas.setSize();
@@ -38,6 +27,8 @@ FB.Canvas.setSize();
 }
 </script>
 </head>
+
+<body>
 
 <div class="top_progress_arrows">
 	<?php echo $this->Html->image('arrow_choose_book.png', array('alt' => 'book info')) ?>
@@ -82,7 +73,7 @@ FB.Canvas.setSize();
 	?>
 	<hr>
 	<?php
-	if (count($google_books_results) > 10) {
+	if (count($google_books_results) > 9) {
 		echo $this->Form->create(array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
@@ -98,6 +89,18 @@ FB.Canvas.setSize();
 	<?php
 ?>
 </div>
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId : '218244414868504',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml : true // parse XFBML
+});
+</script>
+</body>
 
 <?php
 # helper function to display book results

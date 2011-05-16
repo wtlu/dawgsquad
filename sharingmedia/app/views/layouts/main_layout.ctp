@@ -6,17 +6,6 @@
 	<?php echo $scripts_for_layout ?>
 	<?php echo $this->Html->css('layout'); ?>
 	
-	<div id="fb-root"></div>
-	<script src="http://connect.facebook.net/en_US/all.js"></script>
-	<script>
-	FB.init({
-	appId : '218244414868504',
-	status : true, // check login status
-	cookie : true, // enable cookies to allow the server to access the session
-	xfbml : true // parse XFBML
-	});
-	</script>
-	
 	<script type="text/javascript">
 	window.fbAsyncInit = function() {
 	FB.Canvas.setSize();
@@ -51,5 +40,16 @@
 	</div>
 <?php echo $content_for_layout ?>
 <?php echo $this->Facebook->init(); ?>
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId : '218244414868504',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml : true // parse XFBML
+});
+</script>
 </body>
 </html>
