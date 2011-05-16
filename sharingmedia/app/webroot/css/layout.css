@@ -1,11 +1,11 @@
 html { 
 	width: 760px;
-	height: 100%;
+	/* height: 100%; */
 }
 
 body {
 	margin: 0px;
-	height: 100%;
+	/* height: 100%; */
 }
 
 #top_bar_logo {
@@ -33,7 +33,8 @@ body {
 
 #side_bar {
 	padding-top: 100px;
-	height: 100%;
+	/* height: 100%; */
+	height: 1000px;
 	width: 100px;
 	float: left;
 	background-color: #87cefa;
