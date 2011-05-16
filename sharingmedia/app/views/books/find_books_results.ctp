@@ -1,6 +1,5 @@
-<!-- File: /app/views/books/find_books_results.ctp -->
+<!-- File: /app/views/books/find_books_results.ctp
 
-<!--
 	Created: 5/10/2011
 	Author: John Wang
 	
@@ -8,8 +7,8 @@
 	5/10/2011 - John Wang - Created page. Copied relevant code from add books results
 	5/11/2011 - John Wang - Changed results formatting some more
 	5/13/2011 - John Wang - Added a back button
+	5/14/2011 - John Wang - Added comments
 	
-	<?php echo $this->Html->css('main'); ?>
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
@@ -17,10 +16,13 @@
 <h2>Results:</h2>
 
 <div class = "results_display">
+	<FORM METHOD="LINK" ACTION="find_books">
+	<INPUT TYPE="submit" VALUE="Go Back">
+	</FORM>
 <?php
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){
-			echo $form->create('Transactions', array('action' => 'accept_transaction', 'type'=>'post'));
+			echo $form->create('Users', array('action' => 'comming_soon', 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
 			$b_i_o_result = $book['b_i_o'];
@@ -43,14 +45,11 @@
 </div>
 
 <?php
-#functions
 
+# helper function to display find book results using the results array passed from books controller
 function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 	?>
 	<div class="book_results_display">
-		<!--
-		<input class="radio_button" name="data[Book][book_type]" id="choose_book" value="<?php echo $chosen ?>" type="radio" style="width:30px; float:left;">
-		-->
 		<label for="choose_book">
 			<?php
 				$title = $result['title'];
@@ -59,43 +58,43 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 				$image = $result['image'];
 				$summary = $result['summary'];
 			?>
-			<img src=<?php echo $image ?> alt="Book image" />
-		<div class = "book_results_text">
-				<strong>Title:</strong>	<?php echo $title ?> <br />
-				<strong>Author(s):</strong> <?php echo $author ?> <br />
-				<strong>Summary:</strong> <?php echo $summary ?> <br />
-				<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
-			<h3> Owner </h3>
-				<?php
-					$name = $user_result['name'];
-				?>
-				<strong>Name:</strong>	<?php echo $name ?> <br />
-			<h3> Offer Details </h3>
-				<?php
-					$price = $b_i_o_result['price'];
-					$duration = $b_i_o_result['duration'];
-					if (!empty($trade_book)) {
-						$trade_title = $trade_book['title'];
-						$trade_author = $trade_book['author'];
+			<img src=<?= $image ?> alt="Book image" />
+			<div class = "book_results_text">
+					<strong>Title:</strong>	<?= $title ?> <br />
+					<strong>Author(s):</strong> <?= $author ?> <br />
+					<strong>Summary:</strong> <?= $summary ?> <br />
+					<strong>ISBN:</strong> <?= $ISBN ?> <br />
+				<h3> Owner </h3>
+					<?php
+						$name = $user_result['name'];
+					?>
+					<strong>Name:</strong>	<?= $name ?> <br />
+				<h3> Offer Details </h3>
+					<?php
+						$price = $b_i_o_result['price'];
+						$duration = $b_i_o_result['duration'];
+						if (!empty($trade_book)) {
+							$trade_title = $trade_book['title'];
+							$trade_author = $trade_book['author'];
+						}
+					if (!empty($price)) {
+					?>
+					<strong>Price: $</strong><?= $price ?> <br />
+					<?php
 					}
-				if (!empty($price)) {
-				?>
-				<strong>Price: $</strong><?php echo $price ?> <br />
-				<?php
-				}
-				if (!empty($duration)) {
-				?>
-				<strong>Loan Duration:</strong> <?php echo $duration ?> days<br />
-				<?php
-				}
-				if (!empty($trade_book)) {
-				?>
-				<strong>Willing to trade for:</strong> <i><?php echo $trade_title ?></i>
-					by <?php echo $trade_author ?>
-				<?php
-				}
-				?>
-		</div>
+					if (!empty($duration)) {
+					?>
+					<strong>Loan Duration:</strong> <?= $duration ?> days<br />
+					<?php
+					}
+					if (!empty($trade_book)) {
+					?>
+					<strong>Willing to trade for:</strong> <i><?= $trade_title ?></i>
+						by <?= $trade_author ?>
+					<?php
+					}
+					?>
+			</div>
 		</label>
 	</div>
 	<?php
