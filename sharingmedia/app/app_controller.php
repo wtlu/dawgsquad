@@ -51,7 +51,7 @@ class AppController extends Controller {
 		
 		
 		
-//		$this->Session->write('username', $this->Connect->user('name'));	
+		$this->Session->write('username', $this->Connect->user('name'));	
 	}
 	
 //	function isAuthorized(){
