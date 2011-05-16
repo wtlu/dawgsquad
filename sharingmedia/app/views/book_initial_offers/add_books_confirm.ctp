@@ -11,6 +11,10 @@
 
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
+<div class="top_progress_arrows">
+	<?php echo $this->Html->image('arrow_confirm_select.png', array('alt' => 'book info')) ?>
+</div>
+
 <div>
 
 	<h2> Confirm Selection </h2>

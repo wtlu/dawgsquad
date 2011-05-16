@@ -125,3 +125,8 @@ ul ul{
 a img{
 	border-style: none;	
 }
+
+.top_progress_arrows {
+	margin-top: 10px;
+	text-align: center;
+}

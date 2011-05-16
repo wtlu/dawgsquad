@@ -11,6 +11,10 @@ File: /app/views/add_books.ctp
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
+<div class="top_progress_arrows">
+	<?php echo $this->Html->image('arrow_book_info.png', array('alt' => 'book info')) ?>
+</div>
+
 <div class = "book_search_form">
 
 	<div id = "top">
