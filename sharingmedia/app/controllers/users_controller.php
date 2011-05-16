@@ -70,7 +70,7 @@ class UsersController extends AppController {
 	
 	
 	function example(){
-		print_r($facebook_user);
+		debug($facebook_user);
 /*		$user = $facebook->getUser();
 		$user_id = $this->Session->get('uid')
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
