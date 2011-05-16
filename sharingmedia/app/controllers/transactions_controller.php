@@ -42,6 +42,14 @@ class TransactionsController extends AppController {
     /* post info to view for updating / test */
     $this->set('counter_info', $t[0]);
   }
+
+  /* changes state of transaction to rejected
+   * pre: transaction is pending
+   * post: transaction is rejected */
+  function rejectTransaction($tid) {
+
+  }
+
   function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
