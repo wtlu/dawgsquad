@@ -17,14 +17,12 @@ Beta Release Checklist
 			[x] Has My Library
 		[x] Top Bar (Troy)
 			[x] Logo
-			[x] Account Page
-				[x] Shows "Coming Soon!"
 			[ ] Contact Us Page
-				[ ] Shows "Coming Soon!"
+				[ ] Goes to our wiki
 			[x] FAQ Page
 				[x] Shows "Coming Soon!"
 			[x] Help Page
-				[x] Shows "Coming Soon!"
+				[x] Goes to our wiki
 			[ ] Report a Bug
 				[ ] Links to Google Code issues page
 				
