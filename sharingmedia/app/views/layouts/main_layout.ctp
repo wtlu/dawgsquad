@@ -34,7 +34,7 @@
 	<div id="side_bar">
 		<div id="tabs">
 			<?php echo $this->Html->link('Home', "/users/index", array('class' => 'tab', 'escape' => false)); ?> 
-			<?php echo $this->Html->link('Add Books', "http://apps.facebook.com/sharingmedia/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('Add Books', "/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
 			<?php echo $this->Html->link('Find Books', "/books/find_books", array('class' => 'tab', 'escape' => false)); ?>
 			<?php echo $this->Html->link('My Library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
 		</div>
