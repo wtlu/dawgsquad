@@ -13,7 +13,7 @@
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <div id="hello_message">
-  <h1>Welcome <?php echo $facebook_user["name"]; ?> to SharingMedia!</h1>
+  <h1>Welcome <?php echo $this->Session->read('username'); ?> to SharingMedia!</h1>
   <h2>What would you like to do?</h2>
 </div>
 
