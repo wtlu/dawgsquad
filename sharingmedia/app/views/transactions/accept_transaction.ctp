@@ -9,12 +9,28 @@ File: /app/views/accept_transaction.ctp
 	
 	# This is the view for the add books form.
 -->
+<head>
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+</head>
 
-<div class = "book_search_form">
+<body>
+<h1> Item Available: (book title) </h1>
 
-	<div id = "top">
-		<h1>Transactions coming soon!</h1>
-	</div>
+<div>
+<p> (owner) has offered the following options for obtaining this book. Please select one, or
+create a counter-offer. </p>
+
+<?php
+	echo $form->create('Transactions', array('action' => 'confirm_transaction', 'type'=>'post'));
+	?>
+	<input type="radio" name="buy" value="b"> <strong>Buy</strong> - Price:<br>
+	<input type="radio" name="rent" value="r"> <strong>Rent</strong> - Days:<br>
+	<input type="radio" name="trade" value="t"> <strong>Trade</strong><br>
+	<?php
+	echo $this->Form->end('Accept');
+	
+?>
 
 </div>
+
+</body>
