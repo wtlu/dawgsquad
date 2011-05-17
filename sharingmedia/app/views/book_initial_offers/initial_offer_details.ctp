@@ -65,7 +65,7 @@
 		<hr>
 		</br>
 		
-		<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox" style="width:50px; float:left;>
+		<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_sell">Sell For</label>
 		<?php
 			echo $this->Form->input('sell_price', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
@@ -75,7 +75,7 @@
 		<hr>
 		</br>
 		
-		<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;>
+		<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_trade">Willing to consider trades?</label>
 		<?php
 			//echo $this->Form->input('trade_id', array('label' => '', 'type' => 'text', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
