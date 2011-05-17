@@ -112,4 +112,5 @@
 ** Exchange Book
 - TBD
 ** View My Library
-- TBD
+1. Make sure links on each view work
+2. Make sure each view has correct containers for content

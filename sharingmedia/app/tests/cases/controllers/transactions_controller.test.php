@@ -1,5 +1,5 @@
 <?php
-class TransactionControllerTest extends CakeTestCase {
+class TransactionsControllerTest extends CakeTestCase {
 
   var $fixtures = array('app.transaction');
 
@@ -30,6 +30,7 @@ class TransactionControllerTest extends CakeTestCase {
     /* accept the transaction */
     $result = $this->testAction('/transactions/acceptTransaction/1',
 				array('return' => 'vars'));
+
 
     /* make sure state changed */
     $this->assertEqual($result['transaction_info']['transactions']['status'], '2');
