@@ -14,19 +14,29 @@ File: /app/views/accept_transaction.ctp
 </head>
 
 <body>
-<h1> Item Available: (book title) </h1>
+<h1> Item Available: <?= $book_title ?> </h1>
 
 <div>
-<p> (owner) has offered the following options for obtaining this book. Please select one, or
+<p> <?= $user_name ?> has offered the following options for obtaining this book. Please select one, or
 create a counter-offer. </p>
 
 <?php
 	echo $form->create('Transactions', array('action' => 'confirm_transaction', 'type'=>'post'));
+	if (isset($price)) {
 	?>
-	<input type="radio" name="buy" value="b"> <strong>Buy</strong> - Price:<br>
-	<input type="radio" name="rent" value="r"> <strong>Rent</strong> - Days:<br>
-	<input type="radio" name="trade" value="t"> <strong>Trade</strong><br>
+		<input type="radio" name="buy" value="b"> <strong>Buy</strong> - Price: $<?= $price ?><br>
 	<?php
+	}
+	if (isset($duration)) {
+	?>
+		<input type="radio" name="rent" value="r"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
+	<?php
+	}
+	if (isset($allow_trade)) {
+	?>
+		<input type="radio" name="trade" value="t"> <strong>Trade</strong><br>
+	<?php
+	}
 	echo $this->Form->end('Accept');
 	
 ?>

@@ -14,7 +14,7 @@ class TransactionsController extends AppController {
   var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
 
-  /* owner agrees on user's proposed medium of exchange
+  /* owner agrees on users proposed medium of exchange
    * pre: transaction is pending
    * post: transaction is completed (status == 2)
    */
@@ -59,6 +59,28 @@ class TransactionsController extends AppController {
   function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
+		$book_title = $this->data['Transaction']['title'];
+		$book_id = $this->data['Transaction']['book_id'];
+		$user_name = $this->data['Transaction']['name'];
+		$user_id = $this->data['Transaction']['user_id'];
+
+		if (isset($this->data['Transaction']['price'])){
+			$price = $this->data['Transaction']['price'];
+			$this->set('price', $price);
+		};
+
+		if (isset($this->data['Transaction']['duration'])){
+			$duration = $this->data['Transaction']['duration'];
+			$this->set('duration', $duration);
+		};
+
+		if (isset($this->data['Transaction']['allow_trade'])){
+			$allow_trade = $this->data['Transaction']['allow_trade'];
+			$this->set('allow_trade', $allow_trade);
+		};
+
+		$this->set('book_title', $book_title);
+		$this->set('user_name', $user_name);
   }
 
 	function my_transactions() {
