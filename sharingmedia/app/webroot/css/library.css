@@ -27,7 +27,7 @@ html {
 	border-bottom: 2px solid black;
 	margin-bottom:10px;
 }
-ul#menu {
+#menu {
     	background-color:silver;
     	height: 43px;
     	list-style-type: none;
@@ -35,12 +35,12 @@ ul#menu {
     	padding: 0;
     	width: 100%;
 }
-ul#menu li {
+#menu li {
 	display: block;
     	float: left;
    	margin: 0 0 0 5px;
 }
-li#add{
+#add{
 	float: right;
 }
 .buttons{
