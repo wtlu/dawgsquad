@@ -6,48 +6,14 @@
 	Changelog:
         5/10/2011 - Jedidiah Jonathan- Created file (skeleton)
 	5/11/2011 - Jedidiah Jonathan- Testing for all functions in the book_intial_offers_controller added
+	5/17/2011 - Greg Brandt - Removed support code for redirection, got fixture to work
 -->
 
 <?php
-	/*import controller*/
-	App::import('Controller','BookInitialOffers');
-	App::import('Model','BookInitialOffer');
-
-	/*extends controller*/
-	class TestBookInitialOffers extends BookInitialOffersController {
-		/*do not rendering from here automatically*/
-		var $autoRender = false;		
-		
-		/* overwirte parent's redirect method if exits
-		 * let redirect direct to redirectURL
-		 * can do test without doing actual redirect
-		 */
-		function redirect($url, $status = null, $exit = true){
-			$this->redirectUrl = $url;
-		}	
-		
-	}
-       
        /* BookInitialOfferControllerTest Code */
        class BookInitialOffersControllerTest extends CakeTestCase {
-	             var $BookInitialOffers = null;
-				
-		/* Create instance with TestBookInitialOffers which is a child of BookInitialOffersController*/
-		function setUp(){
-			$this->BookInitialOffers = new TestBookInitialOffers();
-			$this->BookInitialOffers->constructClasses();
-		}		
-		 
-		 /* Check if BookInitialOffersController can correctlly creating it's instance */ 	
-		function testBookInitialOffersControllerInstance(){
-			$this->assertTrue(is_a($this->BookInitialOffers, 'BookInitialOffersController'));
-			debug("checks if correctlly created an instance of BookInitialOffers");	
-		}
-		
-		/*convention for end*/
-		function tearDown(){
-			unset($this->BookInitialOffers);
-		}
+
+	  var $fixtures = array('app.book_initial_offer');
 
 		/* The next 4 methods are just left at default state, no changes */
 		function startCase() {
