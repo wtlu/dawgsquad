@@ -1,5 +1,9 @@
-html { 
-	width: 760px;
+html {
+        width: 760px;
+}
+
+a{
+   text-decoration:none;
 }
 
 #content h1 {
@@ -19,59 +23,75 @@ html {
         margin-bottom: 20px
 }
 .books_list{
-	height:140px;
+        height:140px;
 }
 .book_unit{
-	width:610px;
-	overflow: hidden;
-	border-bottom: 2px solid black;
-	margin-bottom:10px;
+        width:610px;
+        overflow: hidden;
+        border-bottom: 2px solid black;
+        margin-bottom:10px;
+}
+#menubar{
+    vertical-align:middle;
+    width:638px;
+    float:left;
+}
+#menubar a{
+    color: black;
 }
 #menu {
-    	background-color:silver;
-    	height: 43px;
-    	list-style-type: none;
-    	margin: 0;
-    	padding: 0;
-    	width: 100%;
+        background-color:gray;
+        height: 43px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
 }
 #menu li {
-	display: block;
-    	float: left;
-   	margin: 0 0 0 5px;
+        color: #777777;
+        display: block;
+        float: left;
+        line-height: 200%;
+        padding: 8px 15px 0;
+        text-decoration: none;
+}
+
+#menu .current{
+        color:white;
 }
 #add{
-	float: right;
+        float: right;
 }
 .buttons{
-	float:right;
-	margin-left: 10px;
-	margin-right: 10px;
+        float:right;
+        margin-left: 10px;
+        margin-right: 10px;
 }
 .tabs{
-	float:left;
-	background-color:gray;
+        float:left;
+        background-color:gray;
         margin-right:5px;
 }
 #current{
-	background-color:gray;
+        background-color:gray;
 }
 #add{
-	float:right;
-	border:2px solid black;
+        float:right;
 }
 #list{
-	float:left;
-	border:2px solid black;
-	width: 614px;
-	padding:10px;
-	
-	height: 550px;
-	overflow: scroll;
+        float:left;
+        border:2px solid black;
+        width: 614px;
+        padding:10px;
+
+        height: 550px;
+        overflow: scroll;
 }
 #remove{
-	float:left;
+        float:left;
 }
 #cancel{
-	float:right;
+        float:right;
 }
+
+
