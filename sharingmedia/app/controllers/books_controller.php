@@ -16,6 +16,9 @@ File: /app/controllers/books_controller.php
 	5/15/2011 - John Wang - Added multiple pages of search results
 -->
 <?php
+
+App::import('Sanitize');
+
 class BooksController extends AppController {
 	var $name = 'Books';
 

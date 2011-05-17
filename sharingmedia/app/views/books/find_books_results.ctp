@@ -38,7 +38,7 @@ FB.Canvas.setSize();
 <?php
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){
-			# echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post'));
+			# echo $form->create('Transaction', array('action' => 'transactions', 'type'=>'post'));
 			echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
@@ -57,9 +57,6 @@ FB.Canvas.setSize();
 	}
 	?>
 	<hr>
-	<FORM METHOD="LINK" ACTION="find_books">
-	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
-	</FORM>
 </div>
 
 <!--

@@ -7,13 +7,16 @@ INSERT INTO users(id, name, password, facebook_id, created)
 	VALUES(2, "Troy Martin", null, 1263812002, NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
-	VALUES(1263812002, 1, 1, NULL, NULL, NOW());
+	VALUES(518118311, 1, 1, NULL, NULL, NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
 	VALUES(518118311, 2, NULL, 10, NULL, NOW());
 	
 INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
 	VALUES(1263812002, 3, NULL, NULL, 100, NOW());
+	
+INSERT INTO book_initial_offers(user_id, book_id, trade_id, duration, price, created)
+	VALUES(1263812002, 4, 1, NULL, NULL, NOW());
 	
 INSERT INTO books(title, author, ISBN, image, summary, created)
 	VALUES("Operating System Concepts", "Abraham Silberschatz", 0470128720, "http://books.google.com/books?id=g710PwAACAAJ&printsec=frontcover&img=1&zoom=1&l=220", "Operating System Concepts, Eighth Edition remains as current and relevant as ever, helping you master the fundamental concepts of operating systems while preparing yourself for today's emerging developments.", NOW());

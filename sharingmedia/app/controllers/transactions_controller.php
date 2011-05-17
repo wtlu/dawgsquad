@@ -10,6 +10,8 @@
  *		5/12/2011 - John Wang - Added function for accept transaction()
  */
 
+App::import('Sanitize');
+
 class TransactionsController extends AppController {
   var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
@@ -56,7 +58,7 @@ class TransactionsController extends AppController {
     $this->set('transaction_info', $t[0]);
   }
 
-  function accept_transaction() {
+  function transactions() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 		$book_title = $this->data['Transaction']['title'];
@@ -76,21 +78,38 @@ class TransactionsController extends AppController {
 
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
+			$trade_books = $this->Transaction->query('SELECT books.*
+				FROM book_initial_offers b_i_o, books books
+				WHERE b_i_o.user_id = 1263812002
+					AND b_i_o.trade_id = 1
+					AND b_i_o.book_id = books.id;');
+			# debug($trade_books);
 			$this->set('allow_trade', $allow_trade);
+			$this->set('trade_books', $trade_books);
 		};
 
 		$this->set('book_title', $book_title);
 		$this->set('user_name', $user_name);
   }
 
+	function accept_transaction() {
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+	}
+
 	function my_transactions() {
-                $this->layout = 'main_layout';
-                $this->set('title_for_layout', 'Library || My Transactions');
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
   }
 
   	function confirm_transaction() {
-                  $this->layout = 'main_layout';
-                  $this->set('title_for_layout', 'Library || My Transactions');
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+  }
+
+    function counter_transaction() {
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
   }
 
 }

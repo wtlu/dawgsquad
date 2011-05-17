@@ -85,9 +85,6 @@ FB.Canvas.setSize();
 	}
 	?>
 	
-	<FORM METHOD="LINK" ACTION="add_books">
-	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
-	</FORM>
 	<?php
 ?>
 </div>

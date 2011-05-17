@@ -11,6 +11,9 @@
 -->
 
 <?php
+
+App::import('Sanitize');
+
 class BookInitialOffersController extends AppController {
    var $name = 'BookInitialOffers';
 
@@ -50,7 +53,7 @@ class BookInitialOffersController extends AppController {
 	}
 
 	//REMOVES ENTRIES FROM THE DATABASE called by remove link from remove_comfirm page required book id of book to be removed
-	//book is removed from your library. user is redirected back to their library. 
+	//book is removed from your library. user is redirected back to their library.
 	function remove($bid){
 		//get trade id
 		//remove row from book_initial_offers
@@ -64,8 +67,8 @@ class BookInitialOffersController extends AppController {
 		$this->set('title_for_layout', 'Coming Soon');
 	}
 
-	
-		
+
+
    //Pre: Called when user presses 'Add Book to My Library' on the initial_offer_details.ctp page, and redirects to the add_books_confirm.ctp page.
    //Post: Makes data from the form on initial_offer_details.ctp available to add_boo_to_my_library.
    function add_books_confirm() {
@@ -89,17 +92,17 @@ class BookInitialOffersController extends AppController {
 
 		if (!empty($this->data)) {
 
-			
+
 			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
 				$loan_duration = $this->data['BookInitialOffer']['loan_duration'];
 				$this->set('loan_duration', $loan_duration);
 			}
-			
+
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){
 				$sell_price = $this->data['BookInitialOffer']['sell_price'];
 				$this->set('sell_price', $sell_price);
 			}
-			
+
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
 				$trade_id = 1;
 				$this->set('trade_id', $trade_id);
@@ -125,26 +128,26 @@ class BookInitialOffersController extends AppController {
 		$book_author = $this->data['BookInitialOffer']['author'];
 		$book_isbn = $this->data['BookInitialOffer']['ISBN'];
 		$book_image = $this->data['BookInitialOffer']['image'];
-		
+
 		$loan_duration = "NULL";
 		$sell_price = "NULL";
 		$trade_id = 0;
-		
+
 		if(!empty($this->data['BookInitialOffer']['loan_duration'])){
 			$loan_duration = $this->data['BookInitialOffer']['loan_duration'];
 			$this->set('loan_duration', $loan_duration);
 		}
-		
+
 		if(!empty($this->data['BookInitialOffer']['sell_price'])){
 			$sell_price = $this->data['BookInitialOffer']['sell_price'];
 			$this->set('sell_price', $sell_price);
 		}
-		
+
 		if(!empty($this->data['BookInitialOffer']['trade_id'])){
 			$trade_id = $this->data['BookInitialOffer']['trade_id'];
 			$this->set('trade_id', $trade_id);
 		}
-		
+
 
 		//Make the values also available in the view
 	    $this->set('title', $book_title);
@@ -153,13 +156,13 @@ class BookInitialOffersController extends AppController {
 		$this->set('image', $book_image);
 
 		//Keeps track of whether the book was added to users mylibrary; used to print message in the view
-		$add_status = false; 
+		$add_status = false;
 
 		//Ensure that the user is logged in to Facebook.
 		if(is_null($this->Session->read('uid'))){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
-				
+
 				//If the book exists alread in table books, then get it's book_id. Otherwise add it to the books table, and then get it's book_id.
 				$book_id = 0;
 				$book_results = $this->BookInitialOffer->query('SELECT * FROM books WHERE title ="' . $book_title . '" AND author ="' . $book_author . '" AND isbn = "' .  $book_isbn . '";');
@@ -184,7 +187,7 @@ class BookInitialOffersController extends AppController {
 					$add_status = true;
 
 					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
-					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');				
+					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');
 				}
 			}
 		$this->set('add_status', $add_status);
