@@ -23,7 +23,7 @@
   		<?php 
 		  echo $this->Html->link(
 		  	$this->Html->image('add_book.png', array('alt' => 'AddBook')),
-		  	"http://apps.facebook.com/sharingmedia/index.php/books/add_books",
+		  	"apps.facebook.com/sharingmedia/index.php/books/add_books",
 		  	array('escape' => false, 'id' => 'add_book_link')
 		  );
   		?>
@@ -38,7 +38,7 @@
   		<?php 
   		  echo $this->Html->link(
 		  	$this->Html->image('find_book.png', array('alt' => 'FindBook')),
-		  	"/books/find_books",
+		  	"apps.facebook.com/sharingmedia/index.php/books/find_books",
 		  	array('escape' => false, 'id' => 'find_book_link')
 		  );
 		?>
@@ -51,7 +51,7 @@
   	<div class="box">
   	
   		<?php 
-  		echo $this->Html->link($this->Html->image('my_library.png', array('alt' => 'MyLibrary')), "/book_initial_offers/my_books", array('escape' => false, 'id' => 'find_book_link'));
+  		echo $this->Html->link($this->Html->image('my_library.png', array('alt' => 'MyLibrary')), "apps.facebook.com/sharingmedia/index.php/book_initial_offers/my_books", array('escape' => false, 'id' => 'find_book_link'));
   		?>
   		
   		<ul>
