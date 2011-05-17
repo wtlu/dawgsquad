@@ -61,7 +61,7 @@ Beta Release Checklist
 			[x] Click on a book will show a dialog box that says "Transactions coming soon!"
 	
 	[ ] Use Case: Transactions (John + James + Troy)
-		[ ] Main transaction page between two people (Buyer View)
+		[ ] Main transaction page between two people (Buyer View and Seller View)
 			[ ] Accessed from Find books results page
 			[ ] Allow user to select which option they like to do (trade, loan, buy)
 			[ ] Allow user to click accept
@@ -82,17 +82,6 @@ Beta Release Checklist
 					[ ] Goes back to main transaction page
 			[ ] Allow user to click cancel
 				[ ] Clicking Cancel returns to results page
-		[ ] Main transaction page (Seller View)
-			[ ] Can select loan for
-			[ ] Can select sell for
-			[ ] Can select Trade for
-				[ ] Can select the books that the user currently owns
-			[ ] Can click offer
-				[ ] Confirmation page on submiting counter
-				[ ] Page saying "Offer Countered"
-			[ ] Application will alert the owner of book through facebook message that counter was made
-		[ ] Can click on cancel
-			[ ] Goes back to main transaction tab of My Library
 	[ ] Use Case: My Library Page (Ken)
 		[x] Has My Books Tab
 			[x] My Books contains all the books of the user
@@ -104,6 +93,7 @@ Beta Release Checklist
 					[x] If user click no, goes back to My Books Page
 		[ ] Has Transactions Tab
 			[ ] When switched to this tab, contains the current transactions
+			[ ] Show pas transactions
 			[ ] Ability to see offer
 			[ ] If waiting for offer, can click on offer to go to detail transaction
 		[ ] Has My Loans Tab
