@@ -32,4 +32,9 @@ my %mail = (
   From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
   Message => $output,
 );
-sendmail(%mail) or die $Mail::Sendmail::error;
+
+if ($ARGV[0] eq '-e') {
+  sendmail(%mail) or die $Mail::Sendmail::error;
+}
+
+print $output, "\n";

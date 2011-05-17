@@ -1,3 +1,3 @@
 # automated test
-0 0 * * * perl /var/www/html/dawgsquad/tools/TEST.pl
+0 0 * * * perl /var/www/html/dawgsquad/tools/TEST.pl -e
 10 0 * * * sh /var/www/html/dawgsquad/tools/daily_build.sh
