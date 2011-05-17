@@ -56,3 +56,7 @@ chmod -R 777 app/tmp
 
 # restart apache
 /etc/init.d/httpd restart
+
+# installing perl and mailman for Testing Interface
+yum install -y perl-IO-stringy
+yum install -y perl-Mail-Sendmail
