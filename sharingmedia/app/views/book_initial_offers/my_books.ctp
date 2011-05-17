@@ -37,10 +37,14 @@ FB.Canvas.setSize();
 
 <h1>My Library</h1>
 <!--tabs of Library with links-->
-<div class="tabs" id="current">My Books</div>
-<?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'tabs', 'escape' => false)); ?>
-<?= $this->Html->link('My Loans',"/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?>
-<?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?>
+<div id = "menubar">	
+	<ul id = "menu">
+		<li class="current">My Books</li>
+		<li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('escape' => false)); ?></li>
+		<li><?= $this->Html->link('My Loans',"/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?></li>
+		<li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
+	</ul>
+</div>
 <div id="list">
 
 <?php		//loop to print out books		

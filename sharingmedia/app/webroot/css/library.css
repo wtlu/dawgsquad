@@ -27,9 +27,21 @@ html {
 	border-bottom: 2px solid black;
 	margin-bottom:10px;
 }
-
-ul ul{
-	margin-left:75px;
+ul#menu {
+    	background-color:silver;
+    	height: 43px;
+    	list-style-type: none;
+    	margin: 0;
+    	padding: 0;
+    	width: 100%;
+}
+ul#menu li {
+	display: block;
+    	float: left;
+   	margin: 0 0 0 5px;
+}
+li#add{
+	float: right;
 }
 .buttons{
 	float:right;
@@ -38,7 +50,7 @@ ul ul{
 }
 .tabs{
 	float:left;
-	border:2px solid black;
+	background-color:gray;
         margin-right:5px;
 }
 #current{
