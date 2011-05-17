@@ -39,7 +39,7 @@ class AppController extends Controller {
 	function beforeFilter() {
 		
 		// get the facebook users info for displaying in views
-		$this->set('facebook_user', $this->Connect->user());
+//		$this->set('facebook_user', $this->Connect->user());
 		
 		
 		// get the facebook users id for use in controllers
