@@ -58,6 +58,6 @@ chmod -R 777 app/tmp
 /etc/init.d/httpd restart
 
 # install necessary perl tools
-yum install cpan
+yum -y install cpan
 cpan IO::Scalar
 cpan Mail::Sendmail
