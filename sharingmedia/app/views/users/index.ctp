@@ -23,7 +23,7 @@
   		<?php 
 		  echo $this->Html->link(
 		  	$this->Html->image('add_book.png', array('alt' => 'AddBook')),
-		  	"/books/add_books",
+		  	"http://apps.facebook.com/sharingmedia/index.php/books/add_books",
 		  	array('escape' => false, 'id' => 'add_book_link')
 		  );
   		?>
