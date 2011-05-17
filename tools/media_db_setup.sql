@@ -1,3 +1,5 @@
+create database media_db_test;
+
 create database media_db;
 
 use media_db;
