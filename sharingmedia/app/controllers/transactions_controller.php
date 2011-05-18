@@ -66,12 +66,15 @@ class TransactionsController extends AppController {
 		$user_name = $this->data['Transaction']['name'];
 		$user_id = $this->data['Transaction']['user_id'];
 
+		//Set to a default value of NULL
 		$price = "NULL";
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
 		};
 		$this->set('price', $price);
 
+		//Set to a default value of NULL
+		$duration = "NULL";
 		if (isset($this->data['Transaction']['duration'])){
 			$duration = $this->data['Transaction']['duration'];
 		};
