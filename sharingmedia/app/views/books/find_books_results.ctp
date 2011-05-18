@@ -106,6 +106,9 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					
 					<!-- *****Hidden fields, to transfer data to next page****** -->
 					<input name="data[Transaction][name]" value="<?php echo $name ?>" type="hidden">
+					<input name="data[Transaction][author]" value="<?= $author ?>" type="hidden">
+					<input name="data[Transaction][isbn]" value="<?= $ISBN ?>" type="hidden">
+					<input name="data[Transaction][image]" value="<?= $image ?>" type="hidden">
 					<input name="data[Transaction][user_id]" value="<?php echo $user_result['id'] ?>" type="hidden">
 					
 				<h3> Offer Details </h3>
