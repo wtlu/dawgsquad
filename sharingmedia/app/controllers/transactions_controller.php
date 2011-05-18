@@ -74,7 +74,7 @@ class TransactionsController extends AppController {
     $this->set('transaction_info', $t[0]);
   }
 
-  function transactions($book_title = null, $book_author = null, $book_isbn = null, $book_image = null, $book_id = null, $book_name = null, $user_id = null, $user_name = null, $price = null, $duration = null) {
+  function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 		
@@ -130,27 +130,19 @@ class TransactionsController extends AppController {
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
 		$add_status = false;
-<<<<<<< local
-		$duplicate = $this->Transaction->query('SELECT * FROM transactions WHERE client_id = ' . $this->Session->read('uid') . ' AND owner_id = ' . $user_id . 'AND status  = 0 AND book_id = ' . $book_id . ';');
-=======
-		$duplicate = $this->Transaction->query('SELECT *
-												FROM transactions
-												WHERE client_id = ' . $this->Session->read('uid') . '
-												AND owner_id = ' . $user_id . '
-												AND status  = 0
+		$duplicate = $this->Transaction->query('SELECT * 
+												FROM transactions 
+												WHERE client_id = ' . $this->Session->read('uid') . ' 
+												AND owner_id = ' . $user_id . ' 
+												AND status  = 0 
 												AND book_id = ' . $book_id . ';');
->>>>>>> other
 		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
-<<<<<<< local
-			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
-=======
-			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created)
+			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) 
 													VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
->>>>>>> other
 		}
 
 
@@ -162,14 +154,6 @@ class TransactionsController extends AppController {
 	function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		
-		$title = $this->data['Transaction']['title'];
-		$author = $this->data['Transaction']['author'];
-		$ISBN = $this->data['Transaction']['ISBN'];
-		$image = $this->data['Transaction']['image'];
-		
-		$name = $this->data['Transaction']['name'];
-		$user_id = $this->data['Transaction']['user_id'];
 	}
 
 	function my_transactions() {
