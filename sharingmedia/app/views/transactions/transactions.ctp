@@ -74,7 +74,7 @@ create a counter-offer. </p>
 	<?php
 	echo $this->Form->end('Accept');
 	
-	echo $form->create('Transactions', array('action' => 'counter_transaction', 'type'=>'post'));
+	echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post'));
 	?>
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
