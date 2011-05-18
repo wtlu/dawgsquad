@@ -17,8 +17,7 @@ my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900)
   . '_' . $hour . '-' . $min . '.log';
 
 # build test command
-my $cmd = File::Spec->catfile(File::Spec->updir(), 'sharingmedia',
-			      'cake', 'console', 'cake') . ' testsuite app all';
+my $cmd = 'cake testsuite app all'; # needs cake in the path
 
 # run tests
 my $output = "[$fname]\n\n"
