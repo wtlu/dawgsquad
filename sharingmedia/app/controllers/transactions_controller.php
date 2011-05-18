@@ -39,23 +39,6 @@ class TransactionsController extends AppController {
     /* get the transaction */
     $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
 
-    /* do all the update stuff */
-	$book_title = $this->data['Transaction']['title'];
-	$book_id = $this->data['Transaction']['book_id'];
-	$user_name = $this->data['Transaction']['name'];
-	$user_id = $this->data['Transaction']['user_id'];
-	$book_author = $this->data['Transaction']['author'];
-	$book_isbn = $this->data['Transaction']['isbn'];
-	$book_image = $this->data['Transaction']['image'];
-	
-	$this->set('book_title', $book_title);
-	$this->set('book_id', $book_id);
-	$this->set('user_name', $user_name);
-	$this->set('user_id', $user_id);
-	$this->set('book_author', $book_author);
-	$this->set('book_isbn', $book_isbn);
-	$this->set('book_image', $book_image);
-
 
     /* post info to view for updating / test */
     $this->set('transaction_info', $t[0]);
@@ -77,8 +60,8 @@ class TransactionsController extends AppController {
   function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
-		
-		
+
+
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$user_name = $this->data['Transaction']['name'];
@@ -86,7 +69,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
-		
+
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
 		$this->set('user_name', $user_name);
@@ -124,24 +107,24 @@ class TransactionsController extends AppController {
 		};
 		*/
 
-		
+
 
 
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
 		$add_status = false;
-		$duplicate = $this->Transaction->query('SELECT * 
-												FROM transactions 
-												WHERE client_id = ' . $this->Session->read('uid') . ' 
-												AND owner_id = ' . $user_id . ' 
-												AND status  = 0 
+		$duplicate = $this->Transaction->query('SELECT *
+												FROM transactions
+												WHERE client_id = ' . $this->Session->read('uid') . '
+												AND owner_id = ' . $user_id . '
+												AND status  = 0
 												AND book_id = ' . $book_id . ';');
 		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
-			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) 
+			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created)
 													VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
 		}
 
@@ -169,6 +152,22 @@ class TransactionsController extends AppController {
     function counter_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
+		/* do all the update stuff */
+		$book_title = $this->data['Transaction']['title'];
+		$book_id = $this->data['Transaction']['book_id'];
+		$user_name = $this->data['Transaction']['name'];
+		$user_id = $this->data['Transaction']['user_id'];
+		$book_author = $this->data['Transaction']['author'];
+		$book_isbn = $this->data['Transaction']['isbn'];
+		$book_image = $this->data['Transaction']['image'];
+
+		$this->set('book_title', $book_title);
+		$this->set('book_id', $book_id);
+		$this->set('user_name', $user_name);
+		$this->set('user_id', $user_id);
+		$this->set('book_author', $book_author);
+		$this->set('book_isbn', $book_isbn);
+		$this->set('book_image', $book_image);
   }
 
 }
