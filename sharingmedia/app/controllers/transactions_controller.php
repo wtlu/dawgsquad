@@ -13,7 +13,7 @@
 App::import('Sanitize');
 
 class TransactionsController extends AppController {
-  var $name = 'Transaction';
+  var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
 
   /* owner agrees on users proposed medium of exchange
@@ -97,8 +97,8 @@ class TransactionsController extends AppController {
 
 		$this->set('book_title', $book_title);
 		$this->set('user_name', $user_name);
-		
-		
+
+
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
 		$add_status = false;
@@ -114,9 +114,9 @@ class TransactionsController extends AppController {
 		}
 
 
-		
-		
-		
+
+
+
   }
 
 	function accept_transaction() {
