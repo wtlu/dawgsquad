@@ -59,7 +59,7 @@ class BooksController extends AppController {
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
-				
+
 		}
 		$this->set('book_results', $book_results);
 	}
