@@ -30,8 +30,11 @@ yum -y install mysql mysql-server
 yum -y install php php-mysql
 /sbin/service httpd restart
 
-# add cake executable to the path
+# add cake executable to the path 
+# (current session)
 export PATH=$PATH:/var/www/html/dawgsquad/sharingmedia/cake/console
+# (future sessions)
+echo 'PATH=$PATH:/var/www/html/dawgsquad/sharingmedia/cake/console' > /etc/profile.d/cake.sh
 
 # set up database using scripts
 
