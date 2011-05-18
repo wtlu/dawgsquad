@@ -39,10 +39,10 @@ FB.Canvas.setSize();
 <!--tabs of Library with links-->
 <div id = "menubar">	
 	<ul id = "menu">
-		<li class="current">My Books</li>
-		<li><?= $this->Html->link('My Transactions', "http://apps.facebook.com/sharingmedia/transactions/my_transactions", array('escape' => false)); ?></li>
-		<li><?= $this->Html->link('My Loans',"http://apps.facebook.com/sharingmedia/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?></li>
-		<li id ="add"><?= $this->Html->link('Add Books', "http://apps.facebook.com/sharingmedia/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
+		<li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array('class' => 'current', ' escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
 	</ul>
 </div>
 <div id="list">
@@ -59,22 +59,16 @@ FB.Canvas.setSize();
 				<?php 	//if loans not Null Print
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
 						<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
-				<?php } else {?>
-						<li>Loan Duration: Will not lend</li>
-				<?php }
+				<?php } 
 					if($book_collection[$i]["book_initial_offers"]["trade_id"]== 1){?>
-					<li>Trade: Willing to trade</li>
-				<?php }else { ?>
-					<li>Trade: Not willing to trade</li>
+						<li>Trade: Willing to trade</li>
 				<?php }	//if selling print price
 					if(!is_null($book_collection[$i]["book_initial_offers"]["price"])){ ?>
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
-				<?php } else{?>
-						<li>Price: Not for sale</li>
 				<?php }?>
 			</ul>
-			<?= $this->Html->link('Remove',"http://apps.facebook.com/sharingmedia/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
-			<?= $this->Html->link('Change Offer',"http://apps.facebook.com/sharingmedia/book_initial_offers/edit", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}

@@ -18,10 +18,15 @@
 
 <h1>My Library</h1>
 <!--tabs of Library with links-->
-<?= $this->Html->link('My Books',"/book_initial_offers/my_books", array('class' => 'tabs', 'escape' => false)); ?>
-<div class="tabs" id="current">My Transactions</div>
-<?= $this->Html->link('My Loans', "/loans/my_loans", array('class' => 'tabs', 'escape' => false)); ?>
-<?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?>
+<div id = "menubar">
+        <ul id = "menu">
+                <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array(' escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'current', 'escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
+        </ul>
+</div>
+
 <div id="list">
 	<h2>Comming Soon</h2>
 </div>
