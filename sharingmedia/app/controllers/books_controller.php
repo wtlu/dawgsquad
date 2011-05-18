@@ -35,15 +35,22 @@ class BooksController extends AppController {
 	}
 
 	# Function for find books results view. Returns an array of book results to be displayed in the find book results view.
-	function find_books_results() {
+	function find_books_results($book_title = null, $book_author = null, $book_isbn = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'find_book_result');
 		$book_results = array();
-		if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
-			# query our database to find the book
+		if (isset($this->data['Book']['title'])) {
 			$book_title = $this->data['Book']['title'];
+		}
+		if (isset($this->data['Book']['author'])) {
 			$book_author = $this->data['Book']['author'];
+		}
+		if (isset($this->data['Book']['isbn'])) {
 			$book_isbn = $this->data['Book']['isbn'];
+		}
+		# DEPRECATED if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
+		if (!empty($book_title) || !empty($book_author) || !empty($book_isbn)){
+			# query our database to find the book
 			$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
 				FROM books books, book_initial_offers b_i_o, users users
 				WHERE b_i_o.user_id = users.facebook_id
@@ -52,17 +59,6 @@ class BooksController extends AppController {
 					AND books.author LIKE "%' . $book_author . '%"
 					AND books.isbn LIKE "%' .  $book_isbn . '%"
 				ORDER BY books.id;');
-			/*
-			# look to see if the book result has a trade, and then find the book associated with the trade
-			foreach ($book_results as &$b_r) {
-				$book_trade_result = array();
-				if (!is_null($b_r['b_i_o']['trade_id'])) {
-					$book_trade_result = $this->Book->query('SELECT trade_book.* FROM books trade_book
-						WHERE trade_book.id = ' . $b_r['b_i_o']['trade_id'] . ';');
-					$b_r = array_merge($b_r, $book_trade_result[0]);
-				}
-			}
-			*/
 		}
 		$this->set('book_results', $book_results);
 	}
