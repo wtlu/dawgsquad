@@ -26,12 +26,12 @@ create a counter-offer. </p>
 	echo $form->create('Transactions', array('action' => 'accept_transaction', 'type'=>'post'));
 	if (isset($price) && ("NULL" <> $price)) {
 	?>
-		<input id="buyradio" type="radio" name="buy" value="<?= $price ?>"> <strong>Buy</strong> - Price: $<?= $price ?><br>
+		<input id="buy" type="radio" name="offer_options" value="<?= $price ?>"> <strong>Buy</strong> - Price: $<?= $price ?><br>
 	<?php
 	}
 	if (isset($duration) && ("NULL" <> $duration)) {
 	?>
-		<input id="loanradio" type="radio" name="rent" value="<?= $duration ?>"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
+		<input id="loan" type="radio" name="offer_options" value="<?= $duration ?>"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
 	<?php
 	}
 	
