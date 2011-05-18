@@ -40,7 +40,7 @@ File: /app/views/transaction.ctp
 	
 		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
-		<input name="data[Transaction][title]" id="title" value="<?php echo $book_title ?>" type="hidden">
+		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		<!--
 		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
