@@ -26,17 +26,17 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p><?php echo $this->Html->link('Account', "http://apps.facebook.com/sharingmedia/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "http://apps.facebook.com/sharingmedia/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); ?>
+  			<p><?php echo $this->Html->link('Account', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); ?>
   			</p>
 		</div>
 	</div>
 	
 	<div id="side_bar">
 		<div id="tabs">
-			<?php echo $this->Html->link('Home', "http://apps.facebook.com/sharingmedia/users/index", array('class' => 'tab', 'escape' => false)); ?> 
-			<?php echo $this->Html->link('Add Books', "http://apps.facebook.com/sharingmedia/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
-			<?php echo $this->Html->link('Find Books', "http://apps.facebook.com/sharingmedia/books/find_books", array('class' => 'tab', 'escape' => false)); ?>
-			<?php echo $this->Html->link('My Library', "http://apps.facebook.com/sharingmedia/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('Home', "/users/index", array('class' => 'tab', 'escape' => false)); ?> 
+			<?php echo $this->Html->link('Add Books', "/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('Find Books', "/books/find_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('My Library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
 		</div>
 	</div>
 <?php echo $content_for_layout ?>

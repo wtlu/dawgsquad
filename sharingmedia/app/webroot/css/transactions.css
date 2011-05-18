@@ -1,0 +1,6 @@
+.trade_list {
+	height: 300px;
+	overflow: scroll;
+	border: solid black 1px;
+	padding: 5px;
+}

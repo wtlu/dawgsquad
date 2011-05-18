@@ -62,9 +62,11 @@ class BookInitialOffersController extends AppController {
 		$this->redirect('/book_initial_offers/my_books/');
 	}
 	//this function is not yet implemented It will allow you to edit initial offers
-	function edit (){
+	function edit($bid){
 		$this->layout = 'main_layout';
-		$this->set('title_for_layout', 'Coming Soon');
+		$this->set('title_for_layout', 'Change Offer');
+		 $offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id =" .$bid);
+                $this->set('offer', $offer);	
 	}
 
 
