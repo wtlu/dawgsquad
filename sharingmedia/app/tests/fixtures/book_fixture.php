@@ -1,8 +1,7 @@
 <?php
     class BookFixture extends CakeTestFixture {
 		var $name = 'Book';
-		var $table = 'test_books';
-		//if books table exist, delete and create again with the following fields
+		
 		
 		//create fields 
 		var $fields = array(
@@ -18,7 +17,8 @@
 	
 	
 	/*dummy test records to test with*/
-    var $records = array(
+	/*
+	var $records = array(
 		array ('id' => 1, 
 			   'title' => 'OS',
 			   'author' => 'personA', 
@@ -28,5 +28,5 @@
 		)
 		
     );
-    }
+    }*/
 ?>

@@ -10,46 +10,21 @@ File: /app/tests/cases/books_controller.test.php
 	
 	/*import controller*/
 	App::import('Controller','Books');
-    
-	
-	/*extends controller*/
-	class TestBooks extends BooksController {
-		/*do not rendering from here automatically*/
-		var $autoRender = false;		
-		
-		/* overwirte parent's redirect method if exits
-		 * let redirect direct to redirectURL
-		 * can do test without doing actual redirect
-		 */
-		function redirect($url, $status = null, $exit = true){
-			$this->redirectUrl = $url;
-		}	
-		
-	}
+  App::import('Model', 'Book');
 	
 	
 	/* BookControllerTest here */
 	class BooksControllerTest extends CakeTestCase{
-		var $Books = null;
 		
+		/* use model skelton prepared in fixture*/ 
+	//	var $fixtures = array( 'app.book' );
 
 		
-		/* Create instance with TestBooks which is a child of BooksController*/
-		function setUp(){
-			$this->Books = new TestBooks();
-			$this->Books->constructClasses();
-		}		
-		 
-		 /* Check if BookController can correctlly creating it's instance */ 	
-		function testBooksControllerInstance(){
-			$this->assertTrue(is_a($this->Books, 'BooksController'));
-			debug("checks if correctlly created an instance of Books");	
-		}
 		
-		/*convention for end*/
-		function tearDown(){
-			unset($this->Books);
-		}
+		
+		
+		
+		
 
 		function startCase() {
 			/*executed before running case*/
@@ -76,28 +51,7 @@ File: /app/tests/cases/books_controller.test.php
 		 */
 
 		 
-		/*Test 1: Examines Data used in controller
-		 *  this test checks if the record to be retreived by this controller exists 
-		 *  and checks if it displays expected record
-		 *  
-		 *  read Book's id =1's contents
-		 *  compare with the expected value (we know the dummy var)
-		 *  
-		 */
-		 function testFindData(){
-			/*read Book's id = 1 then store it to the res1 */
-			$this->Books->Book->id = 1;
-			$res1 = $this->Books->Book->read();
-			debug($res1);
-			/* compare with the expected (dummy var) that we prepared */
-			$this ->assertNotNull($res1['Book']);
-			$this ->assertEqual($res1['Book']['id'], 1);
-			$this ->assertEqual($res1['Book']['title'], 'Operating System Concepts');
-			$this ->assertEqual($res1['Book']['author'], 'Abraham Silberschatz');
-			$this ->assertEqual($res1['Book']['ISBN'], '0470128720');
-			$this ->assertEqual($res1['Book']['image'], 'http://books.google.com/books?id=g710PwAACAAJ&printsec=frontcover&img=1&zoom=1&l=220');
-			
-		 }
+		
 		    
 		
 		
@@ -127,7 +81,7 @@ File: /app/tests/cases/books_controller.test.php
 			/* expexted css: main.css */
 			/* check if they matches by parsing rendering result*/
 			$this->assertPattern("/<title>add_a_book<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
+			//$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
 		}
 		 
 		function testFindBooks() {
@@ -138,20 +92,127 @@ File: /app/tests/cases/books_controller.test.php
 			/* expexted css: main.css */
 			/* check if they matches by parsing rendering result*/
 			$this->assertPattern("/<title>find_a_book<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
+			//$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
 		} 
 		
-		function testFindBooksResults() {
+		
+		function testFindBooks2() {
+			//http://www21.atwiki.jp/agilephp/pages/41.html
+			//http://localhost/sharingmedia/app/webroot/test.php
+			debug('conducting var check for find_books() action method ');
+			$data = array(
+               "Book" => array(
+                   "title" => "Operating System",
+                   "author" => "",
+				),
+			);
+
+			$result = $this->testAction('/Books/find_books', array(
+										'data' => $data,
+										'fixturize' => true,
+										'method' => 'post',
+										'return' => 'vars',
+										)
+			);
+			debug($result);
+		} 
+		
+	function testFindBooksResults() {
 		
 			debug('conducting render check for find_books_results() action method ');
-			$result = $this->testAction('/Books/find_books_results', array('return' => 'render'));
+			$result = $this->testAction('/Books/find_books_results/Web Programming/Marty Stepp/578012391', array('return' => 'vars',
+										'fixturize' => true,
+										'method' => 'post'
+										
+										)
+			 
+			);
+			debug($result);
 			
-			/* expexted page title: find_book_result */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
-			$this->assertPattern("/<title>find_book_result<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
+	} 
+		
+		
+		
+		/*
+		
+		   function testAddToCart(){
+				echo("<p style='font-size:12pt;margin:0.5em'><b>???????</b></p>");
+				$this->Books->Session->del('cart');
+				$result = $this->testAction('/depot/store/add_to_cart/1',array('redirect' => 'false'));
+				$this->assertEqual($this->Store->Session->read('test.lastRedirectUrl'),'/store/display_cart');
+				$result = $this->testAction('/depot/store/display_cart',array('return'=>'vars'));
+				$this->assertEqual(count($result['cart']->items()),1);
+			}
+		
+		
+		*/
+		
+		
+		
+		function testFindBooksResults2() {
+		
+			debug(' conducting var check for find_books_results() action method ');
+			//$this->testFindBooks2();
+			
+			$data = array(
+               "Book" => array('id' => 1, 
+								'title' => 'OS',
+								'author' => 'personA', 
+								'ISBN' => '11',  
+								'image' => 'path',
+								'summary' => 'this is summary'
+				),
+			);
+			debug('aaaaaaaaaa conducting var check for find_books_results() action method ');
+			
+			$result = $this->testAction('/Books/find_books_results', array(
+										'data' => $data,
+										'url' => $data,
+										'fixturize' => true,
+										'method' => 'post',
+										'return' => 'vars',
+										'redirect' => 'false'
+										)
+			);
+			debug('ZZZZZZ ');
+			debug($result);
+			debug('ZZZZZZZZ ');
+			
 		} 
+
+function testAddBooksResults() {
+		
+			debug('aaaaaaaaaaaaaaaaaaaaaa ');
+			//$this->testFindBooks2();
+			
+			$data = array(
+               "Book" => array(
+                   "title" => "Operating System Concepts",
+                   
+				),
+			);
+			debug('aaaaaaaaaa conducting var check for find_books_results() action method ');
+			
+			$result = $this->testAction('/Books/add_books_results', array(
+										'data' => $data,
+										
+										'fixturize' => true,
+										'method' => 'post',
+										'return' => 'vars',
+										'redirect' => 'false'
+										)
+			);
+			debug($result);
+			
+			
+		} 		
+		
+		
+		
+		
+		
+		
+		
 		 
 		/* Test3: helper function check
 		 *        checks if query_google() shows the output we expected. 
