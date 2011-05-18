@@ -53,13 +53,14 @@ class BooksController extends AppController {
                         # query our database to find the book
                         $book_results = $this->Book->query ('SELECT DISTINCT books.*, users.*, b_i_o.*
                                 FROM books books, book_initial_offers b_i_o, users users
-                                WHERE b_i_o.user_id = users.facebook_id
+                                WHERE b_i_o.user_id != ' . $this->Session->read('uid') . '
+                                		AND b_i_o.user_id = users.facebook_id
                                         AND b_i_o.book_id = books.id
                                         AND books.title LIKE "%' .$book_title . '%"
                                         AND books.author LIKE "%' . $book_author . '%"
                                         AND books.isbn LIKE "%' .  $book_isbn . '%"
                                 ORDER BY books.id;');
-                         
+
 
                 }
                 $this->set('book_results', $book_results);
