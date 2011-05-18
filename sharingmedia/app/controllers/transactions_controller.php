@@ -13,7 +13,7 @@
 App::import('Sanitize');
 
 class TransactionsController extends AppController {
-  var $name = 'Transactions';
+  var $name = 'Transaction';
   var $helpers = array('Form', 'Html');
 
   /* owner agrees on users proposed medium of exchange
@@ -111,7 +111,7 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
   }
 
-  	function confirm_transaction() {
+  	function complete_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
   }

@@ -8,20 +8,20 @@
 	5/11/2011 - James Parsons - Created page, as a receipt style confirmation after the book has been added to mylibrary.
 -->
 
-<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('transaction', NULL, array('inline' => FALSE)); ?>
 
 <div>
 
 	<?php 
 		if($add_status){
-			echo '<h2> Add Successful!</h2>';
+			echo '<h2> Transaction Successful!</h2>';
 		}else{
 			echo '<h2> Add Unsuccessful</h2>';
 		}
 	?>
 	</br>
 	
-	<fieldset style="border: 3px solid #000000">
+	<fieldset>
 		<legend> Your Book </legend>
 		<p class="book_display">
 			<label >
@@ -34,7 +34,7 @@
 	</fieldset>
 
 
-	<fieldset style="border: 3px solid #000000">
+	<fieldset>
 		<legend> Selected Offer Details </legend>
 		<p>
 		<?php
