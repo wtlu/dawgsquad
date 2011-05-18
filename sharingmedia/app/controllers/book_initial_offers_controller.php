@@ -7,7 +7,9 @@
 	Changelog:
 	5/8/2011 - James Parsons - Created page, added add_books_confirm().
 	5/9/2011 - James Parsons - Created initial_offer_details().
-	5/11/2011 - James Parsons - Created
+	5/11/2011 - James Parsons - Created code to populate database with new books and new book initial offers.
+	5/14/2011 - James Parsons - Added checks to database to ensure consistency, i.e. no duplicate entries will be created.
+	5/15/2011 - James Parsons - Incorporated facebook id in order to correctly track owners of book initial offers.
 -->
 
 <?php
