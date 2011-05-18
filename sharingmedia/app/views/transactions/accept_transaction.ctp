@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('transaction', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
 <div>
 

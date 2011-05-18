@@ -67,6 +67,7 @@ create a counter-offer. </p>
 		}
 	}
 	*/
+	
 	?>
 		<!-- </div> -->
 	
