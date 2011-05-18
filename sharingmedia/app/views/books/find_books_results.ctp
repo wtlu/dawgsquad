@@ -89,11 +89,8 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 			?>
 			
 			<!-- *****Hidden fields, to transfer data to next page****** -->
-			<input name="data[Transaction][title]" value="<?= $title ?>" type="hidden">
-			<input name="data[Transaction][author]" value="<?= $author ?>" type="hidden">
-			<input name="data[Transaction][isbn]" value="<?= $ISBN ?>" type="hidden">
-			<input name="data[Transaction][image]" value="<?= $image ?>" type="hidden">
-			<input name="data[Transaction][book_id]" value="<?= $result['id'] ?>" type="hidden">
+			<input name="data[Transaction][title]" value="<?php echo $title ?>" type="hidden">
+			<input name="data[Transaction][book_id]" value="<?php echo $result['id'] ?>" type="hidden">
 			
 			<img src=<?= $image ?> alt="Book image" />
 			<div class = "book_results_text">
@@ -108,8 +105,8 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					<strong>Name:</strong>	<?= $name ?> <br />
 					
 					<!-- *****Hidden fields, to transfer data to next page****** -->
-					<input name="data[Transaction][name]" value="<?= $name ?>" type="hidden">
-					<input name="data[Transaction][user_id]" value="<?= $user_result['id'] ?>" type="hidden">
+					<input name="data[Transaction][name]" value="<?php echo $name ?>" type="hidden">
+					<input name="data[Transaction][user_id]" value="<?php echo $user_result['id'] ?>" type="hidden">
 					
 				<h3> Offer Details </h3>
 					<?php
@@ -127,7 +124,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 						<strong>Price: $</strong><?= $price ?> <br />
 
 						<!-- *****Hidden fields, to transfer data to next page****** -->
-						<input name="data[Transaction][price]" value="<?= $price ?>" type="hidden">
+						<input name="data[Transaction][price]" value="<?php echo $price ?>" type="hidden">
 					
 					<?php
 					}
@@ -136,7 +133,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 						<strong>Loan Duration:</strong> <?= $duration ?> days<br />
 
 						<!-- *****Hidden fields, to transfer data to next page****** -->
-						<input name="data[Transaction][duration]" value="<?= $duration ?>" type="hidden">
+						<input name="data[Transaction][duration]" value="<?php echo $duration ?>" type="hidden">
 					
 					<?php
 					}
@@ -144,7 +141,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					?>
 						<strong>Willing to consider a trade.</strong>
 						<!-- *****Hidden fields, to transfer data to next page****** -->
-						<input name="data[Transaction][allow_trade]" value="<?= $allow_trade ?>" type="hidden">
+						<input name="data[Transaction][allow_trade]" value="<?php echo $allow_trade ?>" type="hidden">
 					<?php
 					}
 					?>
