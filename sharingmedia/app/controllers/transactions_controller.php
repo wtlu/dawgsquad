@@ -66,6 +66,7 @@ class TransactionsController extends AppController {
 		$user_name = $this->data['Transaction']['name'];
 		$user_id = $this->data['Transaction']['user_id'];
 
+		$price = "NULL";
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
 		};
@@ -90,6 +91,11 @@ class TransactionsController extends AppController {
 
 		$this->set('book_title', $book_title);
 		$this->set('user_name', $user_name);
+		
+		
+		/* Create an entry in the transactions table with the correct information */
+		$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', NULL,' . $duration . ',' . $price .', 0, NOW());');
+		
   }
 
 	function accept_transaction() {
