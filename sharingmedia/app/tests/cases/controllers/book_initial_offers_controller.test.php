@@ -7,12 +7,15 @@
         5/10/2011 - Jedidiah Jonathan- Created file (skeleton)
 	5/11/2011 - Jedidiah Jonathan- Testing for all functions in the book_intial_offers_controller added
 	5/17/2011 - Greg Brandt - Removed support code for redirection, got fixture to work
+
 -->
 
 <?php
        /* BookInitialOfferControllerTest Code */
        class BookInitialOffersControllerTest extends CakeTestCase {
-
+	             
+	  var $BookInitialOffers = null;
+	    
 	  var $fixtures = array('app.book_initial_offer');
 
 		/* The next 4 methods are just left at default state, no changes */
@@ -44,10 +47,18 @@
 		
 		/* Testing the my_books function */
 		function testmy_books(){
+		
+		  /*$this->BookInitialOffers->Session->write('uid',518118311);
+		  $uid = $this->BookInitialOffers->Session->read('uid');
+		  debug($uid);
+		  //$this->assertEqual($uid,'123121');*/
 
-		  $result = $this->testAction('/book_initial_offers/my_books/',
-					      array('return' => 'vars'));
+		  $this->BookInitialOffers->Session->write('uid',518118311);
+
+		  $result = $this->testAction('/book_initial_offers/my_books/',array('return' => 'vars'));
 		  debug($result);		
+		  
+		  $this->assertTrue(!empty($result));
 		  
 		  // Assert that results obtained from my books has the appropriate data values
 		  // Cannot access the uid from the test here as it is currently being implemented using the Session. 
@@ -55,16 +66,7 @@
 		   $this->assertEqual($result['book_collection'][0]['books']['title'], NULL);
 		   $this->assertEqual($result['book_collection'][0]['books']['author'], NULL);
 		   $this->assertEqual($result['book_collection'][0]['books']['ISBN'], NULL);
-		   
-		   $this->assertEqual($result['trade_books'][0][0]['trades']['book_id'],NULL);
-		   $this->assertEqual($result['trade_books'][0][0]['books']['id'], NULL);
-		   
-		   // Code below can be used to test other book_id's in the book_initial_offers table
-		   // Just change the last field of the first parameter of testAction to the new book_id
-		   // Currently we only use the test above to test the dummy values in the DB
-		   /*$result2 = $this->testAction('/book_initial_offers/my_books/2',
-		   array('return' => 'vars'));
-		   debug($result2);*/
+		  
 		  
 		}
 		
@@ -72,12 +74,18 @@
 		function testremove_confirm(){
 		  // CakePHP does not let us test functions that do not have a view (an associated ctp file)
 		  // This function was added later and will be tested after the Beta Release
+		  $result= $this->testAction('/book_initial_offers/remove_confirm/1',
+					     array('return' => 'vars'));
+		  debug($result);
 		}
 		
 		/* Testing the remove function */
 		function testremove(){
 		  // CakePHP does not let us test functions that do not have a view (an associated ctp file)
 		  // This function was added later and will be tested after the Beta Release
+		  //$result= $this->testAction('/book_initial_offers/remove/1',
+		  // array('return' => 'vars'));
+		  //debug($result);
 		}
 		
 		/* Testing the edit function */
@@ -122,8 +130,6 @@
 		  $this->assertEqual($result['author'], NULL);
 		  $this->assertEqual($result['ISBN'], NULL);
 		  $this->assertEqual($result['image'], NULL);
-		  $this->assertEqual($result['offer_type'], NULL);
-		  $this->assertEqual($result['offer_value'], NULL);
 
 		}
 		/* NOTE: We need to find how to access the Session uid from the test code, as this is critical in adding the books or showing what books
