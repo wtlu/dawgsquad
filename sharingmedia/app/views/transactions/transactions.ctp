@@ -12,6 +12,7 @@ File: /app/views/transaction.ctp
 -->
 <head>
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 </head>
 
 <body>
@@ -35,15 +36,22 @@ create a counter-offer. </p>
 	}
 	if (isset($allow_trade)) {
 	?>
-		<input type="radio" name="trade" value="t"> <strong>Trade</strong><br>
+		<!-- <input type="radio" name="trade" value="t"> -->
+		<strong>Trade</strong><br>
 		<p>Select the book you want to trade:</p>
+		<div class="trade_list">
 	<?php
 		foreach ($trade_books as $tradeable){
-			# echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
+			# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
+			?>
+			<input type="radio" name="trade" value="t" style="margin:10px">
+			<?php
 			display_results($tradeable['books']);
-			# echo $this->Form->end('Add This Book');
 		}
 	}
+	?>
+		</div>
+	<?php
 	echo $this->Form->end('Accept');
 	
 	echo $form->create('Transactions', array('action' => 'counter_transaction', 'type'=>'post'));

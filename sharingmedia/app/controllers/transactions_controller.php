@@ -58,7 +58,7 @@ class TransactionsController extends AppController {
     $this->set('transaction_info', $t[0]);
   }
 
-  function transactions() {
+  function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 		$book_title = $this->data['Transaction']['title'];
@@ -68,13 +68,13 @@ class TransactionsController extends AppController {
 
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
-			$this->set('price', $price);
 		};
+		$this->set('price', $price);
 
 		if (isset($this->data['Transaction']['duration'])){
 			$duration = $this->data['Transaction']['duration'];
-			$this->set('duration', $duration);
 		};
+		$this->set('duration', $duration);
 
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
