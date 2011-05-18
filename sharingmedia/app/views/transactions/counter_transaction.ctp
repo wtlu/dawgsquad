@@ -11,21 +11,16 @@ File: /app/views/transaction.ctp
 -->
 <?php echo $this->Html->css('transaction', NULL, array('inline' => FALSE)); ?>
 
-<fieldset>
-<p class="book_display">
-<label >
-		<?php
-			$title = $book_chosen[1];
-			$author = $book_chosen[2];
-			$ISBN = $book_chosen[3];
-			$image = $book_chosen[4];	
-		?>
-	<img src=<?php echo $image ?> alt="Book image" />
-	<strong>Title:</strong>	<?php echo $title; ?> <br />
-	<strong>Author(s):</strong> <?php echo $author ?> <br />
-	<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
-</label>
-</p>
+<fieldset style="border: 3px solid #000000">
+		<legend> The Book You Are Making An Offer For:</legend>
+		<p class="book_display">
+			<label >
+				<img src=<?php echo $book_image ?> alt="Book image" />
+				<strong>Title:</strong>	<?php echo $book_title; ?> <br />
+				<strong>Author(s):</strong> <?php echo $book_author ?> <br />
+				<strong>ISBN:</strong> <?php echo $book_isbn ?> <br />
+			</label>
+		</p>
 </fieldset>
 
 <fieldset >
@@ -45,10 +40,12 @@ File: /app/views/transaction.ctp
 	
 		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
-		<input name="data[Transaction][title]" id="title" value="<?php echo $title ?>" type="hidden">
+		<input name="data[Transaction][title]" id="title" value="<?php echo $book_title ?>" type="hidden">
+		<!--
 		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[Transaction][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		-->
 		
 		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_loan" style="float:left">Loan For</label>
