@@ -156,7 +156,7 @@ class TransactionsController extends AppController {
 		$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
-		$user_id = $this->data['Transaction']['user_id'];
+		$owner_id = $this->data['Transaction']['owner_id'];
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
