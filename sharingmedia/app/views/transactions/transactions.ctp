@@ -34,6 +34,11 @@ create a counter-offer. </p>
 		<input type="radio" name="rent" value="r"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
 	<?php
 	}
+	
+	/* Since this page is only displayed after the user clicks "Start Transaction" from find books results page,
+	   there will not be any info to dispaly, because the initial offer details does not include specific books.
+	   This code should be in the counter_offer page, and also the ongoing_transaction.ctp page. */
+	/********
 	if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
 	?>
 		<!-- <input type="radio" name="trade" value="t"> -->
@@ -50,6 +55,7 @@ create a counter-offer. </p>
 		}
 	}
 	?>
+	********/
 		</div>
 	<?php
 	echo $this->Form->end('Accept');

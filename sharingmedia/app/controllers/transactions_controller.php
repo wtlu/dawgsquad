@@ -80,6 +80,8 @@ class TransactionsController extends AppController {
 		};
 		$this->set('duration', $duration);
 
+		/* This page is only called from add books results, so there will be no trade information
+		// This should be in the counteroffer page.
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 			$trade_books = $this->Transaction->query('SELECT books.*
@@ -91,13 +93,29 @@ class TransactionsController extends AppController {
 			$this->set('allow_trade', $allow_trade);
 			$this->set('trade_books', $trade_books);
 		};
+		*/
 
 		$this->set('book_title', $book_title);
 		$this->set('user_name', $user_name);
 		
 		
 		/* Create an entry in the transactions table with the correct information */
-		$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', NULL,' . $duration . ',' . $price .', 0, NOW());');
+		//Make sure there is not already a transaction between 2 people about the same book.
+		$add_status = false;
+		$duplicate = $this->Transaction->query('SELECT * FROM transactions WHERE client_id = ' . $this->Session->read('uid') . ' AND owner_id = ' . $user_id . 'AND status  = 0 AND book_id =' . $book_id . ';');
+		if(!empty($duplicate)){
+			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
+		}else{
+
+			$add_status = true;
+
+			//Add new tuple in the transaction table to track this transaction
+			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created) VALUES(' . $user_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $user_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
+		}
+
+
+		
+		
 		
   }
 
