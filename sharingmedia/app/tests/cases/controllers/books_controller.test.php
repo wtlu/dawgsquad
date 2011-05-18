@@ -117,7 +117,7 @@ File: /app/tests/cases/books_controller.test.php
 			debug($result);
 		} 
 		
-	function testFindBooksResults() {
+		function testFindBooksResults() {
 		
 			debug('conducting render check for find_books_results() action method ');
 			$result = $this->testAction('/Books/find_books_results/Web Programming/Marty Stepp/578012391', array('return' => 'vars',
@@ -127,9 +127,8 @@ File: /app/tests/cases/books_controller.test.php
 										)
 			 
 			);
-			debug($result);
-			
-	} 
+			debug($result);	
+		} 
 		
 		
 		
@@ -163,7 +162,7 @@ File: /app/tests/cases/books_controller.test.php
 								'summary' => 'this is summary'
 				),
 			);
-			debug('aaaaaaaaaa conducting var check for find_books_results() action method ');
+			debug('conducting var check for find_books_results() action method ');
 			
 			$result = $this->testAction('/Books/find_books_results', array(
 										'data' => $data,
@@ -174,15 +173,15 @@ File: /app/tests/cases/books_controller.test.php
 										'redirect' => 'false'
 										)
 			);
-			debug('ZZZZZZ ');
+			debug('==========');
 			debug($result);
-			debug('ZZZZZZZZ ');
+			debug('=========');
 			
 		} 
 
-function testAddBooksResults() {
+		function testAddBooksResults() {
 		
-			debug('aaaaaaaaaaaaaaaaaaaaaa ');
+			debug('================= ');
 			//$this->testFindBooks2();
 			
 			$data = array(
@@ -191,7 +190,7 @@ function testAddBooksResults() {
                    
 				),
 			);
-			debug('aaaaaaaaaa conducting var check for find_books_results() action method ');
+			debug('conducting var check for find_books_results() action method ');
 			
 			$result = $this->testAction('/Books/add_books_results', array(
 										'data' => $data,
