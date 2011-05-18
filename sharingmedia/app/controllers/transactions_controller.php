@@ -40,6 +40,22 @@ class TransactionsController extends AppController {
     $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
 
     /* do all the update stuff */
+	$book_title = $this->data['Transaction']['title'];
+	$book_id = $this->data['Transaction']['book_id'];
+	$user_name = $this->data['Transaction']['name'];
+	$user_id = $this->data['Transaction']['user_id'];
+	$book_author = $this->data['Transaction']['author'];
+	$book_isbn = $this->data['Transaction']['isbn'];
+	$book_image = $this->data['Transaction']['image'];
+	
+	$this->set('book_title', $book_title);
+	$this->set('book_id', $book_id);
+	$this->set('user_name', $user_name);
+	$this->set('user_id', $user_id);
+	$this->set('book_author', $book_author);
+	$this->set('book_isbn', $book_isbn);
+	$this->set('book_image', $book_image);
+
 
     /* post info to view for updating / test */
     $this->set('transaction_info', $t[0]);
@@ -61,10 +77,23 @@ class TransactionsController extends AppController {
   function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
+		
+		
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$user_name = $this->data['Transaction']['name'];
 		$user_id = $this->data['Transaction']['user_id'];
+		$book_author = $this->data['Transaction']['author'];
+		$book_isbn = $this->data['Transaction']['isbn'];
+		$book_image = $this->data['Transaction']['image'];
+		
+		$this->set('book_title', $book_title);
+		$this->set('book_id', $book_id);
+		$this->set('user_name', $user_name);
+		$this->set('user_id', $user_id);
+		$this->set('book_author', $book_author);
+		$this->set('book_isbn', $book_isbn);
+		$this->set('book_image', $book_image);
 
 		//Set to a default value of NULL
 		$price = "NULL";
@@ -95,8 +124,7 @@ class TransactionsController extends AppController {
 		};
 		*/
 
-		$this->set('book_title', $book_title);
-		$this->set('user_name', $user_name);
+		
 
 
 		/* Create an entry in the transactions table with the correct information */
