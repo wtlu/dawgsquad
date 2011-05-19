@@ -45,7 +45,7 @@
 				
 				<li>Due Date: <?= $loan_collection[$i]["loans"]["due_date"]?></li>
 			</ul>
-			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]["loans"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]."/".$loan_collection[$i]."/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}
