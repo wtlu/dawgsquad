@@ -162,13 +162,13 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		$book_title = $this->data['Transaction']['title'];
+		$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
-		$user_name = $this->data['Transaction']['name'];
-		$user_id = $this->data['Transaction']['user_id'];
-		$book_author = $this->data['Transaction']['author'];
-		$book_isbn = $this->data['Transaction']['isbn'];
-		$book_image = $this->data['Transaction']['image'];
+		$owner_name = $this->data['Transaction']['owner_name'];
+		$owner_id = $this->data['Transaction']['owner_id'];
+		$book_author = $this->data['Transaction']['book_author'];
+		$book_isbn = $this->data['Transaction']['book_isbn'];
+		$book_image = $this->data['Transaction']['book_image'];
 		$price = $this->data['Transaction']['price'];
 		$duration = $this->data['Transaction']['duration'];
 		if (isset($this->data['Transaction']['allow_trade'])) {
