@@ -151,13 +151,13 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
   }
-  
+
    function make_offer(){
 	$this->layout = 'main_layout';
 	$this->set('title_for_layout', 'Library || My Transactions');
   }
-  
-  function confirm_transaction() {
+
+  function confirm_transaction($allow_trade = null) {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -169,6 +169,8 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
+		$price = $this->data['Transaction']['price'];
+		$duration = $this->data['Transaction']['duration'];
 		if (isset($this->data['Transaction']['allow_trade'])) {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
@@ -181,6 +183,8 @@ class TransactionsController extends AppController {
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
 		$this->set('allow_trade', $allow_trade);
+		$this->set('price', $price);
+		$this->set('duration', $duration);
   }
 
     function counter_transaction() {
