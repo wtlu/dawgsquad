@@ -36,7 +36,7 @@ File: /app/views/transaction.ctp
 	</p>
 
 	
-	<?php echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post')); ?>
+	<?php echo $form->create('Transaction', array('action' => 'make_offer', 'type'=>'post')); ?>
 		
 	
 		<hr>
@@ -78,11 +78,12 @@ File: /app/views/transaction.ctp
 				<div class="trade_list">
 				<?php
 					foreach ($trade_books as $tradeable){
-						# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
-						?>
-						<?php
-						display_results($tradeable['books']);
+						echo '<input type="radio" name="trade_option" value="' . $result . '" /> ';
+						display_results($result);
+						echo '<br />';
+						
 					}
+				echo $this->Form->end('Add This Book');
 				}
 		?>
 		</div>
