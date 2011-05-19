@@ -7,7 +7,13 @@
         5/12/2011 - Jedidiah Jonathan- Created file (empty)
 -->
 <?php
+        App::import('Controller','Loans');
+	App::import('Model', 'Loan');
+       	App::import('Model', 'User');
+
 class LoansControllerTest extends CakeTestCase {
+
+  var $fixtures = array('app.loan');
 
   function startCase() {
     echo '<h1>Starting Test Case</h1>';

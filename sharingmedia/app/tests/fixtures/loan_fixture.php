@@ -1,14 +1,13 @@
 <?php
-class BookInitialOfferFixture extends CakeTestFixture {
-  var $name = 'BookInitialOffer';
+class LoanFixture extends CakeTestFixture {
+  var $name = 'Loan';
 
   /* table definition */
   var $fields = array(
-		      'user_id' => array('type' => 'integer', 'key' => 'primary'),
+		      'owner_id' => array('type' => 'integer'),
+		      'client_id' => array('type' => 'integer'),
 		      'book_id' => array('type' => 'integer'),
-		      'trade_id' => array('type' => 'integer'),
-		      'duration' => array('type' => 'integer'),
-		      'price' => array('type' => 'float'),
+		      'due_date' => array('type' => 'integer'),
 		      'created' => 'datetime',
 		      'modified' => 'datetime'
 		      );
@@ -21,8 +20,8 @@ class BookInitialOfferFixture extends CakeTestFixture {
 
   /* dummy test data */
   var $records = array(
-		       array ('user_id' => 1, 'book_id' => 10,'trade_id' => 1,
-			      'duration' => null, 'price' => 100.0,
+		       array ('owner_id' => 1, 'client_id' => 10,'book_id' => 1,
+			      'due_date' => '2011-10-10 19:47:00',
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
 			      )
