@@ -109,7 +109,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 					<input name="data[Transaction][author]" value="<?= $author ?>" type="hidden">
 					<input name="data[Transaction][isbn]" value="<?= $ISBN ?>" type="hidden">
 					<input name="data[Transaction][image]" value="<?= $image ?>" type="hidden">
-					<input name="data[Transaction][user_id]" value="<?php echo $user_result['id'] ?>" type="hidden">
+					<input name="data[Transaction][user_id]" value="<?php echo $user_result['facebook_id'] ?>" type="hidden">
 					
 				<h3> Offer Details </h3>
 					<?php
