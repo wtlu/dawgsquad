@@ -38,21 +38,21 @@ create a counter-offer. </p>
 	echo $form->create('Transaction', array('action' => 'confirm_transaction', 'type'=>'post'));
 	if (isset($price) && ("NULL" <> $price)) {
 	?>
-		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price"> <strong>Buy</strong> - Price: $<?= $price ?><br>
+		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" checked = "checked"> <strong>Buy</strong> - Price: $<?= $price ?><br>
 		<input name="data[Transaction][price]" id="price" value="<?= $price ?>" type="hidden">
 	<?php
 	}
 	if (isset($duration) && ("NULL" <> $duration)) {
 	?>
-		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
+		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" checked = "checked"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
 	if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
 	?>
 		<!-- <input type="radio" name="trade" value="t"> -->
-		<strong>Trade:</strong><br>
-		<p>If you wish to trade a book, proceed with Counter Transaction.</p>
+		<strong>Trade:</strong><p>If you wish to trade a book, proceed with Counter Transaction.</p>
+		<br>
 	
 	<?php
 	}
