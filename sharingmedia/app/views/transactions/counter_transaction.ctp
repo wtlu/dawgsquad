@@ -69,9 +69,20 @@ File: /app/views/transaction.ctp
 		</br>
 		
 		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;">
-		<label for="choose_trade">Willing to consider trades?</label>
+		<label for="choose_trade">Books you own, that you could offer in trade:</label>
 		<?php
-			//echo $this->Form->input('trade_id', array('label' => '', 'type' => 'text', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
+			if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
+				?>
+					<!-- <input type="radio" name="trade" value="t"> -->
+					<div class="trade_list">
+				<?php
+					foreach ($trade_books as $tradeable){
+						# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
+						?>
+						<?php
+						display_results($tradeable['books']);
+					}
+				}
 		?>
 		
 		</br>
@@ -86,4 +97,41 @@ File: /app/views/transaction.ctp
 		
 </div>
 </fieldset>
+
+
+<?php
+# helper function to display trade book results
+function display_results($result) {
+	$chosen = '';
+	# build the string of book data and pass on to initial_offer_details function in book initial offers controller
+	foreach ($result as $element) {
+		$chosen = $chosen . '^' . $element;
+	}
+	?>
+	<div class="book_results_display">
+	
+		<!--
+		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
+		-->
+		
+		<label for="choose_book">
+			<?php
+				$title = $result['title'];
+				$author = $result['author'];
+				$ISBN = $result['ISBN'];
+				$image = $result['image'];
+				$summary = $result['summary'];
+			?>
+		<img width=100 src=<?= $image ?> alt="Book image" />
+		<div class = "book_results_text">
+			<strong>Title:</strong>	<?= $title ?> <br />
+			<strong>Author(s):</strong> <?= $author ?> <br />
+			<strong>Summary:</strong> <?= $summary ?> <br />
+			<strong>ISBN:</strong> <?= $ISBN ?> <br />
+		</div>
+		</label>
+	</div>
+	<?php
+}
+?>
 
