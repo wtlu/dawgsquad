@@ -2,7 +2,6 @@
 use strict;
 use Cwd;
 use File::Spec;
-use IO::Scalar;
 use Mail::Sendmail;
 
 # Author: Greg Brandt
