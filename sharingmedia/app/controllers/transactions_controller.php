@@ -192,6 +192,7 @@ class TransactionsController extends AppController {
 		
 		//pass variables to page
 		$this->set('transaction_collection', $transaction_collection);
+		debug($transaction_collection);
 	}
 
    function make_offer(){
