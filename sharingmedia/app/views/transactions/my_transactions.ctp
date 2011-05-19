@@ -1,0 +1,63 @@
+<!--
+        created: 5/16/2011
+
+        Author: Ken Inoue
+
+
+
+        Changelog:
+
+        5/16/2011 - Ken Inoue- Created page,
+		5/18/2011 - Wei-Ting Lu - Added transaction table
+
+-->
+
+
+
+<!-- File: /app/models/book_initial_offer.php -->
+<?= $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
+
+<h1>My Library</h1>
+<!--tabs of Library with links-->
+<div id = "menubar">
+        <ul id = "menu">
+                <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array(' escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'current', 'escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
+        </ul>
+</div>
+
+<div id="list">
+	<h2>Coming Soon!</h2>
+	
+	<?php		//loop to print out transaction		
+		$size = sizeof($transaction_collection);
+		for($i=0; $i < $size; $i++){
+	?>
+		<div class="book_unit">	
+			<img class= "book_img" src="<?=$transaction_collection[$i]["books"]["image"]?>" alt="<?=$transaction_collection[$i]["books"]["title"]?>"/>
+			<ul class="books_list">
+				<li>Title: <?= $transaction_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?= $transaction_collection[$i]["books"]["author"]?></li>
+				<?php 	//if loans not Null Print
+					if(!is_null($transaction_collection[$i]["transactions"]["duration"])){ ?>
+						<li>Loan Duration: <?=$transaction_collection[$i]["transactions"]["duration"]?> days</li>
+				<?php } 
+					if($transaction_collection[$i]["transactions"]["trade_id"]== 1){?>
+						<li>Trade: Willing to trade</li>
+				<?php }	//if selling print price
+					if(!is_null($transaction_collection[$i]["transactions"]["price"])){ ?>
+						<li>Price: $<?=$transaction_collection[$i]["transactions"]["price"];?></li>
+				<?php }?>
+				<li>Owner: <?= transaction_collection[$i]["users"]["name"]?></li>
+			</ul>
+		</div>
+	<?php
+		}
+
+	?>	
+	
+</div>
+     
+
