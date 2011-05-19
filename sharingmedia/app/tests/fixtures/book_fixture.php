@@ -25,6 +25,13 @@
 								   'ISBN' => '578012391',  
 								   'image' => 'path',
 								   'summary' => 'this is summary'
+						),
+							array ('id' => 2,
+								   'title' => 'OS',
+								   'author' => 'author OS',
+								   'ISBN' => '123',  
+								   'image' => 'path',
+								   'summary' => 'this is summary'
 						)
 					   
 				);

@@ -51,7 +51,7 @@ class BooksController extends AppController {
                 # DEPRECATED if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
                 if (!empty($book_title) || !empty($book_author) || !empty($book_isbn)){
                         # query our database to find the book
-                        $book_results = $this->Book->query ('SELECT DISTINCT books.*, users.*, b_i_o.*
+                        $book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
                                 FROM books books, book_initial_offers b_i_o, users users
                                 WHERE b_i_o.user_id != ' . $this->Session->read('uid') . '
                                 		AND b_i_o.user_id = users.facebook_id
@@ -60,7 +60,7 @@ class BooksController extends AppController {
                                         AND books.author LIKE "%' . $book_author . '%"
                                         AND books.isbn LIKE "%' .  $book_isbn . '%"
                                 ORDER BY books.id;');
-
+						
 
                 }
                 $this->set('book_results', $book_results);
