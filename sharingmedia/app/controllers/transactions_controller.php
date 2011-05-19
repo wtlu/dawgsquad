@@ -192,10 +192,23 @@ class TransactionsController extends AppController {
 		$this->set('duration', $duration);
   }
 
-    function counter_transaction() {
+    function counter_transaction($book_title = null, $book_id = null) {
+		
+		
+		
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 		/* do all the update stuff */
+		
+		
+		$this->Post->$book_title = $book_title;
+		$this->Post->$book_id = $book_id;
+		
+		$this->set('post', $this->Post->read());
+		
+		debug($post);
+		
+		
 		$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
