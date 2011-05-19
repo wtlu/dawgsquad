@@ -10,6 +10,8 @@ class ExchangeBookTestCase extends CakeWebTestCase {
   /* one user sells a book to another */
   function testSellBook() {
 
+    /* search for  */
+
   }
 
   /* one user borrows a book from another */
