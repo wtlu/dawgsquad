@@ -35,16 +35,16 @@ create a counter-offer. </p>
 
 
 <?php
-	echo $form->create('Transaction', array('action' => 'confirm_transaction', 'type'=>'post'));
+	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction', 'type'=>'post'));
 	if (isset($price) && ("NULL" <> $price)) {
 	?>
-		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" checked = "checked"> <strong>Buy</strong> - Price: $<?= $price ?><br>
+		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $price ?><br>
 		<input name="data[Transaction][price]" id="price" value="<?= $price ?>" type="hidden">
 	<?php
 	}
 	if (isset($duration) && ("NULL" <> $duration)) {
 	?>
-		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" checked = "checked"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
+		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
@@ -87,9 +87,9 @@ create a counter-offer. </p>
 		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
 
 		<!-- </div> -->
-	
+	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
-	echo $this->Form->end('Accept');
+	# echo $this->Form->end('Accept', array('id' => 'accept');
 	
 	echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post'));
 	?>
