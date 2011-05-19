@@ -59,24 +59,6 @@ class TransactionsController extends AppController {
 		}
 		$this->set('allow_trade', $allow_trade);
 
-		/* This page is only called from add books results, so there will be no trade information
-		// This should be in the counteroffer page.
-		if (isset($this->data['Transaction']['allow_trade'])){
-			$allow_trade = $this->data['Transaction']['allow_trade'];
-			$trade_books = $this->Transaction->query('SELECT books.*
-				FROM book_initial_offers b_i_o, books books
-				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
-					AND b_i_o.trade_id = 1
-					AND b_i_o.book_id = books.id;');
-			# debug($trade_books);
-			$this->set('allow_trade', $allow_trade);
-			$this->set('trade_books', $trade_books);
-		};
-		*/
-
-
-
-
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
 		$add_status = false;
@@ -94,8 +76,6 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
 		}
-
-
 
 
 
@@ -221,7 +201,9 @@ class TransactionsController extends AppController {
 		//Needed for access to data variable in the view.
 		$this->set('data', $this->Transaction->read());
 		
-		debug($data);
+		debug($this->Transaction);
+
+		debug("is this working?");
 		debug($book_title);
 		debug($book_id);
 		
