@@ -28,5 +28,5 @@
 	</ul>
 </div>
 <div id="list">
-	<h2>Comming Soon</h2>
+	<h2>Coming Soon</h2>
 </div>
