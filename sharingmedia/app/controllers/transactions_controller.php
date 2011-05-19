@@ -169,8 +169,10 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-		$price = $this->data['Transaction']['price'];
-		$duration = $this->data['Transaction']['duration'];
+		if ($this->data['Transaction']['offer_options'] == 'price') {
+			$price = $this->data['Transaction']['price'];
+		} else if ($this->data['Transaction']['offer_options'] == 'duration') {
+			$duration = $this->data['Transaction']['duration'];
 		if (isset($this->data['Transaction']['allow_trade'])) {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
