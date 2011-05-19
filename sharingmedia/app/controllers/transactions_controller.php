@@ -97,7 +97,7 @@ class TransactionsController extends AppController {
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		}
-		this->set('allow_trade', $allow_trade);
+		$this->set('allow_trade', $allow_trade);
 
 		/* This page is only called from add books results, so there will be no trade information
 		// This should be in the counteroffer page.
