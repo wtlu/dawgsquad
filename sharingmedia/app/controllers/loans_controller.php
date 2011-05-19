@@ -31,6 +31,10 @@ class LoansController extends AppController {
 	}
 	
 	function complete_loan($book_number){
+		// set up layout
+	    $this->layout = 'main_layout';
+	    $this->set('title_for_layout', 'Library || My Loans');
+	    
 		debug($book_number);
 	}
 }?>
