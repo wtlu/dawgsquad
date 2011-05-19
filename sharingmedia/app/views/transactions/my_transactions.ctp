@@ -49,6 +49,18 @@
 						<li>Price: $<?=$transaction_collection[$i]["t"]["price"];?></li>
 				<?php }?>
 				<li>Owner: <?= $transaction_collection[$i]["u"]["name"]?></li>
+				<li>Transaction Status: 
+					<?php
+						if(($transaction_collection[$i]["t"]["status"]) == 0) { ?>
+						Pending
+					<?php }
+						else if (($transaction_collection[$i]["t"]["status"]) == 1) { ?>
+						Complete
+					<?php }
+						else { //status = 2, canceled ?>
+						Canceled
+					<?php }?>
+				</li>
 			</ul>
 		</div>
 	<?php
