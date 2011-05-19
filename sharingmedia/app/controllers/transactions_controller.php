@@ -203,13 +203,13 @@ class TransactionsController extends AppController {
 		/* do all the update stuff */
 		
 		
-		$this->Post->$book_title = $book_title;
-		$this->Post->$book_id = $book_id;
+		$this->Transaction->$book_title = $book_title;
+		$this->Transaction->$book_id = $book_id;
 		
-		$this->set('post', $this->Post->read());
+		$this->set('data', $this->Transaction->read());
 		
-		debug($this->Post);
-		debug($post);
+		debug($this->Transaction);
+		debug($data);
 		
 		
 		//$book_title = $this->data['Transaction']['book_title'];
