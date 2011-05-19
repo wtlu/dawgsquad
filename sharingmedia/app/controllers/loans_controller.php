@@ -15,7 +15,7 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    //pull books and initial offers from the databaxe
-		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$this->Session->read('uid'));
+		$book_collection = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$this->Session->read('uid'));
 		//pass variables to page
 		$this->set('book_collection', $book_collection);
 	    // query database for users loans
