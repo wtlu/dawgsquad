@@ -39,9 +39,8 @@ class LoansController extends AppController {
 	    // query stuff
 	    $client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
 	    $client_id = $client_id_array[0]["loans"]["client_id"];
-	    debug($client_id);
-	    $client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
-	    debug($client_name);
+	    $client_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
+	    $client_name = $client_name_array[0]["users"]["name"];
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    $this->set('book_info', $book_info);
 	    $this->set('client_name', $client_name);
