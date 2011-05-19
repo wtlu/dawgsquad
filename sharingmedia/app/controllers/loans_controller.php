@@ -30,11 +30,7 @@ class LoansController extends AppController {
 	    
 	}
 	
-	function remove_confirm(){
-		
-	}
-	
-	function complete_loan(){
-		
+	function complete_loan($book_number){
+		debug($book_number);
 	}
 }?>
