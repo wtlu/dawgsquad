@@ -29,8 +29,6 @@
 </div>
 
 <div id="list">
-	<h2>Coming Soon!</h2>
-	
 	<?php		//loop to print out transaction		
 		$size = sizeof($transaction_collection);
 		for($i=0; $i < $size; $i++){
