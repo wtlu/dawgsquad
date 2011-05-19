@@ -1,5 +1,3 @@
-<!-- File: /app/views/book_initial_offers/add_books_confirm.ctp -->
-
 <!--
 	Created: 5/8/2011
 	Author: James Parsons
@@ -8,7 +6,6 @@
 	5/8/2011 - James Parsons - Created page, added functionality to print offer details, TODO: write SQL to allow adding new tuple to book_initial_offer on confirm press.
 	5/11/2011 - James Parsons - Added ability to recieve book info from calling page, and display the book.
 -->
-
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 <div>
@@ -30,7 +27,7 @@
 		</p>
 	</fieldset>
 
-	<?= $this->Html->link('Remove Loan',"/loans/remove_loan/".$book_collection[0]["books"]["id"]."/".$this->Session->read["uid"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $this->Html->link('Remove Loan',"/loans/remove_loan/".$book_collection[0]["books"]["id"]."/".$this->Session->read["uid"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 	
 </div>
 
