@@ -229,7 +229,7 @@ class TransactionsController extends AppController {
 			# debug($trade_books);
 			$this->set('allow_trade', $allow_trade);
 			$this->set('trade_books', $trade_books);
-		};
+		}
 
 
 
