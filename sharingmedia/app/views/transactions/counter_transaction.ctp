@@ -9,7 +9,8 @@ File: /app/views/transaction.ctp
 	
 	# This is the view for the add books form.
 -->
-<?php echo $this->Html->css('transaction', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
 <fieldset style="border: 3px solid #000000">
 		<legend> The Book You Are Making An Offer For:</legend>
@@ -74,7 +75,7 @@ File: /app/views/transaction.ctp
 			if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
 				?>
 					<!-- <input type="radio" name="trade" value="t"> -->
-					<div class="trade_list">
+				<div class="trade_list">
 				<?php
 					foreach ($trade_books as $tradeable){
 						# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
@@ -84,6 +85,7 @@ File: /app/views/transaction.ctp
 					}
 				}
 		?>
+		</div>
 		
 		</br>
 		<hr>
