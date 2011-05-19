@@ -76,8 +76,6 @@ create a counter-offer. </p>
 		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
 		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
 		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
-		<input name="data[Transaction][price]" id="book_image" value="<?php echo $price ?>" type="hidden">
-		<input name="data[Transaction][duration]" id="book_image" value="<?php echo $duration ?>" type="hidden">
 
 		<!-- </div> -->
 	
