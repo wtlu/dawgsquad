@@ -52,9 +52,10 @@ create a counter-offer. </p>
 	?>
 		<!-- <input type="radio" name="trade" value="t"> -->
 		<strong>Trade:</strong><br>
-		<p>If you wish to trade a book, proceed with Counter Transaction</p>
+		<p>If you wish to trade a book, proceed with Counter Transaction.</p>
 	
 	<?php
+	}
 	/* Since this page is only displayed after the user clicks "Start Transaction" from find books results page,
 	   there will not be any info to dispaly, because the initial offer details does not include specific books.
 	   This code should be in the counter_offer page, and also the ongoing_transaction.ctp page. */
