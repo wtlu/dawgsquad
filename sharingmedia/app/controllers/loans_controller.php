@@ -35,7 +35,7 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // query stuff
-	    $book_info = $this->Loan->query("SELECT * FROM books WHERE book.id = " . $book_id);
+	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    debug($book_info);  
 	    $this->set('book_info', $book_info);
 	    $this->set('client_name', $client_name);
