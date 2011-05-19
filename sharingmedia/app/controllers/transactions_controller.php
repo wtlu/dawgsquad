@@ -194,7 +194,14 @@ class TransactionsController extends AppController {
 		$this->set('duration', $duration);
   }
 
-    function counter_transaction($book_title = null, $book_id = null) {
+    function counter_transaction($book_title = null, 
+								 $book_id = null, 
+								 $owner_name = null,
+								 $owner_id = null,
+								 $book_author = null,
+								 $book_isbn = null,
+								 $book_image = null,
+								 $allow_trade = null) {
 		
 		
 		
@@ -207,20 +214,17 @@ class TransactionsController extends AppController {
 		//$this->Transaction->$book_id = $book_id;
 		
 		
-		
+		//Needed for access to data variable in the view.
 		$this->set('data', $this->Transaction->read());
-		
-		debug($this->Transaction);
-		debug($data);
 		
 		
 		//$book_title = $this->data['Transaction']['book_title'];
 		//$book_id = $this->data['Transaction']['book_id'];
-		$owner_name = $this->data['Transaction']['owner_name'];
-		$owner_id = $this->data['Transaction']['owner_id'];
-		$book_author = $this->data['Transaction']['book_author'];
-		$book_isbn = $this->data['Transaction']['book_isbn'];
-		$book_image = $this->data['Transaction']['book_image'];
+		//$owner_name = $this->data['Transaction']['owner_name'];
+		//$owner_id = $this->data['Transaction']['owner_id'];
+		//$book_author = $this->data['Transaction']['book_author'];
+		//$book_isbn = $this->data['Transaction']['book_isbn'];
+		//$book_image = $this->data['Transaction']['book_image'];
 
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -232,10 +236,10 @@ class TransactionsController extends AppController {
 
 
 		//Set to a default value of 0
-		$allow_trade = 0;
-		if (isset($this->data['Transaction']['allow_trade'])){
-			$allow_trade = $this->data['Transaction']['allow_trade'];
-		}
+		//$allow_trade = 0;
+		//if (isset($this->data['Transaction']['allow_trade'])){
+		//	$allow_trade = $this->data['Transaction']['allow_trade'];
+		//}
 		$this->set('allow_trade', $allow_trade);
 
 
