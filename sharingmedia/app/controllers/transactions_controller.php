@@ -91,7 +91,7 @@ class TransactionsController extends AppController {
 			$duration = $this->data['Transaction']['duration'];
 		};
 		$this->set('duration', $duration);
-		
+
 		//Set to a default value of 0
 		$allow_trade = 0;
 		if (isset($this->data['Transaction']['allow_trade'])){
@@ -144,7 +144,7 @@ class TransactionsController extends AppController {
 	function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		
+
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$user_name = $this->data['Transaction']['name'];
@@ -153,11 +153,11 @@ class TransactionsController extends AppController {
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
 		$allow_trade = $this->data['Transaction']['allow_trade'];
-		
+
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
-		$this->set('user_name', $user_name);
-		$this->set('user_id', $user_id);
+		$this->set('owner_name', $owner_name);
+		$this->set('owner_id', $owner_id);
 		$this->set('book_author', $book_author);
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
@@ -195,15 +195,15 @@ class TransactionsController extends AppController {
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
 
-		
+
 		//Set to a default value of 0
 		$allow_trade = 0;
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		}
 		$this->set('allow_trade', $allow_trade);
-		
-		
+
+
 		/* This page is only called from add books results, so there will be no trade information */
 		// This should be in the counteroffer page.
 		if ($allow_trade){
@@ -216,11 +216,11 @@ class TransactionsController extends AppController {
 			$this->set('allow_trade', $allow_trade);
 			$this->set('trade_books', $trade_books);
 		};
-		
-		
-		
-		
-		
+
+
+
+
+
   }
 
 }
