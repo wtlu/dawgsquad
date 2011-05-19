@@ -2,7 +2,7 @@
 
 <div>
 
-	<h2> Confirm Counter </h2>
+	<h2> Confirm Transaction </h2>
 
 	</br>
 	
@@ -42,7 +42,7 @@
 	
 </div>
 
-<?php echo $form->create('Transaction', array('action' => 'complete_transaction', 'type'=>'post')); ?>
+<?php echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][title]" id="title" value="<?php echo $title ?>" type="hidden">
 		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
