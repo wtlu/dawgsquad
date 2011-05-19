@@ -86,7 +86,7 @@ File: /app/views/transaction.ctp
 				
 				}
 		?>
-		</div>
+				</div>
 		
 		</br>
 		<hr>
