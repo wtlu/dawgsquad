@@ -14,6 +14,7 @@
 class LoansControllerTest extends CakeTestCase {
 
   var $fixtures = array('app.loan');
+  var $helpers = array('Session');
 
   function startCase() {
     echo '<h1>Starting Test Case</h1>';
@@ -32,6 +33,24 @@ class LoansControllerTest extends CakeTestCase {
   }
 
   //Add Test functions as necessary
+
+  function testmy_loans() {
+
+    $result = $this->testAction('/loans/my_loans/',array('return' => 'vars'));
+    debug($result);
+  }
+  
+  function testcomplete_loan() {
+
+    $result = $this->testAction('/loans/complete_loan/',array('return' => 'vars'));
+    debug($result);
+  }
+  
+  function testremove_loan() {
+
+    $result = $this->testAction('/loans/remove_loan/',array('return' => 'vars'));
+    debug($result);
+  }
 }
 
 ?>
