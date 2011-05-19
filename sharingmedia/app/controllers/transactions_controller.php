@@ -91,6 +91,13 @@ class TransactionsController extends AppController {
 			$duration = $this->data['Transaction']['duration'];
 		};
 		$this->set('duration', $duration);
+		
+		//Set to a default value of 0
+		$allow_trade = 0;
+		if (isset($this->data['Transaction']['allow_trade'])){
+			$allow_trade = $this->data['Transaction']['allow_trade'];
+		}
+		this->set('allow_trade', $allow_trade);
 
 		/* This page is only called from add books results, so there will be no trade information
 		// This should be in the counteroffer page.
@@ -137,7 +144,6 @@ class TransactionsController extends AppController {
 	function accept_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-<<<<<<< local
 		
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
@@ -146,6 +152,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
+		$allow_trade = $this->data['Transaction']['allow_trade'];
 		
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -154,8 +161,8 @@ class TransactionsController extends AppController {
 		$this->set('book_author', $book_author);
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
-=======
->>>>>>> other
+		$this->set('allow_trade', $allow_trade);
+
 	}
 
 	function my_transactions() {
@@ -187,6 +194,33 @@ class TransactionsController extends AppController {
 		$this->set('book_author', $book_author);
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
+
+		
+		//Set to a default value of 0
+		$allow_trade = 0;
+		if (isset($this->data['Transaction']['allow_trade'])){
+			$allow_trade = $this->data['Transaction']['allow_trade'];
+		}
+		this->set('allow_trade', $allow_trade);
+		
+		
+		/* This page is only called from add books results, so there will be no trade information */
+		// This should be in the counteroffer page.
+		if ($allow_trade){
+			$trade_books = $this->Transaction->query('SELECT books.*
+				FROM book_initial_offers b_i_o, books books
+				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
+					AND b_i_o.trade_id = 1
+					AND b_i_o.book_id = books.id;');
+			# debug($trade_books);
+			$this->set('allow_trade', $allow_trade);
+			$this->set('trade_books', $trade_books);
+		};
+		
+		
+		
+		
+		
   }
 
 }

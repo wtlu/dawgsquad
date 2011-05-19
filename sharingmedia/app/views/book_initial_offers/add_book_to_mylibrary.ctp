@@ -14,7 +14,7 @@
 
 	<?php 
 		if($add_status){
-			echo '<h2> Transaction Successful!</h2>';
+			echo '<h2> Add Book Successful!</h2>';
 		}else{
 			echo '<h2> Add Unsuccessful</h2>';
 		}

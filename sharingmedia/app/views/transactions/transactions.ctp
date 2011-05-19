@@ -66,7 +66,7 @@ create a counter-offer. </p>
 			display_results($tradeable['books']);
 		}
 	}
-<<<<<<< local
+
 	*/
 	?>
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
@@ -78,11 +78,7 @@ create a counter-offer. </p>
 		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
 		<input name="data[Transaction][price]" id="book_image" value="<?php echo $price ?>" type="hidden">
 		<input name="data[Transaction][duration]" id="book_image" value="<?php echo $duration ?>" type="hidden">
-=======
-	*/
-	
-	?>
->>>>>>> other
+
 		<!-- </div> -->
 	
 	<?php
@@ -97,6 +93,7 @@ create a counter-offer. </p>
 		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
 		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
 		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">
+		<input name="data[Transaction][allow_trade]" id="allow_trade" value="<?php echo $allow_trade ?>" type="hidden">
 	<?php
 	echo $this->Form->end('Counter Transaction');
 	
@@ -105,39 +102,3 @@ create a counter-offer. </p>
 </div>
 
 </body>
-
-<?php
-# helper function to display trade book results
-function display_results($result) {
-	$chosen = '';
-	# build the string of book data and pass on to initial_offer_details function in book initial offers controller
-	foreach ($result as $element) {
-		$chosen = $chosen . '^' . $element;
-	}
-	?>
-	<div class="book_results_display">
-	
-		<!--
-		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
-		-->
-		
-		<label for="choose_book">
-			<?php
-				$title = $result['title'];
-				$author = $result['author'];
-				$ISBN = $result['ISBN'];
-				$image = $result['image'];
-				$summary = $result['summary'];
-			?>
-		<img width=100 src=<?= $image ?> alt="Book image" />
-		<div class = "book_results_text">
-			<strong>Title:</strong>	<?= $title ?> <br />
-			<strong>Author(s):</strong> <?= $author ?> <br />
-			<strong>Summary:</strong> <?= $summary ?> <br />
-			<strong>ISBN:</strong> <?= $ISBN ?> <br />
-		</div>
-		</label>
-	</div>
-	<?php
-}
-?>
