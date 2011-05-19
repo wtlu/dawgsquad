@@ -23,6 +23,8 @@ class TransactionsController extends AppController {
 		$this->set('data', $this->Transaction->read());
 
 
+		debug($data);
+		
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['name'];
@@ -194,6 +196,9 @@ class TransactionsController extends AppController {
 		$this->set('duration', $duration);
   }
 
+  
+  
+  
     function counter_transaction($book_title = null, 
 								 $book_id = null, 
 								 $owner_name = null,
