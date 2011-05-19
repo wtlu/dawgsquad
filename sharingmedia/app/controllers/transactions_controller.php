@@ -21,9 +21,6 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'accept transaction');
 		
 		$this->set('data', $this->Transaction->read());
-
-
-		debug($data);
 		
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
@@ -210,6 +207,8 @@ class TransactionsController extends AppController {
 		
 		
 		
+		
+		
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 		/* do all the update stuff */
@@ -221,6 +220,10 @@ class TransactionsController extends AppController {
 		
 		//Needed for access to data variable in the view.
 		$this->set('data', $this->Transaction->read());
+		
+		debug($data);
+		debug($book_title);
+		debug($book_id);
 		
 		
 		//$book_title = $this->data['Transaction']['book_title'];
