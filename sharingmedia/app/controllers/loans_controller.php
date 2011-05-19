@@ -8,7 +8,8 @@
 
 <?php
 class LoansController extends AppController {
-   var $name = 'Loans';
+	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
+	var $name = 'Loans';
 
 	function my_loans(){
 		// set up layout
@@ -30,14 +31,14 @@ class LoansController extends AppController {
 	    
 	}
 	
-	function complete_loan($book_id, $client_name, $due_date){
-		debug($book_id);
-		debug($client_name);
-		debug($due_date);
+	function complete_loan($book_id, $due_date){
+		//debug($client_name);
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // query stuff
+	    $client_id = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . "AND book_id = " . $book_id);
+	    $client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    $this->set('book_info', $book_info);
 	    $this->set('client_name', $client_name);
