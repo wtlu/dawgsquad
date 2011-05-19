@@ -119,6 +119,7 @@ function display_results($result) {
 		
 		<label for="choose_book">
 			<?php
+				debug($result);
 				$title = $result[0];
 				$author = $result[1];
 				$ISBN = $result[2];
