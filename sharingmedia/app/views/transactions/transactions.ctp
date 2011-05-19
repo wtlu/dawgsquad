@@ -66,9 +66,23 @@ create a counter-offer. </p>
 			display_results($tradeable['books']);
 		}
 	}
+<<<<<<< local
+	*/
+	?>
+		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
+		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
+		<input name="data[Transaction][user_id]" id="user_id" value="<?php echo $user_id ?>" type="hidden">
+		<input name="data[Transaction][user_name]" id="user_name" value="<?php echo $user_name ?>" type="hidden">
+		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
+		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
+		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
+		<input name="data[Transaction][price]" id="book_image" value="<?php echo $price ?>" type="hidden">
+		<input name="data[Transaction][duration]" id="book_image" value="<?php echo $duration ?>" type="hidden">
+=======
 	*/
 	
 	?>
+>>>>>>> other
 		<!-- </div> -->
 	
 	<?php
