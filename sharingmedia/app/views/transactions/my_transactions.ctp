@@ -66,7 +66,7 @@
 						if (is_null($transaction_collection[$i]["t"]["modified"])) {
 							$transaction_collection[$i]["t"]["created"]
 						} else {
-							$transaction_collection[$i]["t"]["modified"])
+							$transaction_collection[$i]["t"]["modified"]
 						}
 					?>
 				</li>
