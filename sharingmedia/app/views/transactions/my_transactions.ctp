@@ -50,7 +50,7 @@
 					if(!is_null($transaction_collection[$i]["transactions"]["price"])){ ?>
 						<li>Price: $<?=$transaction_collection[$i]["transactions"]["price"];?></li>
 				<?php }?>
-				<li>Owner: <?= transaction_collection[$i]["users"]["name"]?></li>
+				<li>Owner: <?= $transaction_collection[$i]["users"]["name"]?></li>
 			</ul>
 		</div>
 	<?php
