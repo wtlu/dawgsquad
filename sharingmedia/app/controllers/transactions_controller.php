@@ -194,8 +194,8 @@ class TransactionsController extends AppController {
 		/* do all the update stuff */
 		
 		
-		//$this->Transaction->$book_title = $book_title;
-		//$this->Transaction->$book_id = $book_id;
+		$this->Transaction->$book_title = $book_title;
+		$this->Transaction->$book_id = $book_id;
 		
 		
 		//Needed for access to data variable in the view.
