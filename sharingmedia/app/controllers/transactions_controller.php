@@ -173,6 +173,7 @@ class TransactionsController extends AppController {
 			$price = $this->data['Transaction']['price'];
 		} else if ($this->data['Transaction']['offer_options'] == "loan") {
 			$duration = $this->data['Transaction']['duration'];
+		}
 		if (isset($this->data['Transaction']['allow_trade'])) {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
@@ -231,11 +232,7 @@ class TransactionsController extends AppController {
 			$this->set('trade_books', $trade_books);
 		}
 
-
-
-
-
-  }
+    }
 
 }
 ?>
