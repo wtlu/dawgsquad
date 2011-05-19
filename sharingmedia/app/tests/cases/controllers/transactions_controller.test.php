@@ -1,7 +1,18 @@
 <?php
+/**
+ * File		: /app/tests/cases/transactions_controller.test.php
+ * Author	: Greg Brandt
+ * Purpose	: Tests transactions controller
+ * Notes	: Assumes functions in transactions controller are updated
+ *                to adhere to MVC (take parameters, etc...)
+ */
 class TransactionsControllerTest extends CakeTestCase {
 
   var $fixtures = array('app.transaction');
+
+  //--------------------------------------------------
+  // SETUP
+  //--------------------------------------------------
 
   function startCase() {
     echo '<h1>Starting Test Case</h1>';
@@ -19,99 +30,155 @@ class TransactionsControllerTest extends CakeTestCase {
     echo '<hr />';
   }
 
-  /* tests moving transaction from pending to accepted */
-  function testAcceptTransaction() {
+  //--------------------------------------------------
+  // TRANSACTION
+  //--------------------------------------------------
 
-    /**
-     * NOTE: THIS ASSUMES acceptTransaction IS OF THE FORM
-     * acceptTransaction($tid) WHERE $id IS THE TRANSACTION ID
-     */
+  /**
+   * purpose	: tests successfully establishing a new transaction
+   * expected	: transaction is added to DB
+   * conditions : transactions is of the form...
+   *              transactions($price, $duration, $book_id, $owner_id, $client_id)
+   */
+  function testTransactionsUnique() {
+
+    /* get owner, client, and book */
+
+    /* add the transaction */
+
+    /* check to see if that transaction is in the DB */
     
-    /* accept the transaction */
-    $result = $this->testAction('/transactions/acceptTransaction/1',
-				array('return' => 'vars'));
+  }
 
+  /**
+   * purpose	: tests adding a duplicate transaction
+   * expected	: transaction is not added to DB
+   * conditions : transactions is of the form...
+   *              transactions( $price, $duration, $book_id, $owner_id, $client_id )
+   */
+  function testTransactionsDuplicate() {
 
-    /* make sure state changed */
-    $this->assertEqual($result['transaction_info']['transactions']['status'], '2');
+    /* get owner, client, and book */
+
+    /* attempt add the transaction */
+
+    /* ensure only one copy of transaction in DB */
+    
+  }
+
+  //--------------------------------------------------
+  // ACCEPT_TRANSACTION
+  // -- note: all you need for this (logically) is the transaction id
+  //--------------------------------------------------
+
+  /**
+   * purpose	: tests successfully moving transaction to 'completed' state
+   * expected	: transaction is completed
+   * conditions : transaction is pending; accept_transaction is of form...
+   *              accept_transaction( $transaction_id )
+   */
+  function testAcceptTransactionSuccess() {
+
+    /* get a transaction from fixture that's pending */
+
+    /* accept it */
+
+    /* check that it's accepted */
 
   }
 
-  /* tests moving transaction from pending to rejected */
-  function testRejectTransaction() {
+  /**
+   * purpose	: tests unsuccessfully moving transaction to 'completed' state
+   * expected	: transaction is rejected
+   * conditions : transaction is rejected; accept_transaction is of form...
+   *              accept_transaction( $transaction_id )
+   */
+  function testAcceptTransactionFailure() {
 
-    /* reject the transaction */
-    $result = $this->testAction('/transactions/rejectTransaction/1',
-				array('return' => 'vars'));
+    /* get a transaction from fixture that's rejected */
 
-    /* make sure state changed */
-    $this->assertEqual($result['transaction_info']['transactions']['status'], '1');
+    /* accept it */
+
+    /* check that it's rejected still */
 
   }
 
-  /* updates transaction with same type
-   * (i.e. new currency amount if 'price')
+  //--------------------------------------------------
+  // MY TRANSACTIONS
+  //--------------------------------------------------
+
+  /**
+   * purpose	: tests displaying transactions for user
+   * expected	: test user has three transactions
+   * conditions : my_transactions is of form...
+   *              my_transactions( $user_id )
+   */
+  function testMyTransactions() {
+
+    /* look up user's transactions */
+
+    /* make sure all transactions are the same as those in fixture w/ that user */
+   
+  }
+
+  //--------------------------------------------------
+  // CONFIRM TRANSACTION
+  //--------------------------------------------------
+  
+  /**
+   * purpose	: tests confirming transaction
+   * expected	: transaction is accepted and confirmed
+   * conditions : confirm_transaction is of form...
+   *              confirm_transaction( $transaction_id )
+   */
+  function testConfirmTransactionPositive() {
+
+    /* get transaction */
+
+    /* ensure transaction has been accepted */
+
+    /* set transaction confirmed */
+    // NOTE: NO CONFIRMED STATE IN MODEL
+
+  }
+
+  //--------------------------------------------------
+  // COUNTER TRANSACTION
+  //--------------------------------------------------
+
+  /**
+   * purpose	: tests countering transaction w/ same type
+   * expected	: transaction is updated with new offer
+   * conditions : counter_transaction is of form...
+   *              counter_transaction( $transaction_id, $type, $offer )
    */
   function testCounterTransactionSameType() {
 
-    /* change initial offer from 100.0 to 50.0 */
-    $result = $this->testAction('/transactions/counterTransaction/1/sell/50.0',
-				array('return' => 'vars'));
+    /* get the transaction */
 
-    /* ensure mutual exclusivity */
-    $this->assertEqual($result['transaction_info']['transactions']['trade_id'], null);
-    $this->assertEqual($result['transaction_info']['transactions']['duration'], null);
-    $this->assertEqual($result['transaction_info']['transactions']['price'], 50.0);
+    /* update the transaction offer */
 
-    /* test status still pending (0) */
-    $this->assertEqual($result['transaction_info']['transactions']['status'], 0);
-
-    /* test current_id shifted (was initially owner and now is client who made offer) */
-    $this->assertEqual($result['transaction_info']['transactions']['client_id'], 
-		       $result['transaction_info']['transactions']['current_id']);
+    /* ensure offer was updated, and other offer types are still null */
 
   }
-
-  /* attempt to accept a transaction that has already been rejcected
-   * should fail / not allow */
-  function testAcceptTransactionRejected() {
-    
-    /* call method on transaction that has already been rejected */
-    $result = $this->testAction('/transactions/acceptTransaction/2',
-				array('return' => 'vars'));
-
-    /* PROBABLY SHOULD BE AN ERROR MESSAGE...
-     * TEST FOR THAT IF IT IS IMPLEMENTED */
-
-    /* test status still rejected (1) */
-    $this->assertEqual($result['transaction_info']['transactions']['status'], '1');
-
-  }
-
-  /* update transaction with different type
-   * should fail / not allow
+  
+  /**
+   * purpose	: tests countering transaction w/ different type
+   * expected	: transaction remains the same (exceptions thrown?)
+   * conditions : counter_transaction is of form...
+   *              counter_transaction( $transaction_id, $type, $offer )
    */
   function testCounterTransactionDiffType() {
+    
+    /* get the transaction and remember original offer */
 
-    /* try to set the duration to 100 days instead of a price of 100.0 */
-    $result = $this->testAction('/transactions/counterTransaction/1/duration/100',
-				array('return' => 'vars'));
+    /* try to update the two other types with the offer */
 
+    /* ensure the two other types are null (and possibly exceptions thrown...) */
 
-
-    /* ensure trade detail fields have not changed */
-    $this->assertEqual($result['transaction_info']['transactions']['trade_id'], null);
-    $this->assertEqual($result['transaction_info']['transactions']['duration'], null);
-    $this->assertEqual($result['transaction_info']['transactions']['price'], 100.0);
-
-    /* test status still pending (0) */
-    $this->assertEqual($result['transaction_info']['transactions']['status'], 0);
-
-    /* test current_id not shifted because offer was invalid */
-    $this->assertEqual($result['transaction_info']['transactions']['client_id'], 
-		       $result['transaction_info']['transactions']['owner_id']);
+    /* ensure that the original offer is still the same */
 
   }
 
-}
+  }
 ?>
