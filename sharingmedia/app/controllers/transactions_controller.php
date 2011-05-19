@@ -19,6 +19,8 @@ class TransactionsController extends AppController {
   function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
+		
+		$this->set('data', $this->Transaction->read());
 
 
 		$book_title = $this->data['Transaction']['title'];

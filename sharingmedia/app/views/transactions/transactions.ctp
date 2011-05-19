@@ -89,20 +89,23 @@ create a counter-offer. </p>
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
 	
-	echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post', $data['Transaction']['book_title'], $data['Transaction']['book_id']) );
+	// echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post', $data['Transaction']['book_title'], $data['Transaction']['book_id']) );
+	echo $this->Html->link('Counter Transaction', array('action' => 'counter_transaction', $data['Transaction']['book_title'], $data['Transaction']['book_id']));
 	?>
 		<!--
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
 		-->
+		<!--
 		<input name="data[Transaction][owner_id]" id="owner_id" value="<?php echo $owner_id ?>" type="hidden">
 		<input name="data[Transaction][owner_name]" id="owner_name" value="<?php echo $owner_name ?>" type="hidden">
 		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
 		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
 		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">
 		<input name="data[Transaction][allow_trade]" id="allow_trade" value="<?php echo $allow_trade ?>" type="hidden">
+		-->
 	<?php
-	echo $this->Form->end('Counter Transaction');
+	// echo $this->Form->end('Counter Transaction');
 	
 ?>
 
