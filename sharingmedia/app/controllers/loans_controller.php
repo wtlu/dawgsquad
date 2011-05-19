@@ -24,7 +24,7 @@ class LoansController extends AppController {
 		for ($i = 0; $i < count($loan_collection); $i++){
 			$client_id = $loan_collection[$i]["loans"]["client_id"];
 			$client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
-			debug($client_name);	
+			$loan_collection[$i]["loans"]["client_id"] = $client_name[0]["users"]["name"];
 		}
 		$this->set('loan_collection', $loan_collection);
 	    

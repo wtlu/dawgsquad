@@ -38,7 +38,6 @@
 			<ul class="books_list">
 				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
 				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
-				<?php
 					
 				
 				
