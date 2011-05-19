@@ -28,5 +28,31 @@
 	</ul>
 </div>
 <div id="list">
-	<h2>Coming Soon</h2>
+	
+	<?php		//loop to print out books		
+		$size = sizeof($book_collection);
+		for($i=0; $i < $size; $i++){
+	?>
+		<div class="book_unit">	
+			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
+			<ul class="books_list">
+				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
+				<?php
+					
+				
+				
+				<li>Loaned To: <?= $loan_collection[$i]["loans"]["client_id"]?></li>
+				
+				<li>Due Date: <?= $loan_collection[$i]["loans"]["due_date"]?></li>
+			</ul>
+			<?= $this->Html->link('Remove',"/loans/remove_confirm/".$book_collection[$i]["loans"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]["loans"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+		</div>
+	<?php
+		}
+
+	?>	
+</div>
+
 </div>
