@@ -35,7 +35,7 @@ create a counter-offer. </p>
 
 
 <?php
-	echo $form->create('Transactions', array('action' => 'accept_transaction', 'type'=>'post'));
+	echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post'));
 	if (isset($price) && ("NULL" <> $price)) {
 	?>
 		<input id="buy" type="radio" name="offer_options" value="<?= $price ?>"> <strong>Buy</strong> - Price: $<?= $price ?><br>
