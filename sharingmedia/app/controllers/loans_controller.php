@@ -21,7 +21,7 @@ class LoansController extends AppController {
 	    // query database for users loans
 	    $loan_collection = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid'));
 		// pass variables to the view
-		foreach ($i = 0; $i < $loan_collection.count; $i++){
+		foreach ($i = 0; $i < count($loan_collection); $i++){
 			$client_id = $loan_collection[$i]["loans"]["client_id"];
 			$client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
 			debug($client_name);	
