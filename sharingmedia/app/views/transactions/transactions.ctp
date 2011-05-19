@@ -48,6 +48,11 @@ create a counter-offer. </p>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
+	if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
+	?>
+		<!-- <input type="radio" name="trade" value="t"> -->
+		<strong>Trade:</strong><br>
+		<p>If you wish to trade a book, proceed with Counter Transaction</p>
 	
 	/* Since this page is only displayed after the user clicks "Start Transaction" from find books results page,
 	   there will not be any info to dispaly, because the initial offer details does not include specific books.

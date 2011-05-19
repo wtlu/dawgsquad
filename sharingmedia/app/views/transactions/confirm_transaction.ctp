@@ -6,6 +6,9 @@
 
 	</br>
 	
+	<p>You're almost done! Review the transaction details below, then click Complete Transaction to accept this
+	transaction.</p>
+	
 	<fieldset>
 		<legend> Book Offer </legend>
 		<p class="book_display">
@@ -53,19 +56,19 @@
 
 <?php echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
-		<input name="data[Transaction][title]" id="title" value="<?php echo $title ?>" type="hidden">
-		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
-		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
-		<input name="data[Transaction][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<input name="data[Transaction][book_title]" id="title" value="<?php echo $book_title ?>" type="hidden">
+		<input name="data[Transaction][book_author]" id="author" value="<?php echo $book_author ?>" type="hidden">
+		<input name="data[Transaction][book_isbn]" id="ISBN" value="<?php echo $book_isbn ?>" type="hidden">
+		<input name="data[Transaction][book_image]" id="image" value="<?php echo $book_image ?>" type="hidden">
 		
 		
 		<?php
-		if(!empty($loan_duration)){		
-				echo '<input name="data[Transaction][loan_duration]" id="ld" value="' . $loan_duration . '" type="hidden">';
+		if(!empty($duration)){		
+				echo '<input name="data[Transaction][duration]" id="ld" value="' . $duration . '" type="hidden">';
 		}
 		
-		if(!empty($sell_price)){		
-				echo '<input name="data[Transaction][sell_price]" id="sp" value="' . $sell_price . '" type="hidden">';
+		if(!empty($price)){		
+				echo '<input name="data[Transaction][price]" id="sp" value="' . $price . '" type="hidden">';
 		}
 		
 		if(!empty($trade_id)){		
@@ -74,5 +77,5 @@
 		?>
 
 <?php
-	echo $this->Form->end('Confirm Transaction');
+	echo $this->Form->end('Complete Transaction!');
 ?>
