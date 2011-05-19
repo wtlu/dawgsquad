@@ -35,8 +35,8 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    //
-	    print_r($book_collection);
-	    print_r($loan_collection); 
+	    debug($book_collection);
+	    debug($loan_collection); 
 	    $this->set('book_collection', $book_collection);
 	    $this->set('loan_collection', $loan_collection);
 	}
