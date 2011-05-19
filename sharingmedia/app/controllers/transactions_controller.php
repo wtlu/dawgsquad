@@ -145,6 +145,32 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
+		$book_title = $this->data['Transaction']['book_title'];
+		$book_id = $this->data['Transaction']['book_id'];
+		$owner_name = $this->data['Transaction']['owner_name'];
+		$owner_id = $this->data['Transaction']['owner_id'];
+		$book_author = $this->data['Transaction']['book_author'];
+		$book_isbn = $this->data['Transaction']['book_isbn'];
+		$book_image = $this->data['Transaction']['book_image'];
+		if ($this->data['Transaction']['offer_options'] == "price") {
+			$price = $this->data['Transaction']['price'];
+		} else if ($this->data['Transaction']['offer_options'] == "loan") {
+			$duration = $this->data['Transaction']['duration'];
+		}
+		if (isset($this->data['Transaction']['allow_trade'])) {
+			$allow_trade = $this->data['Transaction']['allow_trade'];
+		};
+
+		$this->set('book_title', $book_title);
+		$this->set('book_id', $book_id);
+		$this->set('owner_name', $owner_name);
+		$this->set('owner_id', $owner_id);
+		$this->set('book_author', $book_author);
+		$this->set('book_isbn', $book_isbn);
+		$this->set('book_image', $book_image);
+		$this->set('allow_trade', $allow_trade);
+		$this->set('price', $price);
+		$this->set('duration', $duration);
 	}
 
 	function my_transactions() {
