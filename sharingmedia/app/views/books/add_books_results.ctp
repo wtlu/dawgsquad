@@ -118,7 +118,6 @@ function display_results($result) {
 		
 		<label for="choose_book">
 			<?php
-				$result = $book['books'];
 				$title = $result['title'];
 				$author = $result['author']; 
 				$ISBN = $result['ISBN']; 

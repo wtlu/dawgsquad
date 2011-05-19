@@ -83,7 +83,7 @@ File: /app/views/transaction.ctp
 						echo '<br />';
 						
 					}
-				echo $this->Form->end('Add This Book');
+				
 				}
 		?>
 		</div>
