@@ -78,8 +78,8 @@ File: /app/views/transaction.ctp
 				<div class="trade_list">
 				<?php
 					foreach ($trade_books as $tradeable){
-						echo '<input type="radio" name="trade_option" value="' . $result . '" /> ';
-						display_results($result);
+						echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
+						display_results($tradeable);
 						echo '<br />';
 						
 					}
