@@ -152,7 +152,7 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
   }
 
-  	function complete_transaction() {
+  	function confirm_transaction() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
