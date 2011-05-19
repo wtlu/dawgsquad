@@ -37,7 +37,7 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // query stuff
-	    $client_id = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . "AND book_id = " . $book_id);
+	    $client_id = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
 	    $client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    $this->set('book_info', $book_info);
@@ -50,6 +50,6 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // remove
-	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $owner_id . "AND book_id = " . $book_id);		
+	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $owner_id . " AND book_id = " . $book_id);		
 	}
 }?>
