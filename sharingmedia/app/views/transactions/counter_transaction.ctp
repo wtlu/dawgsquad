@@ -119,12 +119,11 @@ function display_results($result) {
 		
 		<label for="choose_book">
 			<?php
-				debug($result);
-				$title = $result['title'];
-				$author = $result['author']; 
-				$ISBN = $result['ISBN']; 
-				$image = $result['image'];
-				$summary = $result['summary']; 
+				$title = $result['books']['title'];
+				$author = $result['books']['author']; 
+				$ISBN = $result['books']['ISBN']; 
+				$image = $result['books']['image'];
+				$summary = $result['books']['summary']; 
 			?>
 		<img width=100 src=<?= $image ?> alt="Book image" />
 		<div class = "book_results_text">
