@@ -64,9 +64,9 @@
 				<li>Last Updated: 
 					<?php
 						if (is_null($transaction_collection[$i]["t"]["modified"])) {
-							echo $transaction_collection[$i]["t"]["created"]
+							echo $transaction_collection[$i]["t"]["created"];
 						} else {
-							echo $transaction_collection[$i]["t"]["modified"]
+							echo $transaction_collection[$i]["t"]["modified"];
 						}
 					?>
 				</li>
