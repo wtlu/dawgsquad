@@ -16,47 +16,6 @@ class TransactionsController extends AppController {
   var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
 
-  /* owner agrees on users proposed medium of exchange
-   * pre: transaction is pending
-   * post: transaction is completed (status == 2)
-   */
-  function acceptTransaction($tid) {
-    /* get the transaction */
-    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
-
-    /* do all the update stuff */
-
-    /* post info to view for updating / test */
-    $this->set('transaction_info', $t[0]);
-
-  }
-
-  /* updates the current offer
-   * pre: transaction is pending
-   * post: this->trade_id OR this->duration OR this->price updated
-   */
-  function counterTransaction($tid, $type, $offer) {
-    /* get the transaction */
-    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
-
-
-    /* post info to view for updating / test */
-    $this->set('transaction_info', $t[0]);
-  }
-
-  /* changes state of transaction to rejected
-   * pre: transaction is pending
-   * post: transaction is rejected */
-  function rejectTransaction($tid) {
-    /* get the transaction */
-    $t = $this->Transaction->query("SELECT * FROM transactions WHERE id = $tid");
-
-    /* do all the update stuff */
-
-    /* post info to view for updating / test */
-    $this->set('transaction_info', $t[0]);
-  }
-
   function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
