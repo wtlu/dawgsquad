@@ -30,15 +30,16 @@ class LoansController extends AppController {
 	    
 	}
 	
-	function complete_loan($book_collection, $loan_collection){
+	function complete_loan($book_id, $client_name, $due_date){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
-	    //
-	    debug($book_collection);
-	    debug($loan_collection); 
-	    $this->set('book_collection', $book_collection);
-	    $this->set('loan_collection', $loan_collection);
+	    // query stuff
+	    $book_info = $this->Loan->query("SELECT * FROM books WHERE book.id = " . $book_id);
+	    debug($book_info);  
+	    $this->set('book_info', $book_info);
+	    $this->set('client_name', $client_name);
+	    $this->set('due_date', $due_date);
 	}
 	
 	function remove_loan($book_collection, $loan_collection){
