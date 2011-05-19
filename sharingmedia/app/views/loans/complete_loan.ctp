@@ -1,18 +1,10 @@
-<!--
-	Created: 5/8/2011
-	Author: James Parsons
-	
-	Changelog:
-	5/8/2011 - James Parsons - Created page, added functionality to print offer details, TODO: write SQL to allow adding new tuple to book_initial_offer on confirm press.
-	5/11/2011 - James Parsons - Added ability to recieve book info from calling page, and display the book.
--->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 <div>
 
 	<h2> Remove Loan? </h2>
 
-	</br>
+	<br />
 	
 	<fieldset style="border: 3px solid #000000">
 	
