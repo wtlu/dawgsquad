@@ -161,6 +161,12 @@ class TransactionsController extends AppController {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
 
+		/* This statement updates the status of this transaction to "completed" state
+		$this->Transaction->query('UPDATE transactions
+									SET status = 2
+									WHERE');
+		*/
+
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
 		$this->set('owner_name', $owner_name);
