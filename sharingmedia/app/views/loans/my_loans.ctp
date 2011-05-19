@@ -41,8 +41,8 @@
 				<li>Loaned To: <?= $loan_collection[$i]["loans"]["client_id"]?></li>
 				<li>Loan Due Date: <?= $loan_collection[$i]["loans"]["due_date"]?></li>
 			</ul>
-			<?= $this->Html->link('Remove',"/loans/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
-			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Remove',"/loans/remove_confirm/".$book_collection[$i]["loans"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]["loans"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}
