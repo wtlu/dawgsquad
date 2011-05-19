@@ -8,6 +8,7 @@
         Changelog:
 
         5/16/2011 - Ken Inoue- Created page,
+		5/18/2011 - Wei-Ting Lu - Added transaction table
 
 -->
 
@@ -28,7 +29,35 @@
 </div>
 
 <div id="list">
-	<h2>Comming Soon</h2>
+	<h2>Coming Soon!</h2>
+	
+	<?php		//loop to print out transaction		
+		$size = sizeof($transaction_collection);
+		for($i=0; $i < $size; $i++){
+	?>
+		<div class="book_unit">	
+			<img class= "book_img" src="<?=$transaction_collection[$i]["books"]["image"]?>" alt="<?=$transaction_collection[$i]["books"]["title"]?>"/>
+			<ul class="books_list">
+				<li>Title: <?= $transaction_collection[$i]["books"]["title"]?></li>
+				<li>Author: <?= $transaction_collection[$i]["books"]["author"]?></li>
+				<?php 	//if loans not Null Print
+					if(!is_null($transaction_collection[$i]["transactions"]["duration"])){ ?>
+						<li>Loan Duration: <?=$transaction_collection[$i]["transactions"]["duration"]?> days</li>
+				<?php } 
+					if($transaction_collection[$i]["transactions"]["trade_id"]== 1){?>
+						<li>Trade: Willing to trade</li>
+				<?php }	//if selling print price
+					if(!is_null($transaction_collection[$i]["transactions"]["price"])){ ?>
+						<li>Price: $<?=$transaction_collection[$i]["transactions"]["price"];?></li>
+				<?php }?>
+				<li>Owner: <?= transaction_collection[$i]["users"]["name"]?></li>
+			</ul>
+		</div>
+	<?php
+		}
+
+	?>	
+	
 </div>
      
 

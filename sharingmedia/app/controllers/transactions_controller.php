@@ -178,11 +178,21 @@ class TransactionsController extends AppController {
 		$this->set('price', $price);
 		$this->set('duration', $duration);
 	}
+	
+	//Pre: This page is transactions page when a user navigates to their Library. It takes no arguments
+	//post: Returns an array of all transactions listed by the user and the details of each transactions
 
 	function my_transactions() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-  }
+		$current_user = $this->Session->read('uid');
+		
+		//pull transaction with owners that are me and initial offers from the database
+		$my_transaction_collections = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND t.owner_id = "$current_user + " OR t.client_id = " + $current_user);
+		
+		//pass variables to page
+		$this->set('transaction_collections', $transaction_collection);
+	}
 
    function make_offer(){
 	$this->layout = 'main_layout';
