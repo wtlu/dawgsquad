@@ -42,7 +42,11 @@ class LoansController extends AppController {
 	    $this->set('due_date', $due_date);
 	}
 	
-	function remove_loan($book_collection, $loan_collection){
-		
+	function remove_loan($book_id, $owner_id){
+		// set up layout
+	    $this->layout = 'main_layout';
+	    $this->set('title_for_layout', 'Library || My Loans');
+	    // remove
+	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $owner_id . "AND book_id = " . $book_id);		
 	}
 }?>
