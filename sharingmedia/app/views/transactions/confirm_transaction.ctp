@@ -56,10 +56,13 @@
 
 <?php echo $form->create('Transaction', array('action' => 'accept_transaction', 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
-		<input name="data[Transaction][book_title]" id="title" value="<?php echo $book_title ?>" type="hidden">
-		<input name="data[Transaction][book_author]" id="author" value="<?php echo $book_author ?>" type="hidden">
-		<input name="data[Transaction][book_isbn]" id="ISBN" value="<?php echo $book_isbn ?>" type="hidden">
-		<input name="data[Transaction][book_image]" id="image" value="<?php echo $book_image ?>" type="hidden">
+		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
+		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
+		<input name="data[Transaction][owner_id]" id="owner_id" value="<?php echo $owner_id ?>" type="hidden">
+		<input name="data[Transaction][owner_name]" id="owner_name" value="<?php echo $owner_name ?>" type="hidden">
+		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
+		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
+		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
 		
 		
 		<?php
