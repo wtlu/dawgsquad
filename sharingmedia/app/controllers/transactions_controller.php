@@ -141,7 +141,7 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction() {
+	function accept_transaction($price = null, $duration = null, $allow_trade = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -152,9 +152,9 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-		if ($this->data['Transaction']['offer_options'] == "price") {
+		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
-		} else if ($this->data['Transaction']['offer_options'] == "loan") {
+		} else if (isset($this->data['Transaction']['duration'])) {
 			$duration = $this->data['Transaction']['duration'];
 		}
 		if (isset($this->data['Transaction']['allow_trade'])) {
