@@ -169,7 +169,9 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
-		$allow_trade = $this->data['Transaction']['allow_trade'];
+		if (isset($this->data['Transaction']['allow_trade'])) {
+			$allow_trade = $this->data['Transaction']['allow_trade']
+		};
 
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);

@@ -2,7 +2,7 @@
 
 <div>
 
-	<h2> Confirm Counter </h2>
+	<h2> Transaction Accepted! </h2>
 
 	</br>
 	

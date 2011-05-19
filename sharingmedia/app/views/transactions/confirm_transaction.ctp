@@ -10,10 +10,19 @@
 		<legend> Book Offer </legend>
 		<p class="book_display">
 			<label >
-				<img src=<?php echo $image ?> alt="Book image" />
-				<strong>Title:</strong>	<?php echo $title; ?> <br />
-				<strong>Author(s):</strong> <?php echo $author ?> <br />
-				<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+				<img src=<?= $book_image ?> alt="Book image" />
+				<strong>Title:</strong>	<?= $book_title ?> <br />
+				<strong>Author(s):</strong> <?= $book_author ?> <br />
+				<strong>ISBN:</strong> <?= $book_isbn ?> <br />
+			</label>
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend> Owner Information </legend>
+		<p>
+			<label >
+				<strong>Name:</strong>	<?= $owner_name ?> <br />
 			</label>
 		</p>
 	</fieldset>
