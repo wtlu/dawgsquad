@@ -206,11 +206,12 @@ class TransactionsController extends AppController {
 		
 		$this->set('post', $this->Post->read());
 		
+		debug($this->Post);
 		debug($post);
 		
 		
-		$book_title = $this->data['Transaction']['book_title'];
-		$book_id = $this->data['Transaction']['book_id'];
+		//$book_title = $this->data['Transaction']['book_title'];
+		//$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
 		$owner_id = $this->data['Transaction']['owner_id'];
 		$book_author = $this->data['Transaction']['book_author'];

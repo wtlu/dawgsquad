@@ -89,10 +89,12 @@ create a counter-offer. </p>
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
 	
-	echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post'));
+	echo $form->create('Transaction', array('action' => 'counter_transaction', 'type'=>'post', $post['Post']['book_title'], $post['Post']['book_id']) );
 	?>
+		<!--
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
+		-->
 		<input name="data[Transaction][owner_id]" id="owner_id" value="<?php echo $owner_id ?>" type="hidden">
 		<input name="data[Transaction][owner_name]" id="owner_name" value="<?php echo $owner_name ?>" type="hidden">
 		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
