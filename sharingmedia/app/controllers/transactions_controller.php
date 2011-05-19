@@ -188,7 +188,7 @@ class TransactionsController extends AppController {
 		$current_user = $this->Session->read('uid');
 		
 		//pull transaction with owners that are me and initial offers from the database
-		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND \(t.owner_id = ".$current_user." OR t.client_id = ".$current_user."\)");
+		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
 		
 		//pass variables to page
 		$this->set('transaction_collection', $transaction_collection);
