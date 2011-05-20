@@ -1,0 +1,17 @@
+#outer_area{
+	width: 300px;
+}
+
+.field{
+	width: 100px; 
+}
+
+.options input{
+	float: left;	
+}
+
+.options {
+	border-top: 2px solid black;
+	height: 40px;
+	overflow: hidden;	
+}
