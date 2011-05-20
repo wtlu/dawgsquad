@@ -72,7 +72,7 @@ class BookInitialOffersController extends AppController {
 		$this->set('author', $offer[0]["books"]["author"]);
 		$this->set('image', $offer[0]["books"]["image"]); 
 		$this->set('loan', $offer[0]["book_initial_offers"]["duration"]);
-		$this->set('price', offer[0]["book_initial_offers"]["price"]); 
+		$this->set('price', $offer[0]["book_initial_offers"]["price"]); 
 		$this->set('trade', $offer[0]["book_initial_offers"]["trade_id"]);
 		$this->set('bid', $bid);
 					
