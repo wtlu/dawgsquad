@@ -76,7 +76,8 @@ a{
 #menu #add{
     float: right;
 }
-#menu #add li {
+
+#add li {
 	padding: 0px;
 }
 
