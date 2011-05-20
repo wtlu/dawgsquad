@@ -272,8 +272,12 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-	function delete_transaction(){
-		
+	function delete_transaction($title, $author, $owner $price, $loan, $trade){
+		$this->set('title', $title);
+		$this->set('author', $author);
+		$this->set('price', $price);
+		$this->set('trade', $trade);
+		$this->set('duration', $duration);
 	}
 	
 	
