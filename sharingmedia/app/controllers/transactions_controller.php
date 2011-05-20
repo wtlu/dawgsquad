@@ -203,7 +203,7 @@ class TransactionsController extends AppController {
 		//Needed for access to data variable in the view.
 		$this->set('data', $this->Transaction->read());
 		
-		debug($this->Transaction);
+		//debug($this->Transaction);
 
 		debug("is this working?");
 		debug($book_title);
