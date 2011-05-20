@@ -78,8 +78,8 @@ class TransactionsController extends AppController {
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
-			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, created)
-													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, NOW());');
+			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
+													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 		}
 
 
