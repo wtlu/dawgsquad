@@ -42,8 +42,6 @@ File: /app/views/transaction.ctp
 	
 	<?php echo $form->create('Transaction', array('action' => 'make_offer', 'type'=>'post')); ?>
 		
-	
-		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id'] ?>" type="hidden">
@@ -74,30 +72,32 @@ File: /app/views/transaction.ctp
 
 		
 		<!-- Input for the trade book -->
-		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
-		<label for="choose_trade">Books you own, that you could offer in trade:</label>
-		<?php
-			if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
-				?>
-					<!-- <input type="radio" name="trade" value="t"> -->
-				<div class="trade_list">
-				<?php
-					//If there is at least 1 book in the current users library
-					//that is available to be traded
-					if(!empty($data['Transaction']['trade_books'])){
-						//Display all tradeable books as options for the offer proposal
-						foreach ($data['Transaction']['trade_books'] as $tradeable){
-							echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
-							display_results($tradeable);
-							echo '<br />';	
+		<div class="options">
+			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
+			<label for="choose_trade">Books you own, that you could offer in trade:</label>
+			<?php
+				if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
+					?>
+						<!-- <input type="radio" name="trade" value="t"> -->
+					<div class="trade_list">
+					<?php
+						//If there is at least 1 book in the current users library
+						//that is available to be traded
+						if(!empty($data['Transaction']['trade_books'])){
+							//Display all tradeable books as options for the offer proposal
+							foreach ($data['Transaction']['trade_books'] as $tradeable){
+								echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
+								display_results($tradeable);
+								echo '<br />';	
+							}
 						}
 					}
-				}
-				?>
-				</div>
-		
-		<div class="button_s">
-			<?php echo $this->Form->end('Propose Counteroffer'); ?>
+					?>
+					</div>
+			
+			<div class="button_s">
+				<?php echo $this->Form->end('Propose Counteroffer'); ?>
+			</div>
 		</div>
 		
 
