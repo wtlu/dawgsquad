@@ -41,7 +41,7 @@ a{
     color: black;
 }
 #menu {
-	background-color: #8671CE;
+	background-color: #627AAD;
 	height: 43px;
 	list-style-type: none;
 	margin: 0;
@@ -63,13 +63,13 @@ a{
 }
 
 #menu .current{
-	background-color: #271466;
+	background-color: #6B86B7;
 	color:white;
 	padding: 14px 10px 10px 10px;
 }
 
 #menu a:hover {
-	background-color: #271466;
+	background-color: #6B86B7;
 	color:white;
 	padding: 14px 10px 10px 10px;
 }
