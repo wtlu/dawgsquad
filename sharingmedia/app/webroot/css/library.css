@@ -58,6 +58,7 @@ a{
 #menu a {
 	padding-right: 10px;
 	padding-left: 10px;
+	text-decoration: none;
 }
 
 #menu .current{
