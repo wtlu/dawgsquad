@@ -29,17 +29,17 @@ File: /app/views/add_books.ctp
 	<div id="fields">
 		<?php echo $this->Form->create(array('action' => 'add_books_results')); ?>
 		<div>
-			<label for="info_title">Title</label>
+			<label for="info_title">Title:</label>
 			<?php echo $this->Form->input('title', array('label' => '', 'id' => 'info_title')); ?>
 		</div>
 		
 		<div>
-			<label for="info_author">Author(s)</label>
+			<label for="info_author">Author(s):</label>
 			<?php echo $this->Form->input('author', array('label' => '', 'id' => 'info_author')); ?>
 		</div>
 		
 		<div>
-			<label for="info_isbn">ISBN</label>
+			<label for="info_isbn">ISBN:</label>
 			<?php echo $this->Form->input('isbn', array('label' => '', 'id' => 'info_isbn')); ?>
 		</div>
 		

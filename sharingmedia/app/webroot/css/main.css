@@ -119,6 +119,10 @@ ul ul{
 	width: 100px;	
 }
 
+#fields div{
+	margin-bottom: 15px;	
+}
+
 #add{
 	float:right;
 	border:2px solid black;
