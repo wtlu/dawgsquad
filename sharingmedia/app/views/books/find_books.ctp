@@ -20,12 +20,25 @@
 
 	<br>
 
-	<div>
+	<div id="fields">
+		<?php echo $this->Form->create(array('action' => 'find_books_results')); ?>
+		<div>
+			<label for="info_title">Title:</label>
+			<?php echo $this->Form->input('title', array('label' => '', 'id' => 'info_title')); ?>
+		</div>
+		
+		<div>
+			<label for="info_author">Author(s):</label>
+			<?php echo $this->Form->input('author', array('label' => '', 'id' => 'info_author')); ?>
+		</div>
+		
+		<div>
+			<label for="info_isbn">ISBN:</label>
+			<?php echo $this->Form->input('isbn', array('label' => '', 'id' => 'info_isbn')); ?>
+		</div>
+		
+		<?php echo $this->Form->input('index', array('type' => 'hidden', 'value' => '1')); ?>
 		<?php
-			echo $this->Form->create(array('action' => 'find_books_results'));
-			echo $this->Form->input('title', array('label' => 'Title'));
-			echo $this->Form->input('author', array('label' => 'Author(s)'));
-			echo $this->Form->input('isbn', array('label' => 'ISBN'));
 			echo $this->Form->end('Continue');
 		?>
 	</div>
