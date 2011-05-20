@@ -85,6 +85,11 @@ a{
 #menu #add a:hover {
 	padding: 3px 10px 0px 12px;
 }
+
+#add li:hover {
+	background-color: #271466;
+}
+
 .buttons{
 	float:right;
 	margin-left: 10px;
