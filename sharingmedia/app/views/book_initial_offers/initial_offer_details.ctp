@@ -53,15 +53,15 @@
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
 		<div class="options">	
-			<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" class="option" value="loan" type="checkbox">
-			<label for="choose_loan" style="float:left">Loan For</label>
+			<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox">
+			<label for="choose_loan">Loan For</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
 			?>
 		</div>
 		
 		<div class="options">
-			<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" class="option" value="sell" type="checkbox">
+			<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox">
 			<label for="choose_sell">Sell For</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
@@ -69,7 +69,7 @@
 		</div>
 		
 		<div class="options">
-			<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" class="option" value="trade" type="checkbox">
+			<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox">
 			<label for="choose_trade">Willing to consider trades?</label>
 		</div>
 
