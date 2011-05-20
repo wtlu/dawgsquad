@@ -1,15 +1,8 @@
 <?php echo $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 <div id ="offer">
 	<fieldset>
+	<legend style="color:black;">Original Offer</legend>
 	<div class="book_results_display">
-					<?php
-							$title = $offer[0]["books"]["title"];
-							$author =$offer[0]["books"]["author"];
-							$image = $offer[0]["books"]["image"]; 
-				$loan = $offer[0]["book_initial_offers"]["duration"];
-				$price = $offer[0]["book_initial_offers"]["price"]; 
-				$trade = $offer[0]["book_initial_offers"]["trade_id"];     
-					?>
 			<img src=<?php echo $image ?> alt="Book image" />
 			<strong>Title:</strong> <?php echo $title; ?> <br />
 			<strong>Author(s):</strong> <?php echo $author ?> <br />
@@ -26,7 +19,7 @@
 
 	<fieldset >
 
-	<legend style="color:black;">Initial Offer Details</legend>
+	<legend style="color:black;">New Offer</legend>
 
 	<div id="outer_area">
 
@@ -35,9 +28,12 @@
 			</p>
 
 			
-			<?php echo $form->create('BookInitialOffer', array('action' => 'add_books_confirm', 'type'=>'post')); ?>
-				  
-			
+			<?php echo $form->create('BookInitialOffer', array('action' => 'edit_comfirm', 'type'=>'post')); ?>
+			<!--Hidden fields to pass data-->	  
+			<input name="data[BookInitialOffer][title]" id="title" value="<?php echo $title ?>" type="hidden">
+			<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
+			<input name="data[BookInitialOffer][bid]" id="bid" value="<?php echo $bid ?>" type="hidden">
+			<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
 					
 			<div class="options">  
 				<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox">
