@@ -36,15 +36,15 @@
 		<p>
 		<?php
 
-			if(!empty($data['Transaction']['duration'])){
+			if(!empty($data['Transaction']['duration']) && ("NULL" <> $data['Transaction']['duration'])){
 				echo '<strong> Loan for ' . $data['Transaction']['duration'] .' days. </strong></br>';
 			}
 
-			if(!empty($data['Transaction']['price'])){
+			if(!empty($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])){
 				echo '<strong> For Sale at $' . $data['Transaction']['price'] .'</strong></br>';
 			}
 
-			if(!empty($data['Transaction']['allow_trade'])){
+			if(!empty($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])){
 				echo '<strong> Some trade book here. </strong></br>';
 			}
 
