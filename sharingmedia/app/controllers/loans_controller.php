@@ -79,17 +79,13 @@ class LoansController extends AppController {
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
-<<<<<<< local
-	    
+
 	    if($identify == 0){
 	    	// remove tuple from loan table
 	    	$this->Loan->query("DELETE FROM loans WHERE owner_id = " . $id . " AND book_id = " . $book_id);
 	    } else {
 	    	$this->Loan->query("DELETE FROM loans WHERE client_id = " . $id . " AND book_id = " . $book_id);
-	    }		
-=======
-	    // remove tuple from loan table
-	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $owner_id . " AND book_id = " . $book_id);
->>>>>>> other
+	    }
+
 	}
 }?>

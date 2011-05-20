@@ -123,7 +123,6 @@ class TransactionsController extends AppController {
 			# debug($date);
 			# echo date_format($date, 'Y-m-d');
 			$due_date = date_format($date, 'Y-m-d');
-			echo $due_date;
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
 									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', \'' . $due_date . '\', NOW());');
 		}
