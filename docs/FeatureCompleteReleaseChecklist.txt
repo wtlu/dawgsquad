@@ -89,10 +89,10 @@ Beta Release Checklist
 				[x] When click remove, shows confirmation
 					[x] If user click yes, removes the book from My Library
 					[x] If user click no, goes back to My Books Page
-		[ ] Has Transactions Tab
-			[ ] When switched to this tab, contains the current transactions
-			[ ] Show pas transactions
-			[ ] Ability to see offer
+		[x] Has Transactions Tab
+			[x] When switched to this tab, contains the current transactions
+			[x] Show pas transactions
+			[x] Ability to see offer
 			[ ] If waiting for offer, can click on offer to go to detail transaction
 		[ ] Has My Loans Tab
 			[ ] When switched to this tab, it contains all loans of this user
