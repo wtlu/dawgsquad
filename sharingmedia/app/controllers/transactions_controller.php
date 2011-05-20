@@ -177,6 +177,8 @@ class TransactionsController extends AppController {
 		}
 
 
+		debug($trade_id);
+		
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
 		$this->set('owner_name', $owner_name);
@@ -184,7 +186,6 @@ class TransactionsController extends AppController {
 		$this->set('book_author', $book_author);
 		$this->set('book_isbn', $book_isbn);
 		$this->set('book_image', $book_image);
-		$this->set('allow_trade', $allow_trade);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
 		
