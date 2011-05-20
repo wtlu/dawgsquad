@@ -71,7 +71,7 @@
 					?>
 				</li>
 			</ul>
-			<?php echo $this->Html->link('View Transaction', "/transactions/transactions/".$trasaction_collection[$i]["b"]["id"]."/".$trasaction_collection[$i]["u"]["facebook_id"]."/".$trasaction_collection[$i]["t"]["price"]."/".$trasaction_collection[$i]["t"]["duration"]."/".$trasaction_collection[$i]["t"]["trade_id"]."/", array(' escape' => false)); ?>
+			<?php echo $this->Html->link('View Transaction', "/transactions/transactions/".$transaction_collection[$i]["b"]["id"]."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$transaction_collection[$i]["t"]["price"]."/".$transaction_collection[$i]["t"]["duration"]."/".$transaction_collection[$i]["t"]["trade_id"]."/", array(' escape' => false)); ?>
 		</div>
 	<?php
 		}
