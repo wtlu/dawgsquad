@@ -25,9 +25,9 @@ class LoansController extends AppController {
 		$this->set('book_collection_owner', $book_collection_owner);
 		$this->set('book_collection_borrower', $book_collection_borrower);
 	    // query database for users loans
-	    //$loan_collection_owner = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid'));
+	    $loan_collection_owner = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid'));
 	    $loan_collection_borrower = $this->Loan->query("SELECT * FROM loans WHERE client_id = ". $this->Session->read('uid'));
-	    $owners = $this->Loan->query("SELECT owner_id FROM loans WHERE client_id = ". $this->Session->read('uid'));
+	    //$owners = $this->Loan->query("SELECT owner_id FROM loans WHERE client_id = ". $this->Session->read('uid'));
 		// pass variables to the view
 		for ($i = 0; $i < count($loan_collection_owner); $i++){
 			$client_id = $loan_collection_owner[$i]["loans"]["client_id"];
