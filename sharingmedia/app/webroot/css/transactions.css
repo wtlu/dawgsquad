@@ -35,12 +35,12 @@
 }
 
 .trade_list {
-	height: 240px;
+	height: 220px;
 	overflow: scroll;
 	border: solid black 1px;
 	padding: 5px;
 	float: left;
-	width: 350px;
+	width: 300px;
 }
 
 .book_display {
