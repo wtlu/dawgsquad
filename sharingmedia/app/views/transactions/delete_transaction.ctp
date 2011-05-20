@@ -10,9 +10,9 @@
 	
 		<p class="book_display">
 			<label >
-				<img src=<?php echo $image ?> alt="Book image" />
-				<strong>Title:</strong>	<?php echo $title ?> <br />
-				<strong>Author(s):</strong> <?php echo $author ?> <br />
+				<img src=<?php echo $book_array[0]["books"]["image"] ?> alt="Book image" />
+				<strong>Title:</strong>	<?php echo $book_array[0]["books"]["title"] ?> <br />
+				<strong>Author(s):</strong> <?php echo $book_array[0]["books"]["title"] ?> <br />
 				<?php 	//if loans not Null Print
 					if(!is_null($loan)){ ?>
 						<strong>Loan Duration: <?=$loan?> days</strong>
