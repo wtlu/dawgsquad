@@ -47,7 +47,7 @@ class TransactionsController extends AppController {
 		$this->set('duration', $duration);
 
 		//Set to a default value of 0
-		$allow_trade = 0;
+		$allow_trade = null;
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		}
