@@ -47,29 +47,49 @@ class LoansController extends AppController {
 
 	// PRE: Transfered here from my library if user selects "complete loan". Each book can only be loaned once, in other words, no duplicates.
 	// POST: Transfer control to a confirmation page
-	function complete_loan($book_id, $due_date){
+	function complete_loan($book_id, $due_date, $identify){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // query stuff
-	    $client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
-	    $client_id = $client_id_array[0]["loans"]["client_id"];
-	    $client_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
-	    $client_name = $client_name_array[0]["users"]["name"];
+	    if($identify == 0){
+	    	$client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
+	    	$client_id = $client_id_array[0]["loans"]["client_id"];
+	    	$client_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
+	    	$client_name = $client_name_array[0]["users"]["name"];
+	    	$this->set('name', $client_name);
+	    } else {
+		    $owner_id_array = $this->Loan->query("SELECT owner_id FROM loans WHERE client_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
+		    $owner_id = $owner_id_array[0]["loans"]["owner_id"];
+		    $owner_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $owner_id);
+		    $owner_name = $owner_name_array[0]["users"]["name"];
+		    $this->set('name', $owner_name);
+	    }
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
+	    //$book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    //pass parameters
+	    $this->set('identify', $identify);
 	    $this->set('book_info', $book_info);
-	    $this->set('client_name', $client_name);
 	    $this->set('due_date', $due_date);
 	}
 
 	// PRE: Transfered here if user confirmed they wanted to complete a loan.
 	// POST: Removes the tuple corresponding to the loan from the loans table.
-	function remove_loan($book_id, $owner_id){
+	function remove_loan($book_id, $id, $identify){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
+<<<<<<< local
+	    
+	    if($identify == 0){
+	    	// remove tuple from loan table
+	    	$this->Loan->query("DELETE FROM loans WHERE owner_id = " . $id . " AND book_id = " . $book_id);
+	    } else {
+	    	$this->Loan->query("DELETE FROM loans WHERE client_id = " . $id . " AND book_id = " . $book_id);
+	    }		
+=======
 	    // remove tuple from loan table
 	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $owner_id . " AND book_id = " . $book_id);
+>>>>>>> other
 	}
 }?>
