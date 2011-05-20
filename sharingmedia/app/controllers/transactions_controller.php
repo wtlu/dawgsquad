@@ -184,7 +184,7 @@ class TransactionsController extends AppController {
 	
 	$price = "NULL";
 	if ($this->data['Transaction']['offer_sell'] == "sell") {
-		$price = $this->data['Transaction']['offer_price'];
+		$price = $this->data['Transaction']['sell_price'];
 	}
 	
 	$trade_id = "NULL";
