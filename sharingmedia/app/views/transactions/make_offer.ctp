@@ -14,7 +14,7 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 </head>
 
-
+<body>
 
 <div>
 
@@ -53,3 +53,5 @@ File: /app/views/transaction.ctp
 	</fieldset>
 
 </div>
+
+</body>
