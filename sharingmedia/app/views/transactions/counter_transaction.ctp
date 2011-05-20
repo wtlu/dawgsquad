@@ -6,6 +6,7 @@ File: /app/views/transaction.ctp
 	
 	Changelog:
 	5/16/2011 - John Wang - Added coming soon stuff
+	5/17/2011 - James Parsons - Added functionality for selecting books from your library to trade. Updated how parameters are recieved.
 	
 	# This is the view for the add books form.
 -->
@@ -42,14 +43,12 @@ File: /app/views/transaction.ctp
 	
 		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
-		<!--
-		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
-		-->
-		<!--
-		<input name="data[Transaction][author]" id="author" value="<?php //echo $author ?>" type="hidden">
-		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php //echo $ISBN ?>" type="hidden">
-		<input name="data[Transaction][image]" id="image" value="<?php //echo $image ?>" type="hidden">
-		-->
+		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
+		<input name="data[Transaction][book_author]" id="book_author" value="<?= $data['Transaction']['book_author'] ?>" type="hidden">
+		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?= $data['Transaction']['book_isbn'] ?>" type="hidden">
+		<input name="data[Transaction][book_image]" id="book_image" value="<?= $data['Transaction']['book_image'] ?>" type="hidden">
+		<input name="data[Transaction][owner_id]" id="owner_id" value="<?= $data['Transaction']['owner_id'] ?>" type="hidden">
+		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name'] ?>" type="hidden">
 		
 		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_loan" style="float:left">Loan For</label>
@@ -116,9 +115,9 @@ function display_results($result) {
 	?>
 	<div class="book_results_display">
 	
-		<!--
-		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
-		-->
+		
+		<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $chosen ?>" type="hidden">
+		
 		
 		<label for="choose_book">
 			<?php

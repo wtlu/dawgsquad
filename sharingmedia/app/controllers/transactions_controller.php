@@ -165,8 +165,45 @@ class TransactionsController extends AppController {
 	}
 
    function make_offer(){
+						 
 	$this->layout = 'main_layout';
 	$this->set('title_for_layout', 'Library || My Transactions');
+	
+	$book_title = $this->data['Transaction']['book_title'];
+	$book_id = $this->data['Transaction']['book_id'];
+	$owner_name = $this->data['Transaction']['owner_name'];
+	$owner_id = $this->data['Transaction']['owner_id'];
+	$book_author = $this->data['Transaction']['book_author'];
+	$book_isbn = $this->data['Transaction']['book_isbn'];
+	$book_image = $this->data['Transaction']['book_image'];
+
+	$duration = "NULL";
+	if ($this->data['Transaction']['offer_loan'] == "loan") {
+		$duration = $this->data['Transaction']['offer_loan'];
+	}
+	
+	$price = "NULL";
+	if ($this->data['Transaction']['offer_sell'] == "sell") {
+		$price = $this->data['Transaction']['offer_price'];
+	}
+	
+	$trade_id = "NULL";
+	if ($this->data['Transaction']['offer_trade'] == "trade") {
+		$trade_id = $this->data['Transaction']['trade_id'];
+	}
+
+
+	debug($duration);
+	debug($price);
+	debug($trade_id);
+	
+	
+	
+	//Need to update the transaction tuple with the new values
+
+	
+	
+	
   }
 
   function confirm_transaction($book_title = null, $book_id = null, $owner_name = null, $owner_id = null, $book_author = null,
