@@ -3,16 +3,19 @@
 	<fieldset>
 	<legend style="color:black;">Original Offer</legend>
 	<div class="book_results_display">
-			<img src=<?php echo $image ?> alt="Book image" />
-			<strong>Title:</strong> <?php echo $title; ?> <br />
-			<strong>Author(s):</strong> <?php echo $author ?> <br />
+
+		<img src=<?php echo $image ?> alt="Book image" />
+		<ul class="book_info">	
+			<li><strong>Title:</strong> <?php echo $title; ?></li>
+			<li><strong>Author(s):</strong> <?php echo $author ?> </li>
 		<?php if(!is_null($price)){?>
-			<strong>Price:</strong> $<?php echo $price?> <br />
+			<li><strong>Price:</strong> $<?php echo $price?> </li>
 		<?php }if(!is_null($loan)){?>
-			<strong>Loan:</strong> <?php echo $loan?> days <br />
+			<li><strong>Loan:</strong> <?php echo $loan?> days </li>
 		<?php }if(!is_null($trade)){?>
-			<strong>Trade:</strong> Willing to trade <br />
+			<li><strong>Trade:</strong> Willing to trade </li>
 		<?php } ?>
+		</ul>
 
 	</div>
 	</fieldset>
