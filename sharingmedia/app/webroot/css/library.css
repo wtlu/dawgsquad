@@ -35,13 +35,13 @@ a{
     vertical-align:middle;
     width:560px;
     float:left;
-	background-color: #8671CE;
 }
+
 #menubar a{
     color: black;
 }
 #menu {
-	background-color:gray;
+	background-color: #8671CE;
 	height: 43px;
 	list-style-type: none;
 	margin: 0;
