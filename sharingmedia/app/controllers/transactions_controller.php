@@ -123,8 +123,10 @@ class TransactionsController extends AppController {
 			# debug($date);
 			# echo date_format($date, 'Y-m-d');
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . 'NOW());');
+									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . ', NOW());');
 		}
+
+		// remove from book initial offers
 
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
