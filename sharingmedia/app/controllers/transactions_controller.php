@@ -192,10 +192,8 @@ class TransactionsController extends AppController {
 		$trade_id = $this->data['Transaction']['trade_id'];
 	}
 
-
-	debug($duration);
-	debug($price);
 	debug($trade_id);
+	print_r($trade_id);
 	
 	
 	
