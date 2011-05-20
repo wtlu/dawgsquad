@@ -246,6 +246,8 @@ class BookInitialOffersController extends AppController {
 				}
 			}
 		$this->set('add_status', $add_status);
+
+		$this->redirect('/book_initial_offers/my_books/');
 	}
 
 } //End of add_book_to_mylibrary()
