@@ -55,7 +55,6 @@
 		</p>
 	</fieldset>
 	<div>
-		<button onclick="location.href='<?php echo $html->url('/book_initial_offers/my_books'); ?>';">Go to your Library
-		</button> 
+		<?php echo $this->Html->link('Click to go to your library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
 	</div>
 </div>
