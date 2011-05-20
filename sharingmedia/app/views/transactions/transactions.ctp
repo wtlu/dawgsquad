@@ -97,8 +97,8 @@ create a counter-offer. </p>
 																					$data['Transaction']['book_author']."/".
 																					$data['Transaction']['book_isbn']."/".
 																					$data['Transaction']['book_image']."/".
-																					$data['Transaction']['allow_trade']."/",
-																                    array('class' => 'buttons', 'escape' => true));
+																					$data['Transaction']['allow_trade'],
+																                    array('class' => 'buttons', 'escape' => false));
 	?>
 
 </div>
