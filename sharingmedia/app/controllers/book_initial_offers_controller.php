@@ -93,11 +93,13 @@ class BookInitialOffersController extends AppController {
 		if (!empty($this->data)) {
 			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
 				$this->set('loan_duration', $this->data['BookInitialOffer']['loan_duration']);
+			}else{
+				$this->set('loan_duration', "NULL");
 			}
 
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
 				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price']);
-			}
+			}else 	$(this->set('sell_price' "NULL");
 
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
 				$this->set('trade_id', 1);
@@ -112,19 +114,11 @@ class BookInitialOffersController extends AppController {
 		$uid = $this->Session->read('uid');
 		$set = "SET";
 			$set .= " trade_id = " . $this->data['BookInitialOffer']['trade_id'];
-		if(!empty($this->data)){
-			if(!empty($this->data['BookInitialOffer']['loan_duration'])){
-				$set .= ", duration = " .  $this->data['BookInitialOffer']['loan_duration'];
-			}
-
-			if(!empty($this->data['BookInitialOffer']['sell_price'])){ 
-				$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
-			}
+			$set .= ", duration = " .  $this->data['BookInitialOffer']['loan_duration'];
+			$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
 
 			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
-		}
-		$this->set('set', $set);	
-//	$this->redirect('/book_initial_offers/my_books/');
+	$this->redirect('/book_initial_offers/my_books/');
 	}
 
 
