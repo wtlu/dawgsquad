@@ -64,7 +64,7 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_image'] = $book_image;
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
-		$data['Transaction']['allow_trade'] = $allow_trade;
+		$data['Transaction']['allow_trade'] = true;
 		$this->set('data', $data);
 		
 
