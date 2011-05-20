@@ -3,9 +3,9 @@
 <div class="book_results_display">
                 <?php
                         $title = $offer[0]["books"]["title"];
-                        $author =$offer[0]["books"]["title"];
-                        $ISBN = $offer[0]["books"]["title"];
-                        $image = $offer[0]["books"]["title"]; 
+                        $author =$offer[0]["books"]["author"];
+                        $ISBN = $offer[0]["books"]["isbn"];
+                        $image = $offer[0]["books"]["image"]; 
 			$loan = $offer[0]["book_initial_offers"]["duration"];
 			$price = $offer[0]["book_initial_offers"]["price"]; 
 			$trade = $offer[0]["book_initial_offers"]["trade_id"];     
@@ -17,7 +17,7 @@
 	<?php if(!is_null($price)){?>
 		<strong>Price:</strong> $<?php echo $price?> <br />
 	<?php }if(!is_null($duration)){?>
-		<strong>Loan:</strong> <?php echo $duration?> days <br />
+		<strong>Loan:</strong> <?php echo $loan?> days <br />
 	<?php }if(!is_null($trade)){?>
 		<strong>Trade:</strong> Willing to trade <br />
 	<?php } ?>
