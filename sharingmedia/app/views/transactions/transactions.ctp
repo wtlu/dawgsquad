@@ -17,9 +17,6 @@ File: /app/views/transaction.ctp
 
 <body>
 
-<?php
-debug($data);
-?>
 
 <fieldset style="border: 3px solid #000000">
 		<legend> Book Available </legend>
@@ -101,7 +98,7 @@ create a counter-offer. </p>
 																					$data['Transaction']['book_isbn']."/".
 																					$data['Transaction']['book_image']."/".
 																					$data['Transaction']['allow_trade']."/",
-																                    array('class' => 'buttons', 'escape' => false));
+																                    array('class' => 'buttons', 'escape' => true));
 	?>
 
 </div>
