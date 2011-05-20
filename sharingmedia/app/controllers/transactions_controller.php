@@ -27,6 +27,7 @@ class TransactionsController extends AppController {
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+		
 
 
 
@@ -57,11 +58,11 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
 		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
 		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
+		$data['Transaction']['']
 
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		$this->set('data', $data);
 
 
 		/* Create an entry in the transactions table with the correct information */
@@ -75,13 +76,20 @@ class TransactionsController extends AppController {
 												AND book_id = ' . $book_id . ';');
 		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
+			$current_id = $duplicate[0]['transactions']['current_id'];
+			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
+			$data['Transactions']['current_name'] = $current_user[0]['users']['name'];
+			
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
+													
+			$data['Transactions']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
+		$this->set('data', $data);
 
 
   }
