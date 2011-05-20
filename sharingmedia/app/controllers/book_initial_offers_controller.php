@@ -110,8 +110,8 @@ class BookInitialOffersController extends AppController {
 	function update(){
 		$bid = $this->data['BookInitialOffer']['bid'];
 		$uid = $this->Session->read('uid');
-		$set = "SET"
-		if (!empty($this->data)) {
+		$set = "SET";
+		if(!empty($this->data)){
 			if(!empty($this->data['BookInitialOffer']['loan_duration'])){
 				$set .= " duration = " .  $this->data['BookInitialOffer']['loan_duration'];
 			}
