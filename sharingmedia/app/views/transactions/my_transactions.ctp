@@ -74,7 +74,7 @@
 			<?php  
 				$loan = $transaction_collection[$i]["t"]["duration"];
 				$price = $transaction_collection[$i]["t"]["price"];
-				$trade = $transaction_collection[$i}["t"]["trade_id"]; 
+				$trade = $transaction_collection[$i]["t"]["trade_id"]; 
 				if(is_null($loan)){
 					$loan = "null";
 				}
@@ -83,6 +83,8 @@
 				}
 				$uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
+			?>
+			<?php echo
 				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade array(' escape' => false));?>
 		</div>
 	<?php
