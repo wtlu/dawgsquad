@@ -76,6 +76,9 @@ a{
 #menu #add{
     float: right;
 }
+#menu #add li {
+	padding: 0px;
+}
 
 #menu #add a:hover {
 	padding: 3px 10px 0px 12px;
