@@ -1,13 +1,13 @@
 <!--
 File: /app/views/transaction.ctp
- 
+
 	Created: 5/12/2011
 	Author: John Wang
-	
+
 	Changelog:
 	5/12/2011 - John Wang - Added a message to display that this is coming soon
 	5/16/2011 - John Wang - Displays transaction details
-	
+
 	# This is the view for the add books form.
 -->
 <head>
@@ -35,7 +35,10 @@ create a counter-offer. </p>
 
 
 <?php
-	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction', 'type'=>'post'));
+	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'counter_transaction'."/".
+																					$data['Transaction']['book_id']."/".
+																					$data['Transaction']['owner_id']."/".
+																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));
 	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>
 		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $data['Transaction']['price'] ?><br>
@@ -53,7 +56,7 @@ create a counter-offer. </p>
 		<!-- <input type="radio" name="trade" value="t"> -->
 		<strong>Trade:</strong><p>If you wish to trade a book, proceed with Counter Transaction.</p>
 		<br>
-	
+
 	<?php
 	}
 	/* Since this page is only displayed after the user clicks "Start Transaction" from find books results page,
@@ -78,17 +81,10 @@ create a counter-offer. </p>
 
 	*/
 	?>
-		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
-		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id']  ?>" type="hidden">
-		<input name="data[Transaction][owner_id]" id="owner_id" value="<?= $data['Transaction']['owner_id'] ?>" type="hidden">
-		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name']  ?>" type="hidden">
-		<input name="data[Transaction][book_author]" id="book_author" value="<?= $data['Transaction']['book_author']  ?>" type="hidden">
-		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?= $data['Transaction']['book_isbn']  ?>" type="hidden">
-		<input name="data[Transaction][book_image]" id="book_image" value="<?= $data['Transaction']['book_image']  ?>" type="hidden">	
-		
+
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
-	// Pass relevant information to counter_transaction.ctp if the user clicks the link.																						
+	// Pass relevant information to counter_transaction.ctp if the user clicks the link.
 	echo $this->Html->link('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
