@@ -55,18 +55,22 @@ body {
 }
 
 #side_bar a {
+	color: #FFFFFF;
+	font: 15px "lucida grande",tahoma,verdana,arial,sans-serif;
+	font-weight: bold;
+	height: 22px;
+	text-decoration: None;
 	display: block;
 	padding-top: 30px;
 	padding-bottom: 30px;
-	background-color: #bebebe;
+	background-color: #627AAD;
 	margin: 0px;
 	border-bottom: 2px solid black;
-	text-decoration: none;
-	color: black;
 	text-align: center;	
 }
 
 #side_bar a:hover {
+	background-color: #6B86B7;
 	text-decoration: underline; 
 }
 
