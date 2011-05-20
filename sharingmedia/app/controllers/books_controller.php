@@ -54,13 +54,17 @@ class BooksController extends AppController {
                 if (!empty($book_title) || !empty($book_author) || !empty($book_isbn)){
                         # query our database to find the book
                         $book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
-                                FROM books books, book_initial_offers b_i_o, users users, loans loans
+                                FROM books books, book_initial_offers b_i_o, users users,
 	                                WHERE b_i_o.user_id != ' . $this->Session->read('uid') . '
 	                                	AND b_i_o.user_id = users.facebook_id
                                         AND b_i_o.book_id = books.id
                                         AND books.title LIKE "%' .$book_title . '%"
                                         AND books.author LIKE "%' . $book_author . '%"
                                         AND books.isbn LIKE "%' .  $book_isbn . '%"
+                                        AND b_i_o.book_id NOT IN (SELECT loans.book_id
+                                        							FROM loans loans
+                                        							WHERE loans.book_id = b_i_o.book_id
+                                        								AND loans.owner_id = b_i_o.user_id)
                                 ORDER BY books.id;');
 
 
