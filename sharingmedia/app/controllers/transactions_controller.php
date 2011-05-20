@@ -126,6 +126,9 @@ class TransactionsController extends AppController {
 		}
 
 		// remove from book initial offers
+		$this->Transaction->query('DELETE FROM book_initial_offers
+									WHERE user_id = ' . $owner_id . '
+										AND book_id = ' . $book_id . ';');
 
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
