@@ -42,7 +42,6 @@ FB.Canvas.setSize();
 		<li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array('class' => 'current', ' escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
-                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
 	</ul>
 </div>
 <div id="list">
