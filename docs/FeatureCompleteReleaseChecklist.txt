@@ -44,7 +44,7 @@ Beta Release Checklist
 			[x] If there's no offer, says "No Offer Listed"
 			[ ] Can click Back
 			[x] Can Click Finish
-		[ ] After Clicking Finish
+		[x] After Clicking Finish --- NOW REDIRECTS TO MYLIBRARY AUTOMAGICALLY
 			[x] Shows the receipt of the book you added
 			[x] Button takes you to the library page
 			[x] Library contains the book you just added
