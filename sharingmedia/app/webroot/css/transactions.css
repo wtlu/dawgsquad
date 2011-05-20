@@ -29,19 +29,18 @@
 
 .options_trades{
 	border-top: 2px solid black;
-	height: 270px;
-	width: 300px;
+	height: 240px;
 	overflow: hidden;
 	padding-top: 20px;	
 }
 
 .trade_list {
-	height: 200px;
+	height: 240px;
 	overflow: scroll;
 	border: solid black 1px;
 	padding: 5px;
 	float: left;
-	width: 300px;
+	width: 350px;
 }
 
 .book_display {
