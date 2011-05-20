@@ -87,7 +87,7 @@
 			?>
 			<?php
 			if($uid != $last ){
-				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));
+				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade, array(' escape' => false));
 			}
 			
 			if($transaction_collection[$i]["t"]["status"] == 1){
