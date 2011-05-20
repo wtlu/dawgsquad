@@ -1,22 +1,28 @@
 <?php echo $this->Html->css('initial_offers', NULL, array('inline' => FALSE)); ?>
-<div class="top_progress_arrows">
-        <?php echo $this->Html->image('arrow_choose_offer_details.png', array('alt' => 'book info')) ?>
-</div>
-
 <fieldset>
-<p class="book_results_display">
+<div class="book_results_display">
                 <?php
-                        $title = $book_chosen[1];
-                        $author = $book_chosen[2];
-                        $ISBN = $book_chosen[3];
-                        $image = $book_chosen[4];       
+                        $title = $offer[0]["books"]["title"];
+                        $author =$offer[0]["books"]["title"];
+                        $ISBN = $offer[0]["books"]["title"];
+                        $image = $offer[0]["books"]["title"]; 
+			$loan = $offer[0]["book_initial_offers"]["duration"];
+			$price = $offer[0]["book_initial_offers"]["price"]; 
+			$trade = $offer[0]["book_initial_offers"]["trade_id"];     
                 ?>
         <img src=<?php echo $image ?> alt="Book image" />
         <strong>Title:</strong> <?php echo $title; ?> <br />
         <strong>Author(s):</strong> <?php echo $author ?> <br />
         <strong>ISBN:</strong> <?php echo $ISBN ?> <br />
-	<strong></strong>
-</p>
+	<?php if(!is_null($price)){?>
+		<strong>Price:</strong> $<?php echo $price?> <br />
+	<?php }if(!is_null($duration)){?>
+		<strong>Loan:</strong> <?php echo $duration?> days <br />
+	<?php }if(!is_null($trade)){?>
+		<strong>Trade:</strong> Willing to trade <br />
+	<?php } ?>
+
+</div>
 </fieldset>
 
 <fieldset >
