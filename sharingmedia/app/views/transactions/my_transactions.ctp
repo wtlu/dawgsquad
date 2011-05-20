@@ -86,7 +86,7 @@
 				$last= $transaction_collection[$i]["t"]["current_id"];
 			?>
 			<?php
-			if($uid != last ){?>
+			if($uid != $last ){?>
 				<?=$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));}?>
 		</div>
 	<?php
