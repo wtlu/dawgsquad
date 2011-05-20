@@ -58,6 +58,7 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
 		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
 		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
+		$data['Transaction']['']
 
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
@@ -77,7 +78,7 @@ class TransactionsController extends AppController {
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
-			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
+			$data['Transactions']['current_name'] = $current_user[0]['users']['name'];
 			
 		}else{
 			$add_status = true;
@@ -85,7 +86,7 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 													
-			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
+			$data['Transactions']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
 		$this->set('data', $data);
@@ -286,8 +287,8 @@ class TransactionsController extends AppController {
 		
 		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
 		$name_array = $this->Transaction->query("SELECT name FROM users u, transactions t WHERE t.id = " . $tid . " AND t.owner_id = u.facebook_id");
+		debug($name_array);
 		$name = $name_array[0]["transactions"]["name"];
-		$owner = $transaction_array[0]["transactions"]["owner_id"];
 		
 		$this->set('tid', $tid);
 		$this->set('name', $name);
