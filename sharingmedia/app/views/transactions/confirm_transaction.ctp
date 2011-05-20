@@ -4,8 +4,6 @@
 
 	<h2> Confirm Transaction </h2>
 
-	</br>
-
 	<p>You're almost done! Review the transaction details below, then click Complete Transaction to accept this
 	transaction.</p>
 
