@@ -32,7 +32,7 @@
 	border: solid black 1px;
 	padding: 5px;
 	float: left;
-	width: 200px;
+	width: 300px;
 }
 
 .book_display {
@@ -63,8 +63,8 @@
 }
 
 #outer_container {
-	width: 300px;
-	height: 500px;
+	width: 500px;
+	height: 480px;
 	align: center;	
 }
 
