@@ -285,10 +285,13 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
 		
 		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
+		$name_array = $this->Transaction->query("SELECT name FROM users u, transactions t WHERE t.id = " . $tid . " AND t.owner_id = u.facebook_id");
+		$name = $name_array[0]["transactions"]["name"];
+		$owner = $transaction_array[0]["transactions"]["owner_id"];
 		
 		$this->set('tid', $tid);
+		$this->set('name', $name);
 		$this->set('book_array', $book_array);
-		$this->set('owner', $owner);
 		$this->set('price', $price);
 		$this->set('loan', $loan);
 		$this->set('trade', $trade);
