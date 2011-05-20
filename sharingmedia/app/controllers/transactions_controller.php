@@ -27,6 +27,7 @@ class TransactionsController extends AppController {
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+		
 
 
 
@@ -61,7 +62,6 @@ class TransactionsController extends AppController {
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		$this->set('data', $data);
 
 
 		/* Create an entry in the transactions table with the correct information */
@@ -75,13 +75,20 @@ class TransactionsController extends AppController {
 												AND book_id = ' . $book_id . ';');
 		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
+			$current_id = $duplicate[0]['transactions']['current_id'];
+			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
+			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
+			
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
+													
+			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
+		$this->set('data', $data);
 
 
   }
@@ -272,17 +279,23 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-	function delete_transaction($bid, $title, $author, $owner, $price, $loan, $trade){
-		$image_array = $this->Transaction->query("SELECT image FROM books WHERE id = " . $bid);
-		$image = $image_array[0]["books"]["image"];
+	function delete_transaction($tid, $bid, $price, $loan, $trade){
 		
-		$this->set('image', $image);
-		$this->set('title', $title);
-		$this->set('author', $author);
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+		
+		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
+		
+		$this->set('tid', $tid);
+		$this->set('book_array', $book_array);
 		$this->set('owner', $owner);
 		$this->set('price', $price);
 		$this->set('loan', $loan);
 		$this->set('trade', $trade);
+	}
+	
+	function remove_transaction($tid){
+		
 	}
 	
 	
