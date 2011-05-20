@@ -61,10 +61,7 @@ File: /app/views/transaction.ctp
 				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
 			?>
 		</div>
-		
-		</br>
-		<hr>
-		</br>
+	
 		
 		<!-- Input for the buy -->
 		<div class="options">	
@@ -75,9 +72,6 @@ File: /app/views/transaction.ctp
 			?>
 		</div>
 
-		</br>
-		<hr>
-		</br>
 		
 		<!-- Input for the trade book -->
 		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
@@ -95,21 +89,17 @@ File: /app/views/transaction.ctp
 						foreach ($data['Transaction']['trade_books'] as $tradeable){
 							echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
 							display_results($tradeable);
-							echo '<br />';
-							
+							echo '<br />';	
 						}
 					}
-				
 				}
-		
-			
-		?>
+				?>
 				</div>
 		
 		<div class="button_s">
 			<?php echo $this->Form->end('Propose Counteroffer'); ?>
 		</div>
-		</br>
+		
 
 
 	
