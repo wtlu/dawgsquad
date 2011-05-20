@@ -16,7 +16,7 @@
 </div>
 
 <fieldset>
-<p class="book_display">
+<p class="book_results_display">
 <label >
 		<?php
 			$title = $book_chosen[1];

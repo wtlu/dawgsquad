@@ -25,3 +25,15 @@
 	overflow: hidden;
 	padding-top: 20px;	
 }
+
+.book_results_display {
+	padding-top: 20px;
+	border-top: 2px solid black;
+	padding-bottom: 40px;
+}
+
+.book_results_display img {
+	width: 70px;
+	float: left;
+	margin-right: 10px;
+}
