@@ -91,7 +91,7 @@
 			}
 			
 			if($transaction_collection[$i]["t"]["status"] == 1){
-				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$bid."/".$uid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$transaction_collection[$i]["b"]["title"]."/".$transaction_collection[$i]["b"]["author"]."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>	
 		</div>
