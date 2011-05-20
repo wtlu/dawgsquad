@@ -50,7 +50,7 @@ class BooksController extends AppController {
                 if (isset($this->data['Book']['isbn'])) {
                         $book_isbn = $this->data['Book']['isbn'];
                 }
-                if (isset($this->Session->read('uid'))) {
+                if ($this->Session->read('uid') == null) {
                 	$session_id = $this->Session->read('uid');
                 }
                 # DEPRECATED if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
