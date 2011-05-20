@@ -54,7 +54,7 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // query stuff
-	    if($identify == 0){
+	    if($identify == "0"){
 	    	$client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
 	    	$client_id = $client_id_array[0]["loans"]["client_id"];
 	    	$client_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
@@ -83,7 +83,7 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    
-	    if($identify == 0){
+	    if($identify == "0"){
 	    	// remove tuple from loan table
 	    	$this->Loan->query("DELETE FROM loans WHERE owner_id = " . $id . " AND book_id = " . $book_id);
 	    } else {
