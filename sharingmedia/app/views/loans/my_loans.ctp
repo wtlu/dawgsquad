@@ -39,9 +39,17 @@
 				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
 				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
 					
-				
-				
-				<li>Loaned To: <?= $loan_collection[$i]["loans"]["client_id"]?></li>
+				<?php
+					if($loan_collection[$i]["loans"]["client_id"] == $this->Session->read('username')){
+				?>
+						<li>Borrowed From: <?= $loan_collection[$i]["loans"]["owner_id"]?></li>
+				<?php
+					} else {
+				?>
+						<li>Loaned To: <?= $loan_collection[$i]["loans"]["client_id"]?></li>
+				<?php
+					}
+				?>
 				
 				<li>Due Date: <?= $loan_collection[$i]["loans"]["due_date"]?></li>
 			</ul>
