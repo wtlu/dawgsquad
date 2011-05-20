@@ -9,6 +9,12 @@ File: /app/views/transaction.ctp
 	
 	# This is the view for the add books form.
 -->
+<head>
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
+</head>
+
+
 
 <div>
 
