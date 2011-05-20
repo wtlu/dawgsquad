@@ -88,7 +88,7 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
 
 		echo 'price' . $price;
-		echo 'duration' . $duration
+		echo 'duration' . $duration;
 
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
