@@ -36,16 +36,16 @@ File: /app/views/transaction.ctp
 			<p>
 			<?php
 			
-				if(!empty($loan_duration)){		
-					echo '<strong> Loan for ' . $loan_duration .' days. </strong></br>';
+				if(!empty($duration)){		
+					echo '<strong> Loan for ' . $duration . ' days. </strong></br>';
 				}
 				
-				if(!empty($sell_price)){		
-					echo '<strong> For Sale at $' . $sell_price .'</strong></br>';
+				if(!empty($price)){		
+					echo '<strong> For Sale at $' . $price . '</strong></br>';
 				}
 				
 				if(!empty($trade_id)){		
-					echo '<strong> Willing to Trade for Another Book. </strong></br>';
+					echo '<strong> Trade for Another Book' . $trade_id .' </strong></br>';
 				}
 			
 			?>
