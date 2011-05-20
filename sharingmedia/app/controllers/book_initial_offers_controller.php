@@ -123,7 +123,8 @@ class BookInitialOffersController extends AppController {
 
 			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
 		}
-		$this->redirect('/book_initial_offers/my_books/');
+		$this->set('set', $set);	
+//	$this->redirect('/book_initial_offers/my_books/');
 	}
 
 
