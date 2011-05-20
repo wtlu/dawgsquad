@@ -22,6 +22,8 @@ class TransactionsController extends AppController {
 		
 		$this->set('data', $this->Transaction->read());
 		
+		
+		
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['name'];
