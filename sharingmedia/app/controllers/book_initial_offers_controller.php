@@ -111,16 +111,16 @@ class BookInitialOffersController extends AppController {
 		$bid = $this->data['BookInitialOffer']['bid'];
 		$uid = $this->Session->read('uid');
 		$set = "SET";
+			$set .= "trade_id = " . $this->data['BookInitialOffer']['trade_id'];
 		if(!empty($this->data)){
 			if(!empty($this->data['BookInitialOffer']['loan_duration'])){
-				$set .= " duration = " .  $this->data['BookInitialOffer']['loan_duration'];
+				$set .= ", duration = " .  $this->data['BookInitialOffer']['loan_duration'];
 			}
 
 			if(!empty($this->data['BookInitialOffer']['sell_price'])){ 
-				$set .= "price = " . $this->data['BookInitialOffer']['sell_price'];
+				$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
 			}
 
-			$set .= "trade_id = " . $this->data['BookInitialOffer']['trade_id'];
 			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
 		}
 		$this->redirect('/book_initial_offers/my_books/');
