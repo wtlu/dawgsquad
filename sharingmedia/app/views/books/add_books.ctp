@@ -48,4 +48,5 @@ File: /app/views/add_books.ctp
 			echo $this->Form->end('Continue');
 		?>
 	</div>
+	
 </div>
