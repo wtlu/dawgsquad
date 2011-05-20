@@ -76,6 +76,10 @@ a{
 #menu #add{
     float: right;
 }
+
+#menu #add a:hover {
+	padding: 14px 10px 10px 10px;
+}
 .buttons{
 	float:right;
 	margin-left: 10px;
