@@ -41,3 +41,8 @@
 #special{
 	width: 200px;	
 }
+
+.top_progress_arrows {
+	margin-top: 10px;
+	text-align: center;
+}
