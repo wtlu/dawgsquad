@@ -83,7 +83,7 @@
 				}
 				$uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
-				$last= $transaction_collection[$i}["t"]["current_id"];
+				$last= $transaction_collection[$i]["t"]["current_id"];
 			?>
 			<?php
 			if($uid != last ){?>
