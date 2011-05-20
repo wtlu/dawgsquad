@@ -19,21 +19,29 @@ class LoansController extends AppController {
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    //pull books and initial offers from the databaxe
-		$book_collection = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$this->Session->read('uid') . " OR client_id = " . $this->Session->read('uid'));
+		$book_collection_owner = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$this->Session->read('uid'));
+		$book_collection_borrower = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND client_id = ".$this->Session->read('uid'));
 		//pass variables to page
-		$this->set('book_collection', $book_collection);
+		$this->set('book_collection_owner', $book_collection_owner);
+		$this->set('book_collection_borrower', $book_collection_borrower);
 	    // query database for users loans
-	    $loan_collection = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid') . " OR client_id = " . $this->Session->read('uid'));
+	    $loan_collection_owner = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid'));
+	    $loan_collection_borrower = $this->Loan->query("SELECT * FROM loans WHERE client_id = ". $this->Session->read('uid'));
 		// pass variables to the view
-		for ($i = 0; $i < count($loan_collection); $i++){
-			$client_id = $loan_collection[$i]["loans"]["client_id"];
-			$owner_id = $loan_collection[$i]["loans"]["owner_id"];
+		for ($i = 0; $i < count($loan_collection_owner); $i++){
+			$client_id = $loan_collection_owner[$i]["loans"]["client_id"];
 			$client_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
-			$owner_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $owner_id);
-			$loan_collection[$i]["loans"]["client_id"] = $client_name[0]["users"]["name"];
-			$loan_collection[$i]["loans"]["owner_id"] = $owner_name[0]["users"]["name"];
+			$loan_collection_owner[$i]["loans"]["client_id"] = $client_name[0]["users"]["name"];
 		}
-		$this->set('loan_collection', $loan_collection);
+		
+		for ($i = 0; $i < count($loan_collection_borrower); $i++){
+			$owner_id = $loan_collection_borrower[$i]["loans"]["owner_id"];
+			$owner_name = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $owner_id);
+			$loan_collection_borrower[$i]["loans"]["owner_id"] = $owner_name[0]["users"]["name"];
+		}
+			
+		$this->set('loan_collection_owner', $loan_collection_owner);
+		$this->set('loan_collection_borrower', $loan_collection_borrower);
 	    
 	}
 	
