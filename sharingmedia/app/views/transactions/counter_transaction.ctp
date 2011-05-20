@@ -54,23 +54,26 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name'] ?>" type="hidden">
 		
 		<!-- Input for the loan -->
-		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox">
-		<label for="choose_loan">Loan For</label>
-		<?php
-			echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
-		?>
-
+		<div class="options">	
+			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox">
+			<label for="choose_loan">Loan For</label>
+			<?php
+				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
+			?>
+		</div>
 		
 		</br>
 		<hr>
 		</br>
 		
 		<!-- Input for the buy -->
-		<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox">
-		<label for="choose_sell">Sell For</label>
-		<?php
-			echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
-		?>
+		<div class="options">	
+			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox">
+			<label for="choose_sell">Sell For</label>
+			<?php
+				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
+			?>
+		</div>
 
 		</br>
 		<hr>
