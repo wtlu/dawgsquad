@@ -118,16 +118,17 @@ class TransactionsController extends AppController {
 										AND status = 0;');
 
 
-		$this->set('book_title', $book_title);
-		$this->set('book_id', $book_id);
-		$this->set('owner_name', $owner_name);
-		$this->set('owner_id', $owner_id);
-		$this->set('book_author', $book_author);
-		$this->set('book_isbn', $book_isbn);
-		$this->set('book_image', $book_image);
-		$this->set('allow_trade', $allow_trade);
-		$this->set('price', $price);
-		$this->set('duration', $duration);
+		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
+		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
+		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
+
+		$data['Transaction']['price'] = $price;
+		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['allow_trade'] = $allow_trade;
 
 		$this->set('data', $data);
 	}
@@ -188,7 +189,7 @@ class TransactionsController extends AppController {
 		$this->set('book_image', $book_image);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
-		
+
 
 		//Need to update the transaction tuple with the new values
 
