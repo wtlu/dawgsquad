@@ -99,14 +99,16 @@ File: /app/views/transaction.ctp
 				
 				}
 		
-			echo $this->Form->end('Propose Counteroffer');
+			
 		?>
 				</div>
 		
+		
+		<?php echo $this->Form->end('Propose Counteroffer'); ?>
 		</br>
 		<hr>
 
-		
+	
 
 		
 		
