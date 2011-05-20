@@ -16,13 +16,14 @@ class TransactionsController extends AppController {
   var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
 
-  function transactions($price = null, $duration = null) {
+  function transactions($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = 0) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
-		
+
 		//Bad way of getting data from previous page; should be passed as parmeters
 		//need to fix the form in find book results
+		/*
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['name'];
@@ -30,31 +31,34 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
+		*/
+
+		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
+		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+
 
 
 		//Set to a default value of NULL
-		$price = "NULL";
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
 		};
 		$this->set('price', $price);
 
 		//Set to a default value of NULL
-		$duration = "NULL";
 		if (isset($this->data['Transaction']['duration'])){
 			$duration = $this->data['Transaction']['duration'];
 		};
 		$this->set('duration', $duration);
 
 		//Set to a default value of 0
-		$allow_trade = 0;
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		}
 		$this->set('allow_trade', $allow_trade);
-		
-		
+
+
 		//Make the parameter data available in the view
+		/*
 		$data['Transaction']['book_title'] = $book_title;
 		$data['Transaction']['book_id'] = $book_id;
 		$data['Transaction']['owner_name'] = $owner_name;
@@ -62,11 +66,21 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_author'] = $book_author;
 		$data['Transaction']['book_isbn'] = $book_isbn;
 		$data['Transaction']['book_image'] = $book_image;
+		*/
+
+		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
+		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
+		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
+
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		$this->set('data', $data);
-		
+
 
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
@@ -90,7 +104,8 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($price = null, $duration = null, $allow_trade = null) {
+	function accept_transaction($book_title = null, $book_id = null, $owner_name = null, $owner_id = null, $book_author = null,
+  			$book_isbn = null, $book_image = null, $price = null, $duration = null, $allow_trade = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -102,7 +117,7 @@ class TransactionsController extends AppController {
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
 
-		
+
 		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
 		} else if (isset($this->data['Transaction']['duration'])) {
@@ -112,11 +127,14 @@ class TransactionsController extends AppController {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
 
-		/* This statement updates the status of this transaction to "completed" state
+		/* This statement updates the status of this transaction to "completed" state */
 		$this->Transaction->query('UPDATE transactions
-									SET status = 2
-									WHERE');
-		*/
+									SET status = 1
+									WHERE owner_id = ' . $owner_id . '
+										AND client_id = ' . $this->Session->read('uid') . '
+										AND book_id = ' . $book_id . '
+										AND status = 0;');
+
 
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -129,7 +147,7 @@ class TransactionsController extends AppController {
 		$this->set('price', $price);
 		$this->set('duration', $duration);
 	}
-	
+
 	//Pre: This page is transactions page when a user navigates to their Library. It takes no arguments
 	//post: Returns an array of all transactions listed by the user and the details of each transactions
 
@@ -137,10 +155,10 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 		$current_user = $this->Session->read('uid');
-		
+
 		//pull transaction with owners that are me and initial offers from the database
 		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
-		
+
 		//pass variables to page
 		$this->set('transaction_collection', $transaction_collection);
 		//debug($transaction_collection);
@@ -151,7 +169,8 @@ class TransactionsController extends AppController {
 	$this->set('title_for_layout', 'Library || My Transactions');
   }
 
-  function confirm_transaction($price = null, $duration = null, $allow_trade = null) {
+  function confirm_transaction($book_title = null, $book_id = null, $owner_name = null, $owner_id = null, $book_author = null,
+  			$book_isbn = null, $book_image = null, $price = null, $duration = null, $allow_trade = null) {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -184,22 +203,22 @@ class TransactionsController extends AppController {
 		$this->set('duration', $duration);
   }
 
-  
-  
-  
-    function counter_transaction($book_id = null, 
+
+
+
+    function counter_transaction($book_id = null,
 								 $owner_id = null,
 							     $allow_trade = null) {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		
-		
-		
+
+
+
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
-		
+
 		//Fill data with parameters, to be passed to view
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
@@ -209,8 +228,9 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
 		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		
-		
+
+
+
 		/* This page is only called from add books results, so there will be no trade information */
 		// This should be in the counteroffer page.
 		if ($allow_trade){

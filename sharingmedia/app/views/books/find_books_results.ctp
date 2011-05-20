@@ -2,13 +2,13 @@
 
 	Created: 5/10/2011
 	Author: John Wang
-	
+
 	Changelog:
 	5/10/2011 - John Wang - Created page. Copied relevant code from add books results
 	5/11/2011 - John Wang - Changed results formatting some more
 	5/13/2011 - John Wang - Added a back button
 	5/14/2011 - John Wang - Added comments
-	
+
 -->
 <head>
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
@@ -38,8 +38,11 @@ FB.Canvas.setSize();
 <?php
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){
-			echo $form->create('Transaction', array('action' => 'transactions', 'type'=>'post'));
+			# echo $form->create('Transaction', array('action' => 'transactions', 'type'=>'post'));
 			# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
+			echo $form->create('Transaction', array('action' => 'transactions'."/".
+																					$data['Transaction']['book_id']."/".
+																					$data['Transaction']['owner_id']."/", 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
 			$b_i_o_result = $book['b_i_o'];
@@ -87,11 +90,10 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 				$image = $result['image'];
 				$summary = $result['summary'];
 			?>
-			
-			<!-- *****Hidden fields, to transfer data to next page****** -->
-			<input name="data[Transaction][title]" value="<?php echo $title ?>" type="hidden">
-			<input name="data[Transaction][book_id]" value="<?php echo $result['id'] ?>" type="hidden">
-			
+
+			<!-- *****Hidden fields, to transfer data to next page******
+			<input name="data[Transaction][book_id]" value="<?php echo $result['id'] ?>" type="hidden">-->
+
 			<img src=<?= $image ?> alt="Book image" />
 			<div class = "book_results_text">
 					<strong>Title:</strong>	<?= $title ?> <br />
@@ -103,14 +105,10 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 						$name = $user_result['name'];
 					?>
 					<strong>Name:</strong>	<?= $name ?> <br />
-					
-					<!-- *****Hidden fields, to transfer data to next page****** -->
-					<input name="data[Transaction][name]" value="<?php echo $name ?>" type="hidden">
-					<input name="data[Transaction][author]" value="<?= $author ?>" type="hidden">
-					<input name="data[Transaction][isbn]" value="<?= $ISBN ?>" type="hidden">
-					<input name="data[Transaction][image]" value="<?= $image ?>" type="hidden">
-					<input name="data[Transaction][user_id]" value="<?php echo $user_result['facebook_id'] ?>" type="hidden">
-					
+
+					<!-- *****Hidden fields, to transfer data to next page******
+					<input name="data[Transaction][user_id]" value="<?php echo $user_result['facebook_id'] ?>" type="hidden">-->
+
 				<h3> Offer Details </h3>
 					<?php
 						$price = $b_i_o_result['price'];
@@ -128,7 +126,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 
 						<!-- *****Hidden fields, to transfer data to next page****** -->
 						<input name="data[Transaction][price]" value="<?php echo $price ?>" type="hidden">
-					
+
 					<?php
 					}
 					if (!empty($duration)) {
@@ -137,7 +135,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 
 						<!-- *****Hidden fields, to transfer data to next page****** -->
 						<input name="data[Transaction][duration]" value="<?php echo $duration ?>" type="hidden">
-					
+
 					<?php
 					}
 					if ($allow_trade == 1) {
