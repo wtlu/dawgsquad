@@ -20,19 +20,7 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
-
-		//Bad way of getting data from previous page; should be passed as parmeters
-		//need to fix the form in find book results
-		/*
-		$book_title = $this->data['Transaction']['title'];
-		$book_id = $this->data['Transaction']['book_id'];
-		$owner_name = $this->data['Transaction']['name'];
-		$owner_id = $this->data['Transaction']['user_id'];
-		$book_author = $this->data['Transaction']['author'];
-		$book_isbn = $this->data['Transaction']['isbn'];
-		$book_image = $this->data['Transaction']['image'];
-		*/
-
+		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
@@ -58,15 +46,6 @@ class TransactionsController extends AppController {
 
 
 		//Make the parameter data available in the view
-		/*
-		$data['Transaction']['book_title'] = $book_title;
-		$data['Transaction']['book_id'] = $book_id;
-		$data['Transaction']['owner_name'] = $owner_name;
-		$data['Transaction']['owner_id'] = $owner_id;
-		$data['Transaction']['book_author'] = $book_author;
-		$data['Transaction']['book_isbn'] = $book_isbn;
-		$data['Transaction']['book_image'] = $book_image;
-		*/
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
@@ -204,12 +183,16 @@ class TransactionsController extends AppController {
 	
   }
 
-  function confirm_transaction($book_title = null, $book_id = null, $owner_name = null, $owner_id = null, $book_author = null,
-  			$book_isbn = null, $book_image = null, $price = null, $duration = null, $allow_trade = null) {
+  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = null, $duration = null, $allow_trade = null) {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
+		//Get book and owner result back from database
+		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
+		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+
+		/*
 		$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
@@ -217,25 +200,32 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-		if ($this->data['Transaction']['offer_options'] == "price") {
+		*/
+
+		if (isset($this->data['Transaction']['offer_options'])) {
+			$offer_option = $this->data['Transaction']['offer_options'];
+		}
+
+		if ($offer_option == "price" && isset($this->data['Transaction']['price']) {
 			$price = $this->data['Transaction']['price'];
-		} else if ($this->data['Transaction']['offer_options'] == "loan") {
+		} else if ($offer_option == "loan" && isset($this->data['Transaction']['duration']) {
 			$duration = $this->data['Transaction']['duration'];
 		}
 		if (isset($this->data['Transaction']['allow_trade'])) {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
 
-		$this->set('book_title', $book_title);
-		$this->set('book_id', $book_id);
-		$this->set('owner_name', $owner_name);
-		$this->set('owner_id', $owner_id);
-		$this->set('book_author', $book_author);
-		$this->set('book_isbn', $book_isbn);
-		$this->set('book_image', $book_image);
-		$this->set('allow_trade', $allow_trade);
-		$this->set('price', $price);
-		$this->set('duration', $duration);
+		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
+		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
+		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
+
+		$data['Transaction']['price'] = $price;
+		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['allow_trade'] = $allow_trade;
   }
 
 
