@@ -7,11 +7,16 @@
 }
 
 .options input{
-	float: left;	
+/*	float: left;	*/
+}
+
+.options label{
+	width: 70px;
+	margin-right: 30px;	
 }
 
 .options {
 	border-top: 2px solid black;
-	height: 40px;
+	height: 25px;
 	overflow: hidden;	
 }
