@@ -15,7 +15,7 @@
 			<strong>Author(s):</strong> <?php echo $author ?> <br />
 		<?php if(!is_null($price)){?>
 			<strong>Price:</strong> $<?php echo $price?> <br />
-		<?php }if(!is_null($duration)){?>
+		<?php }if(!is_null($loan)){?>
 			<strong>Loan:</strong> <?php echo $loan?> days <br />
 		<?php }if(!is_null($trade)){?>
 			<strong>Trade:</strong> Willing to trade <br />
@@ -59,7 +59,8 @@
 					<label id="special" for="choose_trade">Willing to consider trades?</label>
 					</div>
 					<?php
-							echo $this->Form->end('Add To MyLibrary');
+							echo $this->Form->end('Update Offer');
+							echo $this->Html->link('Cancel', "/book_initial_offers/my_books", array(' escape' => false));
 					?>
 		</div>
 	</fieldset>
