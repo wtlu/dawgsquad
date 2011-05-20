@@ -86,4 +86,7 @@
 <?php
 	echo $this->Form->end('Confirm Add To MyLibrary');
 ?>
+		<FORM METHOD="LINK" ACTION="add_books">
+		<INPUT class = "special_button" TYPE="submit" VALUE="Cancel and do a new search">
+		</FORM>
 

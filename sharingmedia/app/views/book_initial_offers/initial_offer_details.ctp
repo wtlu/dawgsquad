@@ -16,9 +16,6 @@
 </div>
 
 <fieldset>
-	<FORM METHOD="LINK" ACTION="add_books">
-	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
-	</FORM>
 <p class="book_results_display">
 <label >
 		<?php
@@ -79,6 +76,9 @@
 		<?php
 			echo $this->Form->end('Add To MyLibrary');
 		?>
+		<FORM METHOD="LINK" ACTION="add_books">
+		<INPUT class = "special_button" TYPE="submit" VALUE="Cancel and do a new search">
+		</FORM>
 
 		
 		
