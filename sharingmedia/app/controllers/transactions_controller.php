@@ -187,18 +187,20 @@ class TransactionsController extends AppController {
   
   
   
-    function counter_transaction($book_title = null, 
-								 $book_id = null, 
-								 $owner_name = null,
+    function counter_transaction($book_id = null, 
 								 $owner_id = null,
-								 $book_author = null,
-								 $book_isbn = null,
-								 $book_image = null,
-								 $allow_trade = null) {
+							     $allow_trade = null) {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
+		
+		
+		
+		$book_result = this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
+		debug($book_result);
+		
+		
 		
 		//Fill data with parameters, to be passed to view
 		$data['Transaction']['book_title'] = $book_title;
@@ -209,6 +211,7 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_isbn'] = $book_isbn;
 		$data['Transaction']['book_image'] = $book_image;
 		$data['Transaction']['allow_trade'] = $allow_trade;
+		
 		
 		/* This page is only called from add books results, so there will be no trade information */
 		// This should be in the counteroffer page.
