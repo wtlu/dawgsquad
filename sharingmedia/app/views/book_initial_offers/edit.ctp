@@ -15,7 +15,7 @@
 			<strong>Author(s):</strong> <?php echo $author ?> <br />
 		<?php if(!is_null($price)){?>
 			<strong>Price:</strong> $<?php echo $price?> <br />
-		<?php }if(!is_null($duration)){?>
+		<?php }if(!is_null($loan)){?>
 			<strong>Loan:</strong> <?php echo $loan?> days <br />
 		<?php }if(!is_null($trade)){?>
 			<strong>Trade:</strong> Willing to trade <br />
