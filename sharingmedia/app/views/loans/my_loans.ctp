@@ -42,7 +42,7 @@
 				<li>Loaned To: <?= $loan_collection_owner[$i]["loans"]["client_id"]?></li>		
 				<li>Due Date: <?= $loan_collection_owner[$i]["loans"]["due_date"]?></li>
 			</ul>
-			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection_owner[$i]["books"]["id"]."/".$loan_collection_owner[$i]["loans"]["due_date"]."/0/-1/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection_owner[$i]["books"]["id"]."/".$loan_collection_owner[$i]["loans"]["due_date"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}

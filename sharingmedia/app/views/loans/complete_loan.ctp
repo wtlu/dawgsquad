@@ -14,22 +14,15 @@
 				<strong>Title:</strong>	<?php echo $book_info[0]["books"]["title"] ?> <br />
 				<strong>Author(s):</strong> <?php echo $book_info[0]["books"]["author"] ?> <br />
 				
-				<?php if($identify == 0){ ?>
 				
-						<strong>Loaned To:</strong> <?php echo $name ?> <br />
-						
-				<?php } else { ?>
-				
-						<strong>Borrowed From:</strong> <?php echo $name ?> <br />
-						
-				<?php } ?>
+				<strong>Loaned To:</strong> <?php echo $name ?> <br />
 				
 				<strong>Due Date:</strong> <?php echo $due_date ?> <br />
 			</label>
 		</p>
 	</fieldset>
 
-	<?php echo $this->Html->link('Remove Loan',"/loans/remove_loan/".$book_info[0]["books"]["id"]."/".$this->Session->read('uid')."/".$identify."/".$o_id."/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $this->Html->link('Remove Loan',"/loans/remove_loan/".$book_info[0]["books"]["id"]."/".$this->Session->read('uid')."/", array('class' => 'buttons', 'escape' => false)); ?>
 	
 </div>
 
