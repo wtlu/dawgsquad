@@ -76,10 +76,10 @@
 				$price = $transaction_collection[$i]["t"]["price"];
 				$trade = $transaction_collection[$i]["t"]["trade_id"]; 
 				if(is_null($loan)){
-					$loan = "null";
+					$loan = "NULL";
 				}
 				if(is_null($price)){
-					$price = "null";
+					$price = "NULL";
 				}
 				$uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
