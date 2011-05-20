@@ -94,6 +94,23 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
+		
+		$data['Transaction']['book_title'] = $book_title;
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_name;
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_author;
+		$data['Transaction']['book_isbn'] = $book_isbn;
+		$data['Transaction']['book_image'] = $book_image;
+		
+		
+		
+		$this->set('data', $data);
+		
+		
+		
+		
+		
 		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
 		} else if (isset($this->data['Transaction']['duration'])) {
