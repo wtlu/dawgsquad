@@ -279,8 +279,7 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-	function delete_transaction($tid, $bid, $price, $loan, $trade){
-		
+	function delete_transaction($tid, $bid, $price, $loan, $trade){	
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 		
