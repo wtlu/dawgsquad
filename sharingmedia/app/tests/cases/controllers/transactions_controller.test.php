@@ -65,7 +65,9 @@ class TransactionsControllerTest extends CakeTestCase {
 					    array('conditions' => 
 						  array('Transaction.owner_id' => $owner_id, 
 							'Transaction.client_id' => $client_id,
-							'Transaction.book_id' => $book_id)));
+							'Transaction.book_id' => $book_id)
+						  )
+					    );
 
     /* check */
     $this->assertTrue(isset($transaction));					/* got something */
@@ -84,7 +86,10 @@ class TransactionsControllerTest extends CakeTestCase {
 					    array('conditions' => 
 						  array('Transaction.owner_id' => $owner_id, 
 							'Transaction.client_id' => $client_id,
-							'Transaction.book_id' => $book_id)));
+							'Transaction.book_id' => $book_id)
+						  )
+					    );
+
     $this->assertTrue(count($transaction) == 1);
 
   }
@@ -102,11 +107,25 @@ class TransactionsControllerTest extends CakeTestCase {
    */
   function testAcceptTransactionSuccess() {
 
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+    
     /* get a transaction from fixture that's pending */
+    $transaction_id = 1;
 
     /* accept it */
+    $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
+
+    /* get that transaction from the db */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
 
     /* check that it's accepted */
+    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
+    $this->assertTrue($transaction['Transaction']['status'] == 2);		/* accepted */
 
   }
 
@@ -118,11 +137,25 @@ class TransactionsControllerTest extends CakeTestCase {
    */
   function testAcceptTransactionFailure() {
 
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+    
     /* get a transaction from fixture that's rejected */
+    $transaction_id = 2;
 
     /* accept it */
+    $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
 
-    /* check that it's rejected still */
+    /* get that transaction from the db */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* check that it's accepted */
+    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
+    $this->assertTrue($transaction['Transaction']['status'] == 1);		/* rejected */
 
   }
 
@@ -132,16 +165,26 @@ class TransactionsControllerTest extends CakeTestCase {
 
   /**
    * purpose	: tests displaying transactions for user
-   * expected	: test user has three transactions
+   * expected	: test user has two transactions (id's == 1 and 2)
    * conditions : my_transactions is of form...
    *              my_transactions( $user_id )
    */
   function testMyTransactions() {
 
-    /* look up user's transactions */
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
 
-    /* make sure all transactions are the same as those in fixture w/ that user */
-   
+    /* params */
+    $owner_id = 100;
+
+    /* look up user's transactions */
+    $result = $this->testAction("/transactions/my_transactions/$owner_id",
+				array('return' => 'vars')
+				);
+    
+    /* make sure both transactions are returned */
+    $this->assertEqual(count($result['transaction_collection'] == 2));
+
   }
 
   //--------------------------------------------------
