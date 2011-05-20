@@ -49,9 +49,9 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		-->
 		<!--
-		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
-		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
-		<input name="data[Transaction][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<input name="data[Transaction][author]" id="author" value="<?php //echo $author ?>" type="hidden">
+		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php //echo $ISBN ?>" type="hidden">
+		<input name="data[Transaction][image]" id="image" value="<?php //echo $image ?>" type="hidden">
 		-->
 		
 		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
