@@ -20,7 +20,7 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 		
-		$this->set('data', $this->Transaction->read());
+		
 		
 		
 		
@@ -31,6 +31,21 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
+		
+		
+		$data['Transaction']['book_title'] = $book_title;
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_name;
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_author;
+		$data['Transaction']['book_isbn'] = $book_isbn;
+		$data['Transaction']['book_image'] = $book_image;
+		
+		
+		
+		$this->set('data', $data);
+		
+		
 
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -94,22 +109,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-		
-		$data['Transaction']['book_title'] = $book_title;
-		$data['Transaction']['book_id'] = $book_id;
-		$data['Transaction']['owner_name'] = $owner_name;
-		$data['Transaction']['owner_id'] = $owner_id;
-		$data['Transaction']['book_author'] = $book_author;
-		$data['Transaction']['book_isbn'] = $book_isbn;
-		$data['Transaction']['book_image'] = $book_image;
-		
-		
-		
-		$this->set('data', $data);
-		
-		
-		
-		
+
 		
 		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
@@ -218,7 +218,7 @@ class TransactionsController extends AppController {
 		
 		
 		//Needed for access to data variable in the view.
-		$this->set('data', $this->Transaction->read());
+		//$this->set('data', $this->Transaction->read());
 		
 		//debug($this->Transaction);
 
