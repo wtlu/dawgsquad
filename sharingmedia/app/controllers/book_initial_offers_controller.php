@@ -111,7 +111,7 @@ class BookInitialOffersController extends AppController {
 		$bid = $this->data['BookInitialOffer']['bid'];
 		$uid = $this->Session->read('uid');
 		$set = "SET";
-			$set .= "trade_id = " . $this->data['BookInitialOffer']['trade_id'];
+			$set .= " trade_id = " . $this->data['BookInitialOffer']['trade_id'];
 		if(!empty($this->data)){
 			if(!empty($this->data['BookInitialOffer']['loan_duration'])){
 				$set .= ", duration = " .  $this->data['BookInitialOffer']['loan_duration'];
