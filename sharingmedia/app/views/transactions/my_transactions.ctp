@@ -83,9 +83,11 @@
 				}
 				$uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
+				$last= $transaction_collection[$i}["t"]["current_id"];
 			?>
-			<?php echo
-				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));?>
+			<?php
+			if($uid != last ){?>
+				<?=$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));}?>
 		</div>
 	<?php
 		}
