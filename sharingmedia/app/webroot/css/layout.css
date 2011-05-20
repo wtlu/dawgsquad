@@ -39,6 +39,10 @@ body {
 	text-decoration: None;
 }
 
+#top_section a:hover {
+	text-decoration: underline; 
+}
+
 #side_bar {
 	padding-top: 100px;
 	/* height: 100%; */
@@ -62,7 +66,7 @@ body {
 	text-align: center;	
 }
 
-a:hover {
+#side_bar a:hover {
 	text-decoration: underline; 
 }
 
