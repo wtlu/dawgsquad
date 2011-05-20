@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('initial_offers', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 <fieldset>
 <div class="book_results_display">
                 <?php
