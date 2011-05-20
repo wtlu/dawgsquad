@@ -16,7 +16,7 @@
 		<ul class="offer_details">
 		<?php
 			if($loan_duration!=("NULL")){?>
-				 <li>Loan Duration:  <?php echo $loan_duration?> days </li>;
+				 <li>Loan Duration:  <?php echo $loan_duration?> days </li>
 		<?php }
 			if($sell_price!=("NULL")){?>
 				<li>For Sale at $ <?php echo  $sell_price ?></li> 
