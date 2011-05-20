@@ -51,10 +51,10 @@ File: /app/views/transaction.ctp
 								<legend><strong>You propose this book as a trade:</strong></legend>
 								<p class="book_display">
 									<label >
-										<img src=<?= $temp_image ?> alt="Book image" />
-										<strong>Title:</strong>	<?= $temp_title ?> <br />
-										<strong>Author(s):</strong> <?= $temp_author ?> <br />
-										<strong>ISBN:</strong> <?= $temp_isbn ?> <br />
+										<img src=<?= $trade_image ?> alt="Book image" />
+										<strong>Title:</strong>	<?= $trade_title ?> <br />
+										<strong>Author(s):</strong> <?= $trade_author ?> <br />
+										<strong>ISBN:</strong> <?= $trade_isbn ?> <br />
 									</label>
 								</p>
 						</fieldset>
