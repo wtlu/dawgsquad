@@ -80,11 +80,11 @@ Beta Release Checklist
 				[ ] Can click on cancel
 					[ ] Goes back to main transaction page
 
-	[ ] Use Case: My Library Page (Ken)
+	[x] Use Case: My Library Page (Ken)
 		[x] Has My Books Tab
 			[x] My Books contains all the books of the user
 			[x] Has button for Change offer details
-				[ ] When clicked, goes to "Offer Details" page (or a page that lets you change it with a confirmation page)
+				[x] When clicked, goes to "Offer Details" page (or a page that lets you change it with a confirmation page)
 			[x] Has Remove Button
 				[x] When click remove, shows confirmation
 					[x] If user click yes, removes the book from My Library
@@ -93,9 +93,9 @@ Beta Release Checklist
 			[x] When switched to this tab, contains the current transactions
 			[x] Show pas transactions
 			[x] Ability to see offer
-			[ ] If waiting for offer, can click on offer to go to detail transaction
-		[ ] Has My Loans Tab
-			[ ] When switched to this tab, it contains all loans of this user
+			[x] If waiting for offer, can click on offer to go to detail transaction
+		[x] Has My Loans Tab
+			[x] When switched to this tab, it contains all loans of this user
 		[x] Has Add Books Button
 			[x] Clicking on the button goes to the Add Books page
 		
