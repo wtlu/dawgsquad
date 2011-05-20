@@ -280,14 +280,15 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-	function delete_transaction($tid, $bid, $title, $author, $owner, $price, $loan, $trade){
-		$image_array = $this->Transaction->query("SELECT image FROM books WHERE id = " . $bid);
-		$image = $image_array[0]["books"]["image"];
+	function delete_transaction($tid, $bid, $price, $loan, $trade){
+		
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+		
+		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
 		
 		$this->set('tid', $tid);
-		$this->set('image', $image);
-		$this->set('title', $title);
-		$this->set('author', $author);
+		$this->set('book_array', $book_array);
 		$this->set('owner', $owner);
 		$this->set('price', $price);
 		$this->set('loan', $loan);
