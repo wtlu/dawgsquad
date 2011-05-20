@@ -122,8 +122,9 @@ class TransactionsController extends AppController {
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
 			# debug($date);
 			# echo date_format($date, 'Y-m-d');
+			$due_date = date_format($date, 'Y-m-d');
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . ', NOW());');
+									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $due_date . ', NOW());');
 		}
 
 		// remove from book initial offers
