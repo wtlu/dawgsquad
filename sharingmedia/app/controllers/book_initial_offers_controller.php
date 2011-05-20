@@ -99,8 +99,9 @@ class BookInitialOffersController extends AppController {
 
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
 				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price']);
-			}else 	$(this->set('sell_price' "NULL");
-
+			}else{ 	
+				$this->set('sell_price' "NULL";
+			}
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
 				$this->set('trade_id', 1);
 			} else{
