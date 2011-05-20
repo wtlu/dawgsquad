@@ -72,7 +72,7 @@ File: /app/views/transaction.ctp
 
 		
 		<!-- Input for the trade book -->
-		<div class="options">
+		<div class="options_trades">
 			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
 			<label for="choose_trade">Books you own, that you could offer in trade:</label>
 			<?php
