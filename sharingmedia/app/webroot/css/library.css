@@ -26,14 +26,14 @@ a{
         height:140px;
 }
 .book_unit{
-        width:610px;
+        width:540px;
         overflow: hidden;
         border-bottom: 2px solid black;
         margin-bottom:10px;
 }
 #menubar{
     vertical-align:middle;
-    width:638px;
+    width:580px;
     float:left;
 }
 #menubar a{
@@ -81,9 +81,8 @@ a{
 #list{
         float:left;
         border:2px solid black;
-        width: 614px;
+        width: 560px;
         padding:10px;
-
         height: 550px;
         overflow: scroll;
 }
