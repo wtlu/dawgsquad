@@ -1,34 +1,32 @@
 <?php echo $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
-<div id ="offer">
+<div id ="book_display">
 	<fieldset>
 		<legend> Your Book </legend>
-		<p class="book_display">
-			<label >
-				<img src=<?php echo $image ?> alt="Book image" />
-				<strong>Title:</strong>	<?php echo $title; ?> <br />
-				<strong>Author(s):</strong> <?php echo $author ?> <br />
-			</label>
-		</p>
+		<div class="book_display">
+			<img src=<?php echo $image ?> alt="Book image" />
+			<ul id="book_info">
+				<li><strong>Title:</strong>	<?php echo $title; ?> </li>
+				<li><strong>Author(s):</strong> <?php echo $author ?> </li>
+			</ul>
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend> New Offer Details </legend>
-		<p>
+		<div class = "new_offer">
+		<ul class="offer_details">
 		<?php
-
-			if($loan_duration!=("NULL")){
-				echo '<strong> Loan for ' . $loan_duration .' days. </strong><br />';
-			}
-
-			if($sell_price!=("NULL")){
-				echo '<strong> For Sale at $' . $sell_price .'. </strong><br />';
-			}
-
-			if(!empty($trade_id)){
-				echo '<strong> Willing to Trade for Another Book. </strong><br />';
-			}
-
+			if($loan_duration!=("NULL")){?>
+				 <li>Loan Duration:  <?php echo $loan_duration?> days </li>;
+		<?php }
+			if($sell_price!=("NULL")){?>
+				<li>For Sale at $ <?php echo  $sell_price ?></li> 
+		<?php	}
+			if(!empty($trade_id)){?>
+				 <li> Willing to Trade for Another Book</li>
+		<?php	}
 		?>
-		</p>
+			</ul>
+		</div>
 		
 		<?php echo $form->create('BookInitialOffer', array('action' => 'update', 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
