@@ -176,9 +176,6 @@ class TransactionsController extends AppController {
 		if ($this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
 		}
-
-
-		debug($trade_id);
 		
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -189,10 +186,11 @@ class TransactionsController extends AppController {
 		$this->set('book_image', $book_image);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
+		$this->set('trade_id', $trade_id);
 
 
 		//Need to update the transaction tuple with the new values
-
+		
 
 
 
