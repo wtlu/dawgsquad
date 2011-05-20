@@ -57,7 +57,7 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox">
 		<label for="choose_loan">Loan For</label>
 		<?php
-			echo $this->Form->input('loan_duration', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
+			echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
 		?>
 
 		
@@ -69,7 +69,7 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox">
 		<label for="choose_sell">Sell For</label>
 		<?php
-			echo $this->Form->input('sell_price', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
+			echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
 		?>
 
 		</br>
