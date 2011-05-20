@@ -118,12 +118,12 @@ class TransactionsController extends AppController {
 			date_default_timezone_set('UTC');
 			$curr_date = date('Y-m-j');
 			$date = new DateTime($curr_date);
-			debug($date);
+			# debug($date);
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
-			debug($date);
-			echo date_format($date, 'Y-m-d');
-			/*$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . 'NOW());');*/
+			# debug($date);
+			# echo date_format($date, 'Y-m-d');
+			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
+									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . 'NOW());');
 		}
 
 
