@@ -17,6 +17,10 @@ File: /app/views/transaction.ctp
 
 <body>
 
+<?php
+debug($data);
+?>
+
 <fieldset style="border: 3px solid #000000">
 		<legend> Book Available </legend>
 		<p class="book_display">
