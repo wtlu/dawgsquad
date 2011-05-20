@@ -51,8 +51,8 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][owner_id]" id="owner_id" value="<?= $data['Transaction']['owner_id'] ?>" type="hidden">
 		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name'] ?>" type="hidden">
 		
-		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
-		<label for="choose_loan" style="float:left">Loan For</label>
+		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox">
+		<label for="choose_loan">Loan For</label>
 		<?php
 			echo $this->Form->input('loan_duration', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
 		?>
@@ -62,7 +62,7 @@ File: /app/views/transaction.ctp
 		<hr>
 		</br>
 		
-		<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" style="width:50px; float:left;">
+		<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox">
 		<label for="choose_sell">Sell For</label>
 		<?php
 			echo $this->Form->input('sell_price', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
@@ -72,7 +72,7 @@ File: /app/views/transaction.ctp
 		<hr>
 		</br>
 		
-		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;">
+		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
 		<label for="choose_trade">Books you own, that you could offer in trade:</label>
 		<?php
 			if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
