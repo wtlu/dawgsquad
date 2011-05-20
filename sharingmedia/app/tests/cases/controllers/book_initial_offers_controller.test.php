@@ -16,7 +16,7 @@
         App::import('Controller','Books');
 	App::import('Controller','BookInitialOffers');
 	App::import('Model', 'Loan');
-       	App::import('Model', 'BookInitialTransaction');
+       	App::import('Model', 'Transaction');
 	App::import('Model', 'BookInitialOffer');
        	App::import('Model', 'User');
 
