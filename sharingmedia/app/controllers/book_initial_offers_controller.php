@@ -67,8 +67,63 @@ class BookInitialOffersController extends AppController {
 	function edit($bid){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Change Offer');
-		 $offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id =" .$bid);
-                $this->set('offer', $offer);	
+		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id =" .$bid);
+		$this->set('title', $offer[0]["books"]["title"]);
+		$this->set('author', $offer[0]["books"]["author"]);
+		$this->set('image', $offer[0]["books"]["image"]); 
+		$this->set('loan', $offer[0]["book_initial_offers"]["duration"]);
+		$this->set('price', offer[0]["book_initial_offers"]["price"]); 
+		$this->set('trade', $offer[0]["book_initial_offers"]["trade_id"]);
+		$this->set('bid', $bid);
+					
+	}
+	
+	function edit_comfirm(){
+		//set title and defualt layout
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Comfirm New Offer');
+		
+		//set book info
+		$this->set('title', $this->data['BookInitialOffer']['title']);
+		$this->set('author', $this->data['BookInitialOffer']['author']);
+		$this->set('bid', $this->data['BookInitialOffer']['bid'];);
+		$this->set('image', $this->data['BookInitialOffer']['image'];);
+		
+		//set new offer details 
+		if (!empty($this->data)) {
+			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
+				$this->set('loan_duration', $this->data['BookInitialOffer']['loan_duration'];);
+			}
+
+			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
+				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price'];);
+			}
+
+			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
+				$this->set('trade_id', 1);
+			} else{
+				$this->set('trade_id', 0);
+			}
+		}
+	}
+	
+	function update(){
+		$bid = $this->data['BookInitialOffer']['bid'];
+		$uid = $this->Session->read('uid');
+		$set = "SET"
+		if (!empty($this->data)) {
+			if(!empty($this->data['BookInitialOffer']['loan_duration'])){
+				$set .= " duration = " .  $this->data['BookInitialOffer']['loan_duration'];
+			}
+
+			if(!empty($this->data['BookInitialOffer']['sell_price'])){ 
+				$set .= "price = " . $this->data['BookInitialOffer']['sell_price'];
+			}
+
+			$set .= "trade_id = " . $this->data['BookInitialOffer']['trade_id'];
+			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
+		}
+		$this->redirect('/book_initial_offers/my_books/');
 	}
 
 
