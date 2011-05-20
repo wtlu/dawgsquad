@@ -21,14 +21,14 @@ class TransactionsController extends AppController {
   //Pre: Called from find_books_results to initiate a transaction, or from myTransactions in myLibrary to continue or update a transactions.
   //Post: Creates a tuple in transactions with pertinent information, allows user to choose to accept the current offer or make a counteroffer.
   function transactions($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = 0) {
+		
+		//For css styles
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
-
-
 
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
