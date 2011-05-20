@@ -87,9 +87,6 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		echo 'price' . $price;
-		echo 'duration' . $duration;
-
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
@@ -122,9 +119,13 @@ class TransactionsController extends AppController {
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
 			# debug($date);
 			# echo date_format($date, 'Y-m-d');
+			$due_date = date_format($date, 'Y-m-d');
+			echo $due_date;
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . 'NOW());');
+									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', \'' . $due_date . '\', NOW());');
 		}
+
+		// remove from book initial offers
 
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
