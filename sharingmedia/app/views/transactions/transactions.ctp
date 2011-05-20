@@ -17,18 +17,14 @@ File: /app/views/transaction.ctp
 
 <body>
 
-<?php
-	debug($data);
-?>
-
 <fieldset style="border: 3px solid #000000">
 		<legend> Book Available </legend>
 		<p class="book_display">
 			<label >
-				<img src=<?php echo $book_image ?> alt="Book image" />
-				<strong>Title:</strong>	<?php echo $book_title; ?> <br />
-				<strong>Author(s):</strong> <?php echo $book_author ?> <br />
-				<strong>ISBN:</strong> <?php echo $book_isbn ?> <br />
+				<img src=<?= $data['Transaction']['book_image'] ?> alt="Book image" />
+				<strong>Title:</strong>	<?= $data['Transaction']['book_title'] ?> <br />
+				<strong>Author(s):</strong> <?= $data['Transaction']['book_author'] ?> <br />
+				<strong>ISBN:</strong> <?= $data['Transaction']['book_isbn'] ?> <br />
 			</label>
 		</p>
 </fieldset>
@@ -40,19 +36,19 @@ create a counter-offer. </p>
 
 <?php
 	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction', 'type'=>'post'));
-	if (isset($price) && ("NULL" <> $price)) {
+	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>
-		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $price ?><br>
+		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $data['Transaction']['price'] ?><br>
 		<input name="data[Transaction][price]" id="price" value="<?= $price ?>" type="hidden">
 	<?php
 	}
-	if (isset($duration) && ("NULL" <> $duration)) {
+	if (isset($data['Transaction']['duration']) && ("NULL" <> $data['Transaction']['duration'])) {
 	?>
-		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Rent</strong> - Duration: <?= $duration ?> days<br>
+		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Rent</strong> - Duration: <?= $data['Transaction']['duration'] ?> days<br>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
-	if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
+	if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
 	?>
 		<!-- <input type="radio" name="trade" value="t"> -->
 		<strong>Trade:</strong><p>If you wish to trade a book, proceed with Counter Transaction.</p>
@@ -82,13 +78,13 @@ create a counter-offer. </p>
 
 	*/
 	?>
-		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
-		<input name="data[Transaction][book_id]" id="book_id" value="<?php echo $book_id ?>" type="hidden">
-		<input name="data[Transaction][owner_id]" id="owner_id" value="<?php echo $owner_id ?>" type="hidden">
-		<input name="data[Transaction][owner_name]" id="owner_name" value="<?php echo $owner_name ?>" type="hidden">
-		<input name="data[Transaction][book_author]" id="book_author" value="<?php echo $book_author ?>" type="hidden">
-		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?php echo $book_isbn ?>" type="hidden">
-		<input name="data[Transaction][book_image]" id="book_image" value="<?php echo $book_image ?>" type="hidden">	
+		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
+		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id']  ?>" type="hidden">
+		<input name="data[Transaction][owner_id]" id="owner_id" value="<?= $data['Transaction']['owner_id'] ?>" type="hidden">
+		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name']  ?>" type="hidden">
+		<input name="data[Transaction][book_author]" id="book_author" value="<?= $data['Transaction']['book_author']  ?>" type="hidden">
+		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?= $data['Transaction']['book_isbn']  ?>" type="hidden">
+		<input name="data[Transaction][book_image]" id="book_image" value="<?= $data['Transaction']['book_image']  ?>" type="hidden">	
 		
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php

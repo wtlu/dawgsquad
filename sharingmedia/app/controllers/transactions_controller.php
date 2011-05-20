@@ -19,11 +19,10 @@ class TransactionsController extends AppController {
   function transactions($price = null, $duration = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
+
 		
-		
-		
-		
-		
+		//Bad way of getting data from previous page; should be passed as parmeters
+		//need to fix the form in find book results
 		$book_title = $this->data['Transaction']['title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['name'];
@@ -31,29 +30,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['author'];
 		$book_isbn = $this->data['Transaction']['isbn'];
 		$book_image = $this->data['Transaction']['image'];
-		
-		
-		$data['Transaction']['book_title'] = $book_title;
-		$data['Transaction']['book_id'] = $book_id;
-		$data['Transaction']['owner_name'] = $owner_name;
-		$data['Transaction']['owner_id'] = $owner_id;
-		$data['Transaction']['book_author'] = $book_author;
-		$data['Transaction']['book_isbn'] = $book_isbn;
-		$data['Transaction']['book_image'] = $book_image;
-		
-		
-		
-		$this->set('data', $data);
-		
-		
 
-		$this->set('book_title', $book_title);
-		$this->set('book_id', $book_id);
-		$this->set('owner_name', $owner_name);
-		$this->set('owner_id', $owner_id);
-		$this->set('book_author', $book_author);
-		$this->set('book_isbn', $book_isbn);
-		$this->set('book_image', $book_image);
 
 		//Set to a default value of NULL
 		$price = "NULL";
@@ -75,6 +52,21 @@ class TransactionsController extends AppController {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		}
 		$this->set('allow_trade', $allow_trade);
+		
+		
+		//Make the parameter data available in the view
+		$data['Transaction']['book_title'] = $book_title;
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_name;
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_author;
+		$data['Transaction']['book_isbn'] = $book_isbn;
+		$data['Transaction']['book_image'] = $book_image;
+		$data['Transaction']['price'] = $price;
+		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['allow_trade'] = $allow_trade;
+		$this->set('data', $data);
+		
 
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
@@ -203,55 +195,23 @@ class TransactionsController extends AppController {
 								 $book_isbn = null,
 								 $book_image = null,
 								 $allow_trade = null) {
-		
-		
-		
-		
-		
+
+		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		/* do all the update stuff */
 		
+		//Fill data with parameters, to be passed to view
+		$data['Transaction']['book_title'] = $book_title;
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_name'] = $owner_name;
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['book_author'] = $book_author;
+		$data['Transaction']['book_isbn'] = $book_isbn;
+		$data['Transaction']['book_image'] = $book_image;
+		$data['Transaction']['price'] = $price;
+		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['allow_trade'] = $allow_trade;
 		
-		//$this->Transaction->$book_title = $book_title;
-		//$this->Transaction->$book_id = $book_id;
-		
-		
-		//Needed for access to data variable in the view.
-		//$this->set('data', $this->Transaction->read());
-		
-		//debug($this->Transaction);
-
-		debug("is this working?");
-		debug($book_title);
-		debug($book_id);
-		
-		
-		//$book_title = $this->data['Transaction']['book_title'];
-		//$book_id = $this->data['Transaction']['book_id'];
-		//$owner_name = $this->data['Transaction']['owner_name'];
-		//$owner_id = $this->data['Transaction']['owner_id'];
-		//$book_author = $this->data['Transaction']['book_author'];
-		//$book_isbn = $this->data['Transaction']['book_isbn'];
-		//$book_image = $this->data['Transaction']['book_image'];
-
-		$this->set('book_title', $book_title);
-		$this->set('book_id', $book_id);
-		$this->set('owner_name', $owner_name);
-		$this->set('owner_id', $owner_id);
-		$this->set('book_author', $book_author);
-		$this->set('book_isbn', $book_isbn);
-		$this->set('book_image', $book_image);
-
-
-		//Set to a default value of 0
-		//$allow_trade = 0;
-		//if (isset($this->data['Transaction']['allow_trade'])){
-		//	$allow_trade = $this->data['Transaction']['allow_trade'];
-		//}
-		$this->set('allow_trade', $allow_trade);
-
-
 		/* This page is only called from add books results, so there will be no trade information */
 		// This should be in the counteroffer page.
 		if ($allow_trade){
@@ -261,9 +221,10 @@ class TransactionsController extends AppController {
 					AND b_i_o.trade_id = 1
 					AND b_i_o.book_id = books.id;');
 			# debug($trade_books);
-			$this->set('allow_trade', $allow_trade);
-			$this->set('trade_books', $trade_books);
+			$data['Transaction']['trade_books'] = $trade_books;
 		}
+		//Make all of data available to the view
+		$this->set('data', $data);
 
     }
 
