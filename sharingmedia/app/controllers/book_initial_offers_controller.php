@@ -78,7 +78,7 @@ class BookInitialOffersController extends AppController {
 					
 	}
 	
-	function edit_comfirm(){
+	FUnction edit_comfirm(){
 		//set title and defualt layout
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Comfirm New Offer');
@@ -100,7 +100,7 @@ class BookInitialOffersController extends AppController {
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
 				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price']);
 			}else{ 	
-				$this->set('sell_price' "NULL";
+				$this->set('sell_price', "NULL");
 			}
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
 				$this->set('trade_id', 1);
