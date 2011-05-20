@@ -17,80 +17,90 @@ a{
     font-size: 14pt;
 }
 .book_img{
-        height: 100px;
-        float: left;
-        margin-right: 20px;
-        margin-bottom: 20px
+	height: 100px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px
 }
 .books_list{
-        height:140px;
+	height:140px;
 }
 .book_unit{
-        width:520px;
-        overflow: hidden;
-        border-bottom: 2px solid black;
-        margin-bottom:10px;
+	width:520px;
+	overflow: hidden;
+	border-bottom: 2px solid black;
+	margin-bottom:10px;
 }
 #menubar{
     vertical-align:middle;
     width:560px;
     float:left;
+	background-color: #8671CE;
 }
 #menubar a{
     color: black;
 }
 #menu {
-        background-color:gray;
-        height: 43px;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
+	background-color:gray;
+	height: 43px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 }
 #menu li {
-        color: #777777;
-        display: block;
-        float: left;
-        line-height: 200%;
-        padding: 8px 15px 0;
-        text-decoration: none;
+	color: #777777;
+	display: block;
+	float: left;
+	line-height: 200%;
+	padding: 8px 15px 0;
+	text-decoration: none;
 }
 
 #menu .current{
-        color:white;
+	background-color: #271466;
+	color:white;
+	padding: 14px 15px 12px 18px;
 }
+
+#menu a:hover {
+	background-color: #271466;
+	color:white;
+	padding: 14px 15px 12px 18px;
+}
+
 #add{
         float: right;
 }
 .buttons{
-        float:right;
-        margin-left: 10px;
-        margin-right: 10px;
+	float:right;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 .tabs{
-        float:left;
-        background-color:gray;
-        margin-right:5px;
+	float:left;
+	background-color:gray;
+	margin-right:5px;
 }
 #current{
-        background-color:gray;
+	background-color:gray;
 }
 #add{
-        float:right;
+	float:right;
 }
 #list{
-        float:left;
-        border:2px solid black;
-        width: 540px;
-        padding:10px;
-        height: 550px;
-        overflow: scroll;
+	float:left;
+	border:2px solid black;
+	width: 540px;
+	padding:10px;
+	height: 550px;
+	overflow: scroll;
 }
 #remove{
-        float:left;
+	float:left;
 }
 #cancel{
-        float:right;
+	float:right;
 }
 #offer{
 	width:560px;
