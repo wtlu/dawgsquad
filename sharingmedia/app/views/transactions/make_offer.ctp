@@ -52,9 +52,9 @@ File: /app/views/transaction.ctp
 						$temp_isbn = $book_result[0]['books']['ISBN'];
 						$temp_image = $book_result[0]['books']['image'];
 
-						
+						?>
 						<fieldset style="border: 3px solid #000000">
-								<legend>You propose this book as a trade</legend>
+								<legend><strong>You propose this book as a trade:</strong></legend>
 								<p class="book_display">
 									<label >
 										<img src=<?= $temp_image ?> alt="Book image" />
@@ -64,9 +64,7 @@ File: /app/views/transaction.ctp
 									</label>
 								</p>
 						</fieldset>
-
-				
-					echo '<strong> Trade for Another Book ' . $trade_id .' </strong></br>';
+						<?php
 				}
 			
 			?>
