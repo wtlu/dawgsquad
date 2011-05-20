@@ -13,10 +13,10 @@
 		<legend> Book Offer </legend>
 		<p class="book_display">
 			<label >
-				<img src=<?= $book_image ?> alt="Book image" />
-				<strong>Title:</strong>	<?= $book_title ?> <br />
-				<strong>Author(s):</strong> <?= $book_author ?> <br />
-				<strong>ISBN:</strong> <?= $book_isbn ?> <br />
+				<img src=<?= $data['Transaction']['book_image'] ?> alt="Book image" />
+				<strong>Title:</strong>	<?= $data['Transaction']['book_title'] ?> <br />
+				<strong>Author(s):</strong> <?= $data['Transaction']['book_author'] ?> <br />
+				<strong>ISBN:</strong> <?= $data['Transaction']['book_isbn'] ?> <br />
 			</label>
 		</p>
 	</fieldset>
@@ -25,7 +25,7 @@
 		<legend> Owner Information </legend>
 		<p>
 			<label >
-				<strong>Name:</strong>	<?= $owner_name ?> <br />
+				<strong>Name:</strong>	<?= $data['Transaction']['owner_name'] ?> <br />
 			</label>
 		</p>
 	</fieldset>
@@ -36,15 +36,15 @@
 		<p>
 		<?php
 
-			if(!empty($duration)){
-				echo '<strong> Loan for ' . $duration .' days. </strong></br>';
+			if(!empty($data['Transaction']['duration'])){
+				echo '<strong> Loan for ' . $data['Transaction']['duration'] .' days. </strong></br>';
 			}
 
-			if(!empty($price)){
-				echo '<strong> For Sale at $' . $price .'</strong></br>';
+			if(!empty($data['Transaction']['price'])){
+				echo '<strong> For Sale at $' . $data['Transaction']['price'] .'</strong></br>';
 			}
 
-			if(!empty($allow_trade)){
+			if(!empty($data['Transaction']['allow_trade'])){
 				echo '<strong> Some trade book here. </strong></br>';
 			}
 
@@ -56,22 +56,9 @@
 
 <?php echo $form->create('Transaction', array('action' => 'confirm_transaction'."/".$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
+																					$data['Transaction']['price']."/".
+																					$data['Transaction']['duration']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post')); ?>
-
-
-		<?php
-		if(!empty($duration)){
-				echo '<input name="data[Transaction][duration]" id="ld" value="' . $duration . '" type="hidden">';
-		}
-
-		if(!empty($price)){
-				echo '<input name="data[Transaction][price]" id="sp" value="' . $price . '" type="hidden">';
-		}
-
-		if(!empty($trade_id)){
-				echo '<input name="data[Transaction][trade_id]" id="ti" value="' . $trade_id . '" type="hidden">';
-		}
-		?>
 
 <?php
 	echo $this->Form->end('Complete Transaction!');
