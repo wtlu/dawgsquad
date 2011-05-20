@@ -32,7 +32,7 @@ File: /app/views/transaction.ctp
 </fieldset>
 
 <div>
-<p> <?= $data['Transaction']['owner_name'] ?> has offered the following options for obtaining this book. Please select one, or
+<p> <?= $data['Transaction']['current_name'] ?> has offered the following options for obtaining this book. Please select one, or
 create a counter-offer. </p>
 
 

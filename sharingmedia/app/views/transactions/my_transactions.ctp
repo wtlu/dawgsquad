@@ -24,6 +24,7 @@
                 <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array(' escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'current', 'escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
         </ul>
 </div>
 
@@ -90,7 +91,7 @@
 			}
 			
 			if($transaction_collection[$i]["t"]["status"] == 1){
-				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$bid."/".$transaction_collection[$i]["b"]["title"]."/".$transaction_collection[$i]["b"]["author"]."/".$transaction_collection[$i]["u"]["name"]."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>	
 		</div>
