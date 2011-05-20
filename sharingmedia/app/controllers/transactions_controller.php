@@ -128,6 +128,8 @@ class TransactionsController extends AppController {
 		$this->set('allow_trade', $allow_trade);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
+
+		$this->set('data', $data);
 	}
 
 	//Pre: This page is transactions page when a user navigates to their Library. It takes no arguments
@@ -227,6 +229,8 @@ class TransactionsController extends AppController {
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
+
+		$this->set('data', $data);
   }
 
 
