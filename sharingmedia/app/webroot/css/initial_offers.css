@@ -7,10 +7,10 @@
 	float: right;
 }
 
-#options input, #options label{
+.options input, .options label{
 	float: left;	
 }
 
-#options {
+.options {
 	border-top: 2px solid black;	
 }
