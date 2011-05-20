@@ -4,7 +4,6 @@
                 <?php
                         $title = $offer[0]["books"]["title"];
                         $author =$offer[0]["books"]["author"];
-                        $ISBN = $offer[0]["books"]["isbn"];
                         $image = $offer[0]["books"]["image"]; 
 			$loan = $offer[0]["book_initial_offers"]["duration"];
 			$price = $offer[0]["book_initial_offers"]["price"]; 
@@ -13,7 +12,6 @@
         <img src=<?php echo $image ?> alt="Book image" />
         <strong>Title:</strong> <?php echo $title; ?> <br />
         <strong>Author(s):</strong> <?php echo $author ?> <br />
-        <strong>ISBN:</strong> <?php echo $ISBN ?> <br />
 	<?php if(!is_null($price)){?>
 		<strong>Price:</strong> $<?php echo $price?> <br />
 	<?php }if(!is_null($duration)){?>
