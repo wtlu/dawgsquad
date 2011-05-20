@@ -93,7 +93,7 @@ create a counter-offer. </p>
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
 	// Pass relevant information to counter_transaction.ctp if the user clicks the link.																						
-	echo $this->Html->link('Counter Transaction', array('/transactions/counter_transaction/'.$data['Transaction']['book_title'].'/'.
+	echo $this->Html->link('Counter Transaction', array('action' => 'counter_transaction', ''.$data['Transaction']['book_title'].'/'.
 																					$data['Transaction']['book_id'].'/'.
 																					$data['Transaction']['owner_id'].'/'.
 																					$data['Transaction']['owner_name'].'/'.
