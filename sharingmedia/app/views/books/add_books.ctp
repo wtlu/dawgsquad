@@ -27,21 +27,16 @@ File: /app/views/add_books.ctp
 	<br>
 
 	<div>
+		<?php echo $this->Form->create(array('action' => 'add_books_results')); ?>
+		<label for="info_title">Title</label>
+		<?php echo $this->Form->input('title', array('label' => '', 'id' => 'info_title')); ?>
+		<label for="info_author">Author(s)</label>
+		<?php echo $this->Form->input('author', array('label' => '', 'id' => 'info_author')); ?>
+		<label for="info_isbn">ISBN</label>
+		<?php echo $this->Form->input('isbn', array('label' => '', 'id' => 'info_isbn')); ?>
+		<?php echo $this->Form->input('index', array('type' => 'hidden', 'value' => '1')); ?>
 		<?php
-			echo $this->Form->create(array('action' => 'add_books_results'));
-			echo $this->Form->input('title', array('label' => '', 'id' => 'info_title')); 
-		?>
-			<label for="info_title">Title</label>
-			<?php echo $this->Form->input('author', array('label' => '', 'id' => 'info_author')); ?>
-			<label for="info_author">Author(s)</label>
-			<?php echo $this->Form->input('isbn', array('label' => '', 'id' => 'info_isbn')); ?>
-			<label for="info_isbn">ISBN</label>
-		<?php
-			echo $this->Form->input('index', array('type' => 'hidden', 'value' => '1'));
 			echo $this->Form->end('Continue');
 		?>
 	</div>
-	Title
-	Author(s)
-	ISBN
 </div>
