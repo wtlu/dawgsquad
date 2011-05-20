@@ -44,7 +44,7 @@
 			}
 			
 			if(!empty($sell_price)){		
-				echo '<strong> For Sale at $' . $sell_price .'</strong><br />';
+				echo '<strong> For Sale at $' . $sell_price .'. </strong><br />';
 			}
 			
 			if(!empty($trade_id)){		
