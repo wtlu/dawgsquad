@@ -115,7 +115,7 @@ class TransactionsController extends AppController {
 										AND status = 0;');
 
 		if ($duration != "NULL") {
-			date_default_timezone_set('PDT');
+			date_default_timezone_set('UTC');
 			$curr_date = date('Y-m-j H:i:s');
 			$date = new DateTime($curr_date);
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
