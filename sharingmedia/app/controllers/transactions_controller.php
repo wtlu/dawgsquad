@@ -285,9 +285,7 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
 		
 		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
-		debug($book_array);
 		$name_array = $this->Transaction->query("SELECT name FROM users u, transactions t WHERE t.id = " . $tid . " AND t.owner_id = u.facebook_id");
-		debug($name_array);
 		$name = $name_array[0]["u"]["name"];
 		
 		$this->set('tid', $tid);
