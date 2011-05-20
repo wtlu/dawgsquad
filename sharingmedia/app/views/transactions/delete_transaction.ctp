@@ -2,7 +2,7 @@
 
 <div>
 
-	<h2> Remove Loan? </h2>
+	<h2> Delete Transaction? </h2>
 
 	<br />
 	
