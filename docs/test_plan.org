@@ -1,0 +1,116 @@
+#+TITLE: SharingMedia Test Plan
+
+* Controllers
+** User
+*** index, login
+**** Cases
+1. User has app installed
+   - Goes to splash page
+2. User has no app installed
+   - Prompts to login / install app
+**** Notes
+- Make two Facebook accounts: install app on one
+- Can get user info @ graph.facebook.com/USERNAME
+- Testing process:
+  1. Script login to Facebook
+  2. Verify that user is logged in
+  3. Test our module (see Cases)
+** Book
+*** find_books_results
+**** Cases
+1. No results
+2. Some results
+**** Notes
+- Navigate to find_books
+- Populate form with known values from fixture
+  - Use SimpleTest web test methods to do this
+- Call find_books_results method
+*** add_books_results
+**** Cases
+1. Book in database
+   - Don't add new Book information from Google
+     - *Interning*
+   - Associate book with user
+2. Book not in database
+   - Add new book information from Google
+   - Associate book with user
+**** Notes
+- Navigate to add_books
+- Populate form with known values from fixture
+  - Use SimpleTest web test methods to do this
+- Call add_books_results method
+** BookInitialOffer
+*** my_books
+**** Cases
+1. User has no books
+2. User has 1 book
+3. User has > 1 book
+**** Notes
+- Case (2) and (3) are probably part of same revealing subdomain
+- Test method
+  1. Set session with proper user id
+  2. Run method
+  3. Check results against expected
+*** remove_confirm / remove
+**** Cases
+1. Book in user's library
+   - Book is removed from user's library
+2. Book not in user's library
+   - User's library is unchanged
+   - Error message
+**** Notes
+- Test method
+  1. Pass book_id
+  2. Run method
+  3. Confirm
+*** add_books_to_mylibrary
+**** Cases
+1. Book was not in library
+   - Library now contains book
+2. Book was in library
+   - Library does not contain duplicate book
+   - Error message
+**** Notes
+** Transaction
+*** accept_transaction
+**** Cases
+1. Transaction moves from pending to accepted
+2. Transaction cannot move from rejected to accepted
+**** Notes
+- Test method
+  1. Call function on a transaction
+  2. Ensure transaction is in appropriate state
+     - rejected ==> rejected
+     - pending ==> accepted
+*** counter_transaction
+**** Cases
+1. Transaction offer is same type
+   - Update transaction with new offer
+2. Transaction offer is different type
+   - Transaction is unchanged
+   - Error message
+**** Notes
+*** my_transaction
+**** Cases
+1. User has no transactions
+2. User has some transactions
+**** Notes
+- Will test whether all transactions for a given user are returned by this function
+
+* Views (Use Cases)
+** General Notes
+- 'Find Book' use case is included in 'Add Book' and 'Exchange book' because each of those depend on having found a book
+** Add Book
+1. Start on Find page.
+2. Fill out form with ISBN. Submit.
+3. Ensure on Results page.
+4. Check if test book is on page using pattern matching.
+5. Select arbitrary book. Continue.
+6. Ensure on Initial Offer page.
+7. Fill out and submit initial offer.
+8. Ensure on confirmation page.
+** Exchange Book
+- TBD
+** View My Library
+1. Make sure links on each view work
+2. Make sure each view has correct containers for content
