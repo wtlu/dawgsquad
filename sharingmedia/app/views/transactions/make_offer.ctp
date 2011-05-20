@@ -16,10 +16,12 @@ File: /app/views/transaction.ctp
 
 <body>
 
+<h2>Your Offer Has Been Successfully Made!</h2>
+
 <div>
 
 	<fieldset style="border: 3px solid #000000">
-			<legend> Book Available </legend>
+			<legend><h4> <?= $owner_name ?>'s Book:</h4> </legend>
 			<p class="book_display">
 				<label >
 					<img src=<?= $book_image ?> alt="Book image" />
@@ -36,31 +38,25 @@ File: /app/views/transaction.ctp
 			<p>
 			<?php
 			
-				if(!empty($duration)){		
+				if(!empty($duration) && $duration <> "NULL"){		
 					echo '<strong> You propose to borrow for ' . $duration . ' days. </strong></br>';
 				}
 				
-				if(!empty($price)){		
+				if(!empty($price) && $price <> "NULL"){		
 					echo '<strong> You propose to buy for $' . $price . '</strong></br>';
 				}
 				
-				if(!empty($trade_id)){	
+				if(!empty($trade_id) && $trade_id <> -1){	
 						//Display the book that will be traded for
-						$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
-						$temp_title = $book_result[0]['books']['title'];
-						$temp_author = $book_result[0]['books']['author'];
-						$temp_isbn = $book_result[0]['books']['ISBN'];
-						$temp_image = $book_result[0]['books']['image'];
-
 						?>
 						<fieldset style="border: 3px solid #000000">
 								<legend><strong>You propose this book as a trade:</strong></legend>
 								<p class="book_display">
 									<label >
-										<img src=<?= $temp_image ?> alt="Book image" />
-										<strong>Title:</strong>	<?= $temp_title ?> <br />
-										<strong>Author(s):</strong> <?= $temp_author ?> <br />
-										<strong>ISBN:</strong> <?= $temp_isbn ?> <br />
+										<img src=<?= $trade_image ?> alt="Book image" />
+										<strong>Title:</strong>	<?= $trade_title ?> <br />
+										<strong>Author(s):</strong> <?= $trade_author ?> <br />
+										<strong>ISBN:</strong> <?= $trade_isbn ?> <br />
 									</label>
 								</p>
 						</fieldset>
@@ -71,6 +67,10 @@ File: /app/views/transaction.ctp
 			</p>
 	</fieldset>
 
+</div>
+
+<div>
+		<?php echo $this->Html->link('Click to go to your library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
 </div>
 
 </body>

@@ -16,7 +16,7 @@
 </div>
 
 <fieldset>
-<p class="book_display">
+<p class="book_results_display">
 <label >
 		<?php
 			$title = $book_chosen[1];
@@ -70,7 +70,7 @@
 		
 		<div class="options">
 			<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox">
-			<label for="choose_trade">Willing to consider trades?</label>
+			<label id="special" for="choose_trade">Willing to consider trades?</label>
 		</div>
 
 		<?php
