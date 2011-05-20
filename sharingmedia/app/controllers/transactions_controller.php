@@ -58,7 +58,6 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
 		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
 		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
-		$data['Transaction']['']
 
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
