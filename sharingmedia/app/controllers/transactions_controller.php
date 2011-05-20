@@ -208,8 +208,6 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_author'] = $book_author;
 		$data['Transaction']['book_isbn'] = $book_isbn;
 		$data['Transaction']['book_image'] = $book_image;
-		$data['Transaction']['price'] = $price;
-		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		
 		/* This page is only called from add books results, so there will be no trade information */
