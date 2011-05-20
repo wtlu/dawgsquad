@@ -34,7 +34,7 @@ File: /app/views/transaction.ctp
 
 
 	<fieldset style="border: 3px solid #000000">
-			<legend> Selected Offer Details </legend>
+			<legend><h4>The Details of Your Offers: </h4></legend>
 			<p>
 			<?php
 			
