@@ -9,7 +9,7 @@
 	5/11/2011 - James Parsons - Now displays book info passed from add book results page.
 -->
 
-<?php echo $this->Html->css('initial_results', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('initial_offers', NULL, array('inline' => FALSE)); ?>
 
 <div class="top_progress_arrows">
 	<?php echo $this->Html->image('arrow_choose_offer_details.png', array('alt' => 'book info')) ?>
