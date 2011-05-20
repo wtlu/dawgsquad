@@ -4,13 +4,14 @@
 
 .field{
 	width: 100px; 
-	float: right;
 }
 
-.options input, .options label{
+.options input{
 	float: left;	
 }
 
 .options {
-	border-top: 2px solid black;	
+	border-top: 2px solid black;
+	height: 40px;
+	overflow: hidden;	
 }
