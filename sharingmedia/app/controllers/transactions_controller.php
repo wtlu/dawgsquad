@@ -87,18 +87,24 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
+		echo 'price' . $price;
+		echo 'duration' . $duration
+
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
+		/*
 		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
-		} else if (isset($this->data['Transaction']['duration'])) {
+		}
+		if (isset($this->data['Transaction']['duration'])) {
 			$duration = $this->data['Transaction']['duration'];
 		}
 		if (isset($this->data['Transaction']['allow_trade'])) {
 			$allow_trade = $this->data['Transaction']['allow_trade'];
 		};
+		*/
 
 		/* This statement updates the status of this transaction to "completed" state */
 		$this->Transaction->query('UPDATE transactions
