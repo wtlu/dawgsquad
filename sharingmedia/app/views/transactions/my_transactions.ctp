@@ -71,7 +71,19 @@
 					?>
 				</li>
 			</ul>
-			<?php echo $this->Html->link('View Transaction', "/transactions/transactions/".$transaction_collection[$i]["b"]["id"]."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$transaction_collection[$i]["t"]["price"]."/".$transaction_collection[$i]["t"]["duration"]."/".$transaction_collection[$i]["t"]["trade_id"]."/", array(' escape' => false)); ?>
+			<?php  
+				$loan = $transaction_collection[$i]["t"]["duration"];
+				$price = $transaction_collection[$i]["t"]["price"];
+				$trade = $transaction_collection[$i}["t"]["trade_id"]; 
+				if(is_null($loan)){
+					$loan = "null";
+				}
+				if(is_null($price)){
+					$price = "null";
+				}
+				$uid=  $this->Session->read('uid');
+				$bid= $transaction_collection[$i]["b"]["id"];
+				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade array(' escape' => false));?>
 		</div>
 	<?php
 		}
