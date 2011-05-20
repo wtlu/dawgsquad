@@ -46,6 +46,7 @@
 .book_display {
 	border-top: 0px solid black;
 	padding-bottom: 20px;
+	padding-top: 0px;
 }
 
 .book_display img {
