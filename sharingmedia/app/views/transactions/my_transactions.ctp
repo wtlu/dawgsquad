@@ -85,7 +85,7 @@
 				$bid= $transaction_collection[$i]["b"]["id"];
 			?>
 			<?php echo
-				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade array(' escape' => false));?>
+				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));?>
 		</div>
 	<?php
 		}
