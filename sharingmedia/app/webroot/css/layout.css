@@ -62,7 +62,7 @@ body {
 	text-align: center;	
 }
 
-#side_bar a:hover {
+a:hover {
 	text-decoration: underline; 
 }
 
