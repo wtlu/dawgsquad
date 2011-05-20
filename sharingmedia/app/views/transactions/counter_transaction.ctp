@@ -12,6 +12,10 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
+<?php
+	debug($data);
+?>
+
 <fieldset style="border: 3px solid #000000">
 		<legend> The Book You Are Making An Offer For:</legend>
 		<p class="book_display">
