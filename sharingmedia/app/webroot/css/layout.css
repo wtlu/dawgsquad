@@ -27,7 +27,7 @@ body {
 
 #top_section {
 	overflow: hidden;
-	background-color: #87cefa;
+	background-color: #3B5998;
 	border-bottom: 2px solid black;	
 }
 
@@ -37,7 +37,7 @@ body {
 	height: 600px;
 	width: 100px;
 	float: left;
-	background-color: #87cefa;
+	background-color: #3B5998;
 	border-right: 2px solid black;	
 	margin-right: 20px;
 }
