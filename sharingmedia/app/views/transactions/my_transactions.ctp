@@ -87,11 +87,11 @@
 			?>
 			<?php
 			if($uid != $last ){
-				$this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));
+				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));
 			}
 			
-			if(($transaction_collection[$i]["t"]["status"]) == 1){
-				$this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$bid."/".$uid."/".$price."/".$loan."/".$trade, array(' escape' => false));
+			if($transaction_collection[$i]["t"]["status"] == 1){
+				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$bid."/".$uid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>	
 		</div>
