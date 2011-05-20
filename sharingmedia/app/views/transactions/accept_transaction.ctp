@@ -1,4 +1,14 @@
-<?php echo $this->Html->css('transaction', NULL, array('inline' => FALSE)); ?>
+<!-- File: /app/views/transaction/accept_transaction.ctp -->
+
+<!--
+	Created: 5/18/2011
+	Author: John Wang
+
+	Changelog:
+	5/18/2011 - John Wang - Started this page. Wrote skeleton display
+	5/20/2011 - John Wang - Finished page.
+-->
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 <div>
 

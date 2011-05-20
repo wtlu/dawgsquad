@@ -7,6 +7,8 @@ File: /app/views/transaction.ctp
 	Changelog:
 	5/12/2011 - John Wang - Added a message to display that this is coming soon
 	5/16/2011 - John Wang - Displays transaction details
+	5/18/2011 - John Wang - Started links to accept and counter
+	5/20/2011 - John Wang - James Parsons - Finished links to accept and counter
 
 	# This is the view for the add books form.
 -->
