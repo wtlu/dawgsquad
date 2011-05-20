@@ -164,7 +164,7 @@ class TransactionsController extends AppController {
 
 		$duration = "NULL";
 		if ($this->data['Transaction']['offer_loan'] == "loan") {
-			$duration = $this->data['Transaction']['offer_loan'];
+			$duration = $this->data['Transaction']['loan_duration'];
 		}
 
 		$price = "NULL";
@@ -185,7 +185,7 @@ class TransactionsController extends AppController {
 			$this->set('trade_title', $trade_title);
 			$this->set('trade_author', $trade_author);
 			$this->set('trade_isbn', $trade_isbn);
-			$this->set('trade_image', $trae_image);
+			$this->set('trade_image', $trade_image);
 		}
 		
 		
