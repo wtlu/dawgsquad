@@ -14,16 +14,16 @@
 				<strong>Title:</strong>	<?php echo $book_array[0]["books"]["title"] ?> <br />
 				<strong>Author(s):</strong> <?php echo $book_array[0]["books"]["title"] ?> <br />
 				<?php 	//if loans not Null Print
-					if(!is_null($loan)){ ?>
-						<strong>Loan Duration: <?=$loan?> days</strong>
+					if(!is_null($loan) && $loan != "NULL"){ ?>
+						<strong>Loan Duration: <?=$loan?> days</strong> <br />
 				<?php } 
 					if($trade == 1){?>
-						<strong>Trade: Willing to trade</strong>
+						<strong>Trade: Willing to trade</strong> <br />
 				<?php }	//if selling print price
-					if(!is_null($price)){ ?>
-						<strong>Price: $<?=$price;?></strong>
+					if(!is_null($price) && $price != "NULL"){ ?>
+						<strong>Price: $<?=$price;?></strong> <br />
 				<?php }?>
-				<strong>Owner:</strong><?php echo $owner ?> <br />
+				<strong>Owner:</strong><?php echo $name ?> <br />
 			</label>
 		</p>
 	</fieldset>
