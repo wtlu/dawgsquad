@@ -23,7 +23,7 @@
 					if(!is_null($price)){ ?>
 						<strong>Price: $<?=$price;?></strong>
 				<?php }?>
-				<strong>Owner:</strong><?php echo $owner ?> <br />
+				<strong>Owner:</strong><?php echo $name ?> <br />
 			</label>
 		</p>
 	</fieldset>
