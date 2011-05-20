@@ -172,10 +172,25 @@ class TransactionsController extends AppController {
 			$price = $this->data['Transaction']['sell_price'];
 		}
 
-		$trade_id = "NULL";
+		$trade_id = -1;
 		if ($this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
+			
+			$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
+			$trade_title = $book_result[0]['books']['title'];
+			$trade_author = $book_result[0]['books']['author'];
+			$trade_isbn = $book_result[0]['books']['ISBN'];
+			$trade_image = $book_result[0]['books']['image'];
+			
+			$this->set('trade_title', $trade_title);
+			$this->set('trade_author', $trade_author);
+			$this->set('trade_isbn', $trade_isbn);
+			$this->set('trade_image', $trae_image);
 		}
+		
+		
+		
+		
 		
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
@@ -190,7 +205,15 @@ class TransactionsController extends AppController {
 
 
 		//Need to update the transaction tuple with the new values
-		
+		$this->Transaction->query('UPDATE transactions
+									SET current_id = '. $this->Session->read('uid') .',
+										trade_id = '. $trade_id .',
+										duration = '. $duration .',
+										price = '. $price .' '.'
+									WHERE owner_id = ' . $owner_id . '
+										AND client_id = ' . $this->Session->read('uid') . '
+										AND book_id = ' . $book_id . '
+										AND status = 0;');
 
 
 

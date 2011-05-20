@@ -36,22 +36,16 @@ File: /app/views/transaction.ctp
 			<p>
 			<?php
 			
-				if(!empty($duration)){		
+				if(!empty($duration) && $duration <> "NULL"){		
 					echo '<strong> You propose to borrow for ' . $duration . ' days. </strong></br>';
 				}
 				
-				if(!empty($price)){		
+				if(!empty($price) && $price <> "NULL"){		
 					echo '<strong> You propose to buy for $' . $price . '</strong></br>';
 				}
 				
-				if(!empty($trade_id)){	
+				if(!empty($trade_id) && $trade_id <> -1){	
 						//Display the book that will be traded for
-						$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
-						$temp_title = $book_result[0]['books']['title'];
-						$temp_author = $book_result[0]['books']['author'];
-						$temp_isbn = $book_result[0]['books']['ISBN'];
-						$temp_image = $book_result[0]['books']['image'];
-
 						?>
 						<fieldset style="border: 3px solid #000000">
 								<legend><strong>You propose this book as a trade:</strong></legend>
