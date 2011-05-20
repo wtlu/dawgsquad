@@ -109,16 +109,12 @@ File: /app/views/transaction.ctp
 <?php
 # helper function to display trade book results
 function display_results($result) {
-	$chosen = '';
-	# build the string of book data and pass on to initial_offer_details function in book initial offers controller
-	foreach ($result as $element) {
-		$chosen = $chosen . '^' . $element;
-	}
+
 	?>
 	<div class="book_results_display">
 	
 		
-		<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $chosen ?>" type="hidden">
+		<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $result['books']['id'] ?>" type="hidden">
 		
 		
 		<label for="choose_book">
