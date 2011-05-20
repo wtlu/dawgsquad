@@ -52,7 +52,7 @@
 			}
 			
 			if(empty($loan_duration) && empty($sell_price) && empty($trade_id)){
-				echo '<strong> No Initial Offer Details Were Selected. </strong><br />'
+				echo '<strong> No Initial Offer Details Were Selected. </strong><br />';
 			}
 
 		?>
