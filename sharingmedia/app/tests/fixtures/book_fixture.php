@@ -19,9 +19,9 @@
 				/*dummy test records to test with*/
 				
 				var $records = array(
-						array ('id' => 1,
+						array ('id' => 10,
 								   'title' => 'Web Programming',
-								   'author' => ' Marty Stepp',
+								   'author' => 'Marty Stepp',
 								   'ISBN' => '578012391',  
 								   'image' => 'path',
 								   'summary' => 'this is summary'

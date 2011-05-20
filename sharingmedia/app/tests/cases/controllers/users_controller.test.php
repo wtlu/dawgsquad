@@ -2,6 +2,7 @@
 File: /app/tests/cases/users_controller.test.php
 
 	Created: 5/13/2011
+	Edited: 5/19/2011 took the cause of redirecting
 	Author: Tatsuro Oya
 
 	
@@ -10,46 +11,13 @@ File: /app/tests/cases/users_controller.test.php
 	
 	/*import controller*/
 	App::import('Controller','Users');
-    
-	
-	/*extends controller*/
-	class TestUsers extends UsersController {
-		/*do not rendering from here automatically*/
-		var $autoRender = true;		
-		
-		/* overwirte parent's redirect method if exits
-		 * let redirect direct to redirectURL
-		 * can do test without doing actual redirect
-		 */
-		function redirect($url, $status = null, $exit = true){
-			$this->redirectUrl = $url;
-		}	
-		
-	}
-	
-	
+ 
 	/* UserControllerTest here */
 	class UsersControllerTest extends CakeTestCase{
-		var $Users = null;
+		
+		var $fixtures = array( 'app.user', 'app.book', 'app.book_initial_offer', 'app.transaction' );
 		var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
 
-		
-		/* Create instance with TestUsers which is a child of UsersController*/
-		function setUp(){
-			$this->Users = new TestUsers();
-			$this->Users->constructClasses();
-		}		
-		 
-		 /* Check if UserController can correctlly creating it's instance */ 	
-		function testUsersControllerInstance(){
-			$this->assertTrue(is_a($this->Users, 'UsersController'));
-			debug("checks if correctlly created an instance of Users");	
-		}
-		
-		/*convention for end*/
-		function tearDown(){
-			unset($this->Users);
-		}
 
 		function startCase() {
 			/*executed before running case*/
@@ -118,94 +86,34 @@ File: /app/tests/cases/users_controller.test.php
 		 *        for each action we check whether each function is rendering appropriate page 
 		 *        to do this we check page title and layout to see each function is choosing approproate ones 
 		 *		  This can be done by parsing the 1. page title and 2. css 
-		 */
+		
 		function testIndex() {
 		
 			debug('conducting render check for index() action method ');
 			$result = $this->testAction('/Users/index', array('return' => 'render'));
-			/* expexted page title: Sharing Media */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
+			
 			$this->assertPattern("/<title>Sharing Media<\/title>/", $result);  
 			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
 		}
 		 
-		function testHome() {
+		 */
 		
-			debug('conducting render check for home() action method ');
-			$result = $this->testAction('/Users/home', array('return' => 'render'));
-			/* expexted page title: Sharing Media */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
-			$this->assertPattern("/<title>Sharing Media<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
-		} 
 		
-		function testCommingSoon() {
-		
-			debug('conducting render check for comming_soon() action method ');
-			$result = $this->testAction('/Users/comming_soon', array('return' => 'render'));
-			
-			/* expexted page title: Comming Soon */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
-			$this->assertPattern("/<title>Comming Soon<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
-		} 
-
 		function testLogin() {
 		
 			debug('conducting render check for login() action method ');
-			$result = $this->testAction('/Users/login', array('return' => 'render'));
+			$result = $this->testAction('/Users/login/1', array('return' => 'vars'));
 			
-			/* expexted page title: Login */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
-			$this->assertPattern("/<title>Login<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
-		} 
+			debug($result);
 		
-		function testLogout() {
+		}
 		
-			debug('conducting render check for logout() action method ');
-			$result = $this->testAction('/Users/logout', array('return' => 'render'));
-			
-			/* expexted page title: Logout */
-			/* expexted css: main.css */
-			/* check if they matches by parsing rendering result*/
-			$this->assertPattern("/<title>Logout<\/title>/", $result);  
-			$this->assertPattern("/<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/sharingmedia\/app\/webroot\/css\/main.css\" \/>/", $result);
-		} 
 		
 		
 
-		function testIndex2() {
-		
-			debug('conducting var check for index() action method ');
-			$result = $this->testAction('/Users/index', array('return' => 'var'));
-			debug(result);
-		}		
-		
-		function testLogin2() {
-		
-			debug('conducting var check for index() action method ');
-			$result = $this->testAction('/Users/login', array('return' => 'var'));
-			debug(result);
-		}				
 		
 		
-		
-		/* Test3: helper function check
-		 *        checks if callback() shows the output we expected. 
-		 *		    
-		 *        
-		 */
-		
-		function testCallback() {
-		
-			debug('conducting testCallback ');
-			
-		}				
+	
 
 
 		
