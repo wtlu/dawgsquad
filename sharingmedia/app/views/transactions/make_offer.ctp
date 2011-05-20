@@ -16,10 +16,12 @@ File: /app/views/transaction.ctp
 
 <body>
 
+<h2>Your Offer Has Been Successfully Made!</h2>
+
 <div>
 
 	<fieldset style="border: 3px solid #000000">
-			<legend> Book Available </legend>
+			<legend><h4> <?= $owner_name ?>'s Book:</h4> </legend>
 			<p class="book_display">
 				<label >
 					<img src=<?= $book_image ?> alt="Book image" />
@@ -65,6 +67,10 @@ File: /app/views/transaction.ctp
 			</p>
 	</fieldset>
 
+</div>
+
+<div>
+		<?php echo $this->Html->link('Click to go to your library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
 </div>
 
 </body>
