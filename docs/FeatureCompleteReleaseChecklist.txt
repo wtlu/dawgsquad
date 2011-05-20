@@ -17,14 +17,12 @@ Beta Release Checklist
 			[x] Has My Library
 		[x] Top Bar (Troy)
 			[x] Logo
-			[ ] Contact Us Page
+			[x] About Us
 				[ ] Goes to our wiki
-			[x] FAQ Page
-				[x] Shows "Coming Soon!"
 			[x] Help Page
 				[x] Goes to our wiki
-			[ ] Report a Bug
-				[ ] Links to Google Code issues page
+			[x] Report a Bug
+				[x] Links to Google Code issues page
 				
 	[ ] Use Cases: Add Books (John + James)
 		[x] Add books main page (Enter Book Info)

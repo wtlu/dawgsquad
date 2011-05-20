@@ -18,7 +18,7 @@ CREATE TABLE users(
                         'id' => array('type' => 'integer', 'key' => 'primary'),
                         'name' => array('type' => 'string', 'length' => 50, 'null' => false),
                         'password' => array('type' => 'string', 'length' => 50, 'null' => false),
-                        'facebook_id' => array('type' => 'integer', 'null' => false),
+                        'facebook_id' => array('type' => 'integer', 'null' => false)
      
                 );
        
@@ -29,17 +29,17 @@ CREATE TABLE users(
 							array ('id' => 1,
 								   'name' => 'person A',
 								   'password' => 'root1',
-								   'facebook_id' => '10'
+								   'facebook_id' => 1
 							),
 							array ('id' => 2,
 								   'name' => 'person B',
 								   'password' => 'root2',
-								   'facebook_id' => '20' 
+								   'facebook_id' => 2
 							   
 							),array ('id' => 3,
 								   'name' => 'person C',
 								   'password' => 'root3',
-								   'facebook_id' => '30'
+								   'facebook_id' => 3
 						   	)					
 				);
 			
