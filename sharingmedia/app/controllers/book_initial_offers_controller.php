@@ -92,7 +92,7 @@ class BookInitialOffersController extends AppController {
 		//set new offer details 
 		if (!empty($this->data)) {
 			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
-				$this->set('loan_duration', $this->data['BookInitialOffer']['loan_duration'];);
+				$this->set('loan_duration', $this->data['BookInitialOffer']['loan_duration']);
 			}
 
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
