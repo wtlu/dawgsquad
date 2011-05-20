@@ -47,7 +47,7 @@ create a counter-offer. </p>
 	}
 	if (isset($data['Transaction']['duration']) && ("NULL" <> $data['Transaction']['duration'])) {
 	?>
-		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Rent</strong> - Duration: <?= $data['Transaction']['duration'] ?> days<br>
+		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Borrow</strong> - Duration: <?= $data['Transaction']['duration'] ?> days<br>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
