@@ -144,10 +144,10 @@ class TransactionsController extends AppController {
 	}
 
    function make_offer(){
-						 
+
 	$this->layout = 'main_layout';
 	$this->set('title_for_layout', 'Library || My Transactions');
-	
+
 	$book_title = $this->data['Transaction']['book_title'];
 	$book_id = $this->data['Transaction']['book_id'];
 	$owner_name = $this->data['Transaction']['owner_name'];
@@ -160,12 +160,12 @@ class TransactionsController extends AppController {
 	if ($this->data['Transaction']['offer_loan'] == "loan") {
 		$duration = $this->data['Transaction']['offer_loan'];
 	}
-	
+
 	$price = "NULL";
 	if ($this->data['Transaction']['offer_sell'] == "sell") {
 		$price = $this->data['Transaction']['sell_price'];
 	}
-	
+
 	$trade_id = "NULL";
 	if ($this->data['Transaction']['offer_trade'] == "trade") {
 		$trade_id = $this->data['Transaction']['trade_id'];
@@ -173,14 +173,14 @@ class TransactionsController extends AppController {
 
 	debug($trade_id);
 	print_r($trade_id);
-	
-	
-	
+
+
+
 	//Need to update the transaction tuple with the new values
 
-	
-	
-	
+
+
+
   }
 
   function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = null, $duration = null, $allow_trade = null) {
@@ -206,9 +206,9 @@ class TransactionsController extends AppController {
 			$offer_option = $this->data['Transaction']['offer_options'];
 		}
 
-		if ($offer_option == "price" && isset($this->data['Transaction']['price']) {
+		if ($offer_option == "price" && isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
-		} else if ($offer_option == "loan" && isset($this->data['Transaction']['duration']) {
+		} else if ($offer_option == "loan" && isset($this->data['Transaction']['duration'])) {
 			$duration = $this->data['Transaction']['duration'];
 		}
 		if (isset($this->data['Transaction']['allow_trade'])) {
