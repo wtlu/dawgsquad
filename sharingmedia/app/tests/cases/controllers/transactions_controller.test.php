@@ -250,7 +250,7 @@ class TransactionsControllerTest extends CakeTestCase {
   
   /**
    * purpose	: tests countering transaction w/ different type
-   * expected	: transaction remains the same (exceptions thrown?)
+   * expected	: transaction changes type
    * conditions : counter_transaction is of form...
    *              counter_transaction( $transaction_id, $type, $offer )
    */
@@ -275,11 +275,11 @@ class TransactionsControllerTest extends CakeTestCase {
 						  )
 					    );
 
-    /* ensure offer wasn't updated, and other offer types are still null */
+    /* ensure the transaction now has a duration, and other types are null */
     $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
-    $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/* updated offer */
+    $this->assertTrue($transaction['Transaction']['price'] == null );		/* updated offer */
     $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutually exclusive */
-    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutually exclusive */
+    $this->assertTrue($transaction['Transaction']['duration'] == $new_offer);	/* mutually exclusive */
     
   }
 
