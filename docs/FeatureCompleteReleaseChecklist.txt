@@ -41,13 +41,13 @@ Beta Release Checklist
 		[ ] Confirm Selections
 			[x] Can see the book selected
 			[x] Can see the offer typed in on last step
-			[ ] If there's no offer, says "No Offer Listed"
+			[x] If there's no offer, says "No Offer Listed"
 			[ ] Can click Back
 			[x] Can Click Finish
 		[ ] After Clicking Finish
 			[x] Shows the receipt of the book you added
-			[ ] Button takes you to the library page
-			[ ] Library contains the book you just added
+			[x] Button takes you to the library page
+			[x] Library contains the book you just added
 	
 	[x] Use Case: Find Books (John + James)
 		[x] Find Books main page
