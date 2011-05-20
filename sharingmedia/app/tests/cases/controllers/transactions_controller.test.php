@@ -111,7 +111,7 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
     
     /* get a transaction from fixture that's pending */
-    $transaction_id = 1;
+    $transaction_id = 100;
 
     /* accept it */
     $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
@@ -141,7 +141,7 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
     
     /* get a transaction from fixture that's rejected */
-    $transaction_id = 2;
+    $transaction_id = 200;
 
     /* accept it */
     $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
@@ -189,6 +189,8 @@ class TransactionsControllerTest extends CakeTestCase {
 
   //--------------------------------------------------
   // CONFIRM TRANSACTION
+  // -- NOTE: controller does not do significant action
+  //          will only require test if confirmed state added
   //--------------------------------------------------
   
   /**
@@ -197,7 +199,7 @@ class TransactionsControllerTest extends CakeTestCase {
    * conditions : confirm_transaction is of form...
    *              confirm_transaction( $transaction_id )
    */
-  function testConfirmTransactionPositive() {
+  function testConfirmTransaction() {
 
     /* get transaction */
 
@@ -220,11 +222,29 @@ class TransactionsControllerTest extends CakeTestCase {
    */
   function testCounterTransactionSameType() {
 
-    /* get the transaction */
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+
+    /* params */
+    $transaction_id = 300;
+    $type = 'sell';
+    $new_offer = 50.0;
 
     /* update the transaction offer */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$new_offer");
+    
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
 
     /* ensure offer was updated, and other offer types are still null */
+    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
+    $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/* updated offer */
+    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutually exclusive */
+    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutually exclusive */
 
   }
   
@@ -235,15 +255,32 @@ class TransactionsControllerTest extends CakeTestCase {
    *              counter_transaction( $transaction_id, $type, $offer )
    */
   function testCounterTransactionDiffType() {
+
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+
+    /* params */
+    $transaction_id = 300;
+    $type = 'loan';
+    $new_offer = 12;
+    $orig_offer = 100.0;
+
+    /* try to update the transaction offer */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$new_offer");
     
-    /* get the transaction and remember original offer */
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
 
-    /* try to update the two other types with the offer */
-
-    /* ensure the two other types are null (and possibly exceptions thrown...) */
-
-    /* ensure that the original offer is still the same */
-
+    /* ensure offer wasn't updated, and other offer types are still null */
+    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
+    $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/* updated offer */
+    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutually exclusive */
+    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutually exclusive */
+    
   }
 
   }
