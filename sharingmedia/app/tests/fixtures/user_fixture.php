@@ -18,7 +18,7 @@ CREATE TABLE users(
                         'id' => array('type' => 'integer', 'key' => 'primary'),
                         'name' => array('type' => 'string', 'length' => 50, 'null' => false),
                         'password' => array('type' => 'string', 'length' => 50, 'null' => false),
-                        'facebook_id' => array('type' => 'int', 'null' => false),
+                        'facebook_id' => array('type' => 'integer', 'null' => false),
      
                 );
        

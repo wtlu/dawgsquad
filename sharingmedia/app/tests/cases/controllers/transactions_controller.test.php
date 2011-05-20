@@ -6,9 +6,12 @@
  * Notes	: Assumes functions in transactions controller are updated
  *                to adhere to MVC (take parameters, etc...)
  */
+
+App::import('Model', 'Transaction');
+
 class TransactionsControllerTest extends CakeTestCase {
 
-  var $fixtures = array('app.transaction');
+  var $fixtures = array('app.transaction', 'app.book_initial_offer');
 
   //--------------------------------------------------
   // SETUP
@@ -38,32 +41,52 @@ class TransactionsControllerTest extends CakeTestCase {
    * purpose	: tests successfully establishing a new transaction
    * expected	: transaction is added to DB
    * conditions : transactions is of the form...
-   *              transactions($price, $duration, $book_id, $owner_id, $client_id)
+   *              transactions($book_id, $owner_id, $client_id)
+   *
+   * notes : I assume that this is creating the transaction initially.
+   *         We don't need price / duration because there's initial
+   *         offer data associated with the book.
    */
-  function testTransactionsUnique() {
+  function testTransactions() {
 
-    /* get owner, client, and book */
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+
+    /* params */
+    $book_id	= 1;		/* web programming */
+    $owner_id	= 1;
+    $client_id	= 2;
 
     /* add the transaction */
+    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$client_id");
 
-    /* check to see if that transaction is in the DB */
-    
-  }
+    /* get that transaction from the DB */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.owner_id' => $owner_id, 
+							'Transaction.client_id' => $client_id,
+							'Transaction.book_id' => $book_id)));
 
-  /**
-   * purpose	: tests adding a duplicate transaction
-   * expected	: transaction is not added to DB
-   * conditions : transactions is of the form...
-   *              transactions( $price, $duration, $book_id, $owner_id, $client_id )
-   */
-  function testTransactionsDuplicate() {
+    /* check */
+    $this->assertTrue(isset($transaction));					/* got something */
+    $this->assertTrue($transaction['Transaction']['owner_id'] == $owner_id);	/* right owner */
+    $this->assertTrue($transaction['Transaction']['client_id'] == $client_id);	/* right client */
+    $this->assertTrue($transaction['Transaction']['current_id'] == $owner_id);	/* current offer is owner's initial offer */
+    $this->assertTrue($transaction['Transaction']['price'] == 100.0);		/* right initial price */
+    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutual exclusivity */
+    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutual exclusivity */
 
-    /* get owner, client, and book */
+    /* try to add it again (shouldn't be able to) */
+    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$client_id");
 
-    /* attempt add the transaction */
+    /* make sure only one in db */
+    $transaction = $this->Transaction->find('all', 
+					    array('conditions' => 
+						  array('Transaction.owner_id' => $owner_id, 
+							'Transaction.client_id' => $client_id,
+							'Transaction.book_id' => $book_id)));
+    $this->assertTrue(count($transaction) == 1);
 
-    /* ensure only one copy of transaction in DB */
-    
   }
 
   //--------------------------------------------------
