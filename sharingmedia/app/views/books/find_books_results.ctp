@@ -40,9 +40,9 @@ FB.Canvas.setSize();
 		foreach ($book_results as $book){
 			# echo $form->create('Transaction', array('action' => 'transactions', 'type'=>'post'));
 			# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
-			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/", 'type'=>'post'));
 			$result = $book['books'];
 			$user_result = $book['users'];
+			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/", 'type'=>'post'));
 			$b_i_o_result = $book['b_i_o'];
 			$trade_book = array();
 			if (array_key_exists('trade_book', $book)) {
