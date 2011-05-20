@@ -18,7 +18,7 @@ Beta Release Checklist
 		[x] Top Bar (Troy)
 			[x] Logo
 			[x] About Us
-				[ ] Goes to our wiki
+				[x] Goes to our wiki
 			[x] Help Page
 				[x] Goes to our wiki
 			[x] Report a Bug
@@ -33,19 +33,20 @@ Beta Release Checklist
 			[x] Can select one book
 			[ ] Can Click Back
 			[x] Can click Next
-		[ ] Select Offer Details
-			[ ] Can check Loan For and enter details
-			[ ] Can check Sell For and enter details
-			[ ] Can check Trade For and enter details (note the UI has for lowercase, should be upper)
-			[ ] Can see List Book Titles (What is that???)
+		[x] Select Offer Details
+			[x] Can check Loan For and enter details
+			[x] Can check Sell For and enter details
+			[x] Can check Willing to Trade
 			[ ] Can Click Back (to Confirm Book)
 		[ ] Confirm Selections
-			[ ] Can see the book selected
-			[ ] Can see the offer typed in on last setp
+			[x] Can see the book selected
+			[x] Can see the offer typed in on last step
+			[ ] If there's no offer, says "No Offer Listed"
 			[ ] Can click Back
-			[ ] Can Click Finish
+			[x] Can Click Finish
 		[ ] After Clicking Finish
-			[ ] Takes you to the library page
+			[x] Shows the receipt of the book you added
+			[ ] Button takes you to the library page
 			[ ] Library contains the book you just added
 	
 	[x] Use Case: Find Books (John + James)
@@ -58,8 +59,10 @@ Beta Release Checklist
 	
 	[ ] Use Case: Transactions (John + James + Troy)
 		[ ] Main transaction page between two people (Buyer View and Seller View)
-			[ ] Accessed from Find books results page
-			[ ] Allow user to select which option they like to do (trade, loan, buy)
+			[x] Accessed from Find books results page
+			[x] Allow user to select which option they like to do (trade, loan, buy)
+			[ ] Allow user to click cancel
+				[ ] Clicking Cancel returns to results page
 			[ ] Allow user to click accept
 				[ ] Confirmation page on accepting offer
 				[ ] Receipt page
@@ -76,8 +79,7 @@ Beta Release Checklist
 					[ ] Application will alert the owner of book through facebook message that counter was made
 				[ ] Can click on cancel
 					[ ] Goes back to main transaction page
-			[ ] Allow user to click cancel
-				[ ] Clicking Cancel returns to results page
+
 	[ ] Use Case: My Library Page (Ken)
 		[x] Has My Books Tab
 			[x] My Books contains all the books of the user
@@ -115,13 +117,6 @@ Tests
 
 Bug tracking System
 	[ ] Fix Outstanding Bugs
-		[ ] Issue 16
-		[ ] Issue 23
-		[ ] Issue 27
-		[ ] Issue 29
-		[ ] Issue 30
-		[ ] Issue 36
-		[ ] Issue 38
 	[ ] Verify Bugs
 	[ ] Close Bugs
 	
