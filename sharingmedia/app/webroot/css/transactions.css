@@ -27,6 +27,13 @@
 	padding-top: 20px;	
 }
 
+.options_trades{
+	border-top: 2px solid black;
+	height: 250px;
+	overflow: hidden;
+	padding-top: 20px;	
+}
+
 .trade_list {
 	height: 200px;
 	overflow: scroll;
