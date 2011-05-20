@@ -35,7 +35,7 @@ create a counter-offer. </p>
 
 
 <?php
-	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'accept_transaction'."/".
+	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));

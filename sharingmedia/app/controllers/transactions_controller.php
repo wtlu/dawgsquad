@@ -83,18 +83,21 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($book_title = null, $book_id = null, $owner_name = null, $owner_id = null, $book_author = null,
-  			$book_isbn = null, $book_image = null, $price = null, $duration = null, $allow_trade = null) {
+	function accept_transaction($book_id = null, $owner_id = null, $price = null, $duration = null, $allow_trade = null) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		$book_title = $this->data['Transaction']['book_title'];
+		//Get book and owner result back from database
+		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
+		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+
+		/*$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
 		$owner_id = $this->data['Transaction']['owner_id'];
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
-		$book_image = $this->data['Transaction']['book_image'];
+		$book_image = $this->data['Transaction']['book_image'];*/
 
 
 		if (isset($this->data['Transaction']['price'])) {
@@ -195,16 +198,6 @@ class TransactionsController extends AppController {
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
-
-		/*
-		$book_title = $this->data['Transaction']['book_title'];
-		$book_id = $this->data['Transaction']['book_id'];
-		$owner_name = $this->data['Transaction']['owner_name'];
-		$owner_id = $this->data['Transaction']['owner_id'];
-		$book_author = $this->data['Transaction']['book_author'];
-		$book_isbn = $this->data['Transaction']['book_isbn'];
-		$book_image = $this->data['Transaction']['book_image'];
-		*/
 
 		if (isset($this->data['Transaction']['offer_options'])) {
 			$offer_option = $this->data['Transaction']['offer_options'];
