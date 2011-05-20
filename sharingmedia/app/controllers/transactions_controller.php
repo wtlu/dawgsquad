@@ -198,18 +198,16 @@ class TransactionsController extends AppController {
 		
 		
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
-		debug($book_result);
-		
-		
+		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 		
 		//Fill data with parameters, to be passed to view
-		$data['Transaction']['book_title'] = $book_title;
+		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
-		$data['Transaction']['owner_name'] = $owner_name;
+		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
 		$data['Transaction']['owner_id'] = $owner_id;
-		$data['Transaction']['book_author'] = $book_author;
-		$data['Transaction']['book_isbn'] = $book_isbn;
-		$data['Transaction']['book_image'] = $book_image;
+		$data['Transaction']['book_author'] = $book_result[0]['books']['author'];
+		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
+		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		
 		
