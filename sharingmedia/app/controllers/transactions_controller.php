@@ -272,7 +272,12 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-
+	function delete_transaction(){
+		
+	}
+	
+	
+	
 	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
 	//Post: Accepts user input in a form, submits to make_offer.ctp
     function counter_transaction($book_id = null, $owner_id = null, $allow_trade = null) {
