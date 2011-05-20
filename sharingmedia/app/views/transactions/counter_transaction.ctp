@@ -103,10 +103,11 @@ File: /app/views/transaction.ctp
 		?>
 				</div>
 		
-		
-		<?php echo $this->Form->end('Propose Counteroffer'); ?>
+		<div class="button_s">
+			<?php echo $this->Form->end('Propose Counteroffer'); ?>
+		</div>
 		</br>
-		<hr>
+
 
 	
 
