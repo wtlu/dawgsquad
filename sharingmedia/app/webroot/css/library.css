@@ -1,4 +1,5 @@
-dth: 760px;
+html{
+	width: 760px;
 }
 
 a{
@@ -112,7 +113,10 @@ a{
 #cancel{
 	float:right;
 }
-
+.display_book {
+    	display:block;
+	float: left;
+}
 #offer {
     display: block;
     float: right;

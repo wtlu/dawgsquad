@@ -4,7 +4,7 @@
 		<legend> Your Book </legend>
 		<div class="book_display">
 			<img class="display_book" src=<?php echo $image ?> alt="Book image" />
-			<ul id="book_info">
+			<ul class="book_info">
 				<li><strong>Title:</strong>	<?php echo $title; ?> </li>
 				<li><strong>Author(s):</strong> <?php echo $author ?> </li>
 			</ul>
