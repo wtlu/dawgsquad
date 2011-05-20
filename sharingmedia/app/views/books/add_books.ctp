@@ -26,7 +26,7 @@ File: /app/views/add_books.ctp
 
 	<br>
 
-	<div>
+	<div id="fields">
 		<?php echo $this->Form->create(array('action' => 'add_books_results')); ?>
 		<label for="info_title">Title</label>
 		<?php echo $this->Form->input('title', array('label' => '', 'id' => 'info_title')); ?>
