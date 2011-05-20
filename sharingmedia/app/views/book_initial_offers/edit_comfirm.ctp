@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend> Your Book </legend>
 		<div class="book_display">
-			<img src=<?php echo $image ?> alt="Book image" />
+			<img class="display_book" src=<?php echo $image ?> alt="Book image" />
 			<ul id="book_info">
 				<li><strong>Title:</strong>	<?php echo $title; ?> </li>
 				<li><strong>Author(s):</strong> <?php echo $author ?> </li>
