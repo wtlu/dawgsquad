@@ -15,11 +15,11 @@
 		<p>
 		<?php
 
-			if(!empty($loan_duration)){
+			if($loan_duration!=("NULL")){
 				echo '<strong> Loan for ' . $loan_duration .' days. </strong><br />';
 			}
 
-			if(!empty($sell_price)){
+			if($sell_price!=("NULL")){
 				echo '<strong> For Sale at $' . $sell_price .'. </strong><br />';
 			}
 
