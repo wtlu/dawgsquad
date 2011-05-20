@@ -115,14 +115,11 @@ class TransactionsController extends AppController {
 										AND status = 0;');
 
 		if ($duration != "NULL") {
-			date_default_timezone_set('UTC');
-			$curr_date = date('Y-m-j');
+			date_default_timezone_set('PDT');
+			$curr_date = date('Y-m-j H:i:s');
 			$date = new DateTime($curr_date);
-			# debug($date);
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
-			# debug($date);
-			# echo date_format($date, 'Y-m-d');
-			$due_date = date_format($date, 'Y-m-d');
+			$due_date = date_format($date, 'Y-m-d H:i:s');
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
 									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', \'' . $due_date . '\', NOW());');
 		}
@@ -165,7 +162,7 @@ class TransactionsController extends AppController {
 		//debug($transaction_collection);
 	}
 
-	
+
     //Pre: Called from counter_transaction.ctp, performs posting of a new offer or counteroffer
 	//Post: Modifies transactions table to update the transaction to latest state, displays offer details.
    function make_offer(){
@@ -182,7 +179,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-		
+
 		//If loan was specified in the offer, display it
 		$duration = "NULL";
 		if (isset($this->data['Transaction']['offer_loan']) && $this->data['Transaction']['offer_loan'] == "loan") {
