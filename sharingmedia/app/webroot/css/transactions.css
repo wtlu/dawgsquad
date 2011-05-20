@@ -1,3 +1,7 @@
+#button_s{
+	float: right;
+}
+
 .field{
 	width: 100px;
 	 
@@ -27,6 +31,7 @@
 	overflow: scroll;
 	border: solid black 1px;
 	padding: 5px;
+	float: left;
 }
 
 .book_display {
