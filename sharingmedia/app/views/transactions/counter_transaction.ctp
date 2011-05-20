@@ -12,20 +12,14 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
-<?php
-	debug($data);
-	debug($book_title);
-	debug($book_id);
-?>
-
 <fieldset style="border: 3px solid #000000">
 		<legend> The Book You Are Making An Offer For:</legend>
 		<p class="book_display">
 			<label >
-				<img src=<?php echo $book_image ?> alt="Book image" />
-				<strong>Title:</strong>	<?php echo $book_title; ?> <br />
-				<strong>Author(s):</strong> <?php echo $book_author ?> <br />
-				<strong>ISBN:</strong> <?php echo $book_isbn ?> <br />
+				<img src=<?= $data['Transaction']['book_image'] ?> alt="Book image" />
+				<strong>Title:</strong>	<?= $data['Transaction']['book_title'] ?> <br />
+				<strong>Author(s):</strong> <?= $data['Transaction']['book_author']?> <br />
+				<strong>ISBN:</strong> <?= $data['Transaction']['book_isbn']?> <br />
 			</label>
 		</p>
 </fieldset>
@@ -47,7 +41,9 @@ File: /app/views/transaction.ctp
 	
 		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
+		<!--
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
+		-->
 		<!--
 		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
@@ -78,12 +74,12 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;">
 		<label for="choose_trade">Books you own, that you could offer in trade:</label>
 		<?php
-			if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
+			if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
 				?>
 					<!-- <input type="radio" name="trade" value="t"> -->
 				<div class="trade_list">
 				<?php
-					foreach ($trade_books as $tradeable){
+					foreach ($data['Transaction']['trade_books'] as $tradeable){
 						echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
 						display_results($tradeable);
 						echo '<br />';
