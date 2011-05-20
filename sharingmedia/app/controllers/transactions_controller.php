@@ -18,6 +18,8 @@ class TransactionsController extends AppController {
   var $name = 'Transactions';
   var $helpers = array('Form', 'Html');
 
+  //Pre: Called from find_books_results to initiate a transaction, or from myTransactions in myLibrary to continue or update a transactions.
+  //Post: Creates a tuple in transactions with pertinent information, allows user to choose to accept the current offer or make a counteroffer.
   function transactions($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = 0) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
@@ -48,7 +50,6 @@ class TransactionsController extends AppController {
 
 
 		//Make the parameter data available in the view
-
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
 		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
@@ -152,7 +153,6 @@ class TransactionsController extends AppController {
 
 	//Pre: This page is transactions page when a user navigates to their Library. It takes no arguments
 	//post: Returns an array of all transactions listed by the user and the details of each transactions
-
 	function my_transactions() {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -166,11 +166,16 @@ class TransactionsController extends AppController {
 		//debug($transaction_collection);
 	}
 
+	
+    //Pre: Called from counter_transaction.ctp, performs posting of a new offer or counteroffer
+	//Post: Modifies transactions table to update the transaction to latest state, displays offer details.
    function make_offer(){
 
+		//For CSS
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
+		//Get data from the previous view's form post
 		$book_title = $this->data['Transaction']['book_title'];
 		$book_id = $this->data['Transaction']['book_id'];
 		$owner_name = $this->data['Transaction']['owner_name'];
@@ -178,21 +183,25 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
-
+		
+		//If loan was specified in the offer, display it
 		$duration = "NULL";
-		if ($this->data['Transaction']['offer_loan'] == "loan") {
+		if (isset($this->data['Transaction']['offer_loan']) && $this->data['Transaction']['offer_loan'] == "loan") {
 			$duration = $this->data['Transaction']['loan_duration'];
 		}
 
+		//If buy was specified in the offer, display it
 		$price = "NULL";
-		if ($this->data['Transaction']['offer_sell'] == "sell") {
+		if (isset($this->data['Transaction']['offer_sell']) && $this->data['Transaction']['offer_sell'] == "sell") {
 			$price = $this->data['Transaction']['sell_price'];
 		}
 
+		//If trade was specifed in the offer, display the book that was offered in trade
 		$trade_id = -1;
-		if ($this->data['Transaction']['offer_trade'] == "trade") {
+		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
 
+			//Get the details about the book offered in trade from the database
 			$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
 			$trade_title = $book_result[0]['books']['title'];
 			$trade_author = $book_result[0]['books']['author'];
@@ -205,10 +214,7 @@ class TransactionsController extends AppController {
 			$this->set('trade_image', $trade_image);
 		}
 
-
-
-
-
+		//Make data available in the view
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
 		$this->set('owner_name', $owner_name);
@@ -231,9 +237,6 @@ class TransactionsController extends AppController {
 										AND client_id = ' . $this->Session->read('uid') . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
-
-
-
   }
 
   function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = "NULL", $duration = "NULL", $allow_trade = "NULL") {
@@ -274,18 +277,16 @@ class TransactionsController extends AppController {
   }
 
 
-
-
-    function counter_transaction($book_id = null,
-								 $owner_id = null,
-							     $allow_trade = null) {
+	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
+	//Post: Accepts user input in a form, submits to make_offer.ctp
+    function counter_transaction($book_id = null, $owner_id = null, $allow_trade = null) {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
 
-
+		//Use parameters to get other important informationg about the book at the center of the transactions
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
