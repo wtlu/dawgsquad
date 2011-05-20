@@ -54,7 +54,7 @@
 
 </div>
 
-<?php echo $form->create('Transaction', array('action' => 'confirm_transaction'."/".$data['Transaction']['book_id']."/".
+<?php echo $form->create('Transaction', array('action' => 'accept_transaction'."/".$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['price']."/".
 																					$data['Transaction']['duration']."/".
