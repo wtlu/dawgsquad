@@ -31,7 +31,9 @@ class BooksController extends AppController {
         # Function for the find books view
         function find_books() {
                 $this->layout = 'main_layout';
-        $this->set('title_for_layout', 'find_a_book');
+        	$this->set('title_for_layout', 'find_a_book');
+        	$data['Book']['book_title'] = 'temp';
+        	$this->set('data', $data);
         }
 
         # Function for find books results view. Returns an array of book results to be displayed in the find book results view.
@@ -53,14 +55,13 @@ class BooksController extends AppController {
                         # query our database to find the book
                         $book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
                                 FROM books books, book_initial_offers b_i_o, users users
-                                WHERE b_i_o.user_id != ' . $this->Session->read('uid') . '
-                                		AND b_i_o.user_id = users.facebook_id
+	                                WHERE b_i_o.user_id = users.facebook_id
                                         AND b_i_o.book_id = books.id
                                         AND books.title LIKE "%' .$book_title . '%"
                                         AND books.author LIKE "%' . $book_author . '%"
                                         AND books.isbn LIKE "%' .  $book_isbn . '%"
                                 ORDER BY books.id;');
-						
+
 
                 }
                 $this->set('book_results', $book_results);

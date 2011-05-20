@@ -1,12 +1,12 @@
-<!-- File: /app/views/find_books.ctp -->	
+<!-- File: /app/views/find_books.ctp -->
 
 <!--
 	Created: 5/10/2011
 	Author: John Wang
-	
+
 	Changelog:
 	5/10/2011 - John Wang - Created page, added form
-	
+
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 

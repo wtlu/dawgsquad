@@ -15,7 +15,13 @@
 		</div>
 	
 		<div id="top_bar_options">
-  			<p><?php echo $this->Html->link('Account', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('FAQ', "/users/coming_soon", array('class' => 'tab', 'escape' => false)); ?> | <?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); ?>
+  			<p><?php 
+				echo $this->Html->link('About', "http://code.google.com/p/dawgsquad/", array('class' => 'button', 'target' => '_blank')); 
+				?> | 
+				<?php echo $this->Html->link('Report bugs', "http://code.google.com/p/dawgsquad/issues/entry", array('class' => 'button', 'target' => '_blank')); 
+				?> | 
+				<?php echo $this->Html->link('Help', 'http://code.google.com/p/dawgsquad/wiki/UserDocumentation', array('class' => 'button', 'target' => '_blank')); 
+				?>
   			</p>
 		</div>
 	</div>

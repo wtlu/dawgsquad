@@ -12,6 +12,7 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
+
 <fieldset style="border: 3px solid #000000">
 		<legend> The Book You Are Making An Offer For:</legend>
 		<p class="book_display">
@@ -45,9 +46,9 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][book_title]" id="book_title" value="<?php echo $book_title ?>" type="hidden">
 		-->
 		<!--
-		<input name="data[Transaction][author]" id="author" value="<?php echo $author ?>" type="hidden">
-		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
-		<input name="data[Transaction][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<input name="data[Transaction][author]" id="author" value="<?php //echo $author ?>" type="hidden">
+		<input name="data[Transaction][ISBN]" id="ISBN" value="<?php //echo $ISBN ?>" type="hidden">
+		<input name="data[Transaction][image]" id="image" value="<?php //echo $image ?>" type="hidden">
 		-->
 		
 		<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
