@@ -86,8 +86,8 @@ class BookInitialOffersController extends AppController {
 		//set book info
 		$this->set('title', $this->data['BookInitialOffer']['title']);
 		$this->set('author', $this->data['BookInitialOffer']['author']);
-		$this->set('bid', $this->data['BookInitialOffer']['bid'];);
-		$this->set('image', $this->data['BookInitialOffer']['image'];);
+		$this->set('bid', $this->data['BookInitialOffer']['bid']);
+		$this->set('image', $this->data['BookInitialOffer']['image']);
 		
 		//set new offer details 
 		if (!empty($this->data)) {
@@ -96,7 +96,7 @@ class BookInitialOffersController extends AppController {
 			}
 
 			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
-				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price'];);
+				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price']);
 			}
 
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
