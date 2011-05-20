@@ -1,15 +1,16 @@
 <!--
 File: /app/views/add_books.ctp
- 
+
 	Created: 5/8/2011
 	Author: John Wang
-	
+
 	Changelog:
 	5/8/2011 - John Wang - Created page, added form
-	
+
 	# This is the view for the add books form.
 -->
-<?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
+<?php echo $this->Html->css('main', NULL, array('inline' => FALSE));
+?>
 
 <div class="top_progress_arrows">
 	<?php echo $this->Html->image('arrow_book_info.png', array('alt' => 'book info')) ?>

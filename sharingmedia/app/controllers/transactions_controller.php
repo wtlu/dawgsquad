@@ -91,15 +91,6 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
-		/*$book_title = $this->data['Transaction']['book_title'];
-		$book_id = $this->data['Transaction']['book_id'];
-		$owner_name = $this->data['Transaction']['owner_name'];
-		$owner_id = $this->data['Transaction']['owner_id'];
-		$book_author = $this->data['Transaction']['book_author'];
-		$book_isbn = $this->data['Transaction']['book_isbn'];
-		$book_image = $this->data['Transaction']['book_image'];*/
-
-
 		if (isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
 		} else if (isset($this->data['Transaction']['duration'])) {
@@ -116,6 +107,18 @@ class TransactionsController extends AppController {
 										AND client_id = ' . $this->Session->read('uid') . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
+
+		if ($duration != null) {
+			date_default_timezone_set('UTC');
+			$curr_date = date('Y-m-j');
+			$date = new DateTime($curr_date);
+			debug($date);
+			date_add($date, date_interval_create_from_date_string($duration . ' days'));
+			debug($date);
+			echo date_format($date, 'Y-m-d');
+			/*$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
+									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', ' . $date . 'NOW());');*/
+		}
 
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
@@ -175,23 +178,23 @@ class TransactionsController extends AppController {
 		$trade_id = -1;
 		if ($this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
-			
+
 			$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
 			$trade_title = $book_result[0]['books']['title'];
 			$trade_author = $book_result[0]['books']['author'];
 			$trade_isbn = $book_result[0]['books']['ISBN'];
 			$trade_image = $book_result[0]['books']['image'];
-			
+
 			$this->set('trade_title', $trade_title);
 			$this->set('trade_author', $trade_author);
 			$this->set('trade_isbn', $trade_isbn);
 			$this->set('trade_image', $trade_image);
 		}
-		
-		
-		
-		
-		
+
+
+
+
+
 		$this->set('book_title', $book_title);
 		$this->set('book_id', $book_id);
 		$this->set('owner_name', $owner_name);
