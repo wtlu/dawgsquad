@@ -91,8 +91,8 @@ class ExchangeBookTestCase extends CakeWebTestCase {
 
     /* confirm */
     $this->assertEqual($this->getUrl(), $counter_page);
-    $this->setElementById('choose_loan', 'clicked');
-    $this->setElementById('TransactionLoanDuration', '12');
+    $this->setFieldById('choose_loan', 'clicked');
+    $this->setFieldById('TransactionLoanDuration', '12');
     $this->click('Confirm');
 
     /* back at my library --> transactions*/

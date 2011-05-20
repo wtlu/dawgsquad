@@ -15,8 +15,8 @@ my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
 my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900) 
   . '_' . $hour . '-' . $min . '.log';
 
-# build test command
-my $cmd = 'cake testsuite app all'; # needs cake in the path
+# build test command (specific to AWS)
+my $cmd = '/var/www/html/dawgsquad/sharingmedia/cake/console testsuite app all'; # needs cake in the path
 
 # run tests
 my $output = "[$fname]\n\n"
