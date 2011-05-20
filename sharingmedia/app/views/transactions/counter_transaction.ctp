@@ -44,6 +44,7 @@ File: /app/views/transaction.ctp
 		<hr>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
+		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id'] ?>" type="hidden">
 		<input name="data[Transaction][book_author]" id="book_author" value="<?= $data['Transaction']['book_author'] ?>" type="hidden">
 		<input name="data[Transaction][book_isbn]" id="book_isbn" value="<?= $data['Transaction']['book_isbn'] ?>" type="hidden">
 		<input name="data[Transaction][book_image]" id="book_image" value="<?= $data['Transaction']['book_image'] ?>" type="hidden">
