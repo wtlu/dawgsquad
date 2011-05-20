@@ -29,7 +29,8 @@
 
 .options_trades{
 	border-top: 2px solid black;
-	height: 240px;
+	height: 270px;
+	width: 300px;
 	overflow: hidden;
 	padding-top: 20px;	
 }
