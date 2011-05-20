@@ -8,6 +8,8 @@
  *
  *		Changelog:
  *		5/12/2011 - John Wang - Added function for accept transaction()
+ *		5/18/2011 - James Parsons - Troy Martin - John Wang - Wrote many of the methods for displaying, accepting, confirming, countering transactions
+ *		5/19/2011 - James Parsons - Troy Martin - John Wang - Finished most of this controller
  */
 
 App::import('Sanitize');
@@ -126,9 +128,11 @@ class TransactionsController extends AppController {
 		}
 
 		// remove from book initial offers
-		$this->Transaction->query('DELETE FROM book_initial_offers
+		if ($duration == "NULL") {
+			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
+		}
 
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
