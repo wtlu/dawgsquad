@@ -54,5 +54,10 @@
 		?>
 		</p>
 	</fieldset>
-	
+	<div>
+		<?php 
+			echo $this->Form->end('Go to your Library', array('onclick' => "location.href='".$this->Html->url('/book_initial_offers/my_book')."'"));
+
+		?>
+	</div>
 </div>
