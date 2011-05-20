@@ -9,7 +9,6 @@
 	5/11/2011 - James Parsons - Now displays book info passed from add book results page.
 -->
 
-
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
 <div class="top_progress_arrows">
@@ -37,7 +36,7 @@
 
 <legend style="color:black;">Add Initial Offer Details</legend>
 
-<div style="width:300px; align:center;">
+<div id="outer_area">
 
 	<p>
 	Please select the intitial offer that will be listed in your library, for other users to consider when they want your book. You can specify a loan duration in days, a price in dollars, or if you are willing to consider other books in trade.
@@ -47,42 +46,32 @@
 	<?php echo $form->create('BookInitialOffer', array('action' => 'add_books_confirm', 'type'=>'post')); ?>
 		
 	
-		<hr>
+		
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[BookInitialOffer][title]" id="title" value="<?php echo $title ?>" type="hidden">
 		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<div class="options">	
+			<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" class="option" value="loan" type="checkbox">
+			<label for="choose_loan" style="float:left">Loan For</label>
+			<?php
+				echo $this->Form->input('loan_duration', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
+			?>
+		</div>
 		
-		<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox" style="width:50px; float:left;">
-		<label for="choose_loan" style="float:left">Loan For</label>
-		<?php
-			echo $this->Form->input('loan_duration', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
-		?>
-
+		<div class="options">
+			<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" class="option" value="sell" type="checkbox">
+			<label for="choose_sell">Sell For</label>
+			<?php
+				echo $this->Form->input('sell_price', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
+			?>
+		</div>
 		
-		</br>
-		<hr>
-		</br>
-		
-		<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox" style="width:50px; float:left;">
-		<label for="choose_sell">Sell For</label>
-		<?php
-			echo $this->Form->input('sell_price', array('label' => '', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
-		?>
-
-		</br>
-		<hr>
-		</br>
-		
-		<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" value="trade" type="checkbox" style="width:50px; float:left;">
-		<label for="choose_trade">Willing to consider trades?</label>
-		<?php
-			//echo $this->Form->input('trade_id', array('label' => '', 'type' => 'text', 'style' => 'width:100px; float:right;', 'maxlength' => '6'));
-		?>
-		
-		</br>
-		<hr>
+		<div class="options">
+			<input name="data[BookInitialOffer][offer_trade]" id="choose_trade" class="option" value="trade" type="checkbox">
+			<label for="choose_trade">Willing to consider trades?</label>
+		</div>
 
 		<?php
 			echo $this->Form->end('Add To MyLibrary');
