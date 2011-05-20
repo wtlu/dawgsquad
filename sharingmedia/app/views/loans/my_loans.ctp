@@ -30,35 +30,44 @@
 <div id="list">
 	
 	<?php		//loop to print out books		
-		$size = sizeof($book_collection);
+		$size = sizeof($book_collection_owner);
 		for($i=0; $i < $size; $i++){
 	?>
 		<div class="book_unit">	
-			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
+			<img class= "book_img" src="<?=$book_collection_owner[$i]["books"]["image"]?>" alt="<?=$book_collection_owner[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
-				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
-				<li>Author: <?= $book_collection[$i]["books"]["author"]?></li>
+				<li>Title: <?= $book_collection_owner[$i]["books"]["title"]?></li>
+				<li>Author: <?= $book_collection_owner[$i]["books"]["author"]?></li>
 					
-				<?php
-					if($loan_collection[$i]["loans"]["client_id"] == $this->Session->read('username')){
-				?>
-						<li>Borrowed From: <?= $loan_collection[$i]["loans"]["owner_id"]?></li>
-				<?php
-					} else {
-				?>
-						<li>Loaned To: <?= $loan_collection[$i]["loans"]["client_id"]?></li>
-				<?php
-					}
-				?>
-				
-				<li>Due Date: <?= $loan_collection[$i]["loans"]["due_date"]?></li>
+				<li>Loaned To: <?= $loan_collection_owner[$i]["loans"]["client_id"]?></li>		
+				<li>Due Date: <?= $loan_collection_owner[$i]["loans"]["due_date"]?></li>
 			</ul>
-			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection[$i]["books"]["id"]."/".$loan_collection[$i]["loans"]["due_date"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection_owner[$i]["books"]["id"]."/".$loan_collection_owner[$i]["loans"]["due_date"]."/0/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}
 
-	?>	
+	?>
+	
+	<?php		//loop to print out books		
+		$size = sizeof($book_collection_borrower);
+		for($i=0; $i < $size; $i++){
+	?>
+		<div class="book_unit">	
+			<img class= "book_img" src="<?=$book_collection_borrower[$i]["books"]["image"]?>" alt="<?=$book_collection_borrower[$i]["books"]["title"]?>"/>
+			<ul class="books_list">
+				<li>Title: <?= $book_collection_borrower[$i]["books"]["title"]?></li>
+				<li>Author: <?= $book_collection_borrower[$i]["books"]["author"]?></li>
+					
+				<li>Borrowed From: <?= $loan_collection_borrower[$i]["loans"]["owner_id"]?></li>		
+				<li>Due Date: <?= $loan_collection_borrower[$i]["loans"]["due_date"]?></li>
+			</ul>
+			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection_borrower[$i]["books"]["id"]."/".$loan_collection_borrower[$i]["loans"]["due_date"]."/1/", array('class' => 'buttons', 'escape' => false)); ?>
+		</div>
+	<?php
+		}
+
+	?>		
 </div>
 
 </div>

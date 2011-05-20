@@ -26,7 +26,7 @@ class BookInitialOfferFixture extends CakeTestFixture {
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
 			      ),
-		       array ('user_id' => 1, 'book_id' => 1,'trade_id' => 2,
+		       array ('user_id' => 2, 'book_id' => 1,'trade_id' => 2,
 			      'duration' => null, 'price' => 100.0,
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
