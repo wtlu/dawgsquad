@@ -61,10 +61,10 @@ class BooksController extends AppController {
                                         AND books.title LIKE "%' .$book_title . '%"
                                         AND books.author LIKE "%' . $book_author . '%"
                                         AND books.isbn LIKE "%' .  $book_isbn . '%"
-                                        AND b_i_o.book_id NOT IN (SELECT loans.book_id
-                                        							FROM loans loans
-                                        							WHERE loans.book_id = b_i_o.book_id
-                                        								AND loans.owner_id = b_i_o.user_id)
+                                        AND 1 > (SELECT COUNT(*)
+													FROM loans loans
+													WHERE loans.book_id = b_i_o.book_id
+														AND loans.owner_id = b_i_o.user_id)
                                 ORDER BY books.id;');
 
 
