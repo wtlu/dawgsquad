@@ -83,7 +83,7 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($book_id = null, $owner_id = null, $price = '', $duration = '', $allow_trade = '') {
+	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = "NULL") {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -114,7 +114,7 @@ class TransactionsController extends AppController {
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
 
-		if (!empty($duration)) {
+		if ($duration != "NULL") {
 			date_default_timezone_set('UTC');
 			$curr_date = date('Y-m-j');
 			$date = new DateTime($curr_date);
@@ -228,7 +228,7 @@ class TransactionsController extends AppController {
 
   }
 
-  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = '', $duration = '', $allow_trade = '') {
+  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = "NULL", $duration = "NULL", $allow_trade = "NULL") {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
