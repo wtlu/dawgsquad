@@ -36,11 +36,13 @@ body {
 	font: 15px "lucida grande",tahoma,verdana,arial,sans-serif;
 	font-weight: bold;
 	height: 22px;
+	padding: 10px;
 	text-decoration: None;
 }
 
 #top_section a:hover {
-	text-decoration: underline; 
+	text-decoration: none; 
+	background-color: #6B86B7;
 }
 
 #side_bar {
