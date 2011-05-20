@@ -197,7 +197,7 @@ class TransactionsController extends AppController {
 		
 		
 		
-		$book_result = this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
+		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		debug($book_result);
 		
 		
