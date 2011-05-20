@@ -80,11 +80,13 @@ File: /app/views/transaction.ctp
 					<!-- <input type="radio" name="trade" value="t"> -->
 				<div class="trade_list">
 				<?php
-					foreach ($data['Transaction']['trade_books'] as $tradeable){
-						echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
-						display_results($tradeable);
-						echo '<br />';
-						
+					if(!empty($data['Transaction']['trade_books']){
+						foreach ($data['Transaction']['trade_books'] as $tradeable){
+							echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
+							display_results($tradeable);
+							echo '<br />';
+							
+						}
 					}
 				
 				}
