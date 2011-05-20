@@ -73,8 +73,8 @@ a{
 	padding: 14px 10px 10px 10px;
 }
 
-#add{
-    float: none;
+#menu #add{
+    float: right;
 }
 .buttons{
 	float:right;
