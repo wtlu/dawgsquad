@@ -21,7 +21,8 @@ class BookInitialOffersController extends AppController {
 
    //Pre: This page was called from add_book_results.ctp, and given $book_chosen as a list of information about the chosen book
    //Post: Makes available the book information to initial_offer_details.ctp in the variable $book_chosen, which is an arry of strings.
-   function initial_offer_details(){
+   function initial_offer_details($book_title = null, $book_author = null, $book_isbn = null, $index = null){
+
 
 		//Get the book info for the book that was selected on the add books results page
 		$book_chosen = explode( "^" , $this->data['Book']['book_type'] );
@@ -30,6 +31,10 @@ class BookInitialOffersController extends AppController {
 		// These lines enable our main layout to appear on the page.
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'initial_of_details');
+		$this->set('book_title', $book_title);
+		$this->set('book_author', $book_author);
+		$this->set('book_isbn', $book_isbn);
+		$this->set('book_index', $book_index);
 
 	}
 
@@ -70,26 +75,26 @@ class BookInitialOffersController extends AppController {
 		$offer = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND book_initial_offers.user_id = " . $this->Session->read('uid')." AND book_initial_offers.book_id =" .$bid);
 		$this->set('title', $offer[0]["books"]["title"]);
 		$this->set('author', $offer[0]["books"]["author"]);
-		$this->set('image', $offer[0]["books"]["image"]); 
+		$this->set('image', $offer[0]["books"]["image"]);
 		$this->set('loan', $offer[0]["book_initial_offers"]["duration"]);
-		$this->set('price', $offer[0]["book_initial_offers"]["price"]); 
+		$this->set('price', $offer[0]["book_initial_offers"]["price"]);
 		$this->set('trade', $offer[0]["book_initial_offers"]["trade_id"]);
 		$this->set('bid', $bid);
-					
+
 	}
-	
+
 	FUnction edit_comfirm(){
 		//set title and defualt layout
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Comfirm New Offer');
-		
+
 		//set book info
 		$this->set('title', $this->data['BookInitialOffer']['title']);
 		$this->set('author', $this->data['BookInitialOffer']['author']);
 		$this->set('bid', $this->data['BookInitialOffer']['bid']);
 		$this->set('image', $this->data['BookInitialOffer']['image']);
-		
-		//set new offer details 
+
+		//set new offer details
 		if (!empty($this->data)) {
 			if(!empty($this->data['BookInitialOffer']['offer_loan'])){
 				$this->set('loan_duration', $this->data['BookInitialOffer']['loan_duration']);
@@ -97,9 +102,9 @@ class BookInitialOffersController extends AppController {
 				$this->set('loan_duration', "NULL");
 			}
 
-			if(!empty($this->data['BookInitialOffer']['offer_sell'])){ 
+			if(!empty($this->data['BookInitialOffer']['offer_sell'])){
 				$this->set('sell_price', $this->data['BookInitialOffer']['sell_price']);
-			}else{ 	
+			}else{
 				$this->set('sell_price', "NULL");
 			}
 			if(!empty($this->data['BookInitialOffer']['offer_trade'])){
@@ -109,7 +114,7 @@ class BookInitialOffersController extends AppController {
 			}
 		}
 	}
-	
+
 	function update(){
 		$bid = $this->data['BookInitialOffer']['bid'];
 		$uid = $this->Session->read('uid');
@@ -118,7 +123,7 @@ class BookInitialOffersController extends AppController {
 			$set .= ", duration = " .  $this->data['BookInitialOffer']['loan_duration'];
 			$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
 
-			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
+			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);
 	$this->redirect('/book_initial_offers/my_books/');
 	}
 
