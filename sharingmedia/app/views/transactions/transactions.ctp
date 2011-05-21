@@ -20,7 +20,7 @@ File: /app/views/transaction.ctp
 <body>
 
 	<?php
-			if ($search_title != null, $search_author != null, $search_isbn != null) {
+			if ($search_title != null || $search_author != null || $search_isbn != null) {
 				echo $this->Form->create('Book', array('action' => 'find_books_results'));
 				echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
 				echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
