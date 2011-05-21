@@ -63,10 +63,10 @@ class LoansController extends AppController {
 	// POST: Removes the tuple corresponding to the loan from the loans table.
 	function remove_loan($book_id, $id){
 		// set up layout
-	    $this->layout = 'main_layout';
-	    $this->set('title_for_layout', 'Library || My Loans');
+//	    $this->layout = 'main_layout';
+//	    $this->set('title_for_layout', 'Library || My Loans');
 	    
 	    $this->Loan->query("DELETE FROM loans WHERE owner_id = " . $id . " AND book_id = " . $book_id);
-
+		$this->redirect('/loans/my_loans/');
 	}
 }?>
