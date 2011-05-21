@@ -78,9 +78,9 @@
 				echo '<input name="data[BookInitialOffer][sell_price]" id="sp" value="' . $sell_price . '" type="hidden">';
 		}
 
-		if(!empty($trade_id)){
+		
 				echo '<input name="data[BookInitialOffer][trade_id]" id="ti" value="' . $trade_id . '" type="hidden">';
-		}
+		
 		?>
 
 <?php
