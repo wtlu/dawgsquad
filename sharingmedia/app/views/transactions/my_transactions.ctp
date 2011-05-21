@@ -42,7 +42,7 @@
 					if(!is_null($transaction_collection[$i]["t"]["duration"])){ ?>
 						<li>Loan Duration: <?=$transaction_collection[$i]["t"]["duration"]?> days</li>
 				<?php } 
-					if($transaction_collection[$i]["t"]["trade_id"]== 1){?>
+					if($transaction_collection[$i]["t"]["trade_id"]== 0){?>
 						<li>Trade: Willing to trade</li>
 				<?php }	//if selling print price
 					if(!is_null($transaction_collection[$i]["t"]["price"])){ ?>

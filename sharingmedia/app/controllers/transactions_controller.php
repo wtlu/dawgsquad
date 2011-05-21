@@ -20,7 +20,7 @@ class TransactionsController extends AppController {
 
   //Pre: Called from find_books_results to initiate a transaction, or from myTransactions in myLibrary to continue or update a transactions.
   //Post: Creates a tuple in transactions with pertinent information, allows user to choose to accept the current offer or make a counteroffer.
-  function transactions($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = 0, $client_id = "NULL") {
+  function transactions($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL") {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
@@ -109,7 +109,7 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = 0) {
+	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = -1) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -118,7 +118,7 @@ class TransactionsController extends AppController {
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		if($allow_trade != 0){
+		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
@@ -137,14 +137,14 @@ class TransactionsController extends AppController {
 			
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
 																				','  . $allow_id . 
-																				',0' . 
+																				',-1' . 
 																				',NULL' . 
 																				',NULL' . 
 																				', NOW(), NULL);');
 																				
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
 																				','  . $book_id . 
-																				',0' . 
+																				',-1' . 
 																				',NULL' . 
 																				',NULL' . 
 																				', NOW(), NULL);');
@@ -308,7 +308,7 @@ class TransactionsController extends AppController {
 		}
 		
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		if($allow_trade != 0){
+		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
@@ -388,9 +388,9 @@ class TransactionsController extends AppController {
 
 
 
-		/* This page is only called from add books results, so there will be no trade information */
+
 		// This should be in the counteroffer page.
-		if ($allow_trade != 0){
+		if ($allow_trade >= 0){
 			$trade_books = $this->Transaction->query('SELECT books.*
 				FROM book_initial_offers b_i_o, books books
 				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
