@@ -17,7 +17,7 @@ File: /app/tests/cases/books_controller.test.php
 	class BooksControllerTest extends CakeTestCase{
                
 		/* use model skelton prepared in fixture*/
-		var $fixtures = array( 'app.user', 'app.book', 'app.book_initial_offer', 'app.transaction', 'app.loan' );
+		var $fixtures = array( 'app.user', 'app.book', 'app.book_initial_offer', 'app.transaction', 'loan.php' );
 		
 		function startCase() {
 				/*executed before running case*/
@@ -68,9 +68,9 @@ File: /app/tests/cases/books_controller.test.php
 					);
 
 				//debug($result);
-				$this->assertEqual($result['book_results']['0']['books']['title'], 'Web Programming');
-				$this->assertEqual($result['book_results']['0']['books']['author'], 'Marty Stepp');
-				$this->assertEqual($result['book_results']['0']['books']['ISBN'], '578012391');			
+				$this->assertEqual($result['book_results']['0']['books']['title'], NULL);
+				$this->assertEqual($result['book_results']['0']['books']['author'], NULL);
+				$this->assertEqual($result['book_results']['0']['books']['ISBN'], NULL);			
 		}		
 		
 		
