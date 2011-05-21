@@ -97,6 +97,7 @@ class TransactionsController extends AppController {
 			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
 
 		}else{
+			echo "what the fuck";
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
