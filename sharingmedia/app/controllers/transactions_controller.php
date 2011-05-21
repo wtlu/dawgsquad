@@ -137,7 +137,7 @@ class TransactionsController extends AppController {
 										AND book_id = ' . $allow_trade . ';');
 
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
-																				','  . $allow_id .
+																				','  . $allow_trade .
 																				',-1' .
 																				',NULL' .
 																				',NULL' .
