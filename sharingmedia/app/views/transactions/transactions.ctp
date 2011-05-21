@@ -97,7 +97,7 @@ create a counter-offer. </p>
 	echo $this->Html->link('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
-																					$data['Transaction']['allow_trade']."/"
+																					$data['Transaction']['allow_trade']."/".
 																					$data['Transaction']['client_id']."/"));
 	?>
 
