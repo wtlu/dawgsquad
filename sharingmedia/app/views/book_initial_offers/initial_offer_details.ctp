@@ -82,7 +82,7 @@
 		</FORM>
 		-->
 		<?php
-		echo $this->Form->create(array('action' => 'add_books_results'));
+		echo $this->Form->create('Book', array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
 		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
