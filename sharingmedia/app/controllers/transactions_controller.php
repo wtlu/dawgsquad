@@ -90,8 +90,6 @@ class TransactionsController extends AppController {
 												AND owner_id = ' . $owner_id . '
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
-												
-		debug($duplicate);
 
 		if(!empty($duplicate)){
 			$current_id = $duplicate[0]['transactions']['current_id'];
