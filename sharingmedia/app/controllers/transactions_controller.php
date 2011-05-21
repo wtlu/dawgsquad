@@ -169,7 +169,7 @@ class TransactionsController extends AppController {
 		$size = sizeof($transaction_collection);
 		for($i=0; $i < $size; $i++){
 			$client_id = $transaction_collection[$i]['transactions']['client_id'];
-			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $client_id . ' ;');
 			$transaction_collection[$i]['client_name'] = $client_result[0]['users']['name'];
 		}
 		
