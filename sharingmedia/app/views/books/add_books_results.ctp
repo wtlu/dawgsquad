@@ -67,7 +67,10 @@ FB.Canvas.setSize();
 			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
 			echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index));
 			display_results($result);
-			echo $this->Form->end('Add This Book', array('disabled' => 'disabled'));
+			echo $this->Form->end('Add This Book');
+			?>
+			<input name = 'accept_button' type="submit" value="Add This Book">
+			<?php
 		}
 	} else {
 		?>
