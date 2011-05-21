@@ -175,6 +175,15 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
+										
+			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
+																				','  . $book_id .
+																				',-1' .
+																				',NULL' .
+																				',NULL' .
+																				', NOW(), NULL);');							
+		
+										
 		}
 
 		// remove all other pending transactions on this book
