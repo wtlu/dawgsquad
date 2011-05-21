@@ -396,7 +396,7 @@ class TransactionsController extends AppController {
 			$trade_books = $this->Transaction->query('SELECT books.*
 				FROM book_initial_offers b_i_o, books books
 				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
-					AND b_i_o.trade_id = 1
+					AND b_i_o.trade_id = 0
 					AND b_i_o.book_id = books.id;');
 			# debug($trade_books);
 			$data['Transaction']['trade_books'] = $trade_books;
