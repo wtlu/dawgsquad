@@ -64,7 +64,7 @@ create a counter-offer. </p>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
-	if (isset($data['Transaction']['allow_trade']) && $data['Transaction']['allow_trade'] > 0) {
+	if ($data['Transaction']['allow_trade'] > 0) {
 	?>
 		<!-- Need to display info about the book offered in trade. -->
 		<fieldset style="border: 3px solid #000000">

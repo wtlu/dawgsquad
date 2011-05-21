@@ -91,21 +91,25 @@ class TransactionsController extends AppController {
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
 
+		echo "hey";
 		if(!empty($duplicate)){
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
 			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
-
+		echo "whats";
 		}else{
-			echo "what the fuck";
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 
 			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
+			echo "up";
 		}
 
+		echo "done";
+		
+		
 		$this->set('data', $data);
 
 
