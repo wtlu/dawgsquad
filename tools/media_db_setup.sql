@@ -63,6 +63,7 @@ CREATE TABLE transactions(
 	price DOUBLE,
 	status INT,
 	FOREIGN KEY(book_id) REFERENCES books(id),
+	deleted INT,
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
 );

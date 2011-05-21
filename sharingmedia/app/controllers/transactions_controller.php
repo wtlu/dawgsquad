@@ -121,7 +121,7 @@ class TransactionsController extends AppController {
 		$this->Transaction->query('UPDATE transactions
 									SET status = 1
 									WHERE owner_id = ' . $owner_id . '
-										AND client_id = ' . $this->Session->read('uid') . '
+										AND client_id = ' . $client_id . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
 
