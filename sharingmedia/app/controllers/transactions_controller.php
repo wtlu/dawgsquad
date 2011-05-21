@@ -153,6 +153,7 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['client_id'] = $client_id;
 		$data['Transaction']['allow_trade'] = $allow_trade;
 
 		$this->set('data', $data);
