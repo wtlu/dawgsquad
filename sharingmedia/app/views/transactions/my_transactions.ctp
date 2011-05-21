@@ -48,6 +48,7 @@
 						<li>Price: $<?=$transaction_collection[$i]["t"]["price"];?></li>
 				<?php }?>
 				<li>Owner: <?= $transaction_collection[$i]["u"]["name"]?></li>
+				<li>Client: <?= $transaction_collection[$i]["client_name"]?></li>
 				<li>Transaction Status: 
 					<?php
 						if(($transaction_collection[$i]["t"]["status"]) == 0) { ?>
