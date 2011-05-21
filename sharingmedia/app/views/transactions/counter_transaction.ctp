@@ -50,6 +50,7 @@ File: /app/views/transaction.ctp
 		<input name="data[Transaction][book_image]" id="book_image" value="<?= $data['Transaction']['book_image'] ?>" type="hidden">
 		<input name="data[Transaction][owner_id]" id="owner_id" value="<?= $data['Transaction']['owner_id'] ?>" type="hidden">
 		<input name="data[Transaction][owner_name]" id="owner_name" value="<?= $data['Transaction']['owner_name'] ?>" type="hidden">
+		<input name="data[Transaction][client_id]" id="client_id" value="<?= $data['Transaction']['client_id'] ?>" type="hidden">
 		
 		<!-- Input for the loan -->
 		<div class="options">	
