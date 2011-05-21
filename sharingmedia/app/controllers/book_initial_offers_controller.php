@@ -205,13 +205,10 @@ class BookInitialOffersController extends AppController {
 			$this->set('sell_price', $sell_price);
 		}
 
-		$trade_id = -1;
 		if(!empty($this->data['BookInitialOffer']['trade_id'])){
-			echo "getting tradeid";
 			$trade_id = $this->data['BookInitialOffer']['trade_id'];
 			$this->set('trade_id', $trade_id);
 		}
-		echo $trade_id;
 
 		//Make the values also available in the view
 	    $this->set('title', $book_title);
