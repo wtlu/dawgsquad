@@ -64,11 +64,23 @@ create a counter-offer. </p>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
-	if (isset($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])) {
+	if (isset($data['Transaction']['allow_trade']) && (0 <> $data['Transaction']['allow_trade'])) {
 	?>
+		<!-- Need to display info about the book offered in trade.
 		<!-- <input type="radio" name="trade" value="t"> -->
-		<strong>Trade:</strong><p>If you wish to trade a book, proceed with Counter Transaction.</p>
-		<br>
+		<fieldset style="border: 3px solid #000000">
+		<legend> Use This Book In The Trade: </legend>
+		<p class="book_display">
+			<label >
+				<img src=<?= $data['Transaction']['trade_image'] ?> alt="Book image" />
+				<strong>Title:</strong>	<?= $data['Transaction']['trade_title'] ?> <br />
+				<strong>Author(s):</strong> <?= $data['Transaction']['trade_author'] ?> <br />
+				<strong>ISBN:</strong> <?= $data['Transaction']['trade_isbn'] ?> <br />
+			</label>
+		</p>
+		</fieldset>
+		
+		
 
 	<?php
 	}

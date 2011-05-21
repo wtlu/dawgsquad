@@ -57,7 +57,19 @@
 			}
 
 			if(!empty($data['Transaction']['allow_trade']) && (0 <> $data['Transaction']['allow_trade'])){
-				echo '<strong> Trade has been proposed. </strong></br>';
+				?>
+				<fieldset style="border: 3px solid #000000">
+				<legend> Use This Book In The Trade: </legend>
+				<p class="book_display">
+					<label >
+						<img src=<?= $data['Transaction']['trade_image'] ?> alt="Book image" />
+						<strong>Title:</strong>	<?= $data['Transaction']['trade_title'] ?> <br />
+						<strong>Author(s):</strong> <?= $data['Transaction']['trade_author'] ?> <br />
+						<strong>ISBN:</strong> <?= $data['Transaction']['trade_isbn'] ?> <br />
+					</label>
+				</p>
+				</fieldset>
+				<?php
 			}
 
 		?>
