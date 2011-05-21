@@ -70,6 +70,7 @@ FB.Canvas.setSize();
 			# echo $this->Form->end('Add This Book');
 			?>
 			<input name = 'accept_button' type="submit" value="Add This Book">
+			</form>
 			<?php
 		}
 	} else {

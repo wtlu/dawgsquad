@@ -79,14 +79,15 @@ create a counter-offer. </p>
 			</label>
 		</p>
 		</fieldset>
-		
-		
+
+
 
 	<?php
 	}
 	?>
 
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
+	</form>
 	<?php
 	// Pass relevant information to counter_transaction.ctp if the user clicks the link.
 	echo $this->Html->link('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
