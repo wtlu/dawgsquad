@@ -49,6 +49,7 @@
 						<li>Price: $<?=$transaction_collection[$i]["t"]["price"];?></li>
 				<?php }?>
 				<li>Owner: <?= $transaction_collection[$i]["u"]["name"]?></li>
+				<li>Client: <?= $transaction_collection[$i]["client_name"]?></li>
 				<li>Transaction Status: 
 					<?php
 						if(($transaction_collection[$i]["t"]["status"]) == 0) { ?>
@@ -87,11 +88,11 @@
 			?>
 			<?php
 			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
-				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade, array(' escape' => false));
+				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
 			}
 			
-			if($transaction_collection[$i]["t"]["status"] == 1){
-				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+			if($transaction_collection[$i]["t"]["status"] != 0){
+				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>	
 		</div>
