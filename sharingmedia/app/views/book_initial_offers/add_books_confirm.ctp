@@ -47,7 +47,7 @@
 				echo '<strong> For Sale at $' . $sell_price .'. </strong><br />';
 			}
 
-			if(!empty($trade_id) && $trade_id >= 0){
+			if($trade_id >= 0){
 				echo '<strong> Willing to Trade for Another Book. </strong><br />';
 			}
 
