@@ -81,12 +81,14 @@
 		<INPUT class = "special_button" TYPE="submit" VALUE="Cancel and do a new search">
 		</FORM>
 		-->
+		<?php
 		echo $this->Form->create(array('action' => 'add_books_results'));
 		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
 		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
 		echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index));
 		echo $this->Form->end('Go Back');
+		?>
 
 
 
