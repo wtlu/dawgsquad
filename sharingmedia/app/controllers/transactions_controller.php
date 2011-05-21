@@ -28,9 +28,9 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
-		$search_title = $this->data['Book']['title'];
-		$search_author = $this->data['Book']['author'];
-		$search_isbn = $this->data['Book']['isbn'];
+		$search_title = $this->data['Transaction']['title'];
+		$search_author = $this->data['Transaction']['author'];
+		$search_isbn = $this->data['Transaction']['isbn'];
 
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
