@@ -61,7 +61,11 @@ FB.Canvas.setSize();
 	} else */
 	if (!empty($google_books_results)) {
 		foreach ($google_books_results as $result){
-			echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details/' . $book_title . '/' . $book_author . '/' . $book_isbn . '/' . $index . '/', 'type'=>'post'));
+			echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
+			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
+			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
+			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
+			echo $this->Form->input('index', array('type' => 'hidden', 'value' => $index));
 			display_results($result);
 			echo $this->Form->end('Add This Book');
 		}

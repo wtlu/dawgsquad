@@ -23,10 +23,14 @@ class BookInitialOffersController extends AppController {
    //Post: Makes available the book information to initial_offer_details.ctp in the variable $book_chosen, which is an arry of strings.
    function initial_offer_details($book_title = null, $book_author = null, $book_isbn = null, $index = null){
 
-
 		//Get the book info for the book that was selected on the add books results page
 		$book_chosen = explode( "^" , $this->data['Book']['book_type'] );
 		$this->set('book_chosen', $book_chosen);
+
+		$book_title = $this->data['BookInitialOffer']['title'];
+		$book_author = $this->data['BookInitialOffer']['author'];
+		$book_isbn = $this->data['BookInitialOffer']['isbn'];
+		$book_image = $this->data['BookInitialOffer']['image'];
 
 		// These lines enable our main layout to appear on the page.
 		$this->layout = 'main_layout';
