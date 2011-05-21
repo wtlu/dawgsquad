@@ -41,7 +41,6 @@ create a counter-offer. </p>
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));
-
 	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>
 		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $data['Transaction']['price'] ?><br>
@@ -95,11 +94,11 @@ create a counter-offer. </p>
 	?>
 
 	<?php
-		echo $this->Form->create('Book', array('action' => 'find_books_results'));
-		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-		echo $this->Form->end('Go Back');
+			echo $this->Form->create('Book', array('action' => 'find_books_results'));
+			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+			echo $this->Form->end('Go Back');
 	?>
 
 </div>
