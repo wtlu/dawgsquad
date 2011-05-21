@@ -72,6 +72,10 @@ class BooksController extends AppController {
 
 
                 }
+                $this->set('book_title', $book_title);
+                $this->set('book_author', $book_author);
+                $this->set('book_isbn', $book_isbn);
+
                 $this->set('book_results', $book_results);
         }
 
