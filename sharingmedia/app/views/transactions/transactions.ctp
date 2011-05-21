@@ -20,11 +20,13 @@ File: /app/views/transaction.ctp
 <body>
 
 	<?php
-			echo $this->Form->create('Book', array('action' => 'find_books_results'));
-			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-			echo $this->Form->end('Go Back to Results');
+			if ($search_title != null, $search_author, $search_isbn) {
+				echo $this->Form->create('Book', array('action' => 'find_books_results'));
+				echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+				echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+				echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+				echo $this->Form->end('Go Back to Results');
+			}
 	?>
 
 <fieldset style="border: 3px solid #000000">
