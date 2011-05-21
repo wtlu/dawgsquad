@@ -76,7 +76,7 @@ File: /app/views/transaction.ctp
 		<div class="options_trades">
 			
 			<?php
-				if (isset($data['Transaction']['allow_trade']) && (-1 <> $data['Transaction']['allow_trade'])) {
+				if (true) {
 			?>
 			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
 			<label for="choose_trade">Books you own, that you could offer in trade:</label>

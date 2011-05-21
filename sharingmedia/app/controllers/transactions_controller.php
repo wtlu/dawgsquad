@@ -249,6 +249,8 @@ class TransactionsController extends AppController {
 		$trade_id = -1;
 		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
+			
+			//Update tuple to have trade_id
 
 			//Get the details about the book offered in trade from the database
 			$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $trade_id . ' ;');
@@ -390,7 +392,7 @@ class TransactionsController extends AppController {
 
 
 		// This should be in the counteroffer page.
-		if ($allow_trade >= 0){
+		if (true){
 			$trade_books = $this->Transaction->query('SELECT books.*
 				FROM book_initial_offers b_i_o, books books
 				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
