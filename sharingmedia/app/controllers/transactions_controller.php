@@ -20,7 +20,7 @@ class TransactionsController extends AppController {
 
   //Pre: Called from find_books_results to initiate a transaction, or from myTransactions in myLibrary to continue or update a transactions.
   //Post: Creates a tuple in transactions with pertinent information, allows user to choose to accept the current offer or make a counteroffer.
-  function transactions($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = 0) {
+  function transactions($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = 0, $client_id = "NULL") {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
@@ -69,11 +69,12 @@ class TransactionsController extends AppController {
 		$add_status = false;
 		$duplicate = $this->Transaction->query('SELECT *
 												FROM transactions
-												WHERE client_id = ' . $this->Session->read('uid') . '
+												WHERE client_id = ' . $client_id . '
 												AND owner_id = ' . $owner_id . '
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
-		if(!empty($duplicate)){
+										
+		if(!empty($duplicate) || ){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
@@ -164,6 +165,14 @@ class TransactionsController extends AppController {
 		//pull transaction with owners that are me and initial offers from the database
 		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
 
+		//Get client user id, get their name.
+		$size = sizeof($transaction_collection);
+		for($i=0; $i < $size; $i++){
+			$client_id = $transaction_collection[$i]['transactions']['client_id'];
+			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+			$transaction_collection[$i]['client_name'] = $client_result[0]['users']['name'];
+		}
+		
 		//pass variables to page
 		$this->set('transaction_collection', $transaction_collection);
 		//debug($transaction_collection);
