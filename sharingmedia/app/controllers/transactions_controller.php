@@ -78,7 +78,7 @@ class TransactionsController extends AppController {
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
-			$data['Transactions']['current_name'] = $current_user[0]['users']['name'];
+			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
 			
 		}else{
 			$add_status = true;
@@ -86,7 +86,7 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 													
-			$data['Transactions']['current_name'] = $data['Transaction']['owner_name'];
+			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
 		$this->set('data', $data);
@@ -168,8 +168,8 @@ class TransactionsController extends AppController {
 		//Get client user id, get their name.
 		$size = sizeof($transaction_collection);
 		for($i=0; $i < $size; $i++){
-			$client_id = $transaction_collection[$i]['transactions']['client_id'];
-			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
+			$client_id = $transaction_collection[$i]['t']['client_id'];
+			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $client_id . ' ;');
 			$transaction_collection[$i]['client_name'] = $client_result[0]['users']['name'];
 		}
 		
@@ -305,7 +305,14 @@ class TransactionsController extends AppController {
 	}
 	
 	function remove_transaction($tid){
-		
+		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
+		$deleted = $transaction_array[0]["transactions"]["deleted"];
+		if($deleted == -1){
+			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);	
+		} else {
+			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);	
+		}
+		$this->redirect('/transactions/my_transactions/');
 	}
 	
 	

@@ -24,6 +24,7 @@
                 <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array(' escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'current', 'escape' => false)); ?></li>
                 <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+                <li id ="add"><?= $this->Html->link('Add Books', "/books/add_books", array('id' => 'add', 'escape' => false)); ?></li>
         </ul>
 </div>
 
@@ -31,6 +32,7 @@
 	<?php		//loop to print out transaction		
 		$size = sizeof($transaction_collection);
 		for($i=0; $i < $size; $i++){
+			if($transaction_collection[$i]["t"]["deleted"] != $this->Session->read('uid')){
 	?>
 		<div class="book_unit">	
 			<img class= "book_img" src="<?=$transaction_collection[$i]["b"]["image"]?>" alt="<?=$transaction_collection[$i]["b"]["title"]?>"/>
@@ -48,7 +50,6 @@
 						<li>Price: $<?=$transaction_collection[$i]["t"]["price"];?></li>
 				<?php }?>
 				<li>Owner: <?= $transaction_collection[$i]["u"]["name"]?></li>
-				<li>Client: <?= $transaction_collection[$i]["client_name"]?></li>
 				<li>Transaction Status: 
 					<?php
 						if(($transaction_collection[$i]["t"]["status"]) == 0) { ?>
@@ -86,8 +87,8 @@
 				$last= $transaction_collection[$i]["t"]["current_id"];
 			?>
 			<?php
-			if($uid != $last ){
-				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['transactions']['client_id'], array(' escape' => false));
+			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
+				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade, array(' escape' => false));
 			}
 			
 			if($transaction_collection[$i]["t"]["status"] == 1){
@@ -96,6 +97,7 @@
 			?>	
 		</div>
 	<?php
+			}
 		}
 
 	?>	
