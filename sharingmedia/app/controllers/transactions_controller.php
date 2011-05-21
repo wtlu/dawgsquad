@@ -256,7 +256,7 @@ class TransactionsController extends AppController {
 										AND status = 0;');
   }
 
-  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = "NULL") {
+  function confirm_transaction($book_id = null, $owner_id = null, $client_id = "NULL",  $allow_trade = "NULL", $offer_option = null, $price = "NULL", $duration = "NULL") {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
