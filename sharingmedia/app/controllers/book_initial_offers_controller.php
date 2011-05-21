@@ -195,7 +195,6 @@ class BookInitialOffersController extends AppController {
 
 		$loan_duration = "NULL";
 		$sell_price = "NULL";
-		$trade_id = -1;
 
 		if(!empty($this->data['BookInitialOffer']['loan_duration'])){
 			$loan_duration = $this->data['BookInitialOffer']['loan_duration'];
@@ -207,7 +206,8 @@ class BookInitialOffersController extends AppController {
 			$this->set('sell_price', $sell_price);
 		}
 
-		if(!empty($this->data['BookInitialOffer']['trade_id'])){
+		$trade_id = -1;
+		if(isset($this->data['BookInitialOffer']['trade_id'])){
 			$trade_id = $this->data['BookInitialOffer']['trade_id'];
 			$this->set('trade_id', $trade_id);
 		}
