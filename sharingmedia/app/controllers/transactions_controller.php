@@ -170,8 +170,7 @@ class TransactionsController extends AppController {
 		for($i=0; $i < $size; $i++){
 			$client_id = $transaction_collection[$i]['t']['client_id'];
 			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $client_id . ' ;');
-			debug($client_result);
-			$transaction_collection[$i]['client_name'] = $client_result[0]['u']['name'];
+			$transaction_collection[$i]['client_name'] = $client_result[0]['users']['name'];
 		}
 		
 		//pass variables to page
