@@ -48,6 +48,7 @@ create a counter-offer. </p>
 	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
+																					$data['Transaction']['client_id']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));
 	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>

@@ -67,6 +67,7 @@
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['price']."/".
 																					$data['Transaction']['duration']."/".
+																					$data['Transaction']['client_id']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post')); ?>
 
 <?php
