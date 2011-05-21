@@ -50,7 +50,7 @@
 			if(!empty($trade_id)){
 				echo '<strong> Willing to Trade for Another Book. </strong><br />';
 			}
-			
+
 			if(empty($loan_duration) && empty($sell_price) && empty($trade_id)){
 				echo '<strong> No Initial Offer Details Were Selected. </strong><br />';
 			}
@@ -86,7 +86,7 @@
 <?php
 	echo $this->Form->end('Confirm Add To MyLibrary');
 ?>
-		<FORM METHOD="LINK" ACTION="http://apps.facebook.com/sharingmedia/books/add_books">
-		<INPUT class = "special_button" TYPE="submit" VALUE="Cancel and do a new search">
-		</FORM>
-
+		<?php
+			echo $this->Form->create('Book', array('action' => 'add_books'));
+			echo $this->Form->end('Cancel and start new search');
+		?>

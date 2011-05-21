@@ -53,8 +53,8 @@
 				echo '<strong> For Sale at $' . $data['Transaction']['price'] .'</strong></br>';
 			}
 
-			if(!empty($data['Transaction']['allow_trade']) && ("NULL" <> $data['Transaction']['allow_trade'])){
-				echo '<strong> Some trade book here. </strong></br>';
+			if(!empty($data['Transaction']['allow_trade']) && (0 <> $data['Transaction']['allow_trade'])){
+				echo '<strong> Trade has been proposed. </strong></br>';
 			}
 
 		?>

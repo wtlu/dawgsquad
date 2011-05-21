@@ -72,26 +72,6 @@ create a counter-offer. </p>
 
 	<?php
 	}
-	/* Since this page is only displayed after the user clicks "Start Transaction" from find books results page,
-	   there will not be any info to dispaly, because the initial offer details does not include specific books.
-	   This code should be in the counter_offer page, and also the ongoing_transaction.ctp page. */
-	/*
-	if (isset($allow_trade) && ("NULL" <> $allow_trade)) {
-	?>
-		<!-- <input type="radio" name="trade" value="t"> -->
-		<strong>Trade</strong><br>
-		<p>Select the book you want to trade:</p>
-		<div class="trade_list">
-	<?php
-		foreach ($trade_books as $tradeable){
-			?>
-			<input type="radio" name="trade" value="t" style="margin:10px">
-			<?php
-			display_results($tradeable['books']);
-		}
-	}
-
-	*/
 	?>
 
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
