@@ -250,7 +250,7 @@ class TransactionsController extends AppController {
 										duration = '. $duration .',
 										price = '. $price .' '.'
 									WHERE owner_id = ' . $owner_id . '
-										AND client_id = ' . $client_id . '  ///Needs to be client_id
+										AND client_id = ' . $client_id . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
   }
