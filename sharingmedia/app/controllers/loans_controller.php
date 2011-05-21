@@ -55,6 +55,10 @@ class LoansController extends AppController {
     	$this->set('name', $client_name);
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    //pass parameters
+		if(!isset$due_date){
+			$due_date = "";
+		}
+		
 	    $this->set('book_info', $book_info);
 	    $this->set('due_date', $due_date);
 	}
