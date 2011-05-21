@@ -306,9 +306,13 @@ class TransactionsController extends AppController {
 	
 	function remove_transaction($tid){
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
-		debug($transaction_array);
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
-		debug($deleted);
+		if($deleted == -1){
+			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);	
+		} else {
+			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);	
+		}
+		$this->redirect('/transactions/my_transactions/');
 	}
 	
 	
