@@ -85,14 +85,6 @@ create a counter-offer. </p>
 	*/
 	?>
 
-	<?php
-		echo $this->Form->create('Book', array('action' => 'find_books_results'));
-		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-		echo $this->Form->end('Go Back');
-	?>
-
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
 	// Pass relevant information to counter_transaction.ctp if the user clicks the link.
@@ -100,6 +92,14 @@ create a counter-offer. </p>
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/"));
+	?>
+
+	<?php
+		echo $this->Form->create('Book', array('action' => 'find_books_results'));
+		echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+		echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+		echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+		echo $this->Form->end('Go Back');
 	?>
 
 </div>
