@@ -70,6 +70,10 @@ create a counter-offer. </p>
 		<strong>Trade:</strong><p>If you wish to trade a book, proceed with Counter Transaction.</p>
 		<br>
 
+	<?php
+	}
+	?>
+
 	<input name = 'accept_button' type="submit" value="Accept" disabled = "disabled">
 	<?php
 	// Pass relevant information to counter_transaction.ctp if the user clicks the link.
