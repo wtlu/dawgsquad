@@ -27,7 +27,7 @@
 			</label>
 		</p>
 	</fieldset>
-
+	<?php echo $this->Html->link('Cancel',"/transactions/my_transactions/", array('class' => 'buttons', 'escape' => false)); ?>
 	<?php echo $this->Html->link('Delete Transaction',"/transactions/remove_transaction/".$tid."/", array('class' => 'buttons', 'escape' => false)); ?>
 	
 </div>

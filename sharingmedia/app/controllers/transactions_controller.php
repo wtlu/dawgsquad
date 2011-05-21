@@ -27,9 +27,10 @@ class TransactionsController extends AppController {
 		//Get book and owner result back from database
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
-		
 
-
+		$search_title = $this->data['Transaction']['title'];
+		$search_author = $this->data['Transaction']['author'];
+		$search_isbn = $this->data['Transaction']['isbn'];
 
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
@@ -63,6 +64,9 @@ class TransactionsController extends AppController {
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
 
+		$this->set('search_title', $search_title);
+		$this->set('search_author', $search_author);
+		$this->set('search_isbn', $search_isbn);
 
 		/* Create an entry in the transactions table with the correct information */
 		//Make sure there is not already a transaction between 2 people about the same book.
@@ -73,19 +77,19 @@ class TransactionsController extends AppController {
 												AND owner_id = ' . $owner_id . '
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
-										
+
 		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
 			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
-			
+
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
-													
+
 			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
@@ -172,7 +176,7 @@ class TransactionsController extends AppController {
 			$client_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $client_id . ' ;');
 			$transaction_collection[$i]['client_name'] = $client_result[0]['users']['name'];
 		}
-		
+
 		//pass variables to page
 		$this->set('transaction_collection', $transaction_collection);
 		//debug($transaction_collection);
@@ -288,14 +292,14 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
-	function delete_transaction($tid, $bid, $price, $loan, $trade){	
+	function delete_transaction($tid, $bid, $price, $loan, $trade){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		
+
 		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
 		$name_array = $this->Transaction->query("SELECT name FROM users u, transactions t WHERE t.id = " . $tid . " AND t.owner_id = u.facebook_id");
 		$name = $name_array[0]["u"]["name"];
-		
+
 		$this->set('tid', $tid);
 		$this->set('name', $name);
 		$this->set('book_array', $book_array);
@@ -303,20 +307,20 @@ class TransactionsController extends AppController {
 		$this->set('loan', $loan);
 		$this->set('trade', $trade);
 	}
-	
+
 	function remove_transaction($tid){
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
 		if($deleted == -1){
-			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);	
+			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);
 		} else {
-			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);	
+			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
 		}
 		$this->redirect('/transactions/my_transactions/');
 	}
-	
-	
-	
+
+
+
 	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
 	//Post: Accepts user input in a form, submits to make_offer.ctp
     function counter_transaction($book_id = null, $owner_id = null, $allow_trade = null) {

@@ -19,6 +19,14 @@ File: /app/views/transaction.ctp
 
 <body>
 
+	<?php
+			echo $this->Form->create('Book', array('action' => 'find_books_results'));
+			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+			echo $this->Form->end('Go Back to Results');
+	?>
+
 <fieldset style="border: 3px solid #000000">
 		<legend> Book Available </legend>
 		<p class="book_display">
@@ -73,7 +81,6 @@ create a counter-offer. </p>
 		<div class="trade_list">
 	<?php
 		foreach ($trade_books as $tradeable){
-			# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
 			?>
 			<input type="radio" name="trade" value="t" style="margin:10px">
 			<?php
