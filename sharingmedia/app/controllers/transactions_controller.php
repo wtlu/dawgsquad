@@ -31,7 +31,6 @@ class TransactionsController extends AppController {
 		$search_title = $this->data['Transaction']['title'];
 		$search_author = $this->data['Transaction']['author'];
 		$search_isbn = $this->data['Transaction']['isbn'];
-
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
@@ -63,6 +62,7 @@ class TransactionsController extends AppController {
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['allow_trade'] = $allow_trade;
+		$data['Transaction']['client_id'] = $client_id;
 
 		$this->set('search_title', $search_title);
 		$this->set('search_author', $search_author);
@@ -79,7 +79,6 @@ class TransactionsController extends AppController {
 												AND book_id = ' . $book_id . ';');
 
 		if(!empty($duplicate)){
-			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
 			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
@@ -250,7 +249,7 @@ class TransactionsController extends AppController {
 										duration = '. $duration .',
 										price = '. $price .' '.'
 									WHERE owner_id = ' . $owner_id . '
-										AND client_id = ' . $this->Session->read('uid') . '
+										AND client_id = ' . $this->Session->read('uid') . '  ///Needs to be client_id
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
   }
