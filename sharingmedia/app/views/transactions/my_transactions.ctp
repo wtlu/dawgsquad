@@ -90,8 +90,8 @@
 				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade, array(' escape' => false));
 			}
 			
-			if($transaction_collection[$i]["t"]["status"] == 1){
-				echo $this->Html->link('Delete Transaction', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+			if($transaction_collection[$i]["t"]["status"] != 0){
+				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>	
 		</div>
