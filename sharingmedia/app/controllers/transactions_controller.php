@@ -70,10 +70,10 @@ class TransactionsController extends AppController {
 		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
-			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
-			$data['Transactions']['trade_author'] = $trade_result[0]['books']['author'];
-			$data['Transactions']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
-			$data['Transactions']['trade_image'] = $trade_result[0]['books']['image'];
+			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
+			$data['Transaction']['trade_author'] = $trade_result[0]['books']['author'];
+			$data['Transaction']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
+			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 		}
 
 
@@ -91,12 +91,10 @@ class TransactionsController extends AppController {
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
 
-		echo "hey";
 		if(!empty($duplicate)){
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
 			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
-		echo "whats";
 		}else{
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
@@ -104,10 +102,7 @@ class TransactionsController extends AppController {
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 
 			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
-			echo "up";
 		}
-
-		echo "done";
 		
 		
 		$this->set('data', $data);
