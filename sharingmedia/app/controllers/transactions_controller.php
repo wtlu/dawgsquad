@@ -66,7 +66,7 @@ class TransactionsController extends AppController {
 		
 		
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		if($allow_trade != 0){
+		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
