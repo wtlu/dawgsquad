@@ -20,11 +20,13 @@ File: /app/views/transaction.ctp
 <body>
 
 	<?php
-			echo $this->Form->create('Book', array('action' => 'find_books_results'));
-			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-			echo $this->Form->end('Go Back to Results');
+			if ($search_title != null, $search_author != null, $search_isbn != null) {
+				echo $this->Form->create('Book', array('action' => 'find_books_results'));
+				echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+				echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+				echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+				echo $this->Form->end('Go Back to Results');
+			}
 	?>
 
 <fieldset style="border: 3px solid #000000">
@@ -48,6 +50,7 @@ create a counter-offer. </p>
 	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
+																					$data['Transaction']['client_id']."/".
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));
 	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>
@@ -97,7 +100,7 @@ create a counter-offer. </p>
 	echo $this->Html->link('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
-																					$data['Transaction']['allow_trade']."/"
+																					$data['Transaction']['allow_trade']."/".
 																					$data['Transaction']['client_id']."/"));
 	?>
 
