@@ -97,7 +97,7 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = "NULL") {
+	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = 0) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -121,7 +121,7 @@ class TransactionsController extends AppController {
 		$this->Transaction->query('UPDATE transactions
 									SET status = 1
 									WHERE owner_id = ' . $owner_id . '
-										AND client_id = ' . $this->Session->read('uid') . '
+										AND client_id = ' . $client_id . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
 
