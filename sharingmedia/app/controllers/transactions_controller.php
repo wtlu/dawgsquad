@@ -170,7 +170,7 @@ class TransactionsController extends AppController {
 		}
 
 		// remove from book initial offers
-		if ($duration == "NULL") {
+		if ($duration == "NULL" && $allow_trade != 0) {
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
