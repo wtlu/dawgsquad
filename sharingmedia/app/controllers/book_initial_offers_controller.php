@@ -27,10 +27,10 @@ class BookInitialOffersController extends AppController {
 		$book_chosen = explode( "^" , $this->data['Book']['book_type'] );
 		$this->set('book_chosen', $book_chosen);
 
-		$book_title = $this->data['Book']['title'];
-		$book_author = $this->data['Book']['author'];
-		$book_isbn = $this->data['Book']['isbn'];
-		$index = $this->data['Book']['index'];
+		$book_title = $this->data['BookInitialOffer']['title'];
+		$book_author = $this->data['BookInitialOffer']['author'];
+		$book_isbn = $this->data['BookInitialOffer']['isbn'];
+		$index = $this->data['BookInitialOffer']['index'];
 
 		// These lines enable our main layout to appear on the page.
 		$this->layout = 'main_layout';
