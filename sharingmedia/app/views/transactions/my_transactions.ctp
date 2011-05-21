@@ -87,7 +87,7 @@
 				$last= $transaction_collection[$i]["t"]["current_id"];
 			?>
 			<?php
-			if($uid != $last && $transaction_collection[$i]["t"]["status"]) == 0){
+			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
 				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade, array(' escape' => false));
 			}
 			
