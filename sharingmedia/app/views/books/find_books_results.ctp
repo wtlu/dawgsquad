@@ -40,7 +40,7 @@ FB.Canvas.setSize();
 		foreach ($book_results as $book){
 			$result = $book['books'];
 			$user_result = $book['users'];
-			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/", 'type'=>'post'));
+			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
 
 			// search queries, for back button
 			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
