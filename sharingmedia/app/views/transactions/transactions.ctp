@@ -19,6 +19,14 @@ File: /app/views/transaction.ctp
 
 <body>
 
+	<?php
+			echo $this->Form->create('Book', array('action' => 'find_books_results'));
+			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+			echo $this->Form->end('Go Back to Results');
+	?>
+
 <fieldset style="border: 3px solid #000000">
 		<legend> Book Available </legend>
 		<p class="book_display">
@@ -35,13 +43,6 @@ File: /app/views/transaction.ctp
 <p> <?= $data['Transaction']['current_name'] ?> has offered the following options for obtaining this book. Please select one, or
 create a counter-offer. </p>
 
-	<?php
-			echo $this->Form->create('Book', array('action' => 'find_books_results'));
-			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-			echo $this->Form->end('Go Back');
-	?>
 
 <?php
 	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction'."/".
