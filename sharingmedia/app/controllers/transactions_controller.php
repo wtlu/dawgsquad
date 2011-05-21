@@ -119,7 +119,7 @@ class TransactionsController extends AppController {
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		if($allow_trade > 0){
+		if($allow_trade > 0 && $duration == "NULL" && $price == "NULL"){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
@@ -171,7 +171,7 @@ class TransactionsController extends AppController {
 		}
 
 		// remove from book initial offers
-		if ($duration == "NULL" && $allow_trade <= 0) {
+		if ($duration == "NULL" && $allow_trade <= 0 && $price != "NULL") {
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
