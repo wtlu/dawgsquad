@@ -42,7 +42,7 @@
 				<li>Due Date: <?= $loan_collection_owner[$i]["loans"]["due_date"]?></li>
 			</ul>
 			<?php echo "booksid: " . $book_collection_owner[$i]["books"]["id"];
-				echo "duedate: " $loan_collection_owner[$i]["loans"]["due_date"]; ?>
+				echo "duedate: " . $loan_collection_owner[$i]["loans"]["due_date"]; ?>
 
 			<?= $this->Html->link('Complete Loan',"/loans/complete_loan/".$book_collection_owner[$i]["books"]["id"]."/".$loan_collection_owner[$i]["loans"]["due_date"], array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
