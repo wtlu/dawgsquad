@@ -61,6 +61,9 @@ FB.Canvas.setSize();
 	} else */
 	if (!empty($google_books_results)) {
 		foreach ($google_books_results as $result){
+			?>
+			<div class="book_results_display">
+			<?php
 			echo $form->create('BookInitialOffer', array('action' => 'initial_offer_details', 'type'=>'post'));
 			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
@@ -71,6 +74,7 @@ FB.Canvas.setSize();
 			?>
 			<input name = 'accept_button' type="submit" value="Add This Book">
 			</form>
+			</div>
 			<?php
 		}
 	} else {
@@ -118,7 +122,6 @@ function display_results($result) {
 		$chosen = $chosen . '^' . $element;
 	}
 	?>
-	<div class="book_results_display">
 
 		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
 
@@ -138,7 +141,6 @@ function display_results($result) {
 			<strong>ISBN:</strong> <?= $ISBN ?> <br />
 		</div>
 		</label>
-	</div>
 	<?php
 }
 ?>
