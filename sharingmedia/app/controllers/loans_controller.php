@@ -43,7 +43,7 @@ class LoansController extends AppController {
 	
 	// PRE: Transfered here from my library if user selects "complete loan". Each book can only be loaned once, in other words, no duplicates.
 	// POST: Transfer control to a confirmation page
-	function complete_loan($book_id, $due_date){
+	function complete_loan($book_id, $due_date = ""){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
@@ -54,11 +54,7 @@ class LoansController extends AppController {
     	$client_name = $client_name_array[0]["users"]["name"];
     	$this->set('name', $client_name);
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
-	    //pass parameters
-		if(!isset$due_date){
-			$due_date = "";
-		}
-		
+	    //pass parameters	
 	    $this->set('book_info', $book_info);
 	    $this->set('due_date', $due_date);
 	}
