@@ -7,6 +7,7 @@
 	Changelog:
 	5/8/2011 - James Parsons - Created form for input of initial offer details, with submit to add_books_confirm.
 	5/11/2011 - James Parsons - Now displays book info passed from add book results page.
+	5/20/2011 - John Wang - Added Back button
 -->
 
 <?php echo $this->Html->css('initial_offers', NULL, array('inline' => FALSE)); ?>
@@ -25,7 +26,7 @@
 ?>
 
 <fieldset>
-<p class="book_results_display">
+<div class="book_results_display">
 <label >
 		<?php
 			$title = $book_chosen[1];
@@ -38,7 +39,7 @@
 	<strong>Author(s):</strong> <?php echo $author ?> <br />
 	<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
 </label>
-</p>
+</div>
 </fieldset>
 
 <fieldset >
