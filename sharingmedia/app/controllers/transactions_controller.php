@@ -198,6 +198,7 @@ class TransactionsController extends AppController {
 		$book_author = $this->data['Transaction']['book_author'];
 		$book_isbn = $this->data['Transaction']['book_isbn'];
 		$book_image = $this->data['Transaction']['book_image'];
+		$client_id = $this->data['Transaction']['client_id'];
 
 		//If loan was specified in the offer, display it
 		$duration = "NULL";
@@ -249,7 +250,7 @@ class TransactionsController extends AppController {
 										duration = '. $duration .',
 										price = '. $price .' '.'
 									WHERE owner_id = ' . $owner_id . '
-										AND client_id = ' . $this->Session->read('uid') . '  ///Needs to be client_id
+										AND client_id = ' . $client_id . '  ///Needs to be client_id
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
   }
@@ -322,7 +323,7 @@ class TransactionsController extends AppController {
 
 	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
 	//Post: Accepts user input in a form, submits to make_offer.ctp
-    function counter_transaction($book_id = null, $owner_id = null, $allow_trade = null) {
+    function counter_transaction($book_id = null, $owner_id = null, $allow_trade = null, $client_id = "NULL") {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
@@ -342,6 +343,7 @@ class TransactionsController extends AppController {
 		$data['Transaction']['book_isbn'] = $book_result[0]['books']['ISBN'];
 		$data['Transaction']['book_image'] = $book_result[0]['books']['image'];
 		$data['Transaction']['allow_trade'] = $allow_trade;
+		$data['Transaction']['client_id'] = $client_id;
 
 
 
