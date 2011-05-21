@@ -35,6 +35,13 @@ File: /app/views/transaction.ctp
 <p> <?= $data['Transaction']['current_name'] ?> has offered the following options for obtaining this book. Please select one, or
 create a counter-offer. </p>
 
+	<?php
+			echo $this->Form->create('Book', array('action' => 'find_books_results'));
+			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
+			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
+			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
+			echo $this->Form->end('Go Back');
+	?>
 
 <?php
 	echo $form->create('Transaction', array('name' => 'offer_form', 'action' => 'confirm_transaction'."/".
@@ -73,7 +80,6 @@ create a counter-offer. </p>
 		<div class="trade_list">
 	<?php
 		foreach ($trade_books as $tradeable){
-			# echo $form->create('Users', array('action' => 'coming_soon', 'type'=>'post'));
 			?>
 			<input type="radio" name="trade" value="t" style="margin:10px">
 			<?php
@@ -91,14 +97,6 @@ create a counter-offer. </p>
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/"));
-	?>
-
-	<?php
-			echo $this->Form->create('Book', array('action' => 'find_books_results'));
-			echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
-			echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
-			echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
-			echo $this->Form->end('Go Back');
 	?>
 
 </div>
