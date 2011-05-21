@@ -51,7 +51,7 @@
 				echo '<strong> Willing to Trade for Another Book. </strong><br />';
 			}
 
-			if(empty($loan_duration) && empty($sell_price) && empty($trade_id)){
+			if(empty($loan_duration) && empty($sell_price) && $trade_id == -1){
 				echo '<strong> No Initial Offer Details Were Selected. </strong><br />';
 			}
 

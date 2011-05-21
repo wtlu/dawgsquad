@@ -205,7 +205,7 @@ class BookInitialOffersController extends AppController {
 			$this->set('sell_price', $sell_price);
 		}
 
-		if(!empty($this->data['BookInitialOffer']['trade_id'])){
+		if(isset($this->data['BookInitialOffer']['trade_id'])){
 			$trade_id = $this->data['BookInitialOffer']['trade_id'];
 			$this->set('trade_id', $trade_id);
 		}
@@ -231,7 +231,7 @@ class BookInitialOffersController extends AppController {
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
 					$book_id = $the_book[0][0]['MAX(id)'] + 1;
-					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
+					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "none", NOW());');
 				} else {
 					foreach ($book_results as $book){
 						$result = $book['books'];
