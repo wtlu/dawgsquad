@@ -63,8 +63,8 @@ class TransactionsController extends AppController {
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['client_id'] = $client_id;
-		
-		
+
+
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		$this->set('allow_trade', $allow_trade);
 		if($allow_trade > 0){
@@ -75,7 +75,7 @@ class TransactionsController extends AppController {
 			$data['Transactions']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
 			$data['Transactions']['trade_image'] = $trade_result[0]['books']['image'];
 		}
-	
+
 
 		$this->set('search_title', $search_title);
 		$this->set('search_author', $search_author);
@@ -126,32 +126,32 @@ class TransactionsController extends AppController {
 			$data['Transactions']['trade_author'] = $trade_result[0]['books']['author'];
 			$data['Transactions']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
 			$data['Transactions']['trade_image'] = $trade_result[0]['books']['image'];
-			
+
 			//A trade has occurred; swap books in users libraries.
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
-			
+
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $client_id . '
 										AND book_id = ' . $allow_trade . ';');
-			
+
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
-																				','  . $allow_id . 
-																				',-1' . 
-																				',NULL' . 
-																				',NULL' . 
+																				','  . $allow_id .
+																				',-1' .
+																				',NULL' .
+																				',NULL' .
 																				', NOW(), NULL);');
-																				
+
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
-																				','  . $book_id . 
-																				',-1' . 
-																				',NULL' . 
-																				',NULL' . 
+																				','  . $book_id .
+																				',-1' .
+																				',NULL' .
+																				',NULL' .
 																				', NOW(), NULL);');
-	
+
 		}
-		
+
 		/* This statement updates the status of this transaction to "completed" state */
 		$this->Transaction->query('UPDATE transactions
 									SET status = 1
@@ -176,6 +176,12 @@ class TransactionsController extends AppController {
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
 		}
+
+		// remove all other pending transactions on this book
+		$this->Transaction->query('DELETE FROM transactions
+									WHERE book_id = ' . $book_id . '
+										AND owner_id = ' . $owner_id . '
+										AND status != 1;');
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
@@ -250,7 +256,7 @@ class TransactionsController extends AppController {
 		$trade_id = -1;
 		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
-			
+
 			//Update tuple to have trade_id
 
 			//Get the details about the book offered in trade from the database
@@ -309,7 +315,7 @@ class TransactionsController extends AppController {
 		} else if ($offer_option == "loan" && isset($this->data['Transaction']['duration'])) {
 			$duration = $this->data['Transaction']['duration'];
 		}
-		
+
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		if($allow_trade > 0){
 			//Get info about the book to be traded
