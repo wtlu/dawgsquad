@@ -305,7 +305,8 @@ class TransactionsController extends AppController {
 	}
 	
 	function remove_transaction($tid){
-		
+		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
+		debug($transaction_array);
 	}
 	
 	
