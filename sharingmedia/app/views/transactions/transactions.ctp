@@ -66,11 +66,11 @@ create a counter-offer. </p>
 	}
 	if (isset($data['Transaction']['allow_trade']) && (0 <> $data['Transaction']['allow_trade'])) {
 	?>
-		<!-- Need to display info about the book offered in trade.
-		<!-- <input type="radio" name="trade" value="t"> -->
+		<!-- Need to display info about the book offered in trade. -->
 		<fieldset style="border: 3px solid #000000">
 		<legend> Use This Book In The Trade: </legend>
 		<p class="book_display">
+		<input id="trade" type="radio" name="data[Transaction][allow_trade]" value="<?= $allow_trade ?>" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <br>
 			<label >
 				<img src=<?= $data['Transaction']['trade_image'] ?> alt="Book image" />
 				<strong>Title:</strong>	<?= $data['Transaction']['trade_title'] ?> <br />
