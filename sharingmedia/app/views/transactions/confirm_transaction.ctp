@@ -53,7 +53,7 @@
 				echo '<strong> For Sale at $' . $data['Transaction']['price'] .'</strong></br>';
 			}
 
-			if(!empty($data['Transaction']['allow_trade']) && (0 < $data['Transaction']['allow_trade'])){
+			if(!empty($data['Transaction']['allow_trade']) && ($data['Transaction']['allow_trade'] > 0)){
 				?>
 				<fieldset style="border: 3px solid #000000">
 				<legend> Use This Book In The Trade: </legend>
