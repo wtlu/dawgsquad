@@ -97,7 +97,7 @@ class TransactionsController extends AppController {
 
   }
 
-	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $allow_trade = "NULL") {
+	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = "NULL") {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
@@ -132,7 +132,7 @@ class TransactionsController extends AppController {
 			date_add($date, date_interval_create_from_date_string($duration . ' days'));
 			$due_date = date_format($date, 'Y-m-d H:i:s');
 			$this->Transaction->query('INSERT INTO loans(owner_id, client_id, book_id, due_date, created)
-									VALUES(' . $owner_id . ', ' . $this->Session->read('uid') . ', ' . $book_id . ', \'' . $due_date . '\', NOW());');
+									VALUES(' . $owner_id . ', ' . $client_id . ', ' . $book_id . ', \'' . $due_date . '\', NOW());');
 		}
 
 		// remove from book initial offers
@@ -255,7 +255,7 @@ class TransactionsController extends AppController {
 										AND status = 0;');
   }
 
-  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = "NULL", $duration = "NULL", $allow_trade = "NULL") {
+  function confirm_transaction($book_id = null, $owner_id = null, $offer_option = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = "NULL") {
 
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -287,6 +287,7 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['client_id'] = $client_id;
 		$data['Transaction']['allow_trade'] = $allow_trade;
 
 		$this->set('data', $data);
