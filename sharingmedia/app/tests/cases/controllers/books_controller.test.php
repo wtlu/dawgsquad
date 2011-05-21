@@ -17,7 +17,7 @@ File: /app/tests/cases/books_controller.test.php
 	class BooksControllerTest extends CakeTestCase{
                
 		/* use model skelton prepared in fixture*/
-		var $fixtures = array( 'app.user', 'app.book', 'app.book_initial_offer', 'app.transaction' );
+		var $fixtures = array( 'app.user', 'app.book', 'app.book_initial_offer', 'app.transaction', 'app.loan' );
 		
 		function startCase() {
 				/*executed before running case*/
