@@ -78,7 +78,7 @@ class TransactionsController extends AppController {
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
-			$data['Transactions']['current_name'] = $current_user[0]['users']['name'];
+			$data['Transaction']['current_name'] = $current_user[0]['users']['name'];
 			
 		}else{
 			$add_status = true;
@@ -86,7 +86,7 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
 													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 													
-			$data['Transactions']['current_name'] = $data['Transaction']['owner_name'];
+			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
 
 		$this->set('data', $data);
