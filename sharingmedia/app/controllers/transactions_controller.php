@@ -122,10 +122,10 @@ class TransactionsController extends AppController {
 		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
-			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
-			$data['Transactions']['trade_author'] = $trade_result[0]['books']['author'];
-			$data['Transactions']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
-			$data['Transactions']['trade_image'] = $trade_result[0]['books']['image'];
+			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
+			$data['Transaction']['trade_author'] = $trade_result[0]['books']['author'];
+			$data['Transaction']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
+			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 
 			//A trade has occurred; swap books in users libraries.
 			$this->Transaction->query('DELETE FROM book_initial_offers
@@ -253,7 +253,6 @@ class TransactionsController extends AppController {
 		}
 
 		//If trade was specifed in the offer, display the book that was offered in trade
-		$trade_id = -1;
 		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
 
@@ -320,10 +319,10 @@ class TransactionsController extends AppController {
 		if($allow_trade > 0){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
-			$data['Transactions']['trade_title'] = $trade_result[0]['books']['title'];
-			$data['Transactions']['trade_author'] = $trade_result[0]['books']['author'];
-			$data['Transactions']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
-			$data['Transactions']['trade_image'] = $trade_result[0]['books']['image'];
+			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
+			$data['Transaction']['trade_author'] = $trade_result[0]['books']['author'];
+			$data['Transaction']['trade_isbn'] = $trade_result[0]['books']['ISBN'];
+			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 		}
 
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
