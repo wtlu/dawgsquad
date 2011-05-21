@@ -8,11 +8,17 @@
 .book_results_display {
 	padding-top: 20px;
 	border-top: 2px solid black;
-	padding-bottom: 40px;
+	padding-bottom: 60px;
+}
+
+.book_results_display input {
+	float: left;
+	clear: left;
 }
 
 .book_results_display img {
 	width: 70px;
+	height: 100px;
 	float: left;
 	margin-right: 10px;
 }
