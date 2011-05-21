@@ -140,7 +140,7 @@ function display_results($result, $user_result, $b_i_o_result, $trade_book) {
 
 					<?php
 					}
-					if ($allow_trade == 1) {
+					if ($allow_trade == 0) {
 					?>
 						<strong>Willing to consider a trade.</strong>
 						<!-- *****Hidden fields, to transfer data to next page****** -->

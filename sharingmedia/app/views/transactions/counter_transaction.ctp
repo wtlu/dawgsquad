@@ -77,6 +77,7 @@ File: /app/views/transaction.ctp
 			
 			<?php
 				if (true) {
+				debug($data['Transaction']['trade_books']);
 			?>
 			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox"">
 			<label for="choose_trade">Books you own, that you could offer in trade:</label>
