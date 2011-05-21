@@ -74,7 +74,7 @@ class TransactionsController extends AppController {
 												AND status  = 0
 												AND book_id = ' . $book_id . ';');
 										
-		if(!empty($duplicate) || ){
+		if(!empty($duplicate)){
 			echo "<h2> You cannot propose a transaction for the same book with the same user twice. </h2>";
 			$current_id = $duplicate[0]['transactions']['current_id'];
 			$current_user = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $current_id . ' ;');
