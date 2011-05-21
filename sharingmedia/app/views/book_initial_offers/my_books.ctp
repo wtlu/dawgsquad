@@ -59,7 +59,7 @@ FB.Canvas.setSize();
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
 						<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
 				<?php } 
-					if($book_collection[$i]["book_initial_offers"]["trade_id"]== 1){?>
+					if($book_collection[$i]["book_initial_offers"]["trade_id"]== 0){?>
 						<li>Trade: Willing to trade</li>
 				<?php }	//if selling print price
 					if(!is_null($book_collection[$i]["book_initial_offers"]["price"])){ ?>
