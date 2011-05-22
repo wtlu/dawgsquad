@@ -16,7 +16,7 @@ my $fname = ($mon+1) . '-' . ($mday) . '-' . ($year+1900)
   . '_' . $hour . '-' . $min . '.log';
 
 # build test command (specific to AWS)
-my $cmd = '/var/www/html/dawgsquad/sharingmedia/cake/console testsuite app all'; # needs cake in the path
+my $cmd = '/var/www/html/dawgsquad/sharingmedia/cake/console/cake testsuite app all'; # needs cake in the path
 
 # run tests
 my $output = "[$fname]\n\n"
