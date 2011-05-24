@@ -95,7 +95,7 @@ class BooksController extends AppController {
                 if (isset($this->data['Book']['author'])) {
                 	$book_author = $this->data['Book']['author'];
                 }
-                if (isset($this->data['Book']['title'])) {
+                if (isset($this->data['Book']['isbn'])) {
 	                $book_isbn = $this->data['Book']['isbn'];
 	            }
                 $index = $this->data['Book']['index'];
