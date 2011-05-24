@@ -261,7 +261,6 @@ class TransactionsController extends AppController {
 			$price = $this->data['Transaction']['sell_price'];
 		}
 
-		$trade_id = "NULL";
 		//If trade was specifed in the offer, display the book that was offered in trade
 		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
@@ -295,6 +294,10 @@ class TransactionsController extends AppController {
 
 
 		//Need to update the transaction tuple with the new values
+		if(!isset($trade_id)){
+			$trade_id = "NULL";
+		}
+		
 		$this->Transaction->query('UPDATE transactions
 									SET current_id = '. $this->Session->read('uid') .',
 										trade_id = '. $trade_id .',

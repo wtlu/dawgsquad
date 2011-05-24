@@ -46,7 +46,7 @@ File: /app/views/transaction.ctp
 					echo '<strong> You propose to buy for $' . $price . '</strong></br>';
 				}
 				
-				if(!empty($trade_id) && $trade_id <> "NULL"){	
+				if(!empty($trade_id) && $trade_id <> -1){	
 						//Display the book that will be traded for
 						?>
 						<fieldset style="border: 3px solid #000000">
