@@ -85,13 +85,19 @@ class BooksController extends AppController {
 
         # Function for the add books results view. Returns an array of Google book results to be displayed in add book
         # results view
-        function add_books_results() {
+        function add_books_results($book_title = null, $book_author = null, $book_isbn = null) {
                 $this->layout = 'main_layout';
         		$this->set('title_for_layout', 'add_book_result');
 
-                $book_title = $this->data['Book']['title'];
-                $book_author = $this->data['Book']['author'];
-                $book_isbn = $this->data['Book']['isbn'];
+                if (isset($this->data['Book']['title'])) {
+                	$book_title = $this->data['Book']['title'];
+                }
+                if (isset($this->data['Book']['author'])) {
+                	$book_author = $this->data['Book']['author'];
+                }
+                if (isset($this->data['Book']['title'])) {
+	                $book_isbn = $this->data['Book']['isbn'];
+	            }
                 $index = $this->data['Book']['index'];
 
                 # build the search string to send to Google books
