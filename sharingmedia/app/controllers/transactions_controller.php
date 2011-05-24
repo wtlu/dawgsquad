@@ -28,9 +28,11 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
+		//Get search data, for use with go back button
 		$search_title = $this->data['Transaction']['title'];
 		$search_author = $this->data['Transaction']['author'];
 		$search_isbn = $this->data['Transaction']['isbn'];
+
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
 			$price = $this->data['Transaction']['price'];
@@ -43,7 +45,7 @@ class TransactionsController extends AppController {
 		};
 		$this->set('duration', $duration);
 
-		/*
+		/* DEPRECATED
 		//Set to a default value of 0
 		if (isset($this->data['Transaction']['allow_trade'])){
 			$allow_trade = $this->data['Transaction']['allow_trade'];
@@ -63,7 +65,6 @@ class TransactionsController extends AppController {
 		$data['Transaction']['price'] = $price;
 		$data['Transaction']['duration'] = $duration;
 		$data['Transaction']['client_id'] = $client_id;
-
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		$this->set('allow_trade', $allow_trade);
@@ -163,6 +164,7 @@ class TransactionsController extends AppController {
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
 
+		// If this transaction is a loan, add to the loans table
 		if ($duration != "NULL") {
 			date_default_timezone_set('UTC');
 			$curr_date = date('Y-m-j H:i:s');
@@ -195,6 +197,7 @@ class TransactionsController extends AppController {
 										AND owner_id = ' . $owner_id . '
 										AND status != 1;');
 
+		// store data and make available to view
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
 		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
@@ -299,12 +302,12 @@ class TransactionsController extends AppController {
 
 
 		//Need to update the transaction tuple with the new values
-		
+
 		if(!isset($trade_id)){
 			$trade_id = -1;
 		}
-		
-		
+
+
 		$this->Transaction->query('UPDATE transactions
 									SET current_id = '. $this->Session->read('uid') .',
 										trade_id = '. $trade_id .',
@@ -327,10 +330,12 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
+		// get the type of offer
 		if (isset($this->data['Transaction']['offer_options'])) {
 			$offer_option = $this->data['Transaction']['offer_options'];
 		}
 
+		// using the offer type, determine whether it is a buy or loan and get the price or loan duration
 		if ($offer_option == "price" && isset($this->data['Transaction']['price'])) {
 			$price = $this->data['Transaction']['price'];
 		} else if ($offer_option == "loan" && isset($this->data['Transaction']['duration'])) {
@@ -347,6 +352,7 @@ class TransactionsController extends AppController {
 			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 		}
 
+		// make data available to the view
 		$data['Transaction']['book_title'] = $book_result[0]['books']['title'];
 		$data['Transaction']['book_id'] = $book_id;
 		$data['Transaction']['owner_name'] = $owner_result[0]['users']['name'];
@@ -362,11 +368,11 @@ class TransactionsController extends AppController {
 
 		$this->set('data', $data);
   }
-  
+
 /*
 	PRE: This function displays the deletion confirmation page delete_transaction.ctp. It is called from the my_transactions.ctp page to remove a transaction from the history. This function requires that the status of the transaction is either complete or canceled.
-	POST: If the user confirms then control is transfered to remove_transaction. If the user cancels then then the user is taken back to my_transactions.ctp.  	
-*/ 
+	POST: If the user confirms then control is transfered to remove_transaction. If the user cancels then then the user is taken back to my_transactions.ctp.
+*/
 	function delete_transaction($tid, $bid, $price, $loan, $trade){
 		//set the layout
 		$this->layout = 'main_layout';
@@ -387,8 +393,8 @@ class TransactionsController extends AppController {
 
 /*
 	PRE: This function is transfered to by delete_transaction.ctp if the user clicks to confirm deleting the transaction.
-	POST: The deleted attribute of the transactions table is checked. If it is -1, the users facebook_id is inserted and they will no longer see the transaction in my_transactions.ctp. If the deleted attribute already contains somebdies facebook_id, then the tuple is removed from the transactions table.  	
-*/ 
+	POST: The deleted attribute of the transactions table is checked. If it is -1, the users facebook_id is inserted and they will no longer see the transaction in my_transactions.ctp. If the deleted attribute already contains somebdies facebook_id, then the tuple is removed from the transactions table.
+*/
 	function remove_transaction($tid){
 		//check deleted attribute
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
