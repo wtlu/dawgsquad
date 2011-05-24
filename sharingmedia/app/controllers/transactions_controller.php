@@ -290,15 +290,17 @@ class TransactionsController extends AppController {
 		$this->set('book_image', $book_image);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
-		$this->set('trade_id', $trade_id);
+		if(isset($trade_id)){
+			$this->set('trade_id', $trade_id);
+		}
 
 
 		//Need to update the transaction tuple with the new values
-		echo "This is trade_id: " . $trade_id;
+		
 		if(!isset($trade_id)){
 			$trade_id = -1;
 		}
-		echo "This is trade_id: " . $trade_id;
+		
 		
 		$this->Transaction->query('UPDATE transactions
 									SET current_id = '. $this->Session->read('uid') .',
