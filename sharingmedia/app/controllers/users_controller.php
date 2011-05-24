@@ -1,5 +1,10 @@
 <?php
+/*
+	Created: 5/3/2011
+	Author: Troy Martin
 
+	This controller handles user login and authentication
+*/
 class UsersController extends AppController {
 	var $helpers = array ('HTML', 'Form', 'Session', 'Facebook.Facebook');
 	var $name = 'Users';
