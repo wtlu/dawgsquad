@@ -103,13 +103,16 @@ class TransactionsController extends AppController {
 
 			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
-		
-		
+
+
 		$this->set('data', $data);
 
 
   }
 
+  //Pre: Called from confirm_transactions(). This is essentially the final "accept" stage of the transaction.
+  /*Post: Updates transaction to completed state. Removes other pending transactions on this book. Updates trades and loans as necessary
+  	depending on the type of transaction. */
 	function accept_transaction($book_id = null, $owner_id = null, $price = "NULL", $duration = "NULL", $client_id = "NULL", $allow_trade = -1) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -175,15 +178,15 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
-										
+
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
 																				','  . $book_id .
 																				',-1' .
 																				',NULL' .
 																				',NULL' .
-																				', NOW(), NULL);');							
-		
-										
+																				', NOW(), NULL);');
+
+
 		}
 
 		// remove all other pending transactions on this book
@@ -305,6 +308,8 @@ class TransactionsController extends AppController {
 										AND status = 0;');
   }
 
+  //Pre: Called from transactions.ctp view when the user clicks to accept the transaction. The first stage of accepting a transaction
+  //Post: Passes data to accept_transaction.ctp. Pretty much does nothing else, this is just a confirmation page for the user.
   function confirm_transaction($book_id = null, $owner_id = null, $client_id = "NULL",  $allow_trade = 0, $offer_option = null, $price = "NULL", $duration = "NULL") {
 
 		$this->layout = 'main_layout';
@@ -350,6 +355,8 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
   }
 
+  //Pre: Called when user goes to delete a transaction from My Library, from my_transactions.ctp.
+  //Post: Passes data to remove_transaction. This is just a page confirming to the user if they want to delete a transaction.
 	function delete_transaction($tid, $bid, $price, $loan, $trade){
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -366,6 +373,8 @@ class TransactionsController extends AppController {
 		$this->set('trade', $trade);
 	}
 
+  //Pre: Called from delete_transaction.
+  //Post: Deletes tuple from transactions table. The final step in removing a transaction.
 	function remove_transaction($tid){
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
