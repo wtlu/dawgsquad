@@ -14,17 +14,12 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
-<script type="text/javascript" language="javascript">
+<script language="javascript">
 function CheckCheckboxes(){
-    var elLength = document.MyForm.elements.length;
     var checkCount = 0;
 
-    for (i=0; i<elLength; i++)
-    {
-        var type = MyForm.elements[i].type;
-        if (type=="checkbox" && MyForm.elements[i].checked){
-            checkCount++;
-        }
+    if (document.counterForm.data[Transaction][offer_loan].checked == true) {
+    	alert("checked!);
     }
     if (checkCount > 0) {
 		alert("more than 0!");
@@ -58,8 +53,8 @@ function CheckCheckboxes(){
 	</p>
 
 
-	<?php echo $form->create('Transaction', array('action' => 'make_offer', 'type'=>'post')); ?>
-
+	<!--	<?php echo $form->create('Transaction', array('action' => 'make_offer', 'type'=>'post')); ?> -->
+	<form name="counterForm" id="TransactionMakeOfferForm" method="post" action="transactions/make_offer">
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id'] ?>" type="hidden">
