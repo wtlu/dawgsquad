@@ -11,8 +11,33 @@ File: /app/views/transaction.ctp
 
 	# This is the view for the add books form.
 -->
+
+<html>
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
+
+<body>
+<script language="javascript">
+
+function checkCheckboxes(){
+
+    var checkCount = 0;
+    if (document.counter_form.choose_loan.checked) {
+    	checkCount++;
+    }
+    if (document.counter_form.choose_sell.checked) {
+    	checkCount++;
+    }
+    if (document.counter_form.choose_trade.checked) {
+    	checkCount++;
+    }
+    if (checkCount > 0) {
+		document.counter_form.counter_button.disabled=false;
+    } else {
+		document.counter_form.counter_button.disabled=true;
+    }
+}
+</script>
 
 <!-- This displays the book details for the book that the user is trying to aquire -->
 <fieldset style="border: 3px solid #000000">
@@ -51,7 +76,7 @@ File: /app/views/transaction.ctp
 
 		<!-- Input for the loan -->
 		<div class="options">
-			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onClick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onClick="checkCheckboxes()">
 			<label for="choose_loan">Loan For</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
@@ -61,7 +86,7 @@ File: /app/views/transaction.ctp
 
 		<!-- Input for the buy -->
 		<div class="options">
-			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="javascript:document.counter_form.counter_button.disabled=false">
+			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="checkCheckboxes()">
 			<label for="choose_sell">Sell For</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
@@ -75,7 +100,7 @@ File: /app/views/transaction.ctp
 			<?php
 				if (true) {
 			?>
-			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" onClick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" onClick="checkCheckboxes()">
 			<label for="choose_trade">Books you own, that you could offer in trade:</label>
 					<!-- <input type="radio" name="trade" value="t"> -->
 					<div class="trade_list">
@@ -102,27 +127,10 @@ File: /app/views/transaction.ctp
 		</div>
 
 
-
-
-
-
-<script language="javascript">
-function CheckCheckboxes(){
-    var checkCount = 0;
-
-    if (document.counter_form.data[Transaction][offer_loan].checked == true) {
-    	alert("checked!);
-    }
-    if (checkCount > 0) {
-		alert("more than 0!");
-    } else {
-		alert("0");
-    }
-}
-</script>
-
 </div>
 </fieldset>
+</body>
+</html>
 
 
 <?php
