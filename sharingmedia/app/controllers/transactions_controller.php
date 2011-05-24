@@ -261,6 +261,7 @@ class TransactionsController extends AppController {
 			$price = $this->data['Transaction']['sell_price'];
 		}
 
+		$trade_id = "NULL";
 		//If trade was specifed in the offer, display the book that was offered in trade
 		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
 			$trade_id = $this->data['Transaction']['trade_id'];
