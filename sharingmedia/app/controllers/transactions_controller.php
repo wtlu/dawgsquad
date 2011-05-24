@@ -294,9 +294,11 @@ class TransactionsController extends AppController {
 
 
 		//Need to update the transaction tuple with the new values
+		echo "This is trade_id: " . $trade_id;
 		if(!isset($trade_id)){
-			$trade_id = "NULL";
+			$trade_id = -1;
 		}
+		echo "This is trade_id: " . $trade_id;
 		
 		$this->Transaction->query('UPDATE transactions
 									SET current_id = '. $this->Session->read('uid') .',
