@@ -293,10 +293,18 @@ class TransactionsController extends AppController {
 		$this->set('book_image', $book_image);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
-		$this->set('trade_id', $trade_id);
+		if(isset($trade_id)){
+			$this->set('trade_id', $trade_id);
+		}
 
 
 		//Need to update the transaction tuple with the new values
+		
+		if(!isset($trade_id)){
+			$trade_id = -1;
+		}
+		
+		
 		$this->Transaction->query('UPDATE transactions
 									SET current_id = '. $this->Session->read('uid') .',
 										trade_id = '. $trade_id .',
@@ -354,17 +362,21 @@ class TransactionsController extends AppController {
 
 		$this->set('data', $data);
   }
-
-  //Pre: Called when user goes to delete a transaction from My Library, from my_transactions.ctp.
-  //Post: Passes data to remove_transaction. This is just a page confirming to the user if they want to delete a transaction.
+  
+/*
+	PRE: This function displays the deletion confirmation page delete_transaction.ctp. It is called from the my_transactions.ctp page to remove a transaction from the history. This function requires that the status of the transaction is either complete or canceled.
+	POST: If the user confirms then control is transfered to remove_transaction. If the user cancels then then the user is taken back to my_transactions.ctp.  	
+*/ 
 	function delete_transaction($tid, $bid, $price, $loan, $trade){
+		//set the layout
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-
+		//get the book information to display to the user
 		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $bid);
+		//get the name of the owner of the book for this transaction
 		$name_array = $this->Transaction->query("SELECT name FROM users u, transactions t WHERE t.id = " . $tid . " AND t.owner_id = u.facebook_id");
 		$name = $name_array[0]["u"]["name"];
-
+		//send everything to the view
 		$this->set('tid', $tid);
 		$this->set('name', $name);
 		$this->set('book_array', $book_array);
@@ -373,11 +385,15 @@ class TransactionsController extends AppController {
 		$this->set('trade', $trade);
 	}
 
-  //Pre: Called from delete_transaction.
-  //Post: Deletes tuple from transactions table. The final step in removing a transaction.
+/*
+	PRE: This function is transfered to by delete_transaction.ctp if the user clicks to confirm deleting the transaction.
+	POST: The deleted attribute of the transactions table is checked. If it is -1, the users facebook_id is inserted and they will no longer see the transaction in my_transactions.ctp. If the deleted attribute already contains somebdies facebook_id, then the tuple is removed from the transactions table.  	
+*/ 
 	function remove_transaction($tid){
+		//check deleted attribute
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
+		//if deleted is -1, add users facebook_id, otherwise remove tuple
 		if($deleted == -1){
 			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);
 		} else {
