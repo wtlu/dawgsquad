@@ -14,21 +14,6 @@ File: /app/views/transaction.ctp
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('transactions', NULL, array('inline' => FALSE)); ?>
 
-<script language="javascript">
-function CheckCheckboxes(){
-    var checkCount = 0;
-
-    if (document.counterForm.data[Transaction][offer_loan].checked == true) {
-    	alert("checked!);
-    }
-    if (checkCount > 0) {
-		alert("more than 0!");
-    } else {
-		alert("0");
-    }
-}
-</script>
-
 <!-- This displays the book details for the book that the user is trying to aquire -->
 <fieldset style="border: 3px solid #000000">
 		<legend> The Book You Are Making An Offer For:</legend>
@@ -67,7 +52,7 @@ function CheckCheckboxes(){
 
 		<!-- Input for the loan -->
 		<div class="options">
-			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onclick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onClick="CheckCheckboxes()">
 			<label for="choose_loan">Loan For</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
@@ -77,7 +62,7 @@ function CheckCheckboxes(){
 
 		<!-- Input for the buy -->
 		<div class="options">
-			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onclick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="CheckCheckboxes()">
 			<label for="choose_sell">Sell For</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
@@ -91,7 +76,7 @@ function CheckCheckboxes(){
 			<?php
 				if (true) {
 			?>
-			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" onclick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_trade]" id="choose_trade" value="trade" type="checkbox" onClick="CheckCheckboxes()">
 			<label for="choose_trade">Books you own, that you could offer in trade:</label>
 					<!-- <input type="radio" name="trade" value="t"> -->
 					<div class="trade_list">
@@ -122,7 +107,20 @@ function CheckCheckboxes(){
 
 
 
+<script language="javascript">
+function CheckCheckboxes(){
+    var checkCount = 0;
 
+    if (document.counterForm.data[Transaction][offer_loan].checked == true) {
+    	alert("checked!);
+    }
+    if (checkCount > 0) {
+		alert("more than 0!");
+    } else {
+		alert("0");
+    }
+}
+</script>
 
 </div>
 </fieldset>
