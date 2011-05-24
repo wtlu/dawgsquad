@@ -38,8 +38,7 @@ File: /app/views/transaction.ctp
 	</p>
 
 
-	<!--	<?php echo $form->create('Transaction', array('action' => 'make_offer', 'type'=>'post')); ?> -->
-	<form name="counterForm" id="TransactionMakeOfferForm" method="post" action="transactions/make_offer">
+	<?php echo $form->create('Transaction', array('name' => 'counter_form', 'action' => 'make_offer', 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id'] ?>" type="hidden">
@@ -62,7 +61,7 @@ File: /app/views/transaction.ctp
 
 		<!-- Input for the buy -->
 		<div class="options">
-			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="javascript:document.offer_form.accept_button.disabled=false">
+			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="javascript:document.counter_form.counter_button.disabled=false">
 			<label for="choose_sell">Sell For</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
@@ -111,7 +110,7 @@ File: /app/views/transaction.ctp
 function CheckCheckboxes(){
     var checkCount = 0;
 
-    if (document.counterForm.data[Transaction][offer_loan].checked == true) {
+    if (document.counter_form.data[Transaction][offer_loan].checked == true) {
     	alert("checked!);
     }
     if (checkCount > 0) {
