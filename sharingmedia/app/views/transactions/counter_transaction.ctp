@@ -62,7 +62,7 @@ File: /app/views/transaction.ctp
 
 		<!-- Input for the buy -->
 		<div class="options">
-			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="CheckCheckboxes()">
+			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="javascript:document.offer_form.accept_button.disabled=false">
 			<label for="choose_sell">Sell For</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
