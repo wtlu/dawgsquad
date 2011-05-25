@@ -53,9 +53,12 @@ class BooksController extends AppController {
                 if ($this->Session->read('uid') != null) {
                 	$session_id = $this->Session->read('uid');
                 }
-                # DEPRECATED if (!empty($this->data['Book']['title']) || !empty($this->data['Book']['author']) || !empty($this->data['Book']['isbn'])){
                 if (!empty($book_title) || !empty($book_author) || !empty($book_isbn)){
                         # query our database to find the book
+                        # ensures that no results are returned for:
+                        #	books you currently have on loan
+                        #	books you currently have in your library
+                        #	books that you currently have a transaction on (excludes completed transactions)
                         $book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
                                 FROM books books, book_initial_offers b_i_o, users users
 	                                WHERE b_i_o.user_id = users.facebook_id
@@ -71,7 +74,12 @@ class BooksController extends AppController {
 													FROM book_initial_offers b_i_o_2
 													WHERE b_i_o.book_id = b_i_o_2.book_id
 														AND b_i_o_2.user_id = ' . $session_id . ')
-
+										AND 1 > (SELECT COUNT(*)
+													FROM transactions t
+													WHERE t.client_id = ' . $session_id .'
+														AND t.owner_id = b_i_o.user_id
+														AND t.book_id = b_i_o.book_id
+														AND t.status = 0)
                                 ORDER BY books.id;');
 
 

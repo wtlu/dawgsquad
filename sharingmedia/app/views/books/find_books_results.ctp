@@ -14,17 +14,6 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <?php echo $this->Html->css('book_results', NULL, array('inline' => FALSE)); ?>
 
-<!--
-<script type="text/javascript">
-window.fbAsyncInit = function() {
-FB.Canvas.setSize();
-}
-// Do things that will sometimes call sizeChangeCallback()
-function sizeChangeCallback() {
-FB.Canvas.setSize();
-}
-</script>
--->
 </head>
 
 <body>
@@ -64,18 +53,6 @@ FB.Canvas.setSize();
 	<hr>
 </div>
 
-<!--
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
-FB.init({
-appId : '218244414868504',
-status : true, // check login status
-cookie : true, // enable cookies to allow the server to access the session
-xfbml : true // parse XFBML
-});
-</script>
--->
 </body>
 
 <?php
