@@ -66,13 +66,33 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 																					$data['Transaction']['allow_trade']."/", 'type'=>'post'));
 	if (isset($data['Transaction']['price']) && ("NULL" <> $data['Transaction']['price'])) {
 	?>
+		<?php
+		if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+		?>
+		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Sell</strong> - Price: $<?= $data['Transaction']['price'] ?><br>
+		<?php
+		} else {
+		?>
 		<input id="buy" type="radio" name="data[Transaction][offer_options]" value="price" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Buy</strong> - Price: $<?= $data['Transaction']['price'] ?><br>
+		<?php
+		}
+		?>
 		<input name="data[Transaction][price]" id="price" value="<?= $price ?>" type="hidden">
 	<?php
 	}
 	if (isset($data['Transaction']['duration']) && ("NULL" <> $data['Transaction']['duration'])) {
 	?>
+		<?php
+		if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+		?>
+		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Loan</strong> - Duration: <?= $data['Transaction']['duration'] ?> days<br>
+		<?php
+		} else {
+		?>
 		<input id="loan" type="radio" name="data[Transaction][offer_options]" value="loan" onClick = "javascript:document.offer_form.accept_button.disabled=false"> <strong>Borrow</strong> - Duration: <?= $data['Transaction']['duration'] ?> days<br>
+		<?php
+		}
+		?>
 		<input name="data[Transaction][duration]" id="duration" value="<?= $duration ?>" type="hidden">
 	<?php
 	}
