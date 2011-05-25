@@ -28,12 +28,12 @@
 </div>
 
 <div id="list">
-	<?php		//loop to print out transaction		
+	<?php		//loop to print out transaction
 		$size = sizeof($transaction_collection);
 		for($i=0; $i < $size; $i++){
 			if($transaction_collection[$i]["t"]["deleted"] != $this->Session->read('uid')){
 	?>
-		<div class="book_unit">	
+		<div class="book_unit">
 			<img class= "book_img" src="<?=$transaction_collection[$i]["b"]["image"]?>" alt="<?=$transaction_collection[$i]["b"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $transaction_collection[$i]["b"]["title"]?></li>
@@ -41,7 +41,7 @@
 				<?php 	//if loans not Null Print
 					if(!is_null($transaction_collection[$i]["t"]["duration"])){ ?>
 						<li>Loan Duration: <?=$transaction_collection[$i]["t"]["duration"]?> days</li>
-				<?php } 
+				<?php }
 					if($transaction_collection[$i]["t"]["trade_id"]== 0){?>
 						<li>Trade: Willing to trade</li>
 				<?php }	//if selling print price
@@ -50,7 +50,7 @@
 				<?php }?>
 				<li>Owner: <?= $transaction_collection[$i]["u"]["name"]?></li>
 				<li>Client: <?= $transaction_collection[$i]["client_name"]?></li>
-				<li>Transaction Status: 
+				<li>Transaction Status:
 					<?php
 						if(($transaction_collection[$i]["t"]["status"]) == 0) { ?>
 						Pending
@@ -62,7 +62,7 @@
 						Canceled
 					<?php }?>
 				</li>
-				<li>Last Updated: 
+				<li>Last Updated:
 					<?php
 						if (is_null($transaction_collection[$i]["t"]["modified"])) {
 							echo $transaction_collection[$i]["t"]["created"];
@@ -72,10 +72,10 @@
 					?>
 				</li>
 			</ul>
-			<?php  
+			<?php
 				$loan = $transaction_collection[$i]["t"]["duration"];
 				$price = $transaction_collection[$i]["t"]["price"];
-				$trade = $transaction_collection[$i]["t"]["trade_id"]; 
+				$trade = $transaction_collection[$i]["t"]["trade_id"];
 				if(is_null($loan)){
 					$loan = "NULL";
 				}
@@ -88,20 +88,22 @@
 			?>
 			<?php
 			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
-				echo $this->Html->link('View Transaction', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
+				echo $this->Html->link('View Offer', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
+			} else {
+				echo "Waiting for a response to your counteroffer";
 			}
-			
+
 			if($transaction_collection[$i]["t"]["status"] != 0){
 				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
-			?>	
+			?>
 		</div>
 	<?php
 			}
 		}
 
-	?>	
-	
+	?>
+
 </div>
-     
+
 
