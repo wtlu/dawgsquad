@@ -110,9 +110,7 @@ function checkCheckboxes(){
 						if(!empty($data['Transaction']['trade_books'])){
 							//Display all tradeable books as options for the offer proposal
 							foreach ($data['Transaction']['trade_books'] as $tradeable){
-								echo '<input type="radio" name="trade_option" value="' . $tradeable . '" /> ';
 								display_results($tradeable);
-								echo '<br />';
 							}
 						}
 					}
@@ -139,6 +137,9 @@ function display_results($result) {
 
 	?>
 	<div class="book_results_display">
+	<?php
+		echo '<input type="radio" name="trade_option" value="' . $result . '" /> ';
+	?>
 
 
 		<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $result['books']['id'] ?>" type="hidden">
@@ -162,6 +163,7 @@ function display_results($result) {
 		</label>
 	</div>
 	<?php
+	echo '<br />';
 }
 ?>
 
