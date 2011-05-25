@@ -97,6 +97,10 @@ legend {
 	padding-bottom: 40px;
 }
 
+.book_results_display .radio_b {
+	clear: left;
+}
+
 .book_results_display img {
 	width: 70px;
 	float: left;
