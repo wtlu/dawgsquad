@@ -11,7 +11,7 @@ App::import('Model', 'Transaction');
 
 class TransactionsControllerTest extends CakeTestCase {
 
-  var $fixtures = array('app.transaction', 'app.book_initial_offer');
+  var $fixtures = array( 'app.transaction', 'app.user', 'app.book', 'app.loan' );
 
   //--------------------------------------------------
   // SETUP
@@ -40,12 +40,7 @@ class TransactionsControllerTest extends CakeTestCase {
   /**
    * purpose	: tests successfully establishing a new transaction
    * expected	: transaction is added to DB
-   * conditions : transactions is of the form...
-   *              transactions($book_id, $owner_id, $client_id)
-   *
-   * notes : I assume that this is creating the transaction initially.
-   *         We don't need price / duration because there's initial
-   *         offer data associated with the book.
+   * conditions : 
    */
   function testTransactions() {
 
@@ -56,18 +51,21 @@ class TransactionsControllerTest extends CakeTestCase {
     $book_id	= 1;		/* web programming */
     $owner_id	= 1;
     $client_id	= 2;
+    $price = 100.0;
+    $duration = null;
+    $allow_trade = -1;
 
     /* add the transaction */
-    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$client_id");
+    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$price/$duration/$allow_trade/$client_id");
 
     /* get that transaction from the DB */
-    $transaction = $this->Transaction->find('first', 
-					    array('conditions' => 
-						  array('Transaction.owner_id' => $owner_id, 
-							'Transaction.client_id' => $client_id,
-							'Transaction.book_id' => $book_id)
-						  )
-					    );
+    $transaction = $this->Transaction->find('first',
+    					    array('conditions' =>
+    						  array('Transaction.owner_id' => $owner_id,
+    							'Transaction.client_id' => $client_id,
+    							'Transaction.book_id' => $book_id)
+    						  )
+    					    );
 
     /* check */
     $this->assertTrue(isset($transaction));					/* got something */
@@ -97,35 +95,42 @@ class TransactionsControllerTest extends CakeTestCase {
   //--------------------------------------------------
   // ACCEPT_TRANSACTION
   // -- note: all you need for this (logically) is the transaction id
+  // --       the way it's set up is redundant
   //--------------------------------------------------
 
   /**
    * purpose	: tests successfully moving transaction to 'completed' state
    * expected	: transaction is completed
-   * conditions : transaction is pending; accept_transaction is of form...
-   *              accept_transaction( $transaction_id )
    */
   function testAcceptTransactionSuccess() {
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
     
-    /* get a transaction from fixture that's pending */
+    /* params */
     $transaction_id = 100;
-
+    $book_id = 20;
+    $owner_id = 100;
+    $price = 100.0;
+    $duration = null;
+    $client_id = 200;
+    $allow_trade = -1;
+     
     /* accept it */
-    $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
+    $result = $this->testAction("/transactions/accept_transaction/$book_id/$owner_id/$price/$duration/$client_id/$allow_trade");
 
     /* get that transaction from the db */
-    $transaction = $this->Transaction->find('first', 
-					    array('conditions' => 
-						  array('Transaction.id' => $transaction_id)
-						  )
+    $transaction = $this->Transaction->find('first',
+					    array('conditions' =>
+					    	  array(
+							'id' => 100
+					    		)
+					    	  )
 					    );
 
     /* check that it's accepted */
     $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
-    $this->assertTrue($transaction['Transaction']['status'] == 2);		/* accepted */
+    $this->assertTrue($transaction['Transaction']['status'] == 1);		/* accepted */
 
   }
 
@@ -142,20 +147,27 @@ class TransactionsControllerTest extends CakeTestCase {
     
     /* get a transaction from fixture that's rejected */
     $transaction_id = 200;
-
+    $book_id = 20;
+    $owner_id = 100;
+    $price = 100.0;
+    $duration = null;
+    $client_id = 200;
+    $allow_trade = -1;
+     
     /* accept it */
-    $result = $this->testAction("/transactions/accept_transaction/$transaction_id");
+    $result = $this->testAction("/transactions/accept_transaction/$book_id/$owner_id/$price/$duration/$client_id/$allow_trade");
 
     /* get that transaction from the db */
     $transaction = $this->Transaction->find('first', 
 					    array('conditions' => 
-						  array('Transaction.id' => $transaction_id)
+						  array(
+							'id' => $transaction_id
+							)
 						  )
 					    );
 
-    /* check that it's accepted */
-    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
-    $this->assertTrue($transaction['Transaction']['status'] == 1);		/* rejected */
+    /* check that it's no longer in db */
+    $this->assertTrue($transaction == null);
 
   }
 
@@ -165,9 +177,7 @@ class TransactionsControllerTest extends CakeTestCase {
 
   /**
    * purpose	: tests displaying transactions for user
-   * expected	: test user has two transactions (id's == 1 and 2)
-   * conditions : my_transactions is of form...
-   *              my_transactions( $user_id )
+   * expected	: test user has two transactions
    */
   function testMyTransactions() {
 
@@ -175,41 +185,24 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $owner_id = 100;
+    $user_id = 100;
 
     /* look up user's transactions */
-    $result = $this->testAction("/transactions/my_transactions/$owner_id",
+    $result = $this->testAction("/transactions/my_transactions/$user_id",
 				array('return' => 'vars')
 				);
     
-    /* make sure both transactions are returned */
-    $this->assertEqual(count($result['transaction_collection'] == 2));
+    /* make sure both transactions for $user_id == 100 are returned */
+    $this->assertEqual(count($result['transaction_collection']), 2);
 
   }
 
   //--------------------------------------------------
   // CONFIRM TRANSACTION
-  // -- NOTE: controller does not do significant action
-  //          will only require test if confirmed state added
+  // -- controller does not do significant action
+  // -- no test required
   //--------------------------------------------------
   
-  /**
-   * purpose	: tests confirming transaction
-   * expected	: transaction is accepted and confirmed
-   * conditions : confirm_transaction is of form...
-   *              confirm_transaction( $transaction_id )
-   */
-  function testConfirmTransaction() {
-
-    /* get transaction */
-
-    /* ensure transaction has been accepted */
-
-    /* set transaction confirmed */
-    // NOTE: NO CONFIRMED STATE IN MODEL
-
-  }
-
   //--------------------------------------------------
   // COUNTER TRANSACTION
   //--------------------------------------------------
@@ -236,15 +229,19 @@ class TransactionsControllerTest extends CakeTestCase {
     /* get the transaction */
     $transaction = $this->Transaction->find('first', 
 					    array('conditions' => 
-						  array('Transaction.id' => $transaction_id)
+						  array('id' => $transaction_id)
 						  )
 					    );
 
+    /* SHOULD FAIL BECAUSE INTERFACE ILL DEFINED
+     * UNCOMMENT BELOW LINES WHEN INTERFACE CORRECTLY DEFINED */
+    $this->assertTrue(0);
+
     /* ensure offer was updated, and other offer types are still null */
-    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
-    $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/* updated offer */
-    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutually exclusive */
-    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutually exclusive */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
 
   }
   
@@ -275,11 +272,15 @@ class TransactionsControllerTest extends CakeTestCase {
 						  )
 					    );
 
-    /* ensure the transaction now has a duration, and other types are null */
-    $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/* right one */
-    $this->assertTrue($transaction['Transaction']['price'] == null );		/* updated offer */
-    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutually exclusive */
-    $this->assertTrue($transaction['Transaction']['duration'] == $new_offer);	/* mutually exclusive */
+    /* SHOULD FAIL BECAUSE INTERFACE ILL DEFINED
+     * UNCOMMENT BELOW LINES WHEN INTERFACE CORRECTLY DEFINED */
+    $this->assertTrue(0);
+
+    /* /\* ensure the transaction now has a duration, and other types are null *\/ */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == null );		/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == $new_offer);	/\* mutually exclusive *\/ */
     
   }
 
