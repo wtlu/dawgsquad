@@ -253,7 +253,7 @@ class TransactionsControllerTest extends CakeTestCase {
   function testCounterTransactionDiffType() {
 
     /* init */
-    $this->Transaction =& ClassRegistryz::init('Transaction');
+    $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
     $transaction_id = 300;
