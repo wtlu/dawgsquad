@@ -90,7 +90,7 @@
 			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
 				echo $this->Html->link('View Offer', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
 			} else if($uid == $last && $transaction_collection[$i]["t"]["status"] == 0){
-				echo "Waiting for owner's response to your counteroffer";
+				echo "Waiting for a response to your counteroffer";
 			}
 
 			if($transaction_collection[$i]["t"]["status"] != 0){

@@ -41,9 +41,21 @@ File: /app/views/transaction.ctp
 		</p>
 </fieldset>
 
-<div>
-<p> <?= $data['Transaction']['current_name'] ?> has offered the following options for obtaining this book. Please select one, or
-create a counter-offer. </p>
+<?php
+if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+?>
+	<div>
+	<p> <?= $data['Transaction']['current_name'] ?> has countered your offer with the following options for obtaining your book. Please select one, or
+	create a counter-offer. </p>
+<?php
+} else {
+?>
+	<div>
+	<p> <?= $data['Transaction']['current_name'] ?> has offered the following options for obtaining this book. Please select one, or
+	create a counter-offer. </p>
+<?php
+}
+?>
 
 
 <?php
