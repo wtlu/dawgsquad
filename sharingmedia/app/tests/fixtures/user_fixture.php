@@ -25,24 +25,29 @@ CREATE TABLE users(
      
 				/*dummy test records to test with*/
 
-				var $records = array(
-							array ('id' => 1,
-								   'name' => 'person A',
-								   'password' => 'root1',
-								   'facebook_id' => 1
-							),
-							array ('id' => 2,
-								   'name' => 'person B',
-								   'password' => 'root2',
-								   'facebook_id' => 2
-							   
-							),array ('id' => 3,
-								   'name' => 'person C',
-								   'password' => 'root3',
-								   'facebook_id' => 3
-						   	)					
-				);
-			
+		var $records = array(
+				     array ('id' => 1,
+					    'name' => 'person A',
+					    'password' => 'root1',
+					    'facebook_id' => 1
+					    ),
+				     array ('id' => 2,
+					    'name' => 'person B',
+					    'password' => 'root2',
+					    'facebook_id' => 2
+					    ),
+				     array ('id' => 3,
+					    'name' => 'person C',
+					    'password' => 'root3',
+					    'facebook_id' => 3
+					    ),
+				     array ('id' => 100,
+					    'name' => 'Greg A',
+					    'password' => 'root',
+					    'facebook_id' => 100
+					    )
+				     );
+		
 
   }
 ?>
