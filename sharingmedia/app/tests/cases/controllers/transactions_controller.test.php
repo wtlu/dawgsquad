@@ -194,7 +194,6 @@ class TransactionsControllerTest extends CakeTestCase {
     
     /* make sure both transactions for $user_id == 100 are returned */
     $this->assertEqual(count($result['transaction_collection']), 2);
-
   }
 
   //--------------------------------------------------
