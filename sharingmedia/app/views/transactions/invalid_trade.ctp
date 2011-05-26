@@ -10,7 +10,7 @@
 time since the offer was made. Therfore, a different option must be selected for this transaction.</p>
 
 <?php
-echo $form->create('Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
+echo $form->create('Transaction', array('escape'=> false, 'action' => 'transactions'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['price']."/".
