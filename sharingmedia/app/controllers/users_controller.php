@@ -85,18 +85,21 @@ class UsersController extends AppController {
 	    		//debug($me);
 	    		$friendsLists = $facebook->api('/me/friends');
 	    		//debug($friendsLists);
-	    		$this->Session->write('friendsLists', $friendsLists["data"]);
-	    		$temp = $this->Session->read('friendsLists');
-	    		debug($temp);
-/*				
+	    		//$this->Session->write('friendsLists', $friendsLists["data"]);
+	    		//$temp = $this->Session->read('friendsLists');
+	    		//debug($temp);
+				$friendsArray = new Array();
+				$i = 0;
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
 			         // do something with the friend, but you only have id and name
 			         $id = $friend['id'];
-			         $name = $friend['name'];
+			         $friendsArray[$i] = $id;
+			         $i++;
+			         //$name = $friend['name'];
 			      }
-			   }
-*/			   
+			   	}
+		   		$this->Session->write('friends', $friendsArray);
 			   // query the table to see if the user is in the table
 				$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 				$count_num = $count[0][0]['COUNT(*)'];
