@@ -28,7 +28,8 @@
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){
 			$temp = $this->Session->read('friends');
-			if($temp["$book['users']"]){
+			$owner_id = $book['users']['facebook_id'];
+			if($temp["$owner_id"]){
 			$result = $book['books'];
 			$user_result = $book['users'];
 			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
