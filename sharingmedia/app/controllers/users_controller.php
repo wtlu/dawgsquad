@@ -128,7 +128,8 @@ class UsersController extends AppController {
 	}
 	
 	function blank(){
-		
+		$this->layout = 'login_layout';
+		$this->set('title_for_layout', 'Login');
 	}
 	
 /*
