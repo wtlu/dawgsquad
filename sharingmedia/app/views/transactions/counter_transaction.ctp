@@ -138,7 +138,8 @@ function display_results($result) {
 	?>
 	<div class="book_results_display">
 	<?php
-		echo '<input type="radio" name="trade_option" value="' . $result . '" style = "float:left" /> ';
+		echo '<input type="radio" name="trade_option" value="' . $result . '" style = "float:left; margin-right: 10px" /> ';
+		echo $result;
 	?>
 
 
