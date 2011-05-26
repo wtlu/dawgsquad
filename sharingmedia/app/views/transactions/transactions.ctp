@@ -30,10 +30,10 @@ File: /app/views/transaction.ctp
 			}
 			*/
 			if ($search_title != null || $search_author != null || $search_isbn != null) {
-				echo $this->Form->create('Transaction', array('escape'=> false, 'action' => 'back_and_cancel' . "/" .
-																				$search_title . "/" .
-																				$search_author . "/" .
-																				$search_isbn . "/" .
+				echo $form->create('Transaction', array('escape'=> false, 'action' => 'back_and_cancel'."/".
+																				$search_title."/".
+																				$search_author."/".
+																				$search_isbn."/".
 																				$data['Transaction']['book_id']."/".
 																				$data['Transaction']['owner_id']."/".
 																				$data['Transaction']['client_id']."/", 'type'=>'post'));
