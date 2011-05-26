@@ -476,12 +476,12 @@ class TransactionsController extends AppController {
 		$this->set('title_for_layout', 'Library || My Transactions');
 
 		
-		$data['Transactions']['book_id'] = $book_id;
-		$data['Transactions']['owner_id'] = $owner_id;
-		$data['Transactions']['price'] = $price;
-		$data['Transactions']['duration'] = $duration;
-		$data['Transactions']['trade_id'] = 0;
-		$data['Transactions']['client_id'] = $client_id;
+		$data['Transaction']['book_id'] = $book_id;
+		$data['Transaction']['owner_id'] = $owner_id;
+		$data['Transaction']['price'] = $price;
+		$data['Transaction']['duration'] = $duration;
+		$data['Transaction']['trade_id'] = 0;
+		$data['Transaction']['client_id'] = $client_id;
 
 		$this->set('data', $data);
 
