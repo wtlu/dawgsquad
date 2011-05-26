@@ -22,7 +22,9 @@
 		</p>
 	</fieldset>
 
-	<?php echo $this->Html->link('Remove Loan',"/loans/remove_loan/".$book_info[0]["books"]["id"]."/".$this->Session->read('uid')."/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $form->create('Loan', array('action' => "remove_loan/".$book_info[0]["books"]["id"]."/".$this->Session->read('uid')."/", 'class' => 'buttons', 'escape' => false)); 
+	
+	echo $this->Form->read('Complete Loan');?>
 	
 </div>
 
