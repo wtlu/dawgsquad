@@ -87,7 +87,7 @@ class BookInitialOffersController extends AppController {
 
 	}
 
-	FUnction edit_comfirm(){
+	function edit_comfirm(){
 		//set title and defualt layout
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Comfirm New Offer');

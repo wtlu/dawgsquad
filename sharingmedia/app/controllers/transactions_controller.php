@@ -344,6 +344,24 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		if($allow_trade > 0){
+			
+			//Make sure that if a trade is being accepted, that the client actually still has the book in his/her library
+			$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
+			if(empty($ensure_tradeable)){
+				//The client no longer has the book that is being accepted in trade;
+				//Update the transaction tuple to no longer include a specific book for trade, and redirect back to transaction.ctp
+				$this->Transaction->query('UPDATE transactions
+									SET trade_id = 0,
+									WHERE owner_id = ' . $owner_id . '
+										AND client_id = ' . $client_id . '
+										AND book_id = ' . $book_id . '
+										AND status = 0;');
+										
+				
+				$this->redirect("/transactions/transactions/$book_id/$owner_id/$price/$duration/0/$client_id/");
+			}
+		
+		
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
