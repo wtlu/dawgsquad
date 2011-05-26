@@ -351,7 +351,7 @@ class TransactionsController extends AppController {
 				//The client no longer has the book that is being accepted in trade;
 				//Update the transaction tuple to no longer include a specific book for trade, and redirect back to transaction.ctp
 				$this->Transaction->query('UPDATE transactions
-									SET trade_id = 0,
+									SET trade_id = 0
 									WHERE owner_id = ' . $owner_id . '
 										AND client_id = ' . $client_id . '
 										AND book_id = ' . $book_id . '
