@@ -519,7 +519,8 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('DELETE FROM transactions
 										WHERE owner_id = ' . $owner_id . '
 											AND book_id = ' . $book_id . '
-											AND client_id = ' . $client_id . ';');
+											AND client_id = ' . $client_id . '
+											AND status = 0;');
 
 			$this->redirect('/books/find_books_results/' . $search_title . "/" . $search_author . "/" . $search_isbn . "/");
 
