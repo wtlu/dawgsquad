@@ -20,7 +20,10 @@ class UsersController extends AppController {
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
 		
-		// query the table
+		//debug printing
+		debug($this->Session->read('friendsList'));
+		
+		// query the table to see if the user is in the table
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 		$count_num = $count[0][0]['COUNT(*)'];
 		
@@ -77,7 +80,17 @@ class UsersController extends AppController {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
-	
+	    		//$friendsLists = $facebook->api('/me/friends');
+	    		$this->Session->write('friendsList', $facebook->api('/me/friends'));
+/*				
+			    foreach ($friendsLists as $friends) {
+			      foreach ($friends as $friend) {
+			         // do something with the friend, but you only have id and name
+			         $id = $friend['id'];
+			         $name = $friend['name'];
+			      }
+			   }
+*/	
 //	    		echo "Welcome User: " . $me['name'] . "<br />";
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
