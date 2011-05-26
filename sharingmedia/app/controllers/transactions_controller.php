@@ -497,10 +497,7 @@ class TransactionsController extends AppController {
 
 		$owner_name = $this->Transaction->query('SELECT name
 												FROM users
-												WHERE id = ' . $owner_id . ';');
-
-		echo $owner_id;
-		debug($owner_name);
+												WHERE facebook_id = ' . $owner_id . ';');
 
 		$data['Transaction']['t_array'] = $t_array;
 		$data['Transaction']['book_array'] = $book_array;
