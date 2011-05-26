@@ -30,6 +30,16 @@ File: /app/views/transaction.ctp
 			}
 			*/
 			if ($search_title != null || $search_author != null || $search_isbn != null) {
+				// passing these values as "NULL" strings, because otherwise params are messed up
+				if ($search_title == null) {
+					$search_title = "NULL";
+				}
+				if ($search_author == null) {
+					$search_author = "NULL";
+				}
+				if ($search_isbn == null) {
+					$search_isbn = "NULL";
+				}
 				echo $form->create('Transaction', array('escape'=> false, 'action' => 'back_and_cancel'."/".
 																				$search_title."/".
 																				$search_author."/".
