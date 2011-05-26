@@ -100,6 +100,7 @@ class UsersController extends AppController {
 			      }
 			   	}
 		   		$this->Session->write('friends', $friendsArray);
+		   		debug($this-Session-read('friends');
 			   // query the table to see if the user is in the table
 				$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 				$count_num = $count[0][0]['COUNT(*)'];
@@ -121,8 +122,8 @@ class UsersController extends AppController {
 		
 		// check to see if the user is logged out, if so, redirect to login
 		if(!$this->Session->check('uid')){
-			debug("somethings wrong, trying to go back to login");
-			//echo $this->redirect(array('controller'=>'users','action' => 'login'));
+			//debug("somethings wrong, trying to go back to login");
+			echo $this->redirect(array('controller'=>'users','action' => 'index2'));
 		}
 	}
 	
