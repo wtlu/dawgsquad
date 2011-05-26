@@ -21,8 +21,8 @@ class UsersController extends AppController {
 		$user_name = $this->Session->read('username');
 		debug("test");
 		//debug printing
-		$friendsLists = $this->Session->read('friendsLists');
-		debug($friendsLists);
+		$temp = $this->Session->read('friendsLists');
+		debug($temp);
 /*		foreach ($friendsLists as $friends) {
 			debug("in foreach");
 	    	foreach ($friends as $friend) {
@@ -60,7 +60,7 @@ class UsersController extends AppController {
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
 		
 		// display proper layout
