@@ -138,17 +138,16 @@ function display_results($result) {
 	?>
 	<div class="book_results_display">
 	<?php
-		echo '<input type="radio" name="trade_option" value="' . $result . '" style = "float:left; margin-right: 10px" /> ';
-		debug($result);
+		# echo '<input type="radio" name="trade_option" value="' . $result . '" style = "float:left; margin-right: 10px" /> ';
+		echo '<input type="radio" name="data[Transaction][trade_id]" value="' . $result . '" style = "float:left; margin-right: 10px" /> ';
 	?>
 
 
-		<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $result['books']['id'] ?>" type="hidden">
+		<!--<input name="data[Transaction][trade_id]" id="trade_id" value="<?= $result['books']['id'] ?>" type="hidden">-->
 
 
 		<label for="choose_book">
 			<?php
-				echo $result['books']['id'];
 				$title = $result['books']['title'];
 				$author = $result['books']['author'];
 				$ISBN = $result['books']['ISBN'];
