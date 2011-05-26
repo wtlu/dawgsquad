@@ -521,8 +521,10 @@ class TransactionsController extends AppController {
 											AND book_id = ' . $book_id . '
 											AND client_id = ' . $client_id . '
 											AND status = 0;');
+			echo $search_title;
+			echo $owner_id;
 
-			$this->redirect('/books/find_books_results/' . $search_title . "/" . $search_author . "/" . $search_isbn . "/");
+			#$this->redirect('/books/find_books_results/' . $search_title . "/" . $search_author . "/" . $search_isbn . "/");
 
 	}
 
