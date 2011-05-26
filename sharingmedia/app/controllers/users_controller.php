@@ -94,7 +94,7 @@ class UsersController extends AppController {
 			      foreach ($friends as $friend) {
 			         // do something with the friend, but you only have id and name
 			         $id = $friend['id'];
-			         $friendsArray["$id"] = "";
+			         $friendsArray["$id"] = "foo";
 			         //$i++;
 			         //$name = $friend['name'];
 			      }
