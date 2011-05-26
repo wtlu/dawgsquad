@@ -349,7 +349,7 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		if($allow_trade > 0){
-			
+
 			//Make sure that if a trade is being accepted, that the client actually still has the book in his/her library
 			$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
 			if(empty($ensure_tradeable)){
@@ -361,12 +361,12 @@ class TransactionsController extends AppController {
 										AND client_id = ' . $client_id . '
 										AND book_id = ' . $book_id . '
 										AND status = 0;');
-										
-				
+
+
 				$this->redirect("/transactions/invalid_trade/$book_id/$owner_id/$price/$duration/0/$client_id/");
 			}
-		
-		
+
+
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
@@ -419,6 +419,10 @@ class TransactionsController extends AppController {
 	POST: The deleted attribute of the transactions table is checked. If it is -1, the users facebook_id is inserted and they will no longer see the transaction in my_transactions.ctp. If the deleted attribute already contains somebdies facebook_id, then the tuple is removed from the transactions table.
 */
 	function remove_transaction($tid){
+		//For CSS Styling
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+
 		//check deleted attribute
 		$transaction_array = $this->Transaction->query("SELECT deleted FROM transactions WHERE id = " . $tid);
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
@@ -474,13 +478,30 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
 
     }
-	
-	function invalid_trade($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL"){
-	
+
+    // Pre:
+    // Post: Removes transaction tuple from Transaction table
+    function cancel_transaction_confirm($book_id = null, $owner_id = null, $client_id = null) {
+		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		
+		$t_info = this->Transaction->query('SELECT *
+											FROM transactions t
+											WHERE t.owner_id = ' . $owner_id . '
+												AND t.client_id = ' . $client_id . '
+												AND t.book_id = ' . $book_id . '
+												AND status = 0;');
+		$data['Transaction']['t_info'] = $t_info;
+		$this->set('data', $data);
+    }
+
+	function invalid_trade($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL"){
+
+		$this->layout = 'main_layout';
+		$this->set('title_for_layout', 'Library || My Transactions');
+
+
 		$data['Transaction']['book_id'] = $book_id;
 		$data['Transaction']['owner_id'] = $owner_id;
 		$data['Transaction']['price'] = $price;
@@ -490,9 +511,9 @@ class TransactionsController extends AppController {
 
 		$this->set('data', $data);
 
-		
+
 	}
-	
+
 
 }
 ?>
