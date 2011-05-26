@@ -258,7 +258,7 @@ class TransactionsController extends AppController {
 		//If loan was specified in the offer, display it
 		$duration = "NULL";
 		if (isset($this->data['Transaction']['offer_loan']) && $this->data['Transaction']['offer_loan'] == "loan") {
-			if(isset($this->data['Transaction']['loan_duration']) && !empty($this->data['Transaction']['offer_loan'])){
+			if(isset($this->data['Transaction']['loan_duration']) && !empty($this->data['Transaction']['loan_duration'])){
 				$duration = $this->data['Transaction']['loan_duration'];
 			}
 		}
