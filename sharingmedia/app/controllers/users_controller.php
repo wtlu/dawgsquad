@@ -59,7 +59,7 @@ class UsersController extends AppController {
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
 		
 		// display proper layout
@@ -89,7 +89,9 @@ class UsersController extends AppController {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
+	    		debug($me);
 	    		$friendsLists = $facebook->api('/me/friends');
+	    		dubug($friendsLists);
 	    		$this->Session->write('friendsLists', $friendsLists);
 /*				
 			    foreach ($friendsLists as $friends) {
@@ -105,7 +107,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		//echo("<script> top.location.href='" . $loginUrl . "'</script>");	
 		}
 
 	}
