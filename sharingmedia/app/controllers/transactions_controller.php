@@ -499,10 +499,12 @@ class TransactionsController extends AppController {
 												FROM users
 												WHERE id = ' . $owner_id . ';');
 
+		echo $owner_id;
+		debug($owner_name);
+
 		$data['Transaction']['t_array'] = $t_array;
 		$data['Transaction']['book_array'] = $book_array;
 		$data['Transaction']['owner_name'] = $owner_name;
-		debug($owner_name);
 		$this->set('data', $data);
     }
 
