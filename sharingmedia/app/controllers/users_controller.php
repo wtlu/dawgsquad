@@ -91,8 +91,10 @@ class UsersController extends AppController {
 	    		$me = $facebook->api('/me');
 	    		debug($me);
 	    		$friendsLists = $facebook->api('/me/friends');
-	    		debug($friendsLists);
-	    		$this->Session->write('friendsLists', $friendsLists);
+	    		//debug($friendsLists);
+	    		$this->Session->write('friendsLists', $friendsLists["data"]);
+	    		$temp = $this->Session->read('friendsLists');
+	    		debug($temp);
 /*				
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
