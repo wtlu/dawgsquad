@@ -501,7 +501,7 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['t_array'] = $t_array;
 		$data['Transaction']['book_array'] = $book_array;
-		$data['Transaction']['owner_name'] = $owner_name[0][users][name];
+		$data['Transaction']['owner_name'] = $owner_name[0]['users']['name'];
 		$this->set('data', $data);
     }
 
@@ -513,6 +513,16 @@ class TransactionsController extends AppController {
 			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
 
 			$this->redirect('/transactions/my_transactions/');
+	}
+
+	function back_and_cancel($search_title = null, $search_author = null, $search_isbn = null, $book_id = null, $owner_id = null, $client_id = null) {
+			$this->Transaction->query("DELETE FROM transactions
+										WHERE owner_id = ' . $owner_id . '
+											AND book_id = ' . $book_id . '
+											AND client_id = ' . $client_id . ';');
+
+			$this->redirect('/books/find_books_results/' . $search_title . "/" . $search_author . "/" . $search_isbn . "/");
+
 	}
 
 	function invalid_trade($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL"){
