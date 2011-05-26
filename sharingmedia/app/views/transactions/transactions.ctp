@@ -134,7 +134,7 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/".
 																					$data['Transaction']['client_id']."/", 'type'=>'post'));
-	<?php
+
 	echo $this->Form->end('Counter Transaction');
 	?>
 
