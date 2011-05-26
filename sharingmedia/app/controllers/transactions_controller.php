@@ -499,6 +499,8 @@ class TransactionsController extends AppController {
 												FROM users
 												WHERE facebook_id = ' . $owner_id . ';');
 
+		debug($owner_name);
+
 		$data['Transaction']['t_array'] = $t_array;
 		$data['Transaction']['book_array'] = $book_array;
 		$data['Transaction']['owner_name'] = $owner_name;
