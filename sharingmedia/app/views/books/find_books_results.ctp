@@ -29,6 +29,7 @@
 		foreach ($book_results as $book){
 			$result = $book['books'];
 			$user_result = $book['users'];
+			debug($user_result);
 			echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
 
 			// search queries, for back button
