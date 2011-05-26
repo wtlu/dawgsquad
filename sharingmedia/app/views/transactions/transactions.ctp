@@ -150,7 +150,7 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 	echo $this->Form->end('Counter Transaction');
 
 	if ($search_title == null && $search_author == null && $search_isbn == null) {
-		echo $form->create('Transaction', array('escape'=> false, 'style' => 'margin-top: 20px; background: white', 'action' => 'cancel_transaction_confirm'."/".
+		echo $form->create('Transaction', array('escape'=> false, 'style' => 'margin-top: 20px; background: #FFFFFF', 'action' => 'cancel_transaction_confirm'."/".
 																						$data['Transaction']['book_id']."/".
 																						$data['Transaction']['owner_id']."/".
 																						$data['Transaction']['client_id']."/", 'type'=>'post'));
