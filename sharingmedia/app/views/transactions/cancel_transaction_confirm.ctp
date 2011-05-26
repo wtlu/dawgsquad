@@ -1,10 +1,10 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE));
 
 $book_array = $data['Transaction']['book_array'];
-$tid = $data['Transaction']['t_info'][0]['t']['id'];
-$loan = $data['Transaction']['t_info'][0]['t']['duration'];
-$price = $data['Transaction']['t_info'][0]['t']['price'];
-$trade = $data['Transaction']['t_info'][0]['t']['trade_id'];
+$tid = $data['Transaction']['t_array'][0]['t']['id'];
+$loan = $data['Transaction']['t_array'][0]['t']['duration'];
+$price = $data['Transaction']['t_array'][0]['t']['price'];
+$trade = $data['Transaction']['t_array'][0]['t']['trade_id'];
 
 ?>
 
