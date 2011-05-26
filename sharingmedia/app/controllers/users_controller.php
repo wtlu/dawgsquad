@@ -19,7 +19,7 @@ class UsersController extends AppController {
 		// get the user id and name to see if they are in the users table
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
-		
+		debug("test");
 		//debug printing
 		$friendsLists = $this->Session->read('friendsLists');
 		foreach ($friendsLists as $friends) {
