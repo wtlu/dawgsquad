@@ -20,12 +20,24 @@ File: /app/views/transaction.ctp
 <body>
 
 	<?php
+			/*
 			if ($search_title != null || $search_author != null || $search_isbn != null) {
 				echo $this->Form->create('Book', array('action' => 'find_books_results'));
 				echo $this->Form->input('title', array('type' => 'hidden', 'value' => $search_title));
 				echo $this->Form->input('author', array('type' => 'hidden', 'value' => $search_author));
 				echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $search_isbn));
 				echo $this->Form->end('Go Back to Results');
+			}
+			*/
+			if ($search_title != null || $search_author != null || $search_isbn != null) {
+				echo $this->Form->create('Transactions', array('action' => 'back_and_cancel' . "/" .
+																				$search_title . "/" .
+																				$search_author . "/" .
+																				$search_isbn . "/" .
+																				$data['Transaction']['book_id']."/".
+																				$data['Transaction']['owner_id']."/".
+																				$data['Transaction']['client_id']."/", 'type'=>'post'));
+				echo $this->Form->end('Cancel and Go Back');
 			}
 	?>
 
@@ -137,12 +149,14 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 
 	echo $this->Form->end('Counter Transaction');
 
-	echo $form->create('Transaction', array('escape'=> false, 'action' => 'cancel_transaction_confirm'."/".
-																					$data['Transaction']['book_id']."/".
-																					$data['Transaction']['owner_id']."/".
-																					$data['Transaction']['client_id']."/", 'type'=>'post'));
+	if ($search_title == null && $search_author == null && $search_isbn == null) {
+		echo $form->create('Transaction', array('escape'=> false, 'style' => 'margin-top: 20px; background: white', 'action' => 'cancel_transaction_confirm'."/".
+																						$data['Transaction']['book_id']."/".
+																						$data['Transaction']['owner_id']."/".
+																						$data['Transaction']['client_id']."/", 'type'=>'post'));
 
-	echo $this->Form->end('Cancel Transaction');
+		echo $this->Form->end('Cancel Transaction');
+	}
 	?>
 
 </div>
