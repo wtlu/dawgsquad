@@ -45,7 +45,7 @@ class AppController extends Controller {
 		$this->Session->write('uid', $this->Connect->user('id'));
 		
 		// get the facebook users name for use in controllers
-		$this->Session->write('username', $this->Connect->user('name'));	
+		$this->Session->write('username', $this->Connect->user('name'));
 	}
 	
 

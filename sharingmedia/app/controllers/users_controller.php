@@ -19,7 +19,41 @@ class UsersController extends AppController {
 		// get the user id and name to see if they are in the users table
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
-		debug("test");
+		//debug printing
+		$temp = $this->Session->read('friendsLists');
+		debug($temp);
+/*		foreach ($friendsLists as $friends) {
+			debug("in foreach");
+	    	foreach ($friends as $friend) {
+	         // do something with the friend, but you only have id and name
+	       		$id = $friend['id'];
+	        	$name = $friend['name'];
+	        	debug($id);
+	      	}
+	   }
+*/		
+		// query the table to see if the user is in the table
+		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
+		$count_num = $count[0][0]['COUNT(*)'];
+		
+		//if they aren't in the table, add them
+		if($count_num == 0){
+			$this->User->query('INSERT INTO users(name, password, facebook_id, created) VALUES("' . $user_name . '", null, "' . $user_id . '", NOW());');
+		}
+		
+		// display the correct layout
+		$this->layout = 'index_layout';
+		$this->set('title_for_layout', 'Sharing Media');
+		
+		// check to see if the user is logged out, if so, redirect to login
+		if(!$this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
+		}
+	}
+	
+	function index2(){
+		$user_id = $this->Session->read('uid');
+		$user_name = $this->Session->read('username');
 		//debug printing
 		$temp = $this->Session->read('friendsLists');
 		debug($temp);
@@ -60,7 +94,7 @@ class UsersController extends AppController {
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
-			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
 		
 		// display proper layout
@@ -90,7 +124,7 @@ class UsersController extends AppController {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
-	    		debug($me);
+	    		//debug($me);
 	    		$friendsLists = $facebook->api('/me/friends');
 	    		//debug($friendsLists);
 	    		$this->Session->write('friendsLists', $friendsLists["data"]);
