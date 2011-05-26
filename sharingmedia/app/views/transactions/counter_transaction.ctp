@@ -139,7 +139,7 @@ function display_results($result) {
 	<div class="book_results_display">
 	<?php
 		echo '<input type="radio" name="trade_option" value="' . $result . '" style = "float:left; margin-right: 10px" /> ';
-		echo $result;
+		debug($result);
 	?>
 
 
@@ -148,6 +148,7 @@ function display_results($result) {
 
 		<label for="choose_book">
 			<?php
+				echo $result['books']['id'];
 				$title = $result['books']['title'];
 				$author = $result['books']['author'];
 				$ISBN = $result['books']['ISBN'];
