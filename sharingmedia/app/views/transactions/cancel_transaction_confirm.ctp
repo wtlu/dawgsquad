@@ -31,11 +31,11 @@ $trade = $data['Transaction']['t_array'][0]['t']['trade_id'];
 					if(!is_null($price) && $price != "NULL"){ ?>
 						<strong>Price: $<?=$price;?></strong> <br />
 				<?php }?>
-				<strong>Owner:</strong><?php echo $data['Transaction']['owner_name'] ?> <br />
+				<strong>Owner: </strong><?php echo $data['Transaction']['owner_name'] ?> <br />
 			</label>
 		</p>
 	</fieldset>
-	<?php echo $this->Html->link('Cancel',"/transactions/my_transactions/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $this->Html->link('Go Back',"/transactions/my_transactions/", array('class' => 'buttons', 'escape' => false)); ?>
 	<?php echo $this->Html->link('Cancel Transaction',"/transactions/cancel_transaction/".$tid."/", array('class' => 'buttons', 'escape' => false)); ?>
 
 </div>
