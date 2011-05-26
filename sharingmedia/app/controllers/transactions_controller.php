@@ -258,13 +258,17 @@ class TransactionsController extends AppController {
 		//If loan was specified in the offer, display it
 		$duration = "NULL";
 		if (isset($this->data['Transaction']['offer_loan']) && $this->data['Transaction']['offer_loan'] == "loan") {
-			$duration = $this->data['Transaction']['loan_duration'];
+			if(isset($this->data['Transaction']['loan_duration']) && !empty($this->data['Transaction']['offer_loan'])){
+				$duration = $this->data['Transaction']['loan_duration'];
+			}
 		}
 
 		//If buy was specified in the offer, display it
 		$price = "NULL";
 		if (isset($this->data['Transaction']['offer_sell']) && $this->data['Transaction']['offer_sell'] == "sell") {
-			$price = $this->data['Transaction']['sell_price'];
+			if(isset($this->data['Transaction']['sell_price']) && !empty($this->data['Transaction']['sell_price'])){
+				$price = $this->data['Transaction']['sell_price'];
+			}
 		}
 
 		//If trade was specifed in the offer, display the book that was offered in trade
