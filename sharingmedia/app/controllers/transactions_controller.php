@@ -272,7 +272,8 @@ class TransactionsController extends AppController {
 		}
 
 		//If trade was specifed in the offer, display the book that was offered in trade
-		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade") {
+		$trade_id = -1;
+		if (isset($this->data['Transaction']['offer_trade']) && $this->data['Transaction']['offer_trade'] == "trade" && isset($this->data['Transaction']['trade_id']) && !empty($this->data['Transaction']['trade_id']) ) {
 			$trade_id = $this->data['Transaction']['trade_id'];
 
 			//Update tuple to have trade_id
@@ -300,7 +301,7 @@ class TransactionsController extends AppController {
 		$this->set('book_image', $book_image);
 		$this->set('price', $price);
 		$this->set('duration', $duration);
-		if(isset($trade_id)){
+		if(isset($trade_id) && $trade_id != -1){
 			$this->set('trade_id', $trade_id);
 		}
 
