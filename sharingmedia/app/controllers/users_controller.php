@@ -100,7 +100,7 @@ class UsersController extends AppController {
 			      }
 			   	}
 		   		$this->Session->write('friends', $friendsArray);
-		   		debug($this->Session-read('friends'));
+		   		debug($this->Session->read('friends'));
 			   // query the table to see if the user is in the table
 				$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 				$count_num = $count[0][0]['COUNT(*)'];
