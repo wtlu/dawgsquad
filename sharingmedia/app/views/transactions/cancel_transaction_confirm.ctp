@@ -1,10 +1,10 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE));
 
 $book_array = $data['Transaction']['book_array'];
-$tid = $data['Transaction']['t_info'][0][t]['id'];
-$loan = $data['Transaction']['t_info'][0][t]['duration'];
-$price = $data['Transaction']['t_info'][0][t]['price'];
-$trade = $data['Transaction']['t_info'][0][t]['trade_id'];
+$tid = $data['Transaction']['t_info'][0]['t']['id'];
+$loan = $data['Transaction']['t_info'][0]['t']['duration'];
+$price = $data['Transaction']['t_info'][0]['t']['price'];
+$trade = $data['Transaction']['t_info'][0]['t']['trade_id'];
 
 ?>
 
@@ -20,7 +20,7 @@ $trade = $data['Transaction']['t_info'][0][t]['trade_id'];
 			<label >
 				<img src=<?php echo $book_array[0]["books"]["image"] ?> alt="Book image" />
 				<strong>Title:</strong>	<?php echo $book_array[0]["books"]["title"] ?> <br />
-				<strong>Author(s):</strong> <?php echo $book_array[0]["books"]["title"] ?> <br />
+				<strong>Author(s):</strong> <?php echo $book_array[0]["books"]["author"] ?> <br />
 				<?php 	//if loans not Null Print
 					if(!is_null($loan) && $loan != "NULL"){ ?>
 						<strong>Loan Duration: <?=$loan?> days</strong> <br />
