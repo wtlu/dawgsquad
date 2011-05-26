@@ -516,7 +516,7 @@ class TransactionsController extends AppController {
 	}
 
 	function back_and_cancel($search_title = null, $search_author = null, $search_isbn = null, $book_id = null, $owner_id = null, $client_id = null) {
-			$this->Transaction->query("DELETE FROM transactions
+			$this->Transaction->query('DELETE FROM transactions
 										WHERE owner_id = ' . $owner_id . '
 											AND book_id = ' . $book_id . '
 											AND client_id = ' . $client_id . ';');
