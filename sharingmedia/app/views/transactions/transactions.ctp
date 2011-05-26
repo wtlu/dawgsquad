@@ -137,7 +137,6 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 	<?php
 	echo $this->Form->end('Counter Transaction');
 	?>
-	?>
 
 </div>
 
