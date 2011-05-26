@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		$user_name = $this->Session->read('username');
 		
 		//debug printing
-		debug($this->Session->read('friendsList'));
+		debug($this->Session->read('friendsLists'));
 		
 		// query the table to see if the user is in the table
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
@@ -80,8 +80,8 @@ class UsersController extends AppController {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
-	    		//$friendsLists = $facebook->api('/me/friends');
-	    		$this->Session->write('friendsList', $facebook->api('/me/friends'));
+	    		$friendsLists = $facebook->api('/me/friends');
+	    		$this->Session->write('friendsLists', $friendsLists);
 /*				
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
