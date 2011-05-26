@@ -22,7 +22,8 @@ class UsersController extends AppController {
 		debug("test");
 		//debug printing
 		$friendsLists = $this->Session->read('friendsLists');
-		foreach ($friendsLists as $friends) {
+		debug($friendsLists);
+/*		foreach ($friendsLists as $friends) {
 			debug("in foreach");
 	    	foreach ($friends as $friend) {
 	         // do something with the friend, but you only have id and name
@@ -31,7 +32,7 @@ class UsersController extends AppController {
 	        	debug($id);
 	      	}
 	   }
-		
+*/		
 		// query the table to see if the user is in the table
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
 		$count_num = $count[0][0]['COUNT(*)'];
@@ -59,7 +60,7 @@ class UsersController extends AppController {
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
-			//echo $this->redirect(array('controller'=>'users','action' => 'index'));
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
 		
 		// display proper layout
@@ -93,8 +94,8 @@ class UsersController extends AppController {
 	    		$friendsLists = $facebook->api('/me/friends');
 	    		//debug($friendsLists);
 	    		$this->Session->write('friendsLists', $friendsLists["data"]);
-	    		$temp = $this->Session->read('friendsLists');
-	    		debug($temp);
+	    		//$temp = $this->Session->read('friendsLists');
+	    		//debug($temp);
 /*				
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
@@ -109,7 +110,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		//echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
 		}
 
 	}
