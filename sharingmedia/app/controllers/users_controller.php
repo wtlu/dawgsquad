@@ -21,7 +21,16 @@ class UsersController extends AppController {
 		$user_name = $this->Session->read('username');
 		
 		//debug printing
-		debug($this->Session->read('friendsLists'));
+		$friendsLists = $this->Session->read('friendsLists');
+		foreach ($friendsLists as $friends) {
+			debug("in foreach");
+	    	foreach ($friends as $friend) {
+	         // do something with the friend, but you only have id and name
+	       		$id = $friend['id'];
+	        	$name = $friend['name'];
+	        	debug($id);
+	      	}
+	   }
 		
 		// query the table to see if the user is in the table
 		$count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
