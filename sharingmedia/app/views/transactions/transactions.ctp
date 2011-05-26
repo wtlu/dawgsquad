@@ -122,11 +122,21 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 	</form>
 	<?php
 	// Pass relevant information to counter_transaction.ctp if the user clicks the link.
+	/*
 	echo $this->Html->link('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/".
 																					$data['Transaction']['client_id']."/"));
+																					*/
+	echo $form->create('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
+																					$data['Transaction']['book_id']."/".
+																					$data['Transaction']['owner_id']."/".
+																					$data['Transaction']['allow_trade']."/".
+																					$data['Transaction']['client_id']."/", 'type'=>'post'));
+	<?php
+	echo $this->Form->end('Counter Transaction');
+	?>
 	?>
 
 </div>
