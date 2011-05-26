@@ -129,7 +129,7 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 																					$data['Transaction']['allow_trade']."/".
 																					$data['Transaction']['client_id']."/"));
 																					*/
-	echo $form->create('Counter Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
+	echo $form->create('Transaction', array('escape'=> false, 'action' => 'counter_transaction'."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['allow_trade']."/".
