@@ -1,6 +1,12 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE));
 
-debug($data['Transaction']['t_info']);?>
+$book_array = $data['Transaction']['book_array'];
+$tid = $data['Transaction']['t_info'][0][t]['id'];
+$loan = $data['Transaction']['t_info'][0][t]['duration'];
+$price = $data['Transaction']['t_info'][0][t]['price']
+$trade = $data['Transaction']['t_info'][0][t]['trade_id']
+
+?>
 
 <div>
 
@@ -30,6 +36,6 @@ debug($data['Transaction']['t_info']);?>
 		</p>
 	</fieldset>
 	<?php echo $this->Html->link('Cancel',"/transactions/my_transactions/", array('class' => 'buttons', 'escape' => false)); ?>
-	<?php echo $this->Html->link('Cancel Transaction',"/transactions/remove_transaction/".$tid."/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $this->Html->link('Cancel Transaction',"/transactions/cancel_transaction/".$tid."/", array('class' => 'buttons', 'escape' => false)); ?>
 
 </div>

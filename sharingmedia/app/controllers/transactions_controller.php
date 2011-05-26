@@ -486,15 +486,28 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		$t_info = $this->Transaction->query('SELECT *
+		$book_array = $this->Transaction->query("SELECT * FROM books WHERE id = " . $book_id);
+
+		$t_array = $this->Transaction->query('SELECT *
 											FROM transactions t
 											WHERE t.owner_id = ' . $owner_id . '
 												AND t.client_id = ' . $client_id . '
 												AND t.book_id = ' . $book_id . '
 												AND status = 0;');
-		$data['Transaction']['t_info'] = $t_info;
+		$data['Transaction']['t_array'] = $t_array;
+		$data['Transaction']['book_array'] = $book_array;
 		$this->set('data', $data);
     }
+
+    function cancel_transaction($tid){
+			//For CSS Styling
+			$this->layout = 'main_layout';
+			$this->set('title_for_layout', 'Library || My Transactions');
+
+			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
+
+			$this->redirect('/transactions/my_transactions/');
+	}
 
 	function invalid_trade($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL"){
 
