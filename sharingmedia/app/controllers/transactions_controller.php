@@ -486,7 +486,7 @@ class TransactionsController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
 
-		$t_info = this->Transaction->query('SELECT *
+		$t_info = $this->Transaction->query('SELECT *
 											FROM transactions t
 											WHERE t.owner_id = ' . $owner_id . '
 												AND t.client_id = ' . $client_id . '
