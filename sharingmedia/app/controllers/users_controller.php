@@ -88,7 +88,7 @@ class UsersController extends AppController {
 	    		//$this->Session->write('friendsLists', $friendsLists["data"]);
 	    		//$temp = $this->Session->read('friendsLists');
 	    		//debug($temp);
-				$friendsArray = new Array();
+				$friendsArray = array();
 				$i = 0;
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
