@@ -30,7 +30,7 @@ File: /app/views/transaction.ctp
 			}
 			*/
 			if ($search_title != null || $search_author != null || $search_isbn != null) {
-				echo $this->Form->create('Transactions', array('action' => 'back_and_cancel' . "/" .
+				echo $this->Form->create('Transactions', array('escape'=> false, 'action' => 'back_and_cancel' . "/" .
 																				$search_title . "/" .
 																				$search_author . "/" .
 																				$search_isbn . "/" .
@@ -150,7 +150,7 @@ if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
 	echo $this->Form->end('Counter Transaction');
 
 	if ($search_title == null && $search_author == null && $search_isbn == null) {
-		echo $form->create('Transaction', array('escape'=> false, 'style' => 'margin-top: 20px; background: #FFFFFF', 'action' => 'cancel_transaction_confirm'."/".
+		echo $form->create('Transaction', array('escape'=> false, 'style' => 'margin-top: 20px', 'action' => 'cancel_transaction_confirm'."/".
 																						$data['Transaction']['book_id']."/".
 																						$data['Transaction']['owner_id']."/".
 																						$data['Transaction']['client_id']."/", 'type'=>'post'));
