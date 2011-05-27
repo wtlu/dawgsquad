@@ -32,13 +32,13 @@
 			if(isset($temp["$owner_id"])){
 				$result = $book['books'];
 				$user_result = $book['users'];
-				echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
-	
+				echo $form->create('Transaction', array('action' => 'transactions'."/".$this->Session->read('uid')."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
+
 				// search queries, for back button
 				echo $this->Form->input('title', array('type' => 'hidden', 'value' => $book_title));
 				echo $this->Form->input('author', array('type' => 'hidden', 'value' => $book_author));
 				echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => $book_isbn));
-	
+
 				$b_i_o_result = $book['b_i_o'];
 				$trade_book = array();
 				if (array_key_exists('trade_book', $book)) {
