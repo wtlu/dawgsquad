@@ -5,6 +5,7 @@
 	<title><?php echo $title_for_layout?></title>
 	<?php echo $scripts_for_layout ?>
 	<?php echo $this->Html->css('layout'); ?>
+	<?php header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');?>
 </head>
 <body>
 	
