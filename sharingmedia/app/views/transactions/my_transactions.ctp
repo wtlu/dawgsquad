@@ -33,7 +33,16 @@
 		for($i=0; $i < $size; $i++){
 			if($transaction_collection[$i]["t"]["deleted"] != $this->Session->read('uid')){
 	?>
-		<div class="book_unit">
+		<?php
+			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0) { ?>
+			<div class="book_unit respond">
+		<?php }
+			else if ($uid == $last && $transaction_collection[$i]["t"]["status"] == 0) { ?>
+			<div class="book_unit wait_response">
+		<?php }
+			else { //status = 2, canceled ?>
+			<div class="book_unit">
+		<?php }?>
 			<img class= "book_img" src="<?=$transaction_collection[$i]["b"]["image"]?>" alt="<?=$transaction_collection[$i]["b"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $transaction_collection[$i]["b"]["title"]?></li>
