@@ -479,8 +479,8 @@ class TransactionsController extends AppController {
 
     }
 
-    // Pre:
-    // Post: Removes transaction tuple from Transaction table
+    // Pre: User clicks on cancel transaction button on transaction page, which passes in the book, owner, and client ids
+    // Post: Gets the book, transaction, and owner information to be displayed on the confirmation page
     function cancel_transaction_confirm($book_id = null, $owner_id = null, $client_id = null) {
 		//For CSS Styling
 		$this->layout = 'main_layout';
@@ -505,16 +505,20 @@ class TransactionsController extends AppController {
 		$this->set('data', $data);
     }
 
-    function cancel_transaction($tid){
+    //Pre: Called from the cancel_transaction_confirm.ctp view. Gets the transaction id and user id numbers.
+    //Post: Deletes the appropriate tuple from the transaction table. Redirects user to their transactions tab.
+    function cancel_transaction($tid, $uid){
 			//For CSS Styling
 			$this->layout = 'main_layout';
 			$this->set('title_for_layout', 'Library || My Transactions');
 
 			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
 
-			$this->redirect('/transactions/my_transactions/');
+			$this->redirect('/transactions/my_transactions/'.$uid);
 	}
 
+	//Pre: Called from transactions.ctp view, when the user first initiates a transaction.
+	//Post: Removes the newly added tuple from the transactions table. Redirects user back to find books results with the book search info.
 	function back_and_cancel($search_title = null, $search_author = null, $search_isbn = null, $book_id = null, $owner_id = null, $client_id = null) {
 			$this->Transaction->query('DELETE FROM transactions
 										WHERE owner_id = ' . $owner_id . '
