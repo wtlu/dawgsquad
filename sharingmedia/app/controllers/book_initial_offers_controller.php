@@ -80,7 +80,7 @@ class BookInitialOffersController extends AppController {
 	}
 	//Pre: called when user hits change offer on edit page. requires Takes data from forms on the edit page paramaters are uid or current user and bid of book to edit offer for
 	//Post: Sets title, author, image, and bid of the book, and loan duration, trade and price of new initial offer.
-	function edit_comfirm($uid, $bid,){
+	function edit_comfirm($uid, $bid){
 		//set title and defualt layout
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Comfirm New Offer');
