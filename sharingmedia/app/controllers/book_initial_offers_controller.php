@@ -61,7 +61,7 @@ class BookInitialOffersController extends AppController {
 		//remove row from book_initial_offers
 		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);
 		//redirect to my_book page
-		$this->redirect('/book_initial_offers/my_books/');
+		$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 	//Pre: called when the user hit edit on the my library page. Requires user id of current user and a valid bid of the initial offer to be changed
 	//Post: Sets title, author, image, and bid of the book, and loan duration, trade and price of current initial offer. 
@@ -121,7 +121,7 @@ class BookInitialOffersController extends AppController {
 			$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
 
 			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
-	$this->redirect('/book_initial_offers/my_books/');
+	$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 
 
