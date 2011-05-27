@@ -32,7 +32,7 @@
 		$size = sizeof($book_collection_owner);
 		for($i=0; $i < $size; $i++){
 	?>
-		<div class="book_unit">
+		<div class="book_unit respond">
 			<img class= "book_img" src="<?=$book_collection_owner[$i]["books"]["image"]?>" alt="<?=$book_collection_owner[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $book_collection_owner[$i]["books"]["title"]?></li>
@@ -57,7 +57,7 @@
 		$size = sizeof($book_collection_borrower);
 		for($i=0; $i < $size; $i++){
 	?>
-		<div class="book_unit">
+		<div class="book_unit wait_response">
 			<img class= "book_img" src="<?=$book_collection_borrower[$i]["books"]["image"]?>" alt="<?=$book_collection_borrower[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $book_collection_borrower[$i]["books"]["title"]?></li>
