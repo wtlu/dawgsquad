@@ -97,7 +97,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+    		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}
 	}
 	
