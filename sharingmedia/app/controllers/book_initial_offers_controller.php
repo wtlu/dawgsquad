@@ -174,7 +174,7 @@ class BookInitialOffersController extends AppController {
 	//Post: If the book in question is not in the books table, it is added. If the user does not already have this book in their mylibrary,
 	//		a new entry is added to book_initial_offers detailing which book they now have and its initial offer details. Appropriate error
 	//		messages are displayed when these operations fail.
-	function add_book_to_mylibrary(){
+	function add_book_to_mylibrary($uid){
 
 		// These lines enable our main layout to appear on the page.
 		$this->layout = 'main_layout';
@@ -216,7 +216,7 @@ class BookInitialOffersController extends AppController {
 		$add_status = false;
 
 		//Ensure that the user is logged in to Facebook.
-		if(is_null($this->Session->read('uid'))){
+		if(is_null($uid)){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
 
@@ -236,7 +236,7 @@ class BookInitialOffersController extends AppController {
 				}
 
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
-				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
+				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $uid . ' AND book_id =' . $book_id . ';');
 				if(!empty($duplicate)){
 					echo "<h2> You cannot add the same book to your library twice. </h2>";
 				}else{
@@ -244,12 +244,12 @@ class BookInitialOffersController extends AppController {
 					$add_status = true;
 
 					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
-					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');
+					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $uid . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');
 				}
 			}
 		$this->set('add_status', $add_status);
 
-		$this->redirect('/book_initial_offers/my_books/');
+		$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 
 } //End of add_book_to_mylibrary()

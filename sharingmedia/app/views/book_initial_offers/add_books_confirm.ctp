@@ -61,7 +61,7 @@
 
 </div>
 
-<?php echo $form->create('BookInitialOffer', array('action' => 'add_book_to_mylibrary', 'type'=>'post')); ?>
+<?php echo $form->create('BookInitialOffer', array('action' => 'add_book_to_mylibrary/'.$this->Session->read('uid'), 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[BookInitialOffer][title]" id="title" value="<?php echo $title ?>" type="hidden">
 		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
