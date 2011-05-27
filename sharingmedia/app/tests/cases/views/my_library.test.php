@@ -24,9 +24,9 @@ class MyLibraryTestCase extends CakeWebTestCase {
     $this->baseurl = substr($this->baseurl, 0, strrpos($this->baseurl, "app")) . 'index.php/';
 
     /* all the pages we're concerned about */
-    $my_books_page		= 'http://localhost' . $this->baseurl . 'book_initial_offers/my_books';
-    $my_transactions_page	= 'http://localhost' . $this->baseurl . 'transactions/my_transactions';
-    $my_loans_page		= 'http://localhost' . $this->baseurl . 'loans/my_loans';
+    $my_books_page		= 'http://localhost' . $this->baseurl . 'book_initial_offers/my_books/';
+    $my_transactions_page	= 'http://localhost' . $this->baseurl . 'transactions/my_transactions/';
+    $my_loans_page		= 'http://localhost' . $this->baseurl . 'loans/my_loans/';
 
     //--------------------------------------------------
     // MY BOOKS
