@@ -47,7 +47,7 @@ class TransactionsControllerTest extends CakeTestCase {
   }
 
   function startTest($method) {
-    echo '<h3>Starting method ' . $method . '</h3>';
+    echo '<h3>Starting method ' . $method . '...</h3>';
     $this->Transactions = new TestTransactionsController();
     $this->Transactions->constructClasses();
     $this->Transactions->Component->initialize($this->Transactions);
@@ -77,12 +77,17 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $book_id	= 1;		/* web programming */
-    $owner_id	= 1;
-    $client_id	= 2;
-    $price = 100.0;
-    $duration = -1;
-    $allow_trade = -1;
+    $book_id		= 1;		/* web programming */
+    $owner_id		= 1;
+    $client_id		= 2;
+    $price		= 100.0;
+    $duration		= -1;
+    $allow_trade	= -1;
+
+    /* set dummy data... REMOVE / INTEGRATE WHEN POSSIBLE */
+    $this->Transactions->data['Transaction']['title'] = 'title';
+    $this->Transactions->data['Transaction']['author'] = 'author';
+    $this->Transactions->data['Transaction']['isbn'] = '1234';
 
     /* add the transaction */
     $result = $this->Transactions->transactions($book_id, $owner_id, $price, $duration, $allow_trade, $client_id);
@@ -175,13 +180,13 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
     
     /* get a transaction from fixture that's rejected */
-    $transaction_id = 200;
-    $book_id = 20;
-    $owner_id = 100;
-    $price = 100.0;
-    $duration = null;
-    $client_id = 200;
-    $allow_trade = -1;
+    $transaction_id	= 200;
+    $book_id		= 20;
+    $owner_id		= 100;
+    $price		= 100.0;
+    $duration		= null;
+    $client_id		= 200;
+    $allow_trade	= -1;
     
     /* accept it */
     $result = $this->testAction("/transactions/accept_transaction/$book_id/$owner_id/$price/$duration/$client_id/$allow_trade");
@@ -250,9 +255,9 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $transaction_id = 300;
-    $type = 'sell';
-    $new_offer = 50.0;
+    $transaction_id	= 300;
+    $type		= 'sell';
+    $new_offer		= 50.0;
 
     /* update the transaction offer */
     $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$new_offer");
@@ -287,16 +292,16 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $transaction_id = 300;
-    $type = 'loan';
-    $new_offer = 12;
-    $orig_offer = 100.0;
+    $transaction_id	= 300;
+    $type		= 'loan';
+    $new_offer		= 12;
+    $orig_offer		= 100.0;
 
     /* try to update the transaction offer */
     $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$new_offer");
@@ -341,18 +346,18 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $transaction_id = 400;
-    $orig_offer = 10.0;
+    $transaction_id	= 400;
+    $orig_offer		= 10.0;
 
-    $type = "sell";
-    $fst_new_offer = 5.0;
-    $sec_new_offer = 7.0;
+    $type		= "sell";
+    $fst_new_offer	= 5.0;
+    $sec_new_offer	= 7.0;
 
     /* get the transaction */
     $transaction = $this->Transaction->find('first', 
@@ -456,17 +461,17 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $transaction_id = 400;
-    $orig_offer = 10.0;
+    $transaction_id	= 400;
+    $orig_offer		= 10.0;
 
-    $type = "loan";
-    $new_offer = 10;
+    $type		= "loan";
+    $new_offer		= 10;
 
     /* get the transaction */
     $transaction = $this->Transaction->find('first',
