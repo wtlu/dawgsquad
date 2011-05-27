@@ -1,17 +1,16 @@
-<!-- File:app/tests/cases/controllers/book_initial_offers_controller.test.php -->
-<!--
-	Created: 5/10/2011
-	Author: Jedidiah Jonathan
+<?php
+/* 
+ * File:app/tests/cases/controllers/book_initial_offers_controller.test.php -->
+ * Created: 5/10/2011
+ * Author: Jedidiah Jonathan
 
 	Changelog:
         5/10/2011 - Jedidiah Jonathan- Created file (skeleton)
 	5/11/2011 - Jedidiah Jonathan- Testing for all functions in the book_intial_offers_controller added
 	5/17/2011 - Greg Brandt - Removed support code for redirection, got fixture to work
 	5/18/2011 - Jedidiah Jonathan - Testing completed for feature release
+*/
 
--->
-
-<?php
 
         App::import('Controller','Books');
 	App::import('Controller','BookInitialOffers');
