@@ -45,7 +45,6 @@ a{
 	background: #CFDEFF;
 }
 #menubar{
-    vertical-align:middle;
     width:564px;
     float:left;
 }
@@ -64,9 +63,9 @@ a{
 	margin-right:10px;
 	background-image:url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/tab.png");
 	text-align:center;
-	height:40px;
+	height:28px;
 	font-weight:bold;
-	vertical-align:middle;
+	padding-top:10px;
 }
 #menu li:hover {
 	background-image: url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/hover.png");	
