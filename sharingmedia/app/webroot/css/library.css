@@ -65,7 +65,7 @@ a{
 	text-align:center;
 	height:28px;
 	font-weight:bold;
-	padding-top:10px;
+	padding-top:2px;
 }
 #menu li:hover {
 	background-image: url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/hover.png");	
