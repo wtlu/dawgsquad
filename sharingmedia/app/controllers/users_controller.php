@@ -49,7 +49,7 @@ class UsersController extends AppController {
 		// display the correct layout
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
-		App::import('Vendor', 'facebook');
+//		App::import('Vendor', 'facebook');
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
@@ -67,9 +67,9 @@ class UsersController extends AppController {
 		));
 		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-		if ($session) {
-	  		try {
-	    		$uid = $facebook->getUser();
+//		if ($session) {
+//	  		try {
+//	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
 	    		$user_id = $me['id'];
 	    		$user_name = $me['name'];
@@ -93,10 +93,10 @@ class UsersController extends AppController {
 				if($count_num == 0){
 					$this->User->query('INSERT INTO users(name, password, facebook_id, created) VALUES("' . $user_name . '", null, "' . $user_id . '", NOW());');
 				}
-	  		} catch (FacebookApiException $e) {
-	    		error_log($e);
-	  		}
-		} /*else {
+//	  		} catch (FacebookApiException $e) {
+//	    		error_log($e);
+//	  		}
+//		} /*else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}*/
 		if(!$this->Session->check('uid')){
@@ -134,7 +134,7 @@ class UsersController extends AppController {
 		));
 
 		// initialize new session, get login url
-//		$session = $facebook->getSession();
+		$session = $facebook->getSession();
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
 			'fbconnect'=>0,
@@ -144,8 +144,8 @@ class UsersController extends AppController {
 		));
 //		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-/*		if ($session) {
-	  		try {
+		if ($session) {
+/*	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
 	    		$user_id = $me['id'];
@@ -165,9 +165,10 @@ class UsersController extends AppController {
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
+*/
 		} else {
-*/    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
-//		}
+	   		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+		}
 /*
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
