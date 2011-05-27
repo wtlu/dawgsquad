@@ -67,7 +67,7 @@ class UsersController extends AppController {
 		));
 		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-		if ($session) {
+		if ($session || $this->Session->check('uid')) {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
