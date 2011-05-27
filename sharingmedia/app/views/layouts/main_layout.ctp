@@ -1,3 +1,4 @@
+<?php header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php echo $this->Facebook->html() ?>
@@ -5,7 +6,6 @@
 	<title><?php echo $title_for_layout?></title>
 	<?php echo $scripts_for_layout ?>
 	<?php echo $this->Html->css('layout'); ?>
-	<?php header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');?>
 <!--
 	<script type="text/javascript">
 	window.fbAsyncInit = function() {
