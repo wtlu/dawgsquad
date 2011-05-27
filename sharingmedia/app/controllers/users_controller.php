@@ -113,11 +113,11 @@ class UsersController extends AppController {
 */	
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
-/*
+
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
-*/		
+		
 		// display proper layout
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
@@ -165,9 +165,11 @@ class UsersController extends AppController {
 		} else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
 		}
+/*
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
+*/
 	}
 
 /*
