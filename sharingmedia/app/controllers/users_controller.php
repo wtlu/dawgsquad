@@ -58,7 +58,7 @@ class UsersController extends AppController {
 		// display the correct layout
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
-		
+		App::import('Vendor', 'facebook');
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
