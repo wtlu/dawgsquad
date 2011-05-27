@@ -21,7 +21,7 @@
 			if($sell_price!=("NULL")){?>
 				<li>For Sale at $ <?php echo  $sell_price ?></li> 
 		<?php	}
-			if($trade_id == 0){?>
+			if($trade_id == 1){?>
 				 <li> Willing to Trade for Another Book</li>
 		<?php	}
 		?>
