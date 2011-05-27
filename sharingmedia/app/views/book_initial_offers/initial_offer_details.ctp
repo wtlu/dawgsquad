@@ -64,7 +64,7 @@
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
 		<div class="options">
 			<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox">
-			<label for="choose_loan">Loan For</label>
+			<label for="choose_loan">Loan for how many days?</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
 			?><p>days</p>
@@ -72,7 +72,7 @@
 
 		<div class="options">
 			<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox">
-			<label for="choose_sell">Sell For $</label>
+			<label for="choose_sell">Selling price? </label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
 			?>
