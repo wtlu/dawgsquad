@@ -49,10 +49,11 @@ class LoansController extends AppController {
 
 	// PRE: Transfered here from my_library.ctp if user selects "complete loan". Only the book owner should be able to complete a loan. Each book can only be loaned once, in other words, no duplicates.
 	// POST: Transfers control to remove_loan if the user clicks to confirm completing the loan.
-	function complete_loan($uid, $book_id, $due_date){
+	function complete_loan($uid, $book_id, $enc_due_date){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
+	    $due_date = urldecode($enc_due_date);
 	    // need to get the clients name to pass to complete_loan.ctp
     	$client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $uid . " AND book_id = " . $book_id);
     	$client_id = $client_id_array[0]["loans"]["client_id"];
@@ -63,7 +64,6 @@ class LoansController extends AppController {
     	//need the book information to display in the view
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    //pass values to the view
-	    debug($this->params);
 	    $this->set('book_info', $book_info);
 	    $this->set('due_date', $due_date);
 	}
