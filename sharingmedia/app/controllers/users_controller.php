@@ -96,8 +96,11 @@ class UsersController extends AppController {
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
-		} else {
+		} /*else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");
+		}*/
+		if(!$this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'login'));
 		}
 	}
 	
@@ -121,7 +124,7 @@ class UsersController extends AppController {
 		// display proper layout
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-		App::import('Vendor', 'facebook');
+//		App::import('Vendor', 'facebook');
 		
 		// initialize facebook object
 		$facebook = new Facebook(array(
@@ -131,7 +134,7 @@ class UsersController extends AppController {
 		));
 
 		// initialize new session, get login url
-		$session = $facebook->getSession();
+//		$session = $facebook->getSession();
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
 			'fbconnect'=>0,
@@ -139,9 +142,9 @@ class UsersController extends AppController {
 			'next'=>'http://apps.facebook.com/sharingmedia/',
 			'cancel_url'=>'http://www.facebook.com/'
 		));
-		$me = null;
+//		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-		if ($session) {
+/*		if ($session) {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
@@ -163,8 +166,8 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
-		}
+*/    		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
+//		}
 /*
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
