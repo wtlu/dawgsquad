@@ -123,8 +123,8 @@ class UsersController extends AppController {
 		
 		// check to see if the user is logged out, if so, redirect to login
 		if(!$this->Session->check('uid')){
-			//debug("somethings wrong, trying to go back to login");
-			echo $this->redirect(array('controller'=>'users','action' => 'blank'));
+			debug("somethings wrong, trying to go back to login");
+			//echo $this->redirect(array('controller'=>'users','action' => 'blank'));
 		}
 	}
 	
