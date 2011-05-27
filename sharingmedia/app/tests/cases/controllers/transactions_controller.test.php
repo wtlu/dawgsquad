@@ -47,7 +47,7 @@ class TransactionsControllerTest extends CakeTestCase {
   }
 
   function startTest($method) {
-    echo '<h3>Starting method ' . $method . '</h3>';
+    echo '<h3>Starting method ' . $method . '...</h3>';
     $this->Transactions = new TestTransactionsController();
     $this->Transactions->constructClasses();
     $this->Transactions->Component->initialize($this->Transactions);
@@ -292,7 +292,7 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
@@ -346,7 +346,7 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
@@ -461,7 +461,7 @@ class TransactionsControllerTest extends CakeTestCase {
     debug("Fails because incompatible interface for testing");
 
     // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
-    $this->assertTrue(0);
+    $this->assertTrue(0); /* automatically fail */
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
