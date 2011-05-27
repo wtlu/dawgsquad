@@ -41,7 +41,7 @@ class BookInitialOffersController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
 		//pull books and initial offers from the databaxe
-		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid);
+		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid ." ORDER BY books.title");
 		//pass variables to page
 		$this->set('book_collection', $book_collection);
 	}
