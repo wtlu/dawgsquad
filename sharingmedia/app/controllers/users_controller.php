@@ -116,15 +116,14 @@ class UsersController extends AppController {
 */	
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
-
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+			echo $this->redirect(array('controller'=>'users','action' => 'index2'));
 		}
 		
 		// display proper layout
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
-//		App::import('Vendor', 'facebook');
+		App::import('Vendor', 'facebook');
 		
 		// initialize facebook object
 		$facebook = new Facebook(array(
@@ -142,30 +141,15 @@ class UsersController extends AppController {
 			'next'=>'http://apps.facebook.com/sharingmedia/',
 			'cancel_url'=>'http://www.facebook.com/'
 		));
-//		$me = null;
+		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
 		if ($session) {
-/*	  		try {
+	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
-	    		$user_id = $me['id'];
-	    		$user_name = $me['name'];
-	    		$friendsLists = $facebook->api('/me/friends');
-				$friendsArray = array();
-				$i = 0;
-			    foreach ($friendsLists as $friends) {
-			      foreach ($friends as $friend) {
-			         $id = $friend['id'];
-			         $friendsArray["$id"] = "foo";
-			         //$i++;
-			         //$name = $friend['name'];
-			      }
-			   	}
-		   		$this->Session->write('friends', $friendsArray);
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
-*/
 		} else {
 	   		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
 		}
