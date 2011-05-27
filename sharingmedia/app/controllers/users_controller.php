@@ -45,7 +45,7 @@ class UsersController extends AppController {
 	Post: If a user is new to the app, the user will be added to the users table.
 		The user will see the index page displaying a personal welcome message.
 */		
-	function index(){
+	function index3(){
 		// display the correct layout
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
@@ -114,7 +114,7 @@ class UsersController extends AppController {
 	Post: The user will be redirected to the index page after they login.
 		If they are new to the app, they will be asked to allow our app access to their facebook information.
 */	
-	function login(){
+	function login2(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
@@ -159,7 +159,77 @@ class UsersController extends AppController {
 		}
 */
 	}
+	
+        function login(){
+               // if the session has an id, the user is logged in, redirect to index
+               if($this->Session->check('uid')){
+                       echo $this->redirect(array('controller'=>'users','action' => 'index'));
+               }
+               
+               // display proper layout
+               $this->layout = 'login_layout';
+               $this->set('title_for_layout', 'Login');
+               App::import('Vendor', 'facebook');
+               
+               // initialize facebook object
+               $facebook = new Facebook(array(
+                       'appId'  => '218244414868504',
+                       'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
+                       'cookie' => true,
+               ));
 
+               // initialize new session, get login url
+               $session = $facebook->getSession();
+               $loginUrl=$facebook->getLoginUrl(array(
+                       'canvas'=>1,
+                       'fbconnect'=>0,
+                       'display'=>'page',
+                       'next'=>'http://apps.facebook.com/sharingmedia/',
+                       'cancel_url'=>'http://www.facebook.com/'
+               ));
+               $me = null;
+               // test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
+               if ($session) {
+                       try {
+                       $uid = $facebook->getUser();
+                       $me = $facebook->api('/me');
+       
+//                      echo "Welcome User: " . $me['name'] . "<br />";
+                       } catch (FacebookApiException $e) {
+                       error_log($e);
+                       }
+               } else {
+               echo("<script> top.location.href='" . $loginUrl . "'</script>");        
+               }
+
+       	}
+       	
+        function index() {
+                // get the user id and name to see if they are in the users table
+                $user_id = $this->Session->read('uid');
+                $user_name = $this->Session->read('username');
+                
+                // query the table
+                $count = $this->User->query('SELECT COUNT(*) FROM users WHERE facebook_id ="' . $user_id . '";');
+                $count_num = $count[0][0]['COUNT(*)'];
+                
+                //if they aren't in the table, add them
+                if($count_num == 0){
+                        $this->User->query('INSERT INTO users(name, password, facebook_id, created) VALUES("' . $user_name . '", null, "' . $user_id . '", NOW());');
+                }
+                
+                // display the correct layout
+                $this->layout = 'index_layout';
+                $this->set('title_for_layout', 'Sharing Media');
+                
+                // check to see if the user is logged out, if so, redirect to login
+                if(!$this->Session->check('uid')){
+                        echo $this->redirect(array('controller'=>'users','action' => 'login'));
+                }
+        }
+
+
+				
 /*
 	Pre: Called to display the coming soon page coming_soon.ctp.
 	Post: The user will be redirected to the coming soon page.
