@@ -8,7 +8,6 @@ use Mail::Sendmail;
 # Purpose: Runs SharingMedia test suite
 
 # vars
-# my $RECIPIENT = 'brandt.greg@gmail.com';
 my $RECIPIENT = $ARGV[1];
 
 # build timestamped test log filename
