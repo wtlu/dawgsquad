@@ -53,7 +53,7 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-  			'cookie' => true,
+  			'cookie' => false,
 		));
 
 		// initialize new session, get login url
@@ -67,7 +67,7 @@ class UsersController extends AppController {
 		));
 		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-		if ($session || $this->Session->check('uid')) {
+		if ($session) {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
