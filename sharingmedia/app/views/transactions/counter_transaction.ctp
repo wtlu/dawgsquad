@@ -63,7 +63,7 @@ function checkCheckboxes(){
 	</p>
 
 
-	<?php echo $form->create('Transaction', array('name' => 'counter_form', 'action' => 'make_offer', 'type'=>'post')); ?>
+	<?php echo $form->create('Transaction', array('name' => 'counter_form', 'action' => 'make_offer/'.$this->Session->read('uid'), 'type'=>'post')); ?>
 		<!-- Hidden fields, to transfer data to next page -->
 		<input name="data[Transaction][book_title]" id="book_title" value="<?= $data['Transaction']['book_title'] ?>" type="hidden">
 		<input name="data[Transaction][book_id]" id="book_id" value="<?= $data['Transaction']['book_id'] ?>" type="hidden">

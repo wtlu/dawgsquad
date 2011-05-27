@@ -31,12 +31,7 @@
 			</p>
 
 			
-			<?php echo $form->create('BookInitialOffer', array('action' => 'edit_comfirm', 'type'=>'post')); ?>
-			<!--Hidden fields to pass data-->	  
-			<input name="data[BookInitialOffer][title]" id="title" value="<?php echo $title ?>" type="hidden">
-			<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
-			<input name="data[BookInitialOffer][bid]" id="bid" value="<?php echo $bid ?>" type="hidden">
-			<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
+			<?php echo $form->create('BookInitialOffer', array('action' => 'edit_comfirm/'.$this->Session->read('uid')."/".$bid, 'type'=>'post')); ?>
 					
 			<div class="options">  
 				<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox">
@@ -59,7 +54,7 @@
 					</div>
 					<?php
 							echo $this->Form->end('Update Offer');
-							echo $this->Html->link('Cancel', "/book_initial_offers/my_books", array(' escape' => false));
+							echo $this->Html->link('Cancel', "/book_initial_offers/my_books/".$this->Session->read('uid'), array(' escape' => false));
 					?>
 		</div>
 	</fieldset>

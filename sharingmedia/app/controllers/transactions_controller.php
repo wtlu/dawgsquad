@@ -20,7 +20,7 @@ class TransactionsController extends AppController {
 
   //Pre: Called from find_books_results to initiate a transaction, or from myTransactions in myLibrary to continue or update a transactions.
   //Post: Creates a tuple in transactions with pertinent information, allows user to choose to accept the current offer or make a counteroffer.
-  function transactions($book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL") {
+  function transactions($uid, $book_id = "NULL", $owner_id = "NULL", $price = "NULL", $duration = "NULL", $allow_trade = -1, $client_id = "NULL") {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'accept transaction');
 
@@ -100,7 +100,7 @@ class TransactionsController extends AppController {
 			$add_status = true;
 			//Add new tuple in the transaction table to track this transaction
 			$this->Transaction->query('INSERT INTO transactions(owner_id, client_id, book_id, current_id, trade_id, duration, price, status, deleted, created)
-													VALUES(' . $owner_id. ',' . $this->Session->read('uid') . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
+													VALUES(' . $owner_id. ',' . $uid . ',' . $book_id . ',' . $owner_id . ', -1,' . $duration . ',' . $price .', 0, -1, NOW());');
 
 			$data['Transaction']['current_name'] = $data['Transaction']['owner_name'];
 		}
@@ -215,10 +215,10 @@ class TransactionsController extends AppController {
 
 	//Pre: This page is transactions page when a user navigates to their Library. It takes no arguments
 	//post: Returns an array of all transactions listed by the user and the details of each transactions
-	function my_transactions() {
+	function my_transactions($uid) {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
-		$current_user = $this->Session->read('uid');
+		$current_user = $uid;
 
 		//pull transaction with owners that are me and initial offers from the database
 		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
@@ -239,7 +239,7 @@ class TransactionsController extends AppController {
 
     //Pre: Called from counter_transaction.ctp, performs posting of a new offer or counteroffer
 	//Post: Modifies transactions table to update the transaction to latest state, displays offer details.
-   function make_offer(){
+   function make_offer($uid){
 
 		//For CSS
 		$this->layout = 'main_layout';
@@ -314,7 +314,7 @@ class TransactionsController extends AppController {
 
 
 		$this->Transaction->query('UPDATE transactions
-									SET current_id = '. $this->Session->read('uid') .',
+									SET current_id = '. $uid .',
 										trade_id = '. $trade_id .',
 										duration = '. $duration .',
 										price = '. $price .' '.'
@@ -418,7 +418,7 @@ class TransactionsController extends AppController {
 	PRE: This function is transfered to by delete_transaction.ctp if the user clicks to confirm deleting the transaction.
 	POST: The deleted attribute of the transactions table is checked. If it is -1, the users facebook_id is inserted and they will no longer see the transaction in my_transactions.ctp. If the deleted attribute already contains somebdies facebook_id, then the tuple is removed from the transactions table.
 */
-	function remove_transaction($tid){
+	function remove_transaction($uid, $tid){
 		//For CSS Styling
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'Library || My Transactions');
@@ -428,7 +428,7 @@ class TransactionsController extends AppController {
 		$deleted = $transaction_array[0]["transactions"]["deleted"];
 		//if deleted is -1, add users facebook_id, otherwise remove tuple
 		if($deleted == -1){
-			$this->Transaction->query("UPDATE transactions SET deleted = " . $this->Session->read('uid') . " WHERE id = " . $tid);
+			$this->Transaction->query("UPDATE transactions SET deleted = " . $uid . " WHERE id = " . $tid);
 		} else {
 			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
 		}
@@ -439,7 +439,7 @@ class TransactionsController extends AppController {
 
 	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
 	//Post: Accepts user input in a form, submits to make_offer.ctp
-    function counter_transaction($book_id = null, $owner_id = null, $allow_trade = 0, $client_id = "NULL") {
+    function counter_transaction($uid, $book_id = null, $owner_id = null, $allow_trade = 0, $client_id = "NULL") {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
@@ -468,7 +468,7 @@ class TransactionsController extends AppController {
 		if (true){
 			$trade_books = $this->Transaction->query('SELECT books.*
 				FROM book_initial_offers b_i_o, books books
-				WHERE b_i_o.user_id = ' . $this->Session->read('uid') . '
+				WHERE b_i_o.user_id = ' . $uid . '
 					AND b_i_o.trade_id = 0
 					AND b_i_o.book_id = books.id;');
 			# debug($trade_books);
