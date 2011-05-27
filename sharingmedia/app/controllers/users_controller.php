@@ -15,7 +15,7 @@ class UsersController extends AppController {
 	Post: If a user is new to the app, the user will be added to the users table.
 		The user will see the index page displaying a personal welcome message.
 */	
-	function index2() {
+	function index() {
 		// get the user id and name to see if they are in the users table
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
@@ -45,7 +45,7 @@ class UsersController extends AppController {
 	Post: If a user is new to the app, the user will be added to the users table.
 		The user will see the index page displaying a personal welcome message.
 */		
-	function index(){
+	function index2(){
 		// display the correct layout
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
@@ -113,10 +113,11 @@ class UsersController extends AppController {
 */	
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
+/*
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
-		
+*/		
 		// display proper layout
 		$this->layout = 'login_layout';
 		$this->set('title_for_layout', 'Login');
@@ -144,29 +145,29 @@ class UsersController extends AppController {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
-	    		//debug($me);
+	    		$user_id = $me['id'];
+	    		$user_name = $me['name'];
 	    		$friendsLists = $facebook->api('/me/friends');
-	    		//debug($friendsLists);
-	    		$this->Session->write('friendsLists', $friendsLists["data"]);
-	    		//$temp = $this->Session->read('friendsLists');
-	    		//debug($temp);
-/*				
+				$friendsArray = array();
+				$i = 0;
 			    foreach ($friendsLists as $friends) {
 			      foreach ($friends as $friend) {
-			         // do something with the friend, but you only have id and name
 			         $id = $friend['id'];
-			         $name = $friend['name'];
+			         $friendsArray["$id"] = "foo";
+			         //$i++;
+			         //$name = $friend['name'];
 			      }
-			   }
-*/	
-//	    		echo "Welcome User: " . $me['name'] . "<br />";
+			   	}
+		   		$this->Session->write('friends', $friendsArray);
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
 		} else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
 		}
-
+		if($this->Session->check('uid')){
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
+		}
 	}
 
 /*
