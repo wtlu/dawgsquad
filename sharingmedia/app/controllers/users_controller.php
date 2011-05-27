@@ -67,8 +67,8 @@ class UsersController extends AppController {
 		));
 		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-//		if ($session) {
-//	  		try {
+		if ($session) {
+	  		try {
 //	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
 	    		$user_id = $me['id'];
@@ -93,9 +93,9 @@ class UsersController extends AppController {
 				if($count_num == 0){
 					$this->User->query('INSERT INTO users(name, password, facebook_id, created) VALUES("' . $user_name . '", null, "' . $user_id . '", NOW());');
 				}
-//	  		} catch (FacebookApiException $e) {
-//	    		error_log($e);
-//	  		}
+	  		} catch (FacebookApiException $e) {
+	    		error_log($e);
+	  		}
 /*	} else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}*/

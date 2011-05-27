@@ -29,7 +29,7 @@
 		foreach ($book_results as $book){
 			$temp = $this->Session->read('friends');
 			$owner_id = $book['users']['facebook_id'];
-			/*if(isset($temp["$owner_id"])){*/
+			if(isset($temp["$owner_id"])){
 				$result = $book['books'];
 				$user_result = $book['users'];
 				echo $form->create('Transaction', array('action' => 'transactions'."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
@@ -46,7 +46,7 @@
 				}
 				display_results($result, $user_result, $b_i_o_result, $trade_book);
 				echo $this->Form->end('Start a Transaction');
-			/*}*/
+			}
 		}
 	} else {
 		?>
