@@ -58,7 +58,9 @@
 				echo "duedate: " . $loan_collection_owner[$i]["loans"]["due_date"]; ?>
 			-->
 
-			<?php echo $this->Html->link('Complete Loan','/loans/complete_loan/'.$this->Session->read('uid')."/".$book_collection_owner[$i]["books"]["id"].'/'.$loan_collection_owner[$i]["loans"]["due_date"].'/', array('class' => 'buttons', 'escape' => false)); ?>
+			<?php
+			$enc_due_date = $loan_collection_owner[$i]["loans"]["due_date"];
+			echo $this->Html->link('Complete Loan','/loans/complete_loan/'.$this->Session->read('uid')."/".$book_collection_owner[$i]["books"]["id"].'/'.$enc_due_date.'/', array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}
