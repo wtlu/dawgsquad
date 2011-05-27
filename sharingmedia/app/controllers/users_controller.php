@@ -53,7 +53,7 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
   			'appId'  => '218244414868504',
   			'secret' => 'fb83c155cc38febb1fb9024c1a9eb050',
-  			'cookie' => false,
+  			'cookie' => true,
 		));
 
 		// initialize new session, get login url
