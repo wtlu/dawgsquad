@@ -432,7 +432,7 @@ class TransactionsController extends AppController {
 		} else {
 			$this->Transaction->query("DELETE FROM transactions WHERE id = " . $tid);
 		}
-		$this->redirect('/transactions/my_transactions/');
+		$this->redirect('/transactions/my_transactions/'.$uid);
 	}
 
 
