@@ -39,9 +39,24 @@ FB.Canvas.setSize();
 <!--tabs of Library with links-->
 <div id = "menubar">	
 	<ul id = "menu">
-		<li><? echo $this->Html->link($this->Html->image('books.jpg', array('alt'=> 'My Books')), "/book_initial_offers/my_books/".$this->Session->read('uid'), array('class' => 'current', ' escape' => false)); ?></li>
-                <li><?echo $this->Html->link($this->Html->image('transactions.jpg', array('alt'=> 'My Transactions')), "/transactions/my_transactions/".$this->Session->read('uid'), array('escape' => false)); ?></li>
-                <li><? echo $this->Html->link($this->Html->image('loans.jpg', array('alt'=> 'My Loans')),"/loans/my_loans/".$this->Session->read('uid'), array('escape' => false)); ?></li>
+		<li><? echo
+			$this->Html->link($this->Html->image('books.jpg',
+			array('alt'=> 'My Books')), 
+			"/book_initial_offers/my_books/".$this->Session->read('uid'), 
+			array('class' => 'current', 'escape' => false)); ?>
+		</li>
+                <li><? echo 
+			$this->Html->link($this->Html->image('transactions.jpg', 
+			array('alt'=> 'My Transactions')), 
+			"/transactions/my_transactions/".$this->Session->read('uid'), 
+			array('escape' => false)); ?>
+		</li>
+                <li><? echo 
+			$this->Html->link($this->Html->image('loans.jpg', 
+			array('alt'=> 'My Loans')),
+			"/loans/my_loans/".$this->Session->read('uid'), 
+			array('escape' => false)); ?>
+		</li>
 	</ul>
 </div>
 <div id="list">
