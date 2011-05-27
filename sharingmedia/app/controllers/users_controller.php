@@ -15,7 +15,7 @@ class UsersController extends AppController {
 	Post: If a user is new to the app, the user will be added to the users table.
 		The user will see the index page displaying a personal welcome message.
 */	
-	function index() {
+	function index2() {
 		// get the user id and name to see if they are in the users table
 		$user_id = $this->Session->read('uid');
 		$user_name = $this->Session->read('username');
@@ -45,7 +45,7 @@ class UsersController extends AppController {
 	Post: If a user is new to the app, the user will be added to the users table.
 		The user will see the index page displaying a personal welcome message.
 */		
-	function index2(){
+	function index(){
 		// display the correct layout
 		$this->layout = 'index_layout';
 		$this->set('title_for_layout', 'Sharing Media');
