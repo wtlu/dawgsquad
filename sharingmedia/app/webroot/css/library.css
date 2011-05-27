@@ -50,7 +50,7 @@ a{
 }
 
 #menubar a{
-    color: black;
+    color: white;
 }
 #menu {
 	width: 100%;
@@ -69,6 +69,7 @@ a{
 }
 #menu li:hover {
 	background-image: url("../img/hover.png");	
+	color: white;
 }
 
 #menu a {
