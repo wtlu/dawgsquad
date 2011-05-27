@@ -22,19 +22,29 @@ a{
 	height: 100px;
 	float: left;
 	margin-right: 20px;
-	margin-bottom: 60px;
+	margin-bottom: 45px;
+	margin-top: 15px;
 }
 .books_list{
 	height:140px;
 }
 .book_unit{
-	width:520px;
+	width:500px;
 	overflow: hidden;
-	border-bottom: 2px solid black;
-	margin-bottom:10px;
+	border: 2px solid #3B5998;
+	margin-bottom: -2px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+}
+
+.wait_response {
+	background: #FFE5DE
+}
+
+.respond {
+	background: #CFDEFF;
 }
 #menubar{
-    vertical-align:middle;
     width:564px;
     float:left;
 }
@@ -43,38 +53,28 @@ a{
     color: black;
 }
 #menu {
-	background-color: #627AAD;
-	height: 43px;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	width: 100%;
+	padding-left:0px;
 }
 #menu li {
 	display: block;
 	float: left;
-	line-height: 200%;
-	padding: 8px 0px 0px 0px;
-	text-decoration: none;
+	width: 150px;
+	margin-right:2px;
+	background-image:url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/tab.png");
+	text-align:center;
+	height:28px;
+	font-weight:bold;
+	padding-top:10px;
+}
+#menu li:hover {
+	background-image: url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/hover.png");	
 }
 
 #menu a {
-	padding-right: 10px;
-	padding-left: 10px;
 	text-decoration: none;
 }
 
-#menu .current{
-	background-color: #6B86B7;
-	color:white;
-	padding: 13px 10px 13px 10px;
-}
-
-#menu a:hover {
-	background-color: #6B86B7;
-	color:white;
-	padding: 13px 10px 13px 10px;
-}
 
 #menu #add{
     float: right;
@@ -121,5 +121,3 @@ a{
     display: block;
     float: left;
 }
-
-
