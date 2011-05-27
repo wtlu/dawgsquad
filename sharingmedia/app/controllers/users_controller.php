@@ -96,7 +96,7 @@ class UsersController extends AppController {
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
-/*	} else {
+	} /*else {
     		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}*/
 		if(!$this->Session->check('uid')){
