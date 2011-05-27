@@ -39,9 +39,9 @@ FB.Canvas.setSize();
 <!--tabs of Library with links-->
 <div id = "menubar">	
 	<ul id = "menu">
-		<li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array('class' => 'current', ' escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+		<li><?= $this->Html->link('My Books', "/book_initial_offers/my_books/".$this->Session->read('uid'), array('class' => 'current', ' escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions/".$this->Session->read('uid'), array('escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Loans',"/loans/my_loans/".$this->Session->read('uid'), array('escape' => false)); ?></li>
 	</ul>
 </div>
 <div id="list">
@@ -66,8 +66,8 @@ FB.Canvas.setSize();
 						<li>Price: $<?=$book_collection[$i]["book_initial_offers"]["price"];?></li>
 				<?php }?>
 			</ul>
-			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
-			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Remove',"/book_initial_offers/remove_confirm/".$this->Session->read('uid')."/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
+			<?= $this->Html->link('Change Offer',"/book_initial_offers/edit/".$this->Session->read('uid')."/".$book_collection[$i]["book_initial_offers"]["book_id"]."/", array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}

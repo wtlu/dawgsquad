@@ -51,7 +51,7 @@
   	<div class="box">
   	
   		<?php 
-  		echo $this->Html->link($this->Html->image('my_library.png', array('alt' => 'MyLibrary')), "/book_initial_offers/my_books", array('escape' => false, 'id' => 'find_book_link'));
+  		echo $this->Html->link($this->Html->image('my_library.png', array('alt' => 'MyLibrary')), "/book_initial_offers/my_books/".$this->Session->read('uid'), array('escape' => false, 'id' => 'find_book_link'));
   		?>
   		
   		<ul>

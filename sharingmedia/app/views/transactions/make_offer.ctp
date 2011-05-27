@@ -70,7 +70,7 @@ File: /app/views/transaction.ctp
 </div>
 
 <div>
-		<?php echo $this->Html->link('Click to go to your library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
+		<?php echo $this->Html->link('Click to go to your library', "/book_initial_offers/my_books/".$this->Session->read('uid'), array('class' => 'tab', 'escape' => false)); ?>
 </div>
 
 </body>

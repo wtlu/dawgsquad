@@ -20,10 +20,10 @@
 <h1>My Library</h1>
 <!--tabs of Library with links-->
 <div id = "menubar">
-        <ul id = "menu">
-                <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books", array(' escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions", array('class' => 'current', 'escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Loans',"/loans/my_loans", array('escape' => false)); ?></li>
+        <ul id = "menu"
+                <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books/".$this->Session->read('uid'), array(' escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions/".$this->Session->read('uid'), array('class' => 'current', 'escape' => false)); ?></li>
+                <li><?= $this->Html->link('My Loans',"/loans/my_loans/".$this->Session->read('uid'), array('escape' => false)); ?></li>
         </ul>
 </div>
 
@@ -94,7 +94,7 @@
 			}
 
 			if($transaction_collection[$i]["t"]["status"] != 0){
-				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$this->Session->read('uid')."/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>
 		</div>
