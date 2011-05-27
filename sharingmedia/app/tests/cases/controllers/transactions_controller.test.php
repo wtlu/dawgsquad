@@ -84,6 +84,11 @@ class TransactionsControllerTest extends CakeTestCase {
     $duration = -1;
     $allow_trade = -1;
 
+    /* set dummy data... REMOVE / INTEGRATE WHEN POSSIBLE */
+    $this->Transactions->data['Transaction']['title'] = 'title';
+    $this->Transactions->data['Transaction']['author'] = 'author';
+    $this->Transactions->data['Transaction']['isbn'] = '1234';
+
     /* add the transaction */
     $result = $this->Transactions->transactions($book_id, $owner_id, $price, $duration, $allow_trade, $client_id);
 
