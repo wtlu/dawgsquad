@@ -67,7 +67,7 @@
 			<label for="choose_loan">Loan for how many days?</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
-			?><p>days</p>
+			?>
 		</div>
 
 		<div class="options">
