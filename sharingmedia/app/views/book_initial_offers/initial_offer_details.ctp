@@ -67,12 +67,12 @@
 			<label for="choose_loan">Loan For</label>
 			<?php
 				echo $this->Form->input('loan_duration', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
-			?>
+			?><p>days</p>
 		</div>
 
 		<div class="options">
 			<input name="data[BookInitialOffer][offer_sell]" id="choose_sell" value="sell" type="checkbox">
-			<label for="choose_sell">Sell For</label>
+			<label for="choose_sell">Sell For $</label>
 			<?php
 				echo $this->Form->input('sell_price', array('label' => '', 'class'=>'field', 'maxlength' => '6'));
 			?>
