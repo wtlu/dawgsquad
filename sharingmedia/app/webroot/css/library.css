@@ -22,16 +22,27 @@ a{
 	height: 100px;
 	float: left;
 	margin-right: 20px;
-	margin-bottom: 60px;
+	margin-bottom: 45px;
+	margin-top: 15px;
 }
 .books_list{
 	height:140px;
 }
 .book_unit{
-	width:520px;
+	width:500px;
 	overflow: hidden;
-	border-bottom: 2px solid black;
-	margin-bottom:10px;
+	border: 2px solid #3B5998;
+	margin-bottom: -2px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+}
+
+.wait_response {
+	background: #FFE5DE
+}
+
+.respond {
+	background: #CFDEFF;
 }
 #menubar{
     vertical-align:middle;
@@ -121,5 +132,3 @@ a{
     display: block;
     float: left;
 }
-
-

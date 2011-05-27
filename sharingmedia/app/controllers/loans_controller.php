@@ -15,21 +15,21 @@ class LoansController extends AppController {
 	// PRE: Called from my_library.ctp
 	// POST: Display the users current loans
 
-	function my_loans(){
+	function my_loans($uid){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    //pull books details for the book owner from the database
-		$book_collection_owner = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$this->Session->read('uid'));
+		$book_collection_owner = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND owner_id = ".$uid);
 		//pull book details for the book borrower from the database
-		$book_collection_borrower = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND client_id = ".$this->Session->read('uid')); 
+		$book_collection_borrower = $this->Loan->query("SELECT * FROM books, loans WHERE books.id = loans.book_id AND client_id = ".$uid); 
 		//pass values to the view
 		$this->set('book_collection_owner', $book_collection_owner);
 		$this->set('book_collection_borrower', $book_collection_borrower);
 		//pull loan details for the owner from the database
-	    $loan_collection_owner = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $this->Session->read('uid'));
+	    $loan_collection_owner = $this->Loan->query("SELECT * FROM loans WHERE owner_id = ". $uid);
 	    //pull loan details for the borrower from the database
-	    $loan_collection_borrower = $this->Loan->query("SELECT * FROM loans WHERE client_id = ". $this->Session->read('uid'));
+	    $loan_collection_borrower = $this->Loan->query("SELECT * FROM loans WHERE client_id = ". $uid);
 	    //replace the owners id with their name because this is what needs to be displayed
 		for ($i = 0; $i < count($loan_collection_owner); $i++){
 			$client_id = $loan_collection_owner[$i]["loans"]["client_id"];
@@ -49,12 +49,12 @@ class LoansController extends AppController {
 	
 	// PRE: Transfered here from my_library.ctp if user selects "complete loan". Only the book owner should be able to complete a loan. Each book can only be loaned once, in other words, no duplicates.
 	// POST: Transfers control to remove_loan if the user clicks to confirm completing the loan.
-	function complete_loan($book_id, $due_date = ""){
+	function complete_loan($uid, $book_id, $due_date = ""){
 		// set up layout
 	    $this->layout = 'main_layout';
 	    $this->set('title_for_layout', 'Library || My Loans');
 	    // need to get the clients name to pass to complete_loan.ctp
-    	$client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $this->Session->read('uid') . " AND book_id = " . $book_id);
+    	$client_id_array = $this->Loan->query("SELECT client_id FROM loans WHERE owner_id = " . $uid . " AND book_id = " . $book_id);
     	$client_id = $client_id_array[0]["loans"]["client_id"];
     	$client_name_array = $this->Loan->query("SELECT name FROM users WHERE facebook_id = " . $client_id);
     	$client_name = $client_name_array[0]["users"]["name"];

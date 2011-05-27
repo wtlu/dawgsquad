@@ -8,6 +8,27 @@
  */
 
 App::import('Model', 'Transaction');
+App::import('Controller', 'Transactions');
+
+class TestTransactionsController extends TransactionsController {
+
+  var $name = 'Transactions';
+  
+  var $autoRender = false;
+  
+  function redirect($url, $status = null, $exit = true) {
+    $this->redirectUrl = $url;
+  }
+  
+  function render($action = null, $layout = null, $file = null) {
+    $this->renderedAction = $action;
+  }
+  
+  function _stop($status = 0) {
+    $this->stopped = $status;
+  }
+
+}
 
 class TransactionsControllerTest extends CakeTestCase {
 
@@ -27,10 +48,16 @@ class TransactionsControllerTest extends CakeTestCase {
 
   function startTest($method) {
     echo '<h3>Starting method ' . $method . '</h3>';
+    $this->Transactions = new TestTransactionsController();
+    $this->Transactions->constructClasses();
+    $this->Transactions->Component->initialize($this->Transactions);
   }
 
   function endTest($method) {
     echo '<hr />';
+    $this->Transactions->Session->destroy();
+    unset($this->Transactions);
+    ClassRegistry::flush();
   }
 
   //--------------------------------------------------
@@ -44,6 +71,8 @@ class TransactionsControllerTest extends CakeTestCase {
    */
   function testTransactions() {
 
+    $this->Transactions->Session->write('uid', 2);
+
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
 
@@ -52,11 +81,11 @@ class TransactionsControllerTest extends CakeTestCase {
     $owner_id	= 1;
     $client_id	= 2;
     $price = 100.0;
-    $duration = null;
+    $duration = -1;
     $allow_trade = -1;
 
     /* add the transaction */
-    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$price/$duration/$allow_trade/$client_id");
+    $result = $this->Transactions->transactions($book_id, $owner_id, $price, $duration, $allow_trade, $client_id);
 
     /* get that transaction from the DB */
     $transaction = $this->Transaction->find('first',
@@ -73,11 +102,11 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->assertTrue($transaction['Transaction']['client_id'] == $client_id);	/* right client */
     $this->assertTrue($transaction['Transaction']['current_id'] == $owner_id);	/* current offer is owner's initial offer */
     $this->assertTrue($transaction['Transaction']['price'] == 100.0);		/* right initial price */
-    $this->assertTrue($transaction['Transaction']['duration'] == null);		/* mutual exclusivity */
-    $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/* mutual exclusivity */
+    $this->assertTrue($transaction['Transaction']['duration'] == -1);		/* mutual exclusivity */
+    $this->assertTrue($transaction['Transaction']['trade_id'] == -1);		/* mutual exclusivity */
 
     /* try to add it again (shouldn't be able to) */
-    $result = $this->testAction("/transactions/transactions/$book_id/$owner_id/$client_id");
+    $result = $this->Transactions->transactions($book_id, $owner_id, $price, $duration, $allow_trade, $client_id);
 
     /* make sure only one in db */
     $transaction = $this->Transaction->find('all', 
@@ -112,12 +141,12 @@ class TransactionsControllerTest extends CakeTestCase {
     $book_id = 20;
     $owner_id = 100;
     $price = 100.0;
-    $duration = null;
+    $duration = -1;
     $client_id = 200;
     $allow_trade = -1;
-     
+    
     /* accept it */
-    $result = $this->testAction("/transactions/accept_transaction/$book_id/$owner_id/$price/$duration/$client_id/$allow_trade");
+    $result = $this->Transactions->accept_transaction($book_id, $owner_id, $price, $duration, $client_id, $allow_trade);
 
     /* get that transaction from the db */
     $transaction = $this->Transaction->find('first',
@@ -153,7 +182,7 @@ class TransactionsControllerTest extends CakeTestCase {
     $duration = null;
     $client_id = 200;
     $allow_trade = -1;
-     
+    
     /* accept it */
     $result = $this->testAction("/transactions/accept_transaction/$book_id/$owner_id/$price/$duration/$client_id/$allow_trade");
 
@@ -214,6 +243,9 @@ class TransactionsControllerTest extends CakeTestCase {
    */
   function testCounterTransactionSameType() {
 
+    /* disclaimer */
+    debug("Fails because incompatible interface for testing");
+
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
 
@@ -232,11 +264,10 @@ class TransactionsControllerTest extends CakeTestCase {
 						  )
 					    );
 
-    /* SHOULD FAIL BECAUSE INTERFACE ILL DEFINED
-     * UNCOMMENT BELOW LINES WHEN INTERFACE CORRECTLY DEFINED */
+    // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
     $this->assertTrue(0);
 
-    /* ensure offer was updated, and other offer types are still null */
+    /* /\* ensure offer was updated, and other offer types are still null *\/ */
     /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
     /* $this->assertTrue($transaction['Transaction']['price'] == $new_offer);	/\* updated offer *\/ */
     /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
@@ -251,6 +282,12 @@ class TransactionsControllerTest extends CakeTestCase {
    *              counter_transaction( $transaction_id, $type, $offer )
    */
   function testCounterTransactionDiffType() {
+
+    /* disclaimer */
+    debug("Fails because incompatible interface for testing");
+
+    // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
+    $this->assertTrue(0);
 
     /* init */
     $this->Transaction =& ClassRegistry::init('Transaction');
@@ -271,11 +308,7 @@ class TransactionsControllerTest extends CakeTestCase {
 						  )
 					    );
 
-    /* SHOULD FAIL BECAUSE INTERFACE ILL DEFINED
-     * UNCOMMENT BELOW LINES WHEN INTERFACE CORRECTLY DEFINED */
-    $this->assertTrue(0);
-
-    /* /\* ensure the transaction now has a duration, and other types are null *\/ */
+    /* ensure the transaction now has a duration, and other types are null */
     /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
     /* $this->assertTrue($transaction['Transaction']['price'] == null );		/\* updated offer *\/ */
     /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
@@ -283,5 +316,201 @@ class TransactionsControllerTest extends CakeTestCase {
     
   }
 
+  //--------------------------------------------------
+  // USE CASE TESTS
+  // -- NOTE: THESE DO NOT WORK BECAUSE TRANSACTION
+  //          INTERFACE IS NOT DEFINED SUCH THAT
+  //          INFORMATION CAN BE PASSED THROUGH PARAMETERS
+  //--------------------------------------------------
+
+  /**
+   * purpose		: tests a variation of exchange book use case
+   * participants	: Owner, Client
+   * conditions		: counter_transaction is of form...
+   *                      counter_transaction( $transaction_id, $type, $offer )
+   *
+   * actions
+   *  1) Owner has offered Book 123 @ $10
+   *  2) Client counters @ $5
+   *  3) Owner counters @ $7
+   *  4) Client accepts
+   */
+  function testUseCaseFirst() {
+
+    /* disclaimer */
+    debug("Fails because incompatible interface for testing");
+
+    // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
+    $this->assertTrue(0);
+
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+
+    /* params */
+    $transaction_id = 400;
+    $orig_offer = 10.0;
+
+    $type = "sell";
+    $fst_new_offer = 5.0;
+    $sec_new_offer = 7.0;
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $orig_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
+
+    /* counter @ $5 */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$fst_new_offer");
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $fst_new_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
+
+    /* counter @ $5 */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$fst_new_offer");
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $fst_new_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
+
+    /* counter @ $7 */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$sec_new_offer");
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $sec_new_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
+
+    /* accept */
+    $action_string = "/transactions/accept_transaction/"
+      . "{$transaction['Transaction']['book_id']}"
+      . "{$transaction['Transaction']['owner_id']}"
+      . "{$transaction['Transaction']['price']}"
+      . "{$transaction['Transaction']['duration']}"
+      . "{$transaction['Transaction']['client_id']}"
+      . "{$transaction['Transaction']['allow_trade']}";
+
+    /* hopefully this interface only requires transaction_id in the future */
+    $result = $this->testAction($action_string);
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first', 
+					    array('conditions' => 
+						  array('Transaction.id' => $transaction_id)
+						  )
+					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['status'] == 1); /\* accepted *\/ */
+
   }
+
+  /**
+   * purpose		: tests a variation of exchange book use case
+   * participants	: Owner, Client
+   * conditions		: counter_transaction is of form...
+   *                      counter_transaction( $transaction_id, $type, $offer )
+   *
+   * actions
+   *  1) Owner has offered Book 123 @ $10
+   *  2) Client counters @ loan for 10 days
+   *  3) Owner rejects
+   */
+  function testUseCaseSecond() {
+
+    /* disclaimer */
+    debug("Fails because incompatible interface for testing");
+
+    // NOTE: TEST FAILS BECAUSE OF ILL-DEFINED INTERFACE
+    $this->assertTrue(0);
+
+    /* init */
+    $this->Transaction =& ClassRegistry::init('Transaction');
+
+    /* params */
+    $transaction_id = 400;
+    $orig_offer = 10.0;
+
+    $type = "loan";
+    $new_offer = 10;
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first',
+    					    array('conditions' =>
+    						  array('Transaction.id' => $transaction_id)
+    						  )
+    					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == $orig_offer);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == null);		/\* mutually exclusive *\/ */
+
+    /* counter @ loan for 10 days */
+    $result = $this->testAction("/transactions/counter_transaction/$transaction_id/$type/$new_offer");
+
+    /* get the transaction */
+    $transaction = $this->Transaction->find('first',
+    					    array('conditions' =>
+    						  array('Transaction.id' => $transaction_id)
+    						  )
+    					    );
+
+    /* test params */
+    /* $this->assertTrue($transaction['Transaction']['id'] == $transaction_id);	/\* right one *\/ */
+    /* $this->assertTrue($transaction['Transaction']['price'] == null);	/\* updated offer *\/ */
+    /* $this->assertTrue($transaction['Transaction']['trade_id'] == null);		/\* mutually exclusive *\/ */
+    /* $this->assertTrue($transaction['Transaction']['duration'] == $new_offer);		/\* mutually exclusive *\/ */
+
+    /* reject */
+    $result = $this->Transactions->cancel_transaction($transaction_id);
+
+    /* get the transaction */
+    /* $transaction = $this->Transaction->find('first', */
+    /* 					    array('conditions' => */
+    /* 						  array('Transaction.id' => $transaction_id) */
+    /* 						  ) */
+    /* 					    ); */
+
+    /* test params */
+    $this->assertTrue($transaction['Transaction']['status'] == 0); /* rejected */
+
+  }
+
+}
 ?>
