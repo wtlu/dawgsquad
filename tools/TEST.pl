@@ -8,7 +8,8 @@ use Mail::Sendmail;
 # Purpose: Runs SharingMedia test suite
 
 # vars
-my $RECIPIENT = 'brandt.greg@gmail.com';
+# my $RECIPIENT = 'brandt.greg@gmail.com';
+my $RECIPIENT = $ARGV[1];
 
 # build timestamped test log filename
 my ($min,$hour,$mday,$mon,$year) = (localtime)[1,2,3,4,5];
@@ -27,7 +28,7 @@ my $output = "[$fname]\n\n"
 # email errors
 my %mail = (
   To => $RECIPIENT,
-  From => 'noreply@ec2-50-18-34-181.us-west-1.compute.amazonaws.com',
+  From => 'noreply@sharingmedia',
   Message => $output,
 );
 
