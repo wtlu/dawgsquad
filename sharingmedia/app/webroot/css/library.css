@@ -54,36 +54,18 @@ a{
     color: black;
 }
 #menu {
-	background-color: #627AAD;
-	height: 43px;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	width: 100%;
 }
 #menu li {
 	display: block;
 	float: left;
-	line-height: 200%;
-	padding: 8px 0px 0px 0px;
-	text-decoration: none;
 }
 
 #menu a {
-	padding-right: 10px;
-	padding-left: 10px;
 	text-decoration: none;
 }
 
 #menu .current{
-	background-color: #6B86B7;
-	color:white;
-	padding: 13px 10px 13px 10px;
-}
-
-#menu a:hover {
-	background-color: #6B86B7;
-	color:white;
 	padding: 13px 10px 13px 10px;
 }
 
