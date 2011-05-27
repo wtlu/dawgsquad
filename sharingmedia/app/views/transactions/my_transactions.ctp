@@ -112,13 +112,13 @@
 			?>
 			<?php
 			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
-				echo $this->Html->link('View Offer', "/transactions/transactions/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
+				echo $this->Html->link('View Offer', "/transactions/transactions/".$this->Session->read('uid')."/".$bid."/".$transaction_collection[$i]["u"]["facebook_id"]."/".$price."/".$loan."/".$trade."/".$transaction_collection[$i]['t']['client_id'], array(' escape' => false));
 			} else if($uid == $last && $transaction_collection[$i]["t"]["status"] == 0){
 				echo "Waiting for a response to your counteroffer";
 			}
 
 			if($transaction_collection[$i]["t"]["status"] != 0){
-				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$this->Session->read('uid')."/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
+				echo $this->Html->link('Delete This Transaction From History', "/transactions/delete_transaction/".$transaction_collection[$i]["t"]["id"]."/".$bid."/".$price."/".$loan."/".$trade."/", array(' escape' => false, 'class' => 'buttons'));
 			}
 			?>
 		</div>
