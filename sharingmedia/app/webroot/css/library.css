@@ -59,15 +59,13 @@ a{
 #menu li {
 	display: block;
 	float: left;
+	padding-right:10px;
 }
 
 #menu a {
 	text-decoration: none;
 }
 
-#menu .current{
-	padding: 13px 10px 13px 10px;
-}
 
 #menu #add{
     float: right;
