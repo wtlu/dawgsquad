@@ -6,14 +6,6 @@
 	<?php echo $this->Html->css('login'); ?>
 </head>
 <body>
-
-	<div id="top_section">
-	
-		<div id="top_bar_logo">
-		
- 			<?php echo $this->Html->image('logo.png', array('alt' => 'SharingBooksLogo')) ?>
-		</div>
-	</div>
 	
 <?php echo $content_for_layout ?>
 <?php echo $this->Facebook->init(); ?>

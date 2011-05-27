@@ -1,3 +1,4 @@
+<?php header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php echo $this->Facebook->html() ?>
@@ -40,7 +41,7 @@
 			<?php echo $this->Html->link('Home', "/users/index", array('class' => 'tab', 'escape' => false)); ?> 
 			<?php echo $this->Html->link('Add Books', "/books/add_books", array('class' => 'tab', 'escape' => false)); ?>
 			<?php echo $this->Html->link('Find Books', "/books/find_books", array('class' => 'tab', 'escape' => false)); ?>
-			<?php echo $this->Html->link('My Library', "/book_initial_offers/my_books", array('class' => 'tab', 'escape' => false)); ?>
+			<?php echo $this->Html->link('My Library', "/book_initial_offers/my_books/".$this->Session->read('uid'), array('class' => 'tab', 'escape' => false)); ?>
 		</div>
 	</div>
 <?php echo $content_for_layout ?>

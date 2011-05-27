@@ -76,7 +76,7 @@ class FindBooksTestCase extends CakeWebTestCase {
     
     /* see if relevant options are there */
     $this->assertPattern('/<input.*type="submit".*value="Accept".*>/');
-    $this->assertText('Counter Transaction'); /* assumes counter not a button */
+    $this->assertPattern('/<input.*type="submit".*value="Counter.*".*>/');
     
   }
 

@@ -50,6 +50,18 @@ class BooksController extends AppController {
                 if (isset($this->data['Book']['isbn'])) {
                         $book_isbn = $this->data['Book']['isbn'];
                 }
+
+                // the go back button from transaction assigns these vars to "NULL" string. Changing back to null values
+                if ($book_title == "NULL") {
+						$book_title = null;
+				}
+				if ($book_author == "NULL") {
+						$book_author = null;
+				}
+				if ($book_isbn == "NULL") {
+						$book_isbn = null;
+                }
+
                 if ($this->Session->read('uid') != null) {
                 	$session_id = $this->Session->read('uid');
                 }

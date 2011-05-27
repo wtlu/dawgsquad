@@ -11,6 +11,7 @@ time since the offer was made. Therfore, a different option must be selected for
 
 <?php
 echo $form->create('Transaction', array('escape'=> false, 'action' => 'transactions'."/".
+					$this->Session->read('uid')."/".
 																					$data['Transaction']['book_id']."/".
 																					$data['Transaction']['owner_id']."/".
 																					$data['Transaction']['price']."/".
