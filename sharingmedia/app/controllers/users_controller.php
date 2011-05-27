@@ -117,7 +117,7 @@ class UsersController extends AppController {
 	function login(){
 		// if the session has an id, the user is logged in, redirect to index
 		if($this->Session->check('uid')){
-			echo $this->redirect(array('controller'=>'users','action' => 'index2'));
+			echo $this->redirect(array('controller'=>'users','action' => 'index'));
 		}
 		
 		// display proper layout
@@ -141,18 +141,18 @@ class UsersController extends AppController {
 			'next'=>'http://apps.facebook.com/sharingmedia/',
 			'cancel_url'=>'http://www.facebook.com/'
 		));
-		$me = null;
+//		$me = null;
 		// test if we have a session, otherwise, redirect to login url, which handles asking the user for permission to their info when adding the app 
-		if ($session) {
+/*		if ($session) {
 	  		try {
 	    		$uid = $facebook->getUser();
 	    		$me = $facebook->api('/me');
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
 	  		}
-		} else {
+		} else {*/
 	   		echo("<script> top.location.href='" . $loginUrl . "'</script>");	
-		}
+//		}
 /*
 		if($this->Session->check('uid')){
 			echo $this->redirect(array('controller'=>'users','action' => 'index'));
