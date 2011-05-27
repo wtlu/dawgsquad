@@ -41,7 +41,7 @@ class BookInitialOffersController extends AppController {
 		$this->layout = 'main_layout';
 		$this->set('title_for_layout', 'My Books');
 		//pull books and initial offers from the databaxe
-		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid);
+		$book_collection = $this->BookInitialOffer->query("SELECT * FROM books, book_initial_offers WHERE books.id = book_initial_offers.book_id AND user_id = ".$uid ." ORDER BY books.title");
 		//pass variables to page
 		$this->set('book_collection', $book_collection);
 	}
@@ -61,7 +61,7 @@ class BookInitialOffersController extends AppController {
 		//remove row from book_initial_offers
 		$this->BookInitialOffer->query("DELETE book_initial_offers FROM book_initial_offers WHERE book_initial_offers.user_id = " . $uid . " AND book_initial_offers.book_id = " . $bid);
 		//redirect to my_book page
-		$this->redirect('/book_initial_offers/my_books/');
+		$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 	//Pre: called when the user hit edit on the my library page. Requires user id of current user and a valid bid of the initial offer to be changed
 	//Post: Sets title, author, image, and bid of the book, and loan duration, trade and price of current initial offer. 
@@ -121,7 +121,7 @@ class BookInitialOffersController extends AppController {
 			$set .= ", price = " . $this->data['BookInitialOffer']['sell_price'];
 
 			$this->BookInitialOffer->query("UPDATE book_initial_offers " . $set . " WHERE book_id = ".$bid . " AND user_id = ".$uid);  
-	$this->redirect('/book_initial_offers/my_books/');
+	$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 
 
@@ -174,7 +174,7 @@ class BookInitialOffersController extends AppController {
 	//Post: If the book in question is not in the books table, it is added. If the user does not already have this book in their mylibrary,
 	//		a new entry is added to book_initial_offers detailing which book they now have and its initial offer details. Appropriate error
 	//		messages are displayed when these operations fail.
-	function add_book_to_mylibrary(){
+	function add_book_to_mylibrary($uid){
 
 		// These lines enable our main layout to appear on the page.
 		$this->layout = 'main_layout';
@@ -216,7 +216,7 @@ class BookInitialOffersController extends AppController {
 		$add_status = false;
 
 		//Ensure that the user is logged in to Facebook.
-		if(is_null($this->Session->read('uid'))){
+		if(is_null($uid)){
 					echo "<h2> Please login to Facebook to add a book to your library.</h2>";
 		}else{
 
@@ -236,7 +236,7 @@ class BookInitialOffersController extends AppController {
 				}
 
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
-				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $this->Session->read('uid') . ' AND book_id =' . $book_id . ';');
+				$duplicate = $this->BookInitialOffer->query('SELECT * FROM book_initial_offers WHERE user_id = ' . $uid . ' AND book_id =' . $book_id . ';');
 				if(!empty($duplicate)){
 					echo "<h2> You cannot add the same book to your library twice. </h2>";
 				}else{
@@ -244,12 +244,12 @@ class BookInitialOffersController extends AppController {
 					$add_status = true;
 
 					//Add book with offer to database, with the approprate fields filled in the tuple (loan vs. trade vs. sell)
-					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $this->Session->read('uid') . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');
+					$this->BookInitialOffer->query('INSERT INTO book_initial_offers VALUES (' . $uid . ','  . $book_id . ',' . $trade_id . ',' . $loan_duration . ',' . $sell_price . ', NOW(), NULL);');
 				}
 			}
 		$this->set('add_status', $add_status);
 
-		$this->redirect('/book_initial_offers/my_books/');
+		$this->redirect('/book_initial_offers/my_books/'.$uid);
 	}
 
 } //End of add_book_to_mylibrary()

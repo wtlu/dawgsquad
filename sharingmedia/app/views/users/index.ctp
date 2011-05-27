@@ -14,6 +14,11 @@
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 <div id="hello_message">
   <h1>Welcome <?php echo $this->Session->read('username'); ?> to SharingMedia!</h1>
+  
+  <div id="splash_description">
+	  SharingMedia lets you share, trade, or sell books you own with your friends across Facebook. For more information, including how to get the latest build, please visit <?php echo $this->Html->link('our wiki', 'http://code.google.com/p/dawgsquad/', array('class' => 'button', 'target' => '_blank')); ?>
+</div>
+
   <h2>What would you like to do?</h2>
 </div>
 
@@ -60,9 +65,4 @@
   			<li>View your current loans</li>
   		</ul>
   	</div>
-</div>
-
-
-<div id="splash_description">
-  SharingMedia lets you share, trade, or sell books you own with your friends across Facebook. For more information, including how to get the latest build, please visit <?php echo $this->Html->link('our wiki', 'http://code.google.com/p/dawgsquad/', array('class' => 'button', 'target' => '_blank')); ?>
 </div>

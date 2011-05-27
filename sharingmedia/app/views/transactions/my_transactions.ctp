@@ -20,20 +20,44 @@
 <h1>My Library</h1>
 <!--tabs of Library with links-->
 <div id = "menubar">
-        <ul id = "menu"
-                <li><?= $this->Html->link('My Books', "/book_initial_offers/my_books/".$this->Session->read('uid'), array(' escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Transactions', "/transactions/my_transactions/".$this->Session->read('uid'), array('class' => 'current', 'escape' => false)); ?></li>
-                <li><?= $this->Html->link('My Loans',"/loans/my_loans/".$this->Session->read('uid'), array('escape' => false)); ?></li>
-        </ul>
+        <ul id = "menu">
+		<li><? echo
+                        $this->Html->link("My Books",
+                        "/book_initial_offers/my_books/".$this->Session->read('uid'),
+                        array('escape' => false)); ?>
+                </li>
+                <li><? echo
+                        $this->Html->link("Transaction History",
+                        "/transactions/my_transactions/".$this->Session->read('uid'),
+                        array('escape' => false)); ?>
+                </li>
+                <li><? echo
+                        $this->Html->link("My Loans",
+                        "/loans/my_loans/".$this->Session->read('uid'),
+                        array('escape' => false)); ?>
+                </li>
+
+	</ul>
 </div>
 
 <div id="list">
 	<?php		//loop to print out transaction
 		$size = sizeof($transaction_collection);
+		$uid=  $this->Session->read('uid');
 		for($i=0; $i < $size; $i++){
+			$last= $transaction_collection[$i]["t"]["current_id"];
 			if($transaction_collection[$i]["t"]["deleted"] != $this->Session->read('uid')){
 	?>
-		<div class="book_unit">
+		<?php
+			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0) { ?>
+			<div class="book_unit respond">
+		<?php }
+			else if ($uid == $last && $transaction_collection[$i]["t"]["status"] == 0) { ?>
+			<div class="book_unit wait_response">
+		<?php }
+			else { //status = 2, canceled ?>
+			<div class="book_unit">
+		<?php }?>
 			<img class= "book_img" src="<?=$transaction_collection[$i]["b"]["image"]?>" alt="<?=$transaction_collection[$i]["b"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $transaction_collection[$i]["b"]["title"]?></li>
@@ -82,9 +106,9 @@
 				if(is_null($price)){
 					$price = "NULL";
 				}
-				$uid=  $this->Session->read('uid');
+				# $uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
-				$last= $transaction_collection[$i]["t"]["current_id"];
+				# $last= $transaction_collection[$i]["t"]["current_id"];
 			?>
 			<?php
 			if($uid != $last && $transaction_collection[$i]["t"]["status"] == 0){
