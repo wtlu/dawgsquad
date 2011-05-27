@@ -133,7 +133,7 @@ class UsersController extends AppController {
 		));
 
 		// initialize new session, get login url
-		$session = $facebook->getSession();
+//		$session = $facebook->getSession();
 		$loginUrl=$facebook->getLoginUrl(array(
 			'canvas'=>1,
 			'fbconnect'=>0,
