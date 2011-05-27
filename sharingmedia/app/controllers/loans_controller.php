@@ -63,7 +63,7 @@ class LoansController extends AppController {
     	//need the book information to display in the view
 	    $book_info = $this->Loan->query("SELECT * FROM books WHERE id = " . $book_id);
 	    //pass values to the view
-	    echo $due_date;
+	    debug($this->params);
 	    $this->set('book_info', $book_info);
 	    $this->set('due_date', $due_date);
 	}
