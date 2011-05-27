@@ -40,20 +40,17 @@ FB.Canvas.setSize();
 <div id = "menubar">	
 	<ul id = "menu">
 		<li><? echo
-			$this->Html->link($this->Html->image('books.png',
-			array('id' => 'books', 'alt'=> 'My Books')), 
+			$this->Html->link("",
 			"/book_initial_offers/my_books/".$this->Session->read('uid'), 
 			array('escape' => false)); ?>
 		</li>
                 <li><? echo 
-			$this->Html->link($this->Html->image('transactions.png', 
-			array('id' => 'tansactions', 'alt'=> 'My Transactions')), 
+			$this->Html->link("", 
 			"/transactions/my_transactions/".$this->Session->read('uid'), 
 			array('escape' => false)); ?>
 		</li>
                 <li><? echo 
-			$this->Html->link($this->Html->image('loans.png', 
-			array('id' => 'loans', 'alt'=> 'My Loans')),
+			$this->Html->link("", 
 			"/loans/my_loans/".$this->Session->read('uid'), 
 			array('escape' => false)); ?>
 		</li>
