@@ -104,7 +104,12 @@
 					     array('return' => 'vars'));
 		  debug($result);
 		  $this->assertEqual($result['title_for_layout'], 'Change Offer');
-		  $this->assertEqual($result['offer'], NULL);
+		  $this->assertEqual($result['trade'], NULL);
+		  $this->assertEqual($result['price'], NULL);
+		  $this->assertEqual($result['loan'], NULL);
+		  $this->assertEqual($result['author'], NULL);
+		  $this->assertEqual($result['title'], NULL);
+
 		}
 
 		/* Testing the add_books_confirm */
