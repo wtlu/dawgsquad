@@ -61,10 +61,12 @@ a{
 	display: block;
 	float: left;
 	width: 150px;
-	padding-right:1px;
+	margin-right:10px;
 	background-image:url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/tab.png");
 	text-align:center;
 	height:40px;
+	font-weight:bold;
+	vertical-align:middle;
 }
 #menu li:hover {
 	background-image: url("http://ec2-50-18-34-181.us-west-1.compute.amazonaws.com/dawgsquad/sharingmedia/app/webroot/img/hover.png");	
