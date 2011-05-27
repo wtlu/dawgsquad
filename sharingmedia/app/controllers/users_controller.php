@@ -97,8 +97,7 @@ class UsersController extends AppController {
 	    		error_log($e);
 	  		}
 		} else {
-			if($this->Session->check('uid')){
-    			echo("<script> top.location.href='" . $loginUrl . "'</script>");	}
+    		echo("<script> top.location.href='" . $loginUrl . "'</script>");
 		}
 	}
 	
