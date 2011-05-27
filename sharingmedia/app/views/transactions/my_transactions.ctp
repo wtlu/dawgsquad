@@ -30,6 +30,7 @@
 <div id="list">
 	<?php		//loop to print out transaction
 		$size = sizeof($transaction_collection);
+		$uid=  $this->Session->read('uid');
 		for($i=0; $i < $size; $i++){
 			if($transaction_collection[$i]["t"]["deleted"] != $this->Session->read('uid')){
 	?>
@@ -91,7 +92,7 @@
 				if(is_null($price)){
 					$price = "NULL";
 				}
-				$uid=  $this->Session->read('uid');
+				# $uid=  $this->Session->read('uid');
 				$bid= $transaction_collection[$i]["b"]["id"];
 				$last= $transaction_collection[$i]["t"]["current_id"];
 			?>
