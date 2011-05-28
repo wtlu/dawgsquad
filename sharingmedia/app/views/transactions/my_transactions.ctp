@@ -18,6 +18,7 @@
 <?= $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 
 <h1>My Library</h1>
+<p>History of your ongoing and completed transactions.</p>
 <!--tabs of Library with links-->
 <div id = "menubar">
         <ul id = "menu">

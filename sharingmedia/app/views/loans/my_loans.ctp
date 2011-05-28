@@ -17,6 +17,7 @@
 <?= $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 
 <h1>My Library</h1>
+<p>Books that you are currently loaning out or borrowing.</p>
 <!--tabs of Library with links-->
 <div id = "menubar">
         <ul id = "menu">
