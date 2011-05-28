@@ -20,7 +20,7 @@ class LoanFixture extends CakeTestFixture {
 
   /* dummy test data */
   var $records = array(
-		       array ('owner_id' => 1, 'client_id' => 10,'book_id' => 1,
+		       array ('owner_id' => 1, 'client_id' => 10,'book_id' => 2,
 			      'due_date' => '2011-10-10 19:47:00',
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
