@@ -5,12 +5,12 @@
 
 	Author: Ken Inoue
 
-	
+
 
 	Changelog:
 
 	5/9/2011 - Ken Inoue- Created page,
-	5/13/2011 - Ken Inoue- added logic to display only vaild options for trade 
+	5/13/2011 - Ken Inoue- added logic to display only vaild options for trade
 
 -->
 
@@ -36,33 +36,34 @@ FB.Canvas.setSize();
 <body>
 
 <h1>My Library</h1>
+<p>Books that you currently own. Click Add Books on the left sidebar to add to your collection.</p>
 <!--tabs of Library with links-->
-<div id = "menubar">	
+<div id = "menubar">
 	<ul id = "menu">
 		<li><? echo
 			$this->Html->link("My Books",
-			"/book_initial_offers/my_books/".$this->Session->read('uid'), 
+			"/book_initial_offers/my_books/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
 		</li>
-                <li><? echo 
-			$this->Html->link("Transaction History", 
-			"/transactions/my_transactions/".$this->Session->read('uid'), 
+                <li><? echo
+			$this->Html->link("Transaction History",
+			"/transactions/my_transactions/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
 		</li>
-                <li><? echo 
-			$this->Html->link("My Loans", 
-			"/loans/my_loans/".$this->Session->read('uid'), 
+                <li><? echo
+			$this->Html->link("My Loans",
+			"/loans/my_loans/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
 		</li>
 	</ul>
 </div>
 <div id="list">
 
-<?php		//loop to print out books		
+<?php		//loop to print out books
 		$size = sizeof($book_collection);
 		for($i=0; $i < $size; $i++){
 	?>
-		<div class="book_unit">	
+		<div class="book_unit">
 			<img class= "book_img" src="<?=$book_collection[$i]["books"]["image"]?>" alt="<?=$book_collection[$i]["books"]["title"]?>"/>
 			<ul class="books_list">
 				<li>Title: <?= $book_collection[$i]["books"]["title"]?></li>
@@ -70,7 +71,7 @@ FB.Canvas.setSize();
 				<?php 	//if loans not Null Print
 					if(!is_null($book_collection[$i]["book_initial_offers"]["duration"])){ ?>
 						<li>Loan Duration: <?=$book_collection[$i]["book_initial_offers"]["duration"]?> days</li>
-				<?php } 
+				<?php }
 					if($book_collection[$i]["book_initial_offers"]["trade_id"] >= 0){?>
 						<li>Trade: Willing to trade</li>
 				<?php }	//if selling print price
@@ -84,7 +85,7 @@ FB.Canvas.setSize();
 	<?php
 		}
 
-	?>	
+	?>
 </div>
 
 <!--
