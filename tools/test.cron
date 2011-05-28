@@ -1,3 +1,3 @@
 HOME=/var/www/html/dawgsquad/sharingmedia/app/
-0 0 * * * perl /var/www/html/dawgsquad/tools/TEST.pl -e
+0 0 * * * perl /var/www/html/dawgsquad/tools/TEST.pl -e YOUR_EMAIL_HERE
 0 0 * * * sh /var/www/html/dawgsquad/tools/daily_build.sh

@@ -36,6 +36,6 @@ $trade = $data['Transaction']['t_array'][0]['t']['trade_id'];
 		</p>
 	</fieldset>
 	<?php echo $this->Html->link('Go Back',"/transactions/my_transactions/".$this->Session->read('uid'), array('class' => 'buttons', 'escape' => false)); ?>
-	<?php echo $this->Html->link('Cancel Transaction',"/transactions/cancel_transaction/".$tid."/", array('class' => 'buttons', 'escape' => false)); ?>
+	<?php echo $this->Html->link('Cancel Transaction',"/transactions/cancel_transaction/".$tid."/".$this->Session->read('uid')."/", array('class' => 'buttons', 'escape' => false)); ?>
 
 </div>

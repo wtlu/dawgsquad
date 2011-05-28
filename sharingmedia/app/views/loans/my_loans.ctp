@@ -17,6 +17,7 @@
 <?= $this->Html->css('library', NULL, array('inline' => FALSE)); ?>
 
 <h1>My Library</h1>
+<p>Books that you are currently loaning out or borrowing.</p>
 <!--tabs of Library with links-->
 <div id = "menubar">
         <ul id = "menu">
@@ -58,7 +59,9 @@
 				echo "duedate: " . $loan_collection_owner[$i]["loans"]["due_date"]; ?>
 			-->
 
-			<?php echo $this->Html->link('Complete Loan','/loans/complete_loan/'.$book_collection_owner[$i]["books"]["id"].'/'.$loan_collection_owner[$i]["loans"]["due_date"].'/', array('class' => 'buttons', 'escape' => false)); ?>
+			<?php
+			$enc_due_date = urlencode($loan_collection_owner[$i]["loans"]["due_date"]);
+			echo $this->Html->link('Complete Loan','/loans/complete_loan/'.$this->Session->read('uid')."/".$book_collection_owner[$i]["books"]["id"].'/'.$enc_due_date.'/', array('class' => 'buttons', 'escape' => false)); ?>
 		</div>
 	<?php
 		}
