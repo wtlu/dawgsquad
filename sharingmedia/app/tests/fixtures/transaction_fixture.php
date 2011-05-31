@@ -34,14 +34,14 @@ class TransactionFixture extends CakeTestFixture {
 			      'modified' => '2011-05-08 19:47:30'
 			      ),
 		       array ('id' => 200, 'owner_id' => 100, 'client_id' => 200,
-			      'book_id' => 20, 'current_id' => 100, 'trade_id' => -1,
+			      'book_id' => 10, 'current_id' => 100, 'trade_id' => -1,
 			      'duration' => -1, 'price' => 100.0, 'status' => -1,
 			      'deleted' => -1,
 			      'created' => '2011-05-08 19:47:00',
 			      'modified' => '2011-05-08 19:47:30'
 			      ),
 		       array ('id' => 300, 'owner_id' => 300, 'client_id' => 400,
-			      'book_id' => 30, 'current_id' => 300, 'trade_id' => -1,
+			      'book_id' => 10, 'current_id' => 300, 'trade_id' => -1,
 			      'duration' => -1, 'price' => 100.0, 'status' => 0,
 			      'deleted' => -1,
 			      'created' => '2011-05-08 19:47:00',

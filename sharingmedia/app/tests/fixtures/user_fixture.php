@@ -45,7 +45,17 @@ CREATE TABLE users(
 					    'name' => 'Greg A',
 					    'password' => 'root',
 					    'facebook_id' => 100
-					    )
+					    ),
+				     array('id' => 300,
+					   'name' => 'Greg B',
+					   'password' => 'root',
+					   'facebook_id' => 300
+					   ),
+				     array('id' => 400,
+					   'name' => 'Greg C',
+					   'password' => 'root',
+					   'facebook_id' => 400
+					   )
 				     );
 		
 
