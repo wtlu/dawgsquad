@@ -16,25 +16,31 @@
                 );
        
        
-				/*dummy test records to test with*/
-				
-				var $records = array(
-						array ('id' => 10,
-								   'title' => 'Web Programming',
-								   'author' => 'Marty Stepp',
-								   'ISBN' => '578012391',  
-								   'image' => 'path',
-								   'summary' => 'this is summary'
-						),
-							array ('id' => 2,
-								   'title' => 'OS',
-								   'author' => 'author OS',
-								   'ISBN' => '123',  
-								   'image' => 'path',
-								   'summary' => 'this is summary'
-						)
-					   
-				);
+		/*dummy test records to test with*/
+		
+		var $records = array(
+				     array ('id' => 10,
+					    'title' => 'Web Programming',
+					    'author' => 'Marty Stepp',
+					    'ISBN' => '578012391',  
+					    'image' => 'path',
+					    'summary' => 'this is summary'
+					    ),
+				     array ('id' => 2,
+					    'title' => 'OS',
+					    'author' => 'author OS',
+					    'ISBN' => '123',  
+					    'image' => 'path',
+					    'summary' => 'this is summary'
+					    ),
+				     array( 'id' => 1,
+					    'title' => 'title',
+					    'author' => 'author',
+					    'ISBN' => '123456789',
+					    'image' => 'path',
+					    'summary' => 'this is summary'
+					    )
+				     );
    
 
 
