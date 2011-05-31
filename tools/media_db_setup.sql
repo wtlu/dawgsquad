@@ -8,7 +8,7 @@ CREATE TABLE users(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(50),
 	password VARCHAR(50),
-	facebook_id INT(11),
+	facebook_id BIGINT(20),
 	created DATETIME DEFAULT NULL,
  	modified DATETIME DEFAULT NULL 
 );
@@ -28,7 +28,7 @@ CREATE TABLE loans(
 	owner_id INT,
 	client_id INT,
 	book_id INT,
-	due_date DATETIME,
+	due_date DATE,
 	created DATETIME DEFAULT NULL,
 	modified DATETIME DEFAULT NULL
 );
