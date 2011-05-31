@@ -74,14 +74,14 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
 
     /* params */
-    $book_id		= 1;		/* web programming */
+    $book_id		= 1;
     $owner_id		= 1;
     $client_id		= 2;
     $price		= 100.0;
     $duration		= -1;
     $allow_trade	= -1;
 
-    /* set dummy data... REMOVE / INTEGRATE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['title'] = 'title';
     $this->Transactions->data['Transaction']['author'] = 'author';
     $this->Transactions->data['Transaction']['isbn'] = '1234';
@@ -133,13 +133,13 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->Transaction =& ClassRegistry::init('Transaction');
     
     /* params */
-    $transaction_id = 100;
-    $book_id = 10;
-    $owner_id = 100;
-    $price = 100.0;
-    $duration = -1;
-    $client_id = 200;
-    $allow_trade = -1;
+    $transaction_id	= 100;
+    $book_id		= 10;
+    $owner_id		= 100;
+    $price		= 100.0;
+    $duration		= -1;
+    $client_id		= 200;
+    $allow_trade	= -1;
     
     /* accept it */
     $result = $this->Transactions->accept_transaction($book_id, $owner_id, $price, $duration, $client_id, $allow_trade);
@@ -217,12 +217,6 @@ class TransactionsControllerTest extends CakeTestCase {
     $this->assertEqual(count($result['transaction_collection']), 2);
   }
 
-  //--------------------------------------------------
-  // CONFIRM TRANSACTION
-  // -- controller does not do significant action
-  // -- no test required
-  //--------------------------------------------------
-
   /**
    * purpose	: tests countering transaction w/ same type
    * expected	: transaction is updated with new offer
@@ -250,7 +244,7 @@ class TransactionsControllerTest extends CakeTestCase {
   						  )
   					    );
 
-    /* set up view data... REMOVE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['book_title'] = 'Web Programming';
     $this->Transactions->data['Transaction']['book_author'] = 'Marty Stepp';
     $this->Transactions->data['Transaction']['book_isbn'] = '578012391';
@@ -309,7 +303,7 @@ class TransactionsControllerTest extends CakeTestCase {
   						  )
   					    );
 
-    /* set up view data... REMOVE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['book_title'] = 'Web Programming';
     $this->Transactions->data['Transaction']['book_author'] = 'Marty Stepp';
     $this->Transactions->data['Transaction']['book_isbn'] = '578012391';
@@ -383,7 +377,7 @@ class TransactionsControllerTest extends CakeTestCase {
   						  )
   					    );
 
-    /* set up view data... REMOVE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['book_title'] = 'Web Programming';
     $this->Transactions->data['Transaction']['book_author'] = 'Marty Stepp';
     $this->Transactions->data['Transaction']['book_isbn'] = '578012391';
@@ -426,7 +420,7 @@ class TransactionsControllerTest extends CakeTestCase {
   						  )
   					    );
 
-    /* set up view data... REMOVE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['book_title'] = 'Web Programming';
     $this->Transactions->data['Transaction']['book_author'] = 'Marty Stepp';
     $this->Transactions->data['Transaction']['book_isbn'] = '578012391';
@@ -515,7 +509,7 @@ class TransactionsControllerTest extends CakeTestCase {
   						  )
   					    );
 
-    /* set up view data... REMOVE WHEN POSSIBLE */
+    /* SET POST DATA; REMOVE / INTEGRATE WHEN POSSIBLE */
     $this->Transactions->data['Transaction']['book_title'] = 'Web Programming';
     $this->Transactions->data['Transaction']['book_author'] = 'Marty Stepp';
     $this->Transactions->data['Transaction']['book_isbn'] = '578012391';
