@@ -37,9 +37,9 @@
 				echo $form->create('Transaction', array('action' => 'transactions'."/".$this->Session->read('uid')."/". $result['id'] ."/".$user_result['facebook_id']."/"."NULL/NULL/0/".$this->Session->read('uid'), 'type'=>'post'));
 
 				// Need some null parameters to match interface of transactions()
-				echo $this->Form->input('title', array('type' => 'hidden', 'value' => null));
-				echo $this->Form->input('author', array('type' => 'hidden', 'value' => null));
-				echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => null));
+				//echo $this->Form->input('title', array('type' => 'hidden', 'value' => null));
+				//echo $this->Form->input('author', array('type' => 'hidden', 'value' => null));
+				//echo $this->Form->input('isbn', array('type' => 'hidden', 'value' => null));
 
 				$b_i_o_result = $book['b_i_o'];
 				$trade_book = array();

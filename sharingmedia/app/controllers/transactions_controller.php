@@ -28,10 +28,22 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
+		
 		//Get search data, for use with go back button
-		$search_title = $this->data['Transaction']['title'];
-		$search_author = $this->data['Transaction']['author'];
-		$search_isbn = $this->data['Transaction']['isbn'];
+		$search_title = null;
+		if(isset($this->data['Transaction']['title'])){
+			$search_title = $this->data['Transaction']['title'];
+		}
+		
+		$search_author = null;
+		if(isset($this->data['Transaction']['author'])){
+			$search_author = $this->data['Transaction']['author'];
+		}
+		
+		$search_isbn = null;
+		if(isset($this->data['Transaction']['isbn'])){
+			$search_isbn = $this->data['Transaction']['isbn'];
+		}
 
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
