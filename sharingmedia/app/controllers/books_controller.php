@@ -102,6 +102,40 @@ class BooksController extends AppController {
 
                 $this->set('book_results', $book_results);
         }
+		
+		# Browse button on find books page
+		function browse_books_results($session_id = 0){
+		
+				$this->layout = 'main_layout';
+				$this->set('title_for_layout', 'find_book_result');
+				
+				
+				$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
+								FROM books books, book_initial_offers b_i_o, users users
+									WHERE b_i_o.user_id = users.facebook_id
+										AND b_i_o.book_id = books.id
+										AND 1 > (SELECT COUNT(*)
+													FROM loans loans
+													WHERE loans.book_id = b_i_o.book_id
+														AND loans.owner_id = b_i_o.user_id)
+										AND 1 > (SELECT COUNT(*)
+													FROM book_initial_offers b_i_o_2
+													WHERE b_i_o.book_id = b_i_o_2.book_id
+														AND b_i_o_2.user_id = ' . $session_id . ')
+										AND 1 > (SELECT COUNT(*)
+													FROM transactions t
+													WHERE t.client_id = ' . $session_id .'
+														AND t.owner_id = b_i_o.user_id
+														AND t.book_id = b_i_o.book_id
+														AND t.status = 0)
+								ORDER BY books.title;');
+			
+			
+			
+				$this->set('book_results', $book_results);
+
+		}
+		
 
         # Function for the add books results view. Returns an array of Google book results to be displayed in add book
         # results view
