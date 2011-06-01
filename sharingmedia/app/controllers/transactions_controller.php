@@ -233,7 +233,7 @@ class TransactionsController extends AppController {
 		$current_user = $uid;
 
 		//pull transaction with owners that are me and initial offers from the database
-		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
+		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.") ORDER BY t.status");
 
 		//Get client user id, get their name.
 		$size = sizeof($transaction_collection);
