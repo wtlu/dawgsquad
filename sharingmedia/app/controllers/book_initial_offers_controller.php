@@ -24,7 +24,8 @@ class BookInitialOffersController extends AppController {
    function initial_offer_details(){
 
 		//Get the book info for the book that was selected on the add books results page
-		$book_chosen = explode( "^" , $this->data['Book']['book_type'] );
+		$book_chosen_enc = urldecode($this->data['Book']['book_type']);
+		$book_chosen = explode( "^" , $book_chosen_enc );
 		$this->set('book_chosen', $book_chosen);
 
 		// These lines enable our main layout to appear on the page.
