@@ -10,6 +10,7 @@
 	5/17/2011 - Greg Brandt - Removed support code for redirection, got fixture to work
 	5/18/2011 - Jedidiah Jonathan - Testing completed for feature release
 	5/27/2011 - Jedidiah Jonathan - Test updated to reflect current controller code. Some tests are disabled. Read corresponding notes. 
+	5/31/2011 - Jedidiah Jonathan - Tests update, only 2 tests have been disabled, which need code refactor as parameters are not being passed. 
 */
 
   /* Import the Book Initial Offer controller and Model for testing */
@@ -172,14 +173,49 @@ class BookInitialOffersControllerTest extends CakeTestCase {
   // Purpose: Book is removed from users library
   // Test: This test uses the fixtures: book_fixture and the book_initial_offer_fixture 
   //       and for a given user id and book id, and removes them from the database. 
-  // Comments: This test has been disabled as the controller code calls the redirect and so the test page suffers with 
-  //            redirect issues. 
+  // Comments: This test has been updated to the controller code. No issues
   // 
   function testremove(){
     
-    //$result= $this->testAction('/book_initial_offers/remove/1/10', 
-    //array('return' => 'vars'));
-  //debug($result);
+    $this->BookInitialOffer =& ClassRegistry::init('BookInitialOffer');
+    $uid = 1;
+    $bid = 10;
+    $trade_id = -1;
+    $duration = NULL;
+    $price = 100;
+    $created = '2011-05-08 19:47:00';
+    $modified = '2011-05-08 19:47:30';
+    
+    $books = $this->BookInitialOffer->find('first',
+  					    array('conditions' =>
+  						  array('user_id' => $uid)
+  						  )
+  					    );
+    //debug($books);
+    // Assert that the current book for the user has the correct data fields 
+    $this->assertEqual($books['BookInitialOffer']['user_id'],$uid);
+    $this->assertEqual($books['BookInitialOffer']['book_id'],$bid);
+    $this->assertEqual($books['BookInitialOffer']['trade_id'],$trade_id);
+    $this->assertEqual($books['BookInitialOffer']['duration'],$duration);
+    $this->assertEqual($books['BookInitialOffer']['price'],$price);
+    $this->assertEqual($books['BookInitialOffer']['created'],$created);
+    $this->assertEqual($books['BookInitialOffer']['modified'],$modified);
+
+    // Call the remove function
+    $this->BookInitialOffers->remove($uid,$bid);
+
+    // Call the my_books function to check if the book has really been removed or not
+    $this->BookInitialOffers->my_books($uid);
+
+    $result = $this->BookInitialOffer->find('first',
+  					    array('conditions' =>
+  						  array('user_id' => $uid)
+  						  )
+  					    );
+    //debug($result);
+    // Assert that the book has been removed
+    $this->assertEqual($result,NULL);
+
   }
 
   //---------------------------------------------
