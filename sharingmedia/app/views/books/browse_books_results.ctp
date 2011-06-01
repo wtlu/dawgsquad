@@ -23,9 +23,7 @@
 <h2>Results:</h2>
 
 <div class = "results_display">
-	<FORM METHOD="LINK" ACTION="find_books">
-	<INPUT class = "special_button" TYPE="submit" VALUE="New Search">
-	</FORM>
+
 <?php
 	if (!empty($book_results)) {
 		foreach ($book_results as $book){

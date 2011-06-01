@@ -42,9 +42,13 @@
 		<?php
 			echo $this->Form->end('Continue');
 		?>
-		<?php echo  $this->Html->link("Browse Books",
-                        "/books/browse_books_results/".$this->Session->read('uid'),
-                        array('escape' => false)); ?>
+			
+		<?php
+		echo $form->create(array('escape'=> false, 'action' => "/books/browse_books_results/". $this->Session->read('uid')));
+		echo $this->Form->end('Browse All Books Owned By Friends');
+		?>				
+						
+						
 		
 	</div>
 
