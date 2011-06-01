@@ -77,8 +77,16 @@ function checkCheckboxes(){
 		<!-- Input for the loan -->
 		<div class="options">
 			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onClick="checkCheckboxes()">
+			<?php
+			if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+			?>
 			<label for="choose_loan">Loan For</label>
 			<?php
+			} else {
+			?>
+			<label for="choose_loan">Borrow For</label>
+			<?php
+			}
 				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
 			?>
 		</div>
@@ -87,8 +95,17 @@ function checkCheckboxes(){
 		<!-- Input for the buy -->
 		<div class="options">
 			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="checkCheckboxes()">
+
+			<?php
+			if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+			?>
 			<label for="choose_sell">Sell For</label>
 			<?php
+			} else {
+			?>
+			<label for="choose_sell">Buy For</label>
+			<?php
+			}
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
 			?>
 		</div>
