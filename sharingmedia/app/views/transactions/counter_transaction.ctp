@@ -113,7 +113,7 @@ function checkCheckboxes(){
 
 		<!-- Input for the trade book -->
 		<?php
-		if (data[Transaction][client_id] == $this->Session->read('uid')) {
+		if (data['Transaction']['client_id'] == $this->Session->read('uid')) {
 		?>
 		<div class="options_trades">
 
