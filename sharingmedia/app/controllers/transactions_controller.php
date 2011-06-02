@@ -144,52 +144,28 @@ class TransactionsController extends AppController {
 			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 
 			//A trade has occurred; swap books in users libraries.
+			$this->Transaction->query('DELETE FROM book_initial_offers
+									WHERE user_id = ' . $owner_id . '
+										AND book_id = ' . $book_id . ';');
 
-			if ($client_id == $this->Session->read('uid')) {
-				$this->Transaction->query('DELETE FROM book_initial_offers
-										WHERE user_id = ' . $client_id . '
-											AND book_id = ' . $book_id . ';');
+			$this->Transaction->query('DELETE FROM book_initial_offers
+									WHERE user_id = ' . $client_id . '
+										AND book_id = ' . $allow_trade . ';');
 
-				$this->Transaction->query('DELETE FROM book_initial_offers
-										WHERE user_id = ' . $owner_id . '
-											AND book_id = ' . $allow_trade . ';');
+			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
+																				','  . $allow_trade .
+																				',-1' .
+																				',NULL' .
+																				',NULL' .
+																				', NOW(), NULL);');
 
-				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
-																					','  . $allow_trade .
-																					',-1' .
-																					',NULL' .
-																					',NULL' .
-																					', NOW(), NULL);');
+			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
+																				','  . $book_id .
+																				',-1' .
+																				',NULL' .
+																				',NULL' .
+																				', NOW(), NULL);');
 
-				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
-																					','  . $book_id .
-																					',-1' .
-																					',NULL' .
-																					',NULL' .
-																					', NOW(), NULL);');
-			} else {
-				$this->Transaction->query('DELETE FROM book_initial_offers
-										WHERE user_id = ' . $owner_id . '
-											AND book_id = ' . $book_id . ';');
-
-				$this->Transaction->query('DELETE FROM book_initial_offers
-										WHERE user_id = ' . $client_id . '
-											AND book_id = ' . $allow_trade . ';');
-
-				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
-																					','  . $allow_trade .
-																					',-1' .
-																					',NULL' .
-																					',NULL' .
-																					', NOW(), NULL);');
-
-				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
-																					','  . $book_id .
-																					',-1' .
-																					',NULL' .
-																					',NULL' .
-																					', NOW(), NULL);');
-			}
 		}
 
 		/* This statement updates the status of this transaction to "completed" state */
@@ -388,11 +364,7 @@ class TransactionsController extends AppController {
 		if($allow_trade > 0){
 
 			//Make sure that if a trade is being accepted, that the client actually still has the book in his/her library
-			if($client_id == $this->Session->read('uid')) {
-				$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $owner_id .' ;');
-			} else {
-				$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
-			}
+			$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
 			if(empty($ensure_tradeable)){
 				//The client no longer has the book that is being accepted in trade;
 				//Update the transaction tuple to no longer include a specific book for trade, and redirect back to transaction.ctp
@@ -512,7 +484,7 @@ class TransactionsController extends AppController {
 				WHERE b_i_o.user_id = ' . $uid . '
 					AND b_i_o.trade_id = 0
 					AND b_i_o.book_id = books.id
-					AND b_i_o.book_id != ' . $book_id . ';');
+					AND b_i_o.book_id != ' . $book_id . ;');
 			# debug($trade_books);
 			$data['Transaction']['trade_books'] = $trade_books;
 		}
