@@ -136,16 +136,15 @@ function checkCheckboxes(){
 					}
 					?>
 					</div>
-
-			<div class="button_s">
-				<input name = "counter_button" type="submit" value="Propose Counteroffer" disabled = "disabled">
-				</form>
-				<!-- <?php echo $this->Form->end('Propose Counteroffer'); ?> -->
-			</div>
 		</div>
 		<?php
 		}
 		?>
+		<div class="button_s">
+				<input name = "counter_button" type="submit" value="Propose Counteroffer" disabled = "disabled">
+				</form>
+				<!-- <?php echo $this->Form->end('Propose Counteroffer'); ?> -->
+		</div>
 
 
 </div>
