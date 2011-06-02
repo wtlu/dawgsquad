@@ -55,7 +55,7 @@ function checkCheckboxes(){
 		</p>
 </fieldset>
 
-<fieldset height="height: 450px">
+<fieldset style="height: 450px">
 
 <legend>Counter Offer Details</legend>
 
