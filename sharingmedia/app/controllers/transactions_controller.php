@@ -28,18 +28,18 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
-		
+
 		//Get search data, for use with go back button
 		$search_title = null;
 		if(isset($this->data['Transaction']['title'])){
 			$search_title = $this->data['Transaction']['title'];
 		}
-		
+
 		$search_author = null;
 		if(isset($this->data['Transaction']['author'])){
 			$search_author = $this->data['Transaction']['author'];
 		}
-		
+
 		$search_isbn = null;
 		if(isset($this->data['Transaction']['isbn'])){
 			$search_isbn = $this->data['Transaction']['isbn'];
@@ -363,7 +363,11 @@ class TransactionsController extends AppController {
 		if($allow_trade > 0){
 
 			//Make sure that if a trade is being accepted, that the client actually still has the book in his/her library
-			$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
+			if($client_id == $this->Session->read('uid')) {
+				$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $owner_id .' ;');
+			} else {
+				$ensure_tradeable = $this->Transaction->query('SELECT * FROM book_initial_offers WHERE book_id = ' . $allow_trade . ' AND user_id = '. $client_id .' ;');
+			}
 			if(empty($ensure_tradeable)){
 				//The client no longer has the book that is being accepted in trade;
 				//Update the transaction tuple to no longer include a specific book for trade, and redirect back to transaction.ctp
