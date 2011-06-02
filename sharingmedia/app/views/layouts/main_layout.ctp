@@ -23,7 +23,13 @@
 	<div id="top_section">
 
 		<div id="top_bar_logo">
-  			<?php echo $this->Html->link($this->Html->image('logo.png', array('alt' => 'SharingBooksLogo')), "/users/index", array('escape' => false, 'id' => 'page_logo')); ?>
+  			<?php 
+  				echo $this->Html->link(
+  				$this->Html->image('logo.png', array('alt' => 'SharingBooksLogo')), 
+  				"/users/index", 
+  				array('escape' => false, 'id' => 'page_logo')
+  				); 
+  			?>
 		</div>
 	
 		<div id="top_bar_options">
