@@ -512,7 +512,7 @@ class TransactionsController extends AppController {
 				WHERE b_i_o.user_id = ' . $uid . '
 					AND b_i_o.trade_id = 0
 					AND b_i_o.book_id = books.id
-					AND b_i_o.book_id != ' . $book_id . ;');
+					AND b_i_o.book_id != ' . $book_id . ';);
 			# debug($trade_books);
 			$data['Transaction']['trade_books'] = $trade_books;
 		}
