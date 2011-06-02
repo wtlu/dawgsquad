@@ -1,4 +1,4 @@
-Welcome to the D.A.W.G. Squad Source!
+Welcome to the D.A.W.G. Squad Source for SharingMedia!
 
 For User documentation, please visit the link below:
 http://code.google.com/p/dawgsquad/wiki/UserDocumentation
