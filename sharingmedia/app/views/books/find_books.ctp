@@ -6,6 +6,7 @@
 
 	Changelog:
 	5/10/2011 - John Wang - Created page, added form
+	5/31/2011 - James Parsons - Added browse button.
 
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
@@ -41,6 +42,16 @@
 		<?php
 			echo $this->Form->end('Continue');
 		?>
+		
+		<p>Or</p>
+		
+		<?php
+		echo $form->create(array('escape'=> false, 'action' => "browse_books_results/". $this->Session->read('uid')));
+		echo $this->Form->end('Browse All Books Owned By Friends');
+		?>				
+						
+						
+		
 	</div>
 
 </div>

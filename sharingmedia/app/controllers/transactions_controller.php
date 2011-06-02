@@ -28,10 +28,22 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
+
 		//Get search data, for use with go back button
-		$search_title = $this->data['Transaction']['title'];
-		$search_author = $this->data['Transaction']['author'];
-		$search_isbn = $this->data['Transaction']['isbn'];
+		$search_title = null;
+		if(isset($this->data['Transaction']['title'])){
+			$search_title = $this->data['Transaction']['title'];
+		}
+
+		$search_author = null;
+		if(isset($this->data['Transaction']['author'])){
+			$search_author = $this->data['Transaction']['author'];
+		}
+
+		$search_isbn = null;
+		if(isset($this->data['Transaction']['isbn'])){
+			$search_isbn = $this->data['Transaction']['isbn'];
+		}
 
 		//Set to a default value of NULL
 		if (isset($this->data['Transaction']['price'])){
@@ -181,6 +193,7 @@ class TransactionsController extends AppController {
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
 
+
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
 																				','  . $book_id .
 																				',-1' .
@@ -221,7 +234,7 @@ class TransactionsController extends AppController {
 		$current_user = $uid;
 
 		//pull transaction with owners that are me and initial offers from the database
-		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.")");
+		$transaction_collection = $this->Transaction->query("SELECT * FROM books b, transactions t, users u WHERE u.facebook_id = t.owner_id AND b.id = t.book_id AND (t.owner_id = ".$current_user." OR t.client_id = ".$current_user.") ORDER BY t.status");
 
 		//Get client user id, get their name.
 		$size = sizeof($transaction_collection);
@@ -470,7 +483,8 @@ class TransactionsController extends AppController {
 				FROM book_initial_offers b_i_o, books books
 				WHERE b_i_o.user_id = ' . $uid . '
 					AND b_i_o.trade_id = 0
-					AND b_i_o.book_id = books.id;');
+					AND b_i_o.book_id = books.id
+					AND b_i_o.book_id != ' . $book_id . ';');
 			# debug($trade_books);
 			$data['Transaction']['trade_books'] = $trade_books;
 		}

@@ -28,9 +28,12 @@ function checkCheckboxes(){
     if (document.counter_form.choose_sell.checked) {
     	checkCount++;
     }
-    if (document.counter_form.choose_trade.checked) {
-    	checkCount++;
-    }
+    var trade_box = document.counter_form.choose_trade;
+    if (trade_box != null) {
+		if (document.counter_form.choose_trade.checked) {
+			checkCount++;
+		}
+	}
     if (checkCount > 0) {
 		document.counter_form.counter_button.disabled=false;
     } else {
@@ -52,7 +55,7 @@ function checkCheckboxes(){
 		</p>
 </fieldset>
 
-<fieldset >
+<fieldset style="height: 450px">
 
 <legend>Counter Offer Details</legend>
 
@@ -77,8 +80,16 @@ function checkCheckboxes(){
 		<!-- Input for the loan -->
 		<div class="options">
 			<input name="data[Transaction][offer_loan]" id="choose_loan" value="loan" type="checkbox" onClick="checkCheckboxes()">
+			<?php
+			if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+			?>
 			<label for="choose_loan">Loan For</label>
 			<?php
+			} else {
+			?>
+			<label for="choose_loan">Borrow For</label>
+			<?php
+			}
 				echo $this->Form->input('loan_duration', array('label' => '', 'maxlength' => '6'));
 			?>
 		</div>
@@ -87,14 +98,26 @@ function checkCheckboxes(){
 		<!-- Input for the buy -->
 		<div class="options">
 			<input name="data[Transaction][offer_sell]" id="choose_sell" value="sell" type="checkbox" onClick="checkCheckboxes()">
+
+			<?php
+			if ($data['Transaction']['owner_id'] == $this->Session->read('uid')) {
+			?>
 			<label for="choose_sell">Sell For</label>
 			<?php
+			} else {
+			?>
+			<label for="choose_sell">Buy For</label>
+			<?php
+			}
 				echo $this->Form->input('sell_price', array('label' => '', 'maxlength' => '6'));
 			?>
 		</div>
 
 
 		<!-- Input for the trade book -->
+		<?php
+		if ($data['Transaction']['client_id'] == $this->Session->read('uid')) {
+		?>
 		<div class="options_trades">
 
 			<?php
@@ -116,12 +139,14 @@ function checkCheckboxes(){
 					}
 					?>
 					</div>
-
-			<div class="button_s">
+		</div>
+		<?php
+		}
+		?>
+		<div class="button_s">
 				<input name = "counter_button" type="submit" value="Propose Counteroffer" disabled = "disabled">
 				</form>
 				<!-- <?php echo $this->Form->end('Propose Counteroffer'); ?> -->
-			</div>
 		</div>
 
 

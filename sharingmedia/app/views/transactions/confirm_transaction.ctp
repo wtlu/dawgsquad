@@ -11,7 +11,7 @@
 
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
-<div>
+<div class = "trans_detail">
 
 	<h2> Confirm Transaction </h2>
 

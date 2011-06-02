@@ -1,6 +1,5 @@
 .button_s{
 	float: right;
-	padding-top: 190px;
 }
 
 .field{
@@ -29,13 +28,13 @@
 
 .options_trades{
 	border-top: 2px solid black;
-	height: 240px;
+	height: 210px;
 	overflow: hidden;
 	padding-top: 20px;	
 }
 
 .trade_list {
-	height: 220px;
+	height: 180px;
 	overflow: scroll;
 	border: solid black 1px;
 	padding: 5px;

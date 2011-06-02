@@ -8,6 +8,8 @@
         5/12/2011 - Jedidiah Jonathan- Created file (empty)
         5/19/2011 - Jedidiah Jonathan- Updated to just test the functions of loan controller
 	5/20/2011 - Jedidiah Jonathan- Testing complete on the Loan controller
+	5/27/2011 - Jedidiah Jonathan- Test updated to reflect current controller code. Some tests are disabled. Read corresponding notes.
+	5/31/2011 - Jedidiah Jonathan - Tests updated
 */
 
   /* Import the Loan controller and Model for testing */
@@ -135,16 +137,45 @@ class LoansControllerTest extends CakeTestCase {
   // --------------------------------------------
   // Purpose: Removes the corresponding loan from the database 
   // Test: This test is responsible for removing the loans that the user decides from the database.
-  // Comments: This test has been disabled as the controller perform a redirect for the result and now the test page
-  //           also ends up redirecting and we cannot test it this way.
+  // Comments: This test has been updated to reflect the current code of the  controller 
   // 
   function testremove_loan() {
 
-    /* $result = $this->testAction('/loans/remove_loan/2/1',array('return' => 'vars'));
-    debug($result);
+    $this->Loan =& ClassRegistry::init('Loan');
+    $id = 1;
+    $book_id = 2;
+    $date = 2011;
+    $client_id = 10;
+    $created = '2011-05-08 19:47:00';
+    $modified = '2011-05-08 19:47:30';
 
-    // Assert the tile for the layout has the correct field
-    $this->assertEqual($result['title_for_layout'], 'Library || My Loans'); */
+    $loans = $this->Loan->find('first',
+			       array('conditions' =>
+				     array('owner_id' => $id)
+				     )
+  					    );
+    //debug($loans);
+    // Assert that the current book for the user has the correct data fields 
+    $this->assertEqual($loans['Loan']['owner_id'],$id);
+    $this->assertEqual($loans['Loan']['client_id'],$client_id);
+    $this->assertEqual($loans['Loan']['book_id'],$book_id);
+    $this->assertEqual($loans['Loan']['due_date'],$date);
+    $this->assertEqual($loans['Loan']['created'],$created);
+    $this->assertEqual($loans['Loan']['modified'],$modified);
+    
+    // Call the remove_loan function
+    $this->Loans->remove_loan($book_id,$id);
+    
+    // Call the my_loans function to perform the assertions
+    $result = $this->testAction('/loans/my_loans/1',array('return' => 'vars'));
+    
+    // Assert that results obtained from my books has the appropriate data values from the loan fixtures
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['client_id'], NULL);
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['owner_id'], 1);
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['book_id'], 2);
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['due_date'], 2011);
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['created'], '2011-05-08 19:47:00');
+    $this->assertEqual($result['loan_collection_owner'][0]['loans']['modified'], '2011-05-08 19:47:30');
 
   }
 }

@@ -16,6 +16,24 @@ body {
 #top_bar_logo > img {
     width: 100px;
     height: 100px;
+    padding-left: 10px;
+}
+
+#top_bar_logo a img{
+    width: 100px;
+    height: 100px;
+    padding: 0px;
+}
+
+#top_bar_logo a {
+    width: 100px;
+    height: 100px;
+    padding: 0px;
+}
+
+#page_logo{
+	width: 100px;
+    height: 100px;	
 }
 
 #top_bar_options {
@@ -39,10 +57,15 @@ body {
 	padding: 10px;
 	text-decoration: None;
 }
-
+/*
 #top_section a:hover {
 	text-decoration: none; 
 	background-color: #6B86B7;
+}
+*/
+.button:hover{
+	text-decoration: none; 
+	background-color: #6B86B7;	
 }
 
 #side_bar {

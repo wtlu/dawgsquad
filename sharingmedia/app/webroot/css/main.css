@@ -141,3 +141,8 @@ a img{
 	margin-top: 10px;
 	text-align: center;
 }
+
+.trans_detail {
+	height: 640px;
+	overflow: scroll;
+}
