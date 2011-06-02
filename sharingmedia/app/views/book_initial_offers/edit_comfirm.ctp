@@ -19,15 +19,15 @@
 				 <li>Loan Duration:  <?php echo $loan_duration?> days </li>
 		<?php }
 			if($sell_price!=("NULL")){?>
-				<li>For Sale at $ <?php echo  $sell_price ?></li> 
+				<li>For Sale at $ <?php echo  $sell_price ?></li>
 		<?php	}
-			if($trade_id == 1){?>
+			if($trade_id == 0){?>
 				 <li> Willing to Trade for Another Book</li>
 		<?php	}
 		?>
 			</ul>
 		</div>
-		
+
 		<?php echo $form->create('BookInitialOffer', array('action' => 'update/'.$this->Session->read('uid')."/".$bid, 'type'=>'post')); ?>
 		<?php
 		if(!empty($loan_duration)){

@@ -2,7 +2,7 @@
 /**
  * File		: /app/tests/cases/books_controller.test.php
  * Author	: Tatsuro Oya
- * Purpose	: Tests transactions controller
+ * Purpose	: Tests books controller
  * Notes	: This is the unit test module for BooksController function.
  *	 		  We ensure whether this module is working or not by
  *	 		  creating dummy database, then prepare the expected results for each function
@@ -65,7 +65,7 @@ class BooksControllerTest extends CakeTestCase{
 	function testFindBooksResults() {
 
 		/* init */
-		$this->Transaction =& ClassRegistry::init('Book');
+		$this->Book =& ClassRegistry::init('Book');
 
 		/* params */
 		$book_title	= 'Web Programming';		/* web programming */
@@ -227,7 +227,27 @@ class BooksControllerTest extends CakeTestCase{
 		$this->assertEqual($book_sub[0]['ISBN'], '0132126958');
 		return $book_sub;
 	}
-           
+
+	function testBrowseBooksResults() {
+
+		/* init */
+		$this->Book =& ClassRegistry::init('Book');
+		$this->Books = new BooksController();
+		$this->Books->constructClasses();
+		$this->Books->Component->initialize($this->Books);
+
+		$session_id = 3;
+		
+		debug('conducting render check for browse_books_results() action method ');
+		$result = $this->Books->browse_books_results(3);
+
+			debug($result);
+					
+	}		
+	
+
+
+	
 
 }      
 ?>

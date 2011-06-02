@@ -25,8 +25,8 @@ CREATE TABLE books(
 );
 
 CREATE TABLE loans(
-	owner_id INT,
-	client_id INT,
+	owner_id BIGINT,
+	client_id BIGINT,
 	book_id INT,
 	due_date DATE,
 	created DATETIME DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE loans(
 );
 
 CREATE TABLE book_initial_offers(
-	user_id INT,
+	user_id BIGINT,
 	book_id INT,
 	trade_id INT,
 	duration INT,
@@ -54,8 +54,8 @@ CREATE TABLE trades(
 
 CREATE TABLE transactions(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	owner_id INT,
-	client_id INT,
+	owner_id BIGINT,
+	client_id BIGINT,
 	book_id INT,
 	current_id INT,
 	trade_id INT,

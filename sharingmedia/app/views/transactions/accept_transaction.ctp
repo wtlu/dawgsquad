@@ -10,7 +10,7 @@
 -->
 <?php echo $this->Html->css('main', NULL, array('inline' => FALSE)); ?>
 
-<div>
+<div class = "trans_detail">
 
 	<h2> Transaction Accepted! </h2>
 

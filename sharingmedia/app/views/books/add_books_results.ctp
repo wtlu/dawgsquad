@@ -121,6 +121,7 @@ function display_results($result) {
 	foreach ($result as $element) {
 		$chosen = $chosen . '^' . $element;
 	}
+	$chosen = urlencode($chosen);
 	?>
 
 		<input name="data[Book][book_type]" id="choose_book" value="<?= $chosen ?>" type="hidden">
