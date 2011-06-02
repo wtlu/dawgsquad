@@ -28,18 +28,18 @@ class TransactionsController extends AppController {
 		$book_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $book_id . ' ;');
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
-		
+
 		//Get search data, for use with go back button
 		$search_title = null;
 		if(isset($this->data['Transaction']['title'])){
 			$search_title = $this->data['Transaction']['title'];
 		}
-		
+
 		$search_author = null;
 		if(isset($this->data['Transaction']['author'])){
 			$search_author = $this->data['Transaction']['author'];
 		}
-		
+
 		$search_isbn = null;
 		if(isset($this->data['Transaction']['isbn'])){
 			$search_isbn = $this->data['Transaction']['isbn'];
@@ -80,7 +80,7 @@ class TransactionsController extends AppController {
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
 		$this->set('allow_trade', $allow_trade);
-		if($allow_trade > 0){
+		if($allow_trade > -1){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
@@ -135,7 +135,7 @@ class TransactionsController extends AppController {
 		$owner_result = $this->Transaction->query('SELECT * FROM users WHERE facebook_id = ' . $owner_id . ' ;');
 
 		$data['Transaction']['allow_trade'] = $allow_trade;
-		if($allow_trade > 0 && $duration == "NULL" && $price == "NULL"){
+		if($allow_trade > -1 && $duration == "NULL" && $price == "NULL"){
 			//Get info about the book to be traded
 			$trade_result = $this->Transaction->query('SELECT * FROM books WHERE id = ' . $allow_trade . ' ;');
 			$data['Transaction']['trade_title'] = $trade_result[0]['books']['title'];
@@ -451,7 +451,7 @@ class TransactionsController extends AppController {
 
 	//Pre: Called from the transaction.ctp view, allows user to make a new/updated offer on a book
 	//Post: Accepts user input in a form, submits to make_offer.ctp
-    function counter_transaction($uid, $book_id = null, $owner_id = null, $allow_trade = 0, $client_id = "NULL") {
+    function counter_transaction($uid, $book_id = null, $owner_id = null, $allow_trade = -1, $client_id = "NULL") {
 
 		//For CSS Styling
 		$this->layout = 'main_layout';
