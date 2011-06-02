@@ -144,28 +144,52 @@ class TransactionsController extends AppController {
 			$data['Transaction']['trade_image'] = $trade_result[0]['books']['image'];
 
 			//A trade has occurred; swap books in users libraries.
-			$this->Transaction->query('DELETE FROM book_initial_offers
-									WHERE user_id = ' . $owner_id . '
-										AND book_id = ' . $book_id . ';');
 
-			$this->Transaction->query('DELETE FROM book_initial_offers
-									WHERE user_id = ' . $client_id . '
-										AND book_id = ' . $allow_trade . ';');
+			if ($owner_id == $this->Session->read('uid')) {
+				$this->Transaction->query('DELETE FROM book_initial_offers
+										WHERE user_id = ' . $client_id . '
+											AND book_id = ' . $book_id . ';');
 
-			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
-																				','  . $allow_trade .
-																				',-1' .
-																				',NULL' .
-																				',NULL' .
-																				', NOW(), NULL);');
+				$this->Transaction->query('DELETE FROM book_initial_offers
+										WHERE user_id = ' . $owner_id . '
+											AND book_id = ' . $allow_trade . ';');
 
-			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
-																				','  . $book_id .
-																				',-1' .
-																				',NULL' .
-																				',NULL' .
-																				', NOW(), NULL);');
+				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
+																					','  . $allow_trade .
+																					',-1' .
+																					',NULL' .
+																					',NULL' .
+																					', NOW(), NULL);');
 
+				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
+																					','  . $book_id .
+																					',-1' .
+																					',NULL' .
+																					',NULL' .
+																					', NOW(), NULL);');
+			} else {
+				$this->Transaction->query('DELETE FROM book_initial_offers
+										WHERE user_id = ' . $owner_id . '
+											AND book_id = ' . $book_id . ';');
+
+				$this->Transaction->query('DELETE FROM book_initial_offers
+										WHERE user_id = ' . $client_id . '
+											AND book_id = ' . $allow_trade . ';');
+
+				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $owner_id .
+																					','  . $allow_trade .
+																					',-1' .
+																					',NULL' .
+																					',NULL' .
+																					', NOW(), NULL);');
+
+				$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
+																					','  . $book_id .
+																					',-1' .
+																					',NULL' .
+																					',NULL' .
+																					', NOW(), NULL);');
+			}
 		}
 
 		/* This statement updates the status of this transaction to "completed" state */
@@ -192,6 +216,7 @@ class TransactionsController extends AppController {
 			$this->Transaction->query('DELETE FROM book_initial_offers
 									WHERE user_id = ' . $owner_id . '
 										AND book_id = ' . $book_id . ';');
+
 
 			$this->Transaction->query('INSERT INTO book_initial_offers VALUES (' . $client_id .
 																				','  . $book_id .
@@ -486,7 +511,8 @@ class TransactionsController extends AppController {
 				FROM book_initial_offers b_i_o, books books
 				WHERE b_i_o.user_id = ' . $uid . '
 					AND b_i_o.trade_id = 0
-					AND b_i_o.book_id = books.id;');
+					AND b_i_o.book_id = books.id
+					AND b_i_o.book_id != ' . $book_id . ;');
 			# debug($trade_books);
 			$data['Transaction']['trade_books'] = $trade_books;
 		}
