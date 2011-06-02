@@ -28,9 +28,12 @@ function checkCheckboxes(){
     if (document.counter_form.choose_sell.checked) {
     	checkCount++;
     }
-    if (document.counter_form.choose_trade.checked) {
-    	checkCount++;
-    }
+    var trade_box = document.counter_form.choose_trade;
+    if (trade_box != null) {
+		if (document.counter_form.choose_trade.checked) {
+			checkCount++;
+		}
+	}
     if (checkCount > 0) {
 		document.counter_form.counter_button.disabled=false;
     } else {
