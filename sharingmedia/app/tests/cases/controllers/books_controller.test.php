@@ -232,13 +232,14 @@ class BooksControllerTest extends CakeTestCase{
 
 		/* init */
 		$this->Book =& ClassRegistry::init('Book');
+		$this->Books = new BooksController();
+		$this->Books->constructClasses();
+		$this->Books->Component->initialize($this->Books);
 
 		$session_id = 3;
 		
 		debug('conducting render check for browse_books_results() action method ');
-			$result = $this->testAction('/Books/browse_books_results/3', 
-										array('return' => 'vars')
-				);
+		$result = $this->Books->browse_books_results(3);
 
 			debug($result);
 					
