@@ -145,7 +145,7 @@ class TransactionsController extends AppController {
 
 			//A trade has occurred; swap books in users libraries.
 
-			if ($owner_id == $this->Session->read('uid')) {
+			if ($client_id == $this->Session->read('uid')) {
 				$this->Transaction->query('DELETE FROM book_initial_offers
 										WHERE user_id = ' . $client_id . '
 											AND book_id = ' . $book_id . ';');
