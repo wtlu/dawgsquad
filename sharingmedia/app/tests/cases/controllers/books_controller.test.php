@@ -73,7 +73,7 @@ class BooksControllerTest extends CakeTestCase{
 		$book_isbn	= '578012391';
 		$session_id = 3;
 		
-		debug('conducting render check for find_books_results() action method ');
+		debug('conducting var check for find_books_results() action method ');
 			$result = $this->testAction('/Books/find_books_results/Web Programming/Marty Stepp/578012391/3', 
 										array('return' => 'vars')
 				);
@@ -228,6 +228,19 @@ class BooksControllerTest extends CakeTestCase{
 		return $book_sub;
 	}
 
+	
+	//--------------------------------------------------
+	// browse_books_results
+	//--------------------------------------------------			
+	
+	
+	/* Test3: browse_books_results() function check:
+	 * Checking if the query works by simiulating it in the test function below.
+	 * Checks if session ID 1 can see all books owened by his Friends.
+     * The friends name is Person B. So it should return the the book owened by Person B 	 
+	 * Person B owns the book whose title is 'title'. Hence, if the query return it
+	 * this test function guarantees that browse_books_results() is working.
+	 */
 	function testBrowseBooksResults() {
 
 		/* init */
@@ -236,18 +249,42 @@ class BooksControllerTest extends CakeTestCase{
 		$this->Books->constructClasses();
 		$this->Books->Component->initialize($this->Books);
 
-		$session_id = 3;
+		$session_id = 1;
 		
-		debug('conducting render check for browse_books_results() action method ');
-		$result = $this->Books->browse_books_results(3);
+		debug('conducting var check for browse_books_results() action method ');
+		
+		// call the query
+		$book_results = $this->Book->query('SELECT DISTINCT books.*, users.*, b_i_o.*
+								FROM books books, book_initial_offers b_i_o, users users
+									WHERE b_i_o.user_id = users.facebook_id
+										AND b_i_o.book_id = books.id
+										AND 1 > (SELECT COUNT(*)
+													FROM loans loans
+													WHERE loans.book_id = b_i_o.book_id
+														AND loans.owner_id = b_i_o.user_id)
+										AND 1 > (SELECT COUNT(*)
+													FROM book_initial_offers b_i_o_2
+													WHERE b_i_o.book_id = b_i_o_2.book_id
+														AND b_i_o_2.user_id = ' . $session_id . ')
+										AND 1 > (SELECT COUNT(*)
+													FROM transactions t
+													WHERE t.client_id = ' . $session_id .'
+														AND t.owner_id = b_i_o.user_id
+														AND t.book_id = b_i_o.book_id
+														AND t.status = 0)
+								ORDER BY books.title;');	
+			
+		
 
-			debug($result);
+		//debug($book_results);	
+	
+		$this->assertEqual($book_results[0]['books']['title'], 'title');
+		$this->assertEqual($book_results[0]['users']['name'], 'person B');
+
 					
 	}		
 	
 
-
-	
 
 }      
 ?>

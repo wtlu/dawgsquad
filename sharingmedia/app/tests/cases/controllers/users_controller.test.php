@@ -74,20 +74,18 @@ class UsersControllerTest extends CakeTestCase{
     ClassRegistry::flush();
   }
 
+  /* Explanation for why the test code is not written in this unit test.
+	 *   The function has to use $session = $facebook->getSession()  to get session from facebook and 
+	 * 	 We cannot test because there is not a way to set the local variable $session from the controller.
+	 *   
+	 *
+	 *
+	 */
+  
+  
   
   function testIndex(){
-    //debug('The User Controller will not be tested because the only functionality it provides is a wrapper around the Facebook login system. For security reasons, Facebook disallows scripting logging in. ');
-    
-    
-    $this->Users->Session->write('uid', 999);
-    
-    $result = $this->testAction('/Users/index', 
-				array('return' => 'vars')
-				);
-
-    debug($result);	
-    
-    $data = $this->User->find('all');
+    debug('The User Controller will not be tested because the only functionality it provides is a wrapper around the Facebook login system. For security reasons, Facebook disallows scripting logging in. ');
     
   }
 
