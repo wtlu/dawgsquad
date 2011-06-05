@@ -61,7 +61,7 @@ a{
 	float: left;
 	width: 150px;
 	margin-right:2px;
-	background-image:url("../img/tab.png");
+	/*background-image:url("../img/tab.png");*/
 	text-align:center;
 	height:28px;
 	font-weight:bold;
@@ -72,11 +72,14 @@ a{
 	color: white;
 }
 
-.current {
+#menu li .current {
 	background-image: url("../img/hover.png");	
 	color: white;
 }
 
+#menu li .notCurrent {
+	background-image:url("../img/tab.png");
+}
 #menu a {
 	text-decoration: none;
 }
