@@ -43,7 +43,7 @@ FB.Canvas.setSize();
 		<li><? echo
 			$this->Html->link("My Books",
 			"/book_initial_offers/my_books/".$this->Session->read('uid'),
-			array('escape' => false)); ?>
+			array('class' => 'current', 'escape' => false)); ?>
 		</li>
                 <li><? echo
 			$this->Html->link("Transaction History",
