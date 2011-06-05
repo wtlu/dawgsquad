@@ -31,10 +31,10 @@
                         "/transactions/my_transactions/".$this->Session->read('uid'),
                         array('escape' => false)); ?>
                 </li>
-                <li><? echo
+                <li class = "current"><? echo
                         $this->Html->link("My Loans",
                         "/loans/my_loans/".$this->Session->read('uid'),
-                        array('class' => 'current', 'escape' => false)); ?>
+                        array('escape' => false)); ?>
                 </li>
 
 	</ul>
