@@ -33,6 +33,7 @@
 			$author = $book_chosen[2];
 			$ISBN = $book_chosen[3];
 			$image = $book_chosen[4];
+			$summary = $book_chosen[5];
 		?>
 	<img src=<?php echo $image ?> alt="Book image" />
 	<strong>Title:</strong>	<?php echo $title; ?> <br />
@@ -62,6 +63,7 @@
 		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<input name="data[BookInitialOffer][summary]" id="summary" value="<?php echo $summary ?>" type="hidden">
 		<div class="options">
 			<input name="data[BookInitialOffer][offer_loan]" id="choose_loan" value="loan" type="checkbox">
 			<label for="choose_loan">Loan for (days)?</label>
