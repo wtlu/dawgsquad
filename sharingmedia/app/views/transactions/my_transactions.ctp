@@ -30,7 +30,7 @@
                 <li><? echo
                         $this->Html->link("Transaction History",
                         "/transactions/my_transactions/".$this->Session->read('uid'),
-                        array('escape' => false)); ?>
+                        array('class' => 'current', 'escape' => false)); ?>
                 </li>
                 <li><? echo
                         $this->Html->link("My Loans",

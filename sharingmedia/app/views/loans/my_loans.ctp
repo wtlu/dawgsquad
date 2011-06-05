@@ -34,7 +34,7 @@
                 <li><? echo
                         $this->Html->link("My Loans",
                         "/loans/my_loans/".$this->Session->read('uid'),
-                        array('escape' => false)); ?>
+                        array('class' => 'current', 'escape' => false)); ?>
                 </li>
 
 	</ul>
