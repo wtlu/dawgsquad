@@ -22,7 +22,7 @@
 <!--tabs of Library with links-->
 <div id = "menubar">
         <ul id = "menu">
-		<li><? echo
+		<li class = "notCurrent"><? echo
                         $this->Html->link("My Books",
                         "/book_initial_offers/my_books/".$this->Session->read('uid'),
                         array('escape' => false)); ?>
@@ -32,7 +32,7 @@
                         "/transactions/my_transactions/".$this->Session->read('uid'),
                         array('escape' => false)); ?>
                 </li>
-                <li><? echo
+                <li class = "notCurrent"><? echo
                         $this->Html->link("My Loans",
                         "/loans/my_loans/".$this->Session->read('uid'),
                         array('escape' => false)); ?>
