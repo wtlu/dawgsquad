@@ -1,0 +1,129 @@
+html{
+	width: 760px;
+	font-family: tahoma,verdana,arial,sans-serif;
+	font-size: 14px;
+}
+
+a{
+   text-decoration:none;
+}
+
+#content h1 {
+    clear: both;
+    color: black;
+    font-size: 24pt;
+}
+
+#content h2 {
+    color: black;
+    font-size: 14pt;
+}
+.book_img{
+	height: 100px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 45px;
+	margin-top: 15px;
+}
+.books_list{
+	height:140px;
+}
+.book_unit{
+	width:500px;
+	overflow: hidden;
+	border: 2px solid #3B5998;
+	margin-bottom: -2px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+}
+
+.wait_response {
+	background: #FFE5DE
+}
+
+.respond {
+	background: #CFDEFF;
+}
+#menubar{
+    width:564px;
+    float:left;
+}
+
+#menubar a{
+    color: white;
+}
+#menu {
+	width: 100%;
+	padding-left:0px;
+}
+#menu li {
+	display: block;
+	float: left;
+	width: 150px;
+	margin-right:2px;
+	background-image:url("../img/tab.png");
+	text-align:center;
+	height:28px;
+	font-weight:bold;
+	padding-top:10px;
+}
+#menu li:hover {
+	background-image: url("../img/hover.png");	
+	color: white;
+}
+
+.current {
+	background-image: url("../img/hover.png");	
+	color: white;
+}
+
+#menu a {
+	text-decoration: none;
+}
+
+
+#menu #add{
+    float: right;
+}
+
+.buttons{
+	float:right;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.tabs{
+	float:left;
+	background-color:gray;
+	margin-right:5px;
+}
+#current{
+	background-color:gray;
+}
+
+#list{
+	float:left;
+	border:2px solid black;
+	width: 540px;
+	padding:10px;
+	height: 500px;
+	overflow: scroll;
+}
+#remove{
+	float:left;
+}
+#cancel{
+	float:right;
+}
+.display_book {
+    display:block;
+	float: left;
+}
+#offer {
+    display: block;
+    float: right;
+    width: 625px;
+}
+.book_info {
+    display: block;
+    float: left;
+}
