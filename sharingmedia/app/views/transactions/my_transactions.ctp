@@ -27,10 +27,10 @@
                         "/book_initial_offers/my_books/".$this->Session->read('uid'),
                         array('escape' => false)); ?>
                 </li>
-                <li><? echo
+                <li class = "current"><? echo
                         $this->Html->link("Transaction History",
                         "/transactions/my_transactions/".$this->Session->read('uid'),
-                        array('class' => 'current', 'escape' => false)); ?>
+                        array('escape' => false)); ?>
                 </li>
                 <li><? echo
                         $this->Html->link("My Loans",
