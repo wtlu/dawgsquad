@@ -117,6 +117,9 @@ xfbml : true // parse XFBML
 # helper function to display book results
 function display_results($result) {
 	$chosen = '';
+	if ($result['summary'] == '') {
+		$result['summary'] = '(no summary)';
+	}
 	# build the string of book data and pass on to initial_offer_details function in book initial offers controller
 	foreach ($result as $element) {
 		$chosen = $chosen . '^' . $element;

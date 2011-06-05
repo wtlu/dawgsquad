@@ -29,6 +29,7 @@
 				<strong>Title:</strong>	<?php echo $title; ?> <br />
 				<strong>Author(s):</strong> <?php echo $author ?> <br />
 				<strong>ISBN:</strong> <?php echo $ISBN ?> <br />
+				<strong>Summary:</strong> <?php echo $summary ?> <br />
 			</label>
 		</p>
 	</fieldset>
@@ -67,6 +68,7 @@
 		<input name="data[BookInitialOffer][author]" id="author" value="<?php echo $author ?>" type="hidden">
 		<input name="data[BookInitialOffer][ISBN]" id="ISBN" value="<?php echo $ISBN ?>" type="hidden">
 		<input name="data[BookInitialOffer][image]" id="image" value="<?php echo $image ?>" type="hidden">
+		<input name="data[BookInitialOffer][summary]" id="image" value="<?php echo $summary ?>" type="hidden">
 
 
 		<?php
@@ -78,9 +80,9 @@
 				echo '<input name="data[BookInitialOffer][sell_price]" id="sp" value="' . $sell_price . '" type="hidden">';
 		}
 
-		
+
 				echo '<input name="data[BookInitialOffer][trade_id]" id="ti" value="' . $trade_id . '" type="hidden">';
-		
+
 		?>
 
 <?php

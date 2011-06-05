@@ -140,12 +140,14 @@ class BookInitialOffersController extends AppController {
 		$author = $this->data['BookInitialOffer']['author'];
 		$ISBN = $this->data['BookInitialOffer']['ISBN'];
 		$image = $this->data['BookInitialOffer']['image'];
+		$summary = $this->data['BookInitialOffer']['summary'];
 
 		// Make book info available in the view
 		$this->set('title', $title);
 		$this->set('author', $author);
 		$this->set('ISBN', $ISBN);
 		$this->set('image', $image);
+		$this->set('summary', $summary);
 
 
 		if (!empty($this->data)) {
@@ -186,6 +188,7 @@ class BookInitialOffersController extends AppController {
 		$book_author = $this->data['BookInitialOffer']['author'];
 		$book_isbn = $this->data['BookInitialOffer']['ISBN'];
 		$book_image = $this->data['BookInitialOffer']['image'];
+		$book_summary = $this->data['BookInitialOffer']['summary'];
 
 		$loan_duration = "NULL";
 		$sell_price = "NULL";
@@ -212,6 +215,7 @@ class BookInitialOffersController extends AppController {
 		$this->set('author', $book_author);
 		$this->set('ISBN', $book_isbn);
 		$this->set('image', $book_image);
+		$this->set('summary', $book_summary);
 
 		//Keeps track of whether the book was added to users mylibrary; used to print message in the view
 		$add_status = false;
@@ -228,7 +232,7 @@ class BookInitialOffersController extends AppController {
 					//Add book to our database
 					$the_book = $this->BookInitialOffer->query('SELECT MAX(id) FROM books;');
 					$book_id = $the_book[0][0]['MAX(id)'] + 1;
-					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '", "dummy description", NOW());');
+					$this->BookInitialOffer->query('INSERT INTO books(id, title, author, ISBN, image, summary, created) VALUES("' . $book_id . '","' . $book_title . '","' . $book_author . '","' . $book_isbn . '","' . $book_image . '","' . $book_summary . '", NOW());');
 				} else {
 					foreach ($book_results as $book){
 						$result = $book['books'];
