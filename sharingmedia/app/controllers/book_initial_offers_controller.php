@@ -238,6 +238,7 @@ class BookInitialOffersController extends AppController {
 						$result = $book['books'];
 						$book_id = $result['id'];
 					}
+					$this->BookInitialOffer->query('UPDATE books SET summary = "'. $book_summary .'";');
 				}
 
 				//Test to see if user/book combo already exists; if so, do not attempt to add it again
