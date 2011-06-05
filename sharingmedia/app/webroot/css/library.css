@@ -72,7 +72,7 @@ a{
 	color: white;
 }
 
-#menu li .current {
+.current {
 	background-image: url("../img/hover.png");	
 	color: white;
 }
