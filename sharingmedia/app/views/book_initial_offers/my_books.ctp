@@ -40,17 +40,17 @@ FB.Canvas.setSize();
 <!--tabs of Library with links-->
 <div id = "menubar">
 	<ul id = "menu">
-		<li class = "current"><? echo
+		<li class="current"><? echo
 			$this->Html->link("My Books",
 			"/book_initial_offers/my_books/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
 		</li>
-        <li class = "notCurrent"><? echo
+        <li class="notCurrent"><? echo
 			$this->Html->link("Transaction History",
 			"/transactions/my_transactions/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
 		</li>
-        <li class = "notCurrent"><? echo
+        <li class="notCurrent"><? echo
 			$this->Html->link("My Loans",
 			"/loans/my_loans/".$this->Session->read('uid'),
 			array('escape' => false)); ?>
